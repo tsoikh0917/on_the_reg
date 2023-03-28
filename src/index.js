@@ -4,8 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { ProSidebarProvider } from 'react-pro-sidebar';
-import SideBar from './components/sidebar/sidebar';
+
+
 import Topbar from './components/sidebar/topbar';
 
 
@@ -16,9 +16,7 @@ document.body.style.backgroundColor = "#F5F5F5";
 root.render(
   <React.StrictMode >
     <Topbar/>
-    <ProSidebarProvider>
-      <SideBar/>
-    </ProSidebarProvider>
+
     <BrowserRouter >
     <App />
     </BrowserRouter>

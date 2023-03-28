@@ -1,24 +1,23 @@
 t1 {
-    font-Weight : 700 ;
-    font-size: 25px;
-    color : #7D7FEC;
-    padding-left: 3%;
+  font-weight: 700;
+  font-size: 25px;
+  color: #7d7fec;
+  padding-left: 3%;
 }
 
-.header{
-    padding-left: 5%;
-    padding-top: 5%;
+.header {
+  padding-left: 5%;
+  padding-top: 5%;
 }
-.side{
-    float:left;
+.side {
+  float: left;
 }
-t2{
-    font-size: 20px;
-    margin-top: 10px;
-    padding-left: 10%;
-    
+t2 {
+  font-size: 20px;
+  margin-top: 10px;
+  padding-left: 10%;
 }
 
-t3{
-    color:#dcc6c6;
+t3 {
+  color: #dcc6c6;
 }

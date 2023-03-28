@@ -1,30 +1,54 @@
-import React from 'react';
-import icon from './image/icon.png'
-import { Sidebar, Menu, MenuItem  } from 'react-pro-sidebar';
-import './sidebar.css';
-function SideBar(){
-    
-        return (
-    <div style={{ display: 'flex', height: '100%' , width: '20%'}} class="side">
+import React from "react";
+import icon from "./image/icon.png";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import "./sidebar.css";
+import { Link } from "react-router-dom";
+import {
+  FaSearch,
+  FaCalendarAlt,
+  FaReadme,
+  FaRegTrashAlt,
+  FaRegistered,
+} from "react-icons/fa";
 
+function SideBar() {
+  return (
+    <div style={{ display: "flex", height: "100%", width: "20%" }} class="side">
       <Sidebar>
-      <div class='header' style={{display: 'flex', alignItems: 'center'}}>
-        <img src={icon} width="20%" alt="icon" />
-        <t1 >On The Reg</t1>
-
+        <div class="header" style={{ display: "flex", alignItems: "center" }}>
+          <img src={icon} width="20%" alt="icon" />
+          <t1>On The Reg</t1>
         </div>
         <Menu>
-          <MenuItem> View Class</MenuItem>
-          <MenuItem> Class Schedule</MenuItem>
-          <MenuItem> Add Class</MenuItem>
-          <MenuItem> Drop Class</MenuItem>
-          <MenuItem> Enrollment Status</MenuItem>
+          <MenuItem icon={<FaReadme />} component={<Link to="/viewClass" />}>
+            View Class
+          </MenuItem>
+          <MenuItem
+            icon={<FaCalendarAlt />}
+            component={<Link to="/classSchedule" />}
+          >
+            Class Schedule
+          </MenuItem>
+          <MenuItem icon={<FaSearch />} component={<Link to="/search" />}>
+            Add Class
+          </MenuItem>
+          <MenuItem
+            icon={<FaRegTrashAlt />}
+            component={<Link to="/viewClass" />}
+          >
+            Drop Class
+          </MenuItem>
+          <MenuItem
+            icon={<FaRegistered />}
+            component={<Link to="/enrollment" />}
+          >
+            Enrollment Status
+          </MenuItem>
         </Menu>
       </Sidebar>
-      <main>
-      </main>
+      <main></main>
     </div>
-        );
+  );
 }
- 
+
 export default SideBar;
