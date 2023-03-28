@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import "./topbar.css";
-class Topbar extends Component {
-    render() { 
-        return (<h2 class="container"><button class="rmstyle">Chan Tai Ming</button></h2>);
-    }
+function Topbar() {
+        return (<body><h2 class="container"><button class="rmstyle">Chan Tai Ming</button></h2></body>);
 }
  
 export default Topbar;

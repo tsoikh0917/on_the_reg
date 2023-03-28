@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import icon from './image/icon.png'
 import { Sidebar, Menu, MenuItem  } from 'react-pro-sidebar';
 import './sidebar.css';
-class SideBar extends Component {
-    state = {  } 
+function SideBar(){
     
-    render() { 
         return (
     <div style={{ display: 'flex', height: '100%' , width: '20%'}} class="side">
 
       <Sidebar>
       <div class='header' style={{display: 'flex', alignItems: 'center'}}>
-        <img src={icon} width="20%" />
+        <img src={icon} width="20%" alt="icon" />
         <t1 >On The Reg</t1>
 
         </div>
@@ -27,7 +25,6 @@ class SideBar extends Component {
       </main>
     </div>
         );
-    }
 }
  
 export default SideBar;
