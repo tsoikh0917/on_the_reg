@@ -1,3 +1,11 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
 t1 {
   font-weight: 700;
   font-size: 25px;
@@ -7,10 +15,10 @@ t1 {
 
 .header {
   padding-left: 5%;
-  padding-top: 5%;
 }
 .side {
   float: left;
+  height: 100%;
 }
 t2 {
   font-size: 20px;

@@ -16,32 +16,43 @@ import SideBar from "./components/sidebar/sidebar";
 import ViewClass from "./components/studentCourseManage/viewClass";
 import ClassSchedule from "./components/studentCourseManage/classSchedule";
 import EnrollmentStatus from "./components/studentCourseManage/enrollmentStatus";
+import Topbar from "./components/sidebar/topbar";
 
 function App() {
   return (
-    <div>
-      <ProSidebarProvider>
+    <ProSidebarProvider>
+      <Topbar />
+      <div class="side">
         <SideBar />
-      </ProSidebarProvider>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/viewClass" element={<ViewClass />} />
-          <Route path="/classSchedule" element={<ClassSchedule />} />
-          <Route path="/enrollment" element={<EnrollmentStatus />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/search/classOption" element={<Option />} />
-          <Route path="/search/classOption/confirm" element={<Confirm />} />
-          <Route path="/aAddCourse" element={<AdminAddCourse />} />
-          <Route path="/aEditCourse" element={<AdminEditCourse />} />
-          <Route path="/aViewCourse" element={<AdminViewCourse />} />
-          <Route path="/aAddUser" element={<AdminAddUser />} />
-          <Route path="/aEditUser" element={<AdminEditUser />} />
-          <Route path="/aViewUser" element={<AdminViewUser />} />
-        </Routes>
       </div>
-    </div>
+      <div className="App">
+        <div class="align">
+          <div>
+            <div>
+              <Routes>
+                <Route path="/" element={<Main />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/viewClass" element={<ViewClass />} />
+                <Route path="/classSchedule" element={<ClassSchedule />} />
+                <Route path="/enrollment" element={<EnrollmentStatus />} />
+                <Route path="/search" element={<Search />} />
+                <Route path="/search/classOption" element={<Option />} />
+                <Route
+                  path="/search/classOption/confirm"
+                  element={<Confirm />}
+                />
+                <Route path="/aAddCourse" element={<AdminAddCourse />} />
+                <Route path="/aEditCourse" element={<AdminEditCourse />} />
+                <Route path="/aViewCourse" element={<AdminViewCourse />} />
+                <Route path="/aAddUser" element={<AdminAddUser />} />
+                <Route path="/aEditUser" element={<AdminEditUser />} />
+                <Route path="/aViewUser" element={<AdminViewUser />} />
+              </Routes>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ProSidebarProvider>
   );
 }
 

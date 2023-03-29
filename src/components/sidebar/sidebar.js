@@ -13,7 +13,15 @@ import {
 
 function SideBar() {
   return (
-    <div style={{ display: "flex", height: "100%", width: "20%" }} class="side">
+    <div
+      style={{
+        display: "flex",
+        height: "100%",
+        width: "20%",
+        position: "relative",
+      }}
+      class="side"
+    >
       <Sidebar>
         <div class="header" style={{ display: "flex", alignItems: "center" }}>
           <img src={icon} width="20%" alt="icon" />
