@@ -1,0 +1,118 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
+
+#resize {
+  width: 60%;
+  margin: 0 auto;
+  position: relative;
+  float: left;
+  left: 10%;
+}
+
+#form_info {
+  background: #f9f9f9;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 3%;
+  padding-bottom: 2%;
+  margin: 50px 0;
+  border: 3px solid #d6d6fa;
+  box-shadow: 10px 10px 5px lightblue;
+  border-radius: 20px;
+}
+
+#form_info input,
+#form_info textarea,
+#form_info button[type="submit"] {
+  font: 400 12px/16px "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+#form_info h3 {
+  color: #f96;
+  display: block;
+  font-size: 30px;
+  font-weight: 400;
+}
+
+#form_info h4 {
+  margin: 0px 2px 5px;
+  display: block;
+  font-size: 15px;
+  font-family: sans-serif;
+  color: grey;
+  font-weight: semibold;
+  letter-spacing: 0.1em;
+}
+
+fieldset {
+  border: medium none !important;
+  margin: 0 0 10px;
+  min-width: 100%;
+  padding: 0;
+  width: 100%;
+}
+
+#form_info input,
+#form_info textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #fff;
+  margin: 0 0 5px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+#form_info input:hover,
+#form_info textarea:hover {
+  -webkit-transition: border-color 0.3s ease-in-out;
+  -moz-transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.3s ease-in-out;
+  border: 1px solid #aaa;
+}
+
+#form_info textarea {
+  height: 100px;
+  max-width: 100%;
+  resize: none;
+}
+
+#form_info button[type="submit"] {
+  cursor: pointer;
+  width: 15%;
+  border: none;
+  background: #0cf;
+  color: #fff;
+  margin: 0 0 5px;
+  padding: 10px;
+  font-size: 15px;
+  float: right;
+  border-radius: 20px;
+}
+
+#form_info button[type="submit"]:hover {
+  background: #09c;
+  -webkit-transition: background 0.3s ease-in-out;
+  -moz-transition: background 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#form_info button[type="submit"]:active {
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#form_info input:focus,
+#form_info textarea:focus {
+  outline: 0;
+  border: 1px solid #999;
+}
+::-webkit-input-placeholder {
+  color: #888;
+}
+:-moz-placeholder {
+  color: #888;
+}
+::-moz-placeholder {
+  color: #888;
+}
+:-ms-input-placeholder {
+  color: #888;
+}

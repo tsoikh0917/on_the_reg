@@ -22,35 +22,27 @@ function App() {
   return (
     <ProSidebarProvider>
       <Topbar />
+
       <div class="side">
         <SideBar />
       </div>
       <div className="App">
-        <div class="align">
-          <div>
-            <div>
-              <Routes>
-                <Route path="/" element={<Main />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/viewClass" element={<ViewClass />} />
-                <Route path="/classSchedule" element={<ClassSchedule />} />
-                <Route path="/enrollment" element={<EnrollmentStatus />} />
-                <Route path="/search" element={<Search />} />
-                <Route path="/search/classOption" element={<Option />} />
-                <Route
-                  path="/search/classOption/confirm"
-                  element={<Confirm />}
-                />
-                <Route path="/aAddCourse" element={<AdminAddCourse />} />
-                <Route path="/aEditCourse" element={<AdminEditCourse />} />
-                <Route path="/aViewCourse" element={<AdminViewCourse />} />
-                <Route path="/aAddUser" element={<AdminAddUser />} />
-                <Route path="/aEditUser" element={<AdminEditUser />} />
-                <Route path="/aViewUser" element={<AdminViewUser />} />
-              </Routes>
-            </div>
-          </div>
-        </div>
+        <Routes>
+          <Route path="/" element={<Main />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/viewClass" element={<ViewClass />} />
+          <Route path="/classSchedule" element={<ClassSchedule />} />
+          <Route path="/enrollment" element={<EnrollmentStatus />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/search/classOption" element={<Option />} />
+          <Route path="/search/classOption/confirm" element={<Confirm />} />
+          <Route path="/aAddCourse" element={<AdminAddCourse />} />
+          <Route path="/aEditCourse" element={<AdminEditCourse />} />
+          <Route path="/aViewCourse" element={<AdminViewCourse />} />
+          <Route path="/aAddUser" element={<AdminAddUser />} />
+          <Route path="/aEditUser" element={<AdminEditUser />} />
+          <Route path="/aViewUser" element={<AdminViewUser />} />
+        </Routes>
       </div>
     </ProSidebarProvider>
   );
