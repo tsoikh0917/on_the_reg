@@ -59,8 +59,21 @@ th {
   text-align: center;
 }
 thead th {
-  background-color: #55608f;
+  background-color: #9898b8;
 }
 tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.3);
+}
+.arrow {
+  vertical-align: middle;
+  margin-left: 20%;
+  margin-top: 28%;
+}
+
+#rm {
+  background: none;
+  color: inherit;
+  border: none;
+  font: inherit;
+  cursor: pointer;
 }

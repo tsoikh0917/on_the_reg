@@ -3,6 +3,7 @@ import "./search.css";
 import { FaSearch } from "react-icons/fa";
 import { useTable } from "react-table";
 import fakeData from "./MOCK_DATA.json";
+import arrow from "../image/arrow.png";
 
 function Search() {
   const data = React.useMemo(() => fakeData, []);
@@ -73,6 +74,7 @@ function Search() {
                     {column.render("Header")}
                   </th>
                 ))}
+                <th></th>
               </tr>
             ))}
           </thead>
@@ -84,6 +86,9 @@ function Search() {
                   {row.cells.map((cell) => (
                     <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
                   ))}
+                  <button id="rm">
+                    <img class="arrow" src={arrow} width="40%" alt="arrow" />
+                  </button>
                 </tr>
               );
             })}
