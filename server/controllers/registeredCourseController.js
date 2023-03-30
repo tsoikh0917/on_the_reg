@@ -2,13 +2,34 @@
 const con = require('../Models/mysqlModel');
 
 const getRegisteredCourses = async (req, res) => {
-  let sql = 'SELECT * FROM registered_courses';
-  con.query(sql, (err, result) => {
+  const { studentID } = req.params;
+
+  // ? is a placeholder for a value to be inserted into the query
+  let sql = `SELECT * 
+             FROM registered_courses
+             WHERE student_id = ?`
+
+  // first parameter: sql query
+  // second parameter: array of values to be inserted into the query
+  // third parameter: callback function
+  con.query(sql, [studentID],  (err, result) => {
     if (err) throw err;
     res.send(result);
   });
 }
 
+const deleteRegisteredCourse = async (req, res) => {
+}
+
+const addRegisteredCourse = async (req, res) => {
+}
+
+const updateRegisteredCourse = async (req, res) => {
+}
+
 module.exports = {
-  getRegisteredCourses
+  getRegisteredCourses,
+  deleteRegisteredCourse,
+  addRegisteredCourse,
+  updateRegisteredCourse
 }

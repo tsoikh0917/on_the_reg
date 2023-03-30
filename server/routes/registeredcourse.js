@@ -5,9 +5,9 @@ const RegisteredCourse  = require('../controllers/registeredCourseController')
 const router = express.Router()
 
 router.get('/', RegisteredCourse.getRegisteredCourses)
-// router.delete('/:id', RegisteredCourse.)
-// router.post('/add', RegisteredCourse.)
-// router.put('/edit', RegisteredCourse.)
+router.delete('/:id', RegisteredCourse.deleteRegisteredCourse)
+router.post('/add', RegisteredCourse.addRegisteredCourse)
+router.put('/edit', RegisteredCourse.updateRegisteredCourse)
 
 
 module.exports = router

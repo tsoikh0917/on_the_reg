@@ -19,7 +19,7 @@ const mysql = require('mysql');
 
 const app = express()
 const devPort = 8080
-const port = 8000
+// set is it allowed to send requests from different origins
 const corsOptions = {
   origin: ['http://localhost:3000', 'https://localhost:8080', 'http://localhost:8000', 'https://localhost:8000'],
   credentials: true,            //access-control-allow-credentials:true
