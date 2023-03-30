@@ -4,11 +4,8 @@ import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
 import {
-  FaSearch,
   FaCalendarAlt,
-  FaReadme,
-  FaRegTrashAlt,
-  FaRegistered,
+  FaUserAlt,
 } from "react-icons/fa";
 
 function ASideBar() {
@@ -35,7 +32,7 @@ function ASideBar() {
             Manage Course
           </MenuItem>
           <MenuItem
-            icon={<FaRegTrashAlt />}
+            icon={<FaUserAlt />}
             component={<Link to="/aViewUser" />}
           >
             Manage User
