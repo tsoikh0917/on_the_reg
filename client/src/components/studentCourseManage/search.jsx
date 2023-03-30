@@ -10,9 +10,10 @@ function Search() {
   const columns = React.useMemo(
     () => [
       {
-        Header: "course ID",
+        Header: "course id",
         accessor: "course_ID",
       },
+
       {
         Header: "course name",
         accessor: "course_name",
