@@ -1,20 +1,20 @@
-// import modules
-import bodyParser from 'body-parser'
-import cors from 'cors'
-import express from "express"
-import http from "http"
-import https from "https"
-import fs from "fs"
-import cookieParser from 'cookie-parser'
-
-
-
 // import routes
-import postRoutes from './routes/itemslist.js'
-import categoryRoutes from './routes/category.js'
-import itemRoutes from './routes/item.js'
-import userRoutes from './routes/user.js'
-import refreshRoutes from './routes/refresh.js'
+const authRoutes = require('./routes/auth')
+const waitlistRoutes = require('./routes/waitlist')
+const classRoutes = require('./routes/class')
+const courseRoutes = require('./routes/course')
+const registeredCourseRoutes = require('./routes/registeredcourse')
+const studentRoutes = require('./routes/student')
+
+// import modules
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const http = require('http')
+// const https = require('https')
+const fs = require('fs')
+const cookieParser = require('cookie-parser')
+const mysql = require('mysql');
 
 
 const app = express()
@@ -32,24 +32,16 @@ app.use(cors(corsOptions))
 app.use(cookieParser())
 
 // api routes path
-app.use('/auth', postRoutes)
-app.use('/waitlist', categoryRoutes)
-app.use('/class', itemRoutes)
-app.use('/course', userRoutes)
-app.use('/admin', refreshRoutes)
+app.use('/auth', authRoutes)
+app.use('/waitlist', waitlistRoutes)
+app.use('/class', classRoutes)
+app.use('/course', courseRoutes)
+app.use('/student', studentRoutes)
+app.use('/registeredcourse', registeredCourseRoutes)
 
 var httpServer = http.createServer(app);
 
 // for local port 8080
-httpServer.listen(divPort, () => {
-  console.log(`Example app listening on port ${divPort}`)
+httpServer.listen(devPort, () => {
+  console.log(`Example app listening on port ${devPort}`)
 })
-
-var httpsServer = https.createServer({
-  key: fs.readFileSync('./forSSL/secure.s69.ierg4210.ie.cuhk.edu.hk.key'),
-  cert: fs.readFileSync('./forSSL/secure_s69_ierg4210_ie_cuhk_edu_hk.crt')
-}, app);
-
-httpsServer.listen(8000, () => {
-  console.log(`HTTPS Server running on port ${8000}`);
-});
