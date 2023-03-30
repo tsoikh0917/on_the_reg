@@ -1,8 +1,8 @@
 import React from "react";
-import "./search.css";
+import "../table.css";
 import { FaSearch } from "react-icons/fa";
 import { useTable } from "react-table";
-import fakeData from "./MOCK_DATA.json";
+import fakeData from "../MOCK_DATA.json";
 import arrow from "../image/arrow.png";
 
 function Search() {
@@ -86,9 +86,11 @@ function Search() {
                   {row.cells.map((cell) => (
                     <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
                   ))}
-                  <button id="rm">
-                    <img class="arrow" src={arrow} width="40%" alt="arrow" />
-                  </button>
+                  <td>
+                    <button id="rm">
+                      <img src={arrow} width="40%" alt="arrow" />
+                    </button>
+                  </td>
                 </tr>
               );
             })}

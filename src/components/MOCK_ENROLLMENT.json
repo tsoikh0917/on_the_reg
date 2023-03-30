@@ -1,0 +1,23 @@
+[
+  {
+    "status": "Success",
+    "course_ID": "csci3100",
+    "course_name": "Software engineering",
+    "type": "Add",
+    "message": "The class has been added"
+  },
+  {
+    "status": "Success",
+    "course_ID": "csci4130",
+    "course_name": "Introduction to Cybersecurity",
+    "type": "Waitlist",
+    "message": "The class has been added to waitlist"
+  },
+  {
+    "status": "Success",
+    "course_ID": "csci310",
+    "course_name": "Software engineering",
+    "type": "Drop",
+    "message": "The class has been dropped"
+  }
+]

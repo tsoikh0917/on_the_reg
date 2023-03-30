@@ -1,0 +1,23 @@
+[
+  {
+    "Name": "Peter Wong",
+    "ID": "115500000",
+    "Major": "Computer Science",
+    "Department": "Engineering",
+    "Year": 3
+  },
+  {
+    "Name": "Michael Lye",
+    "ID": "1155003100",
+    "Major": "Computer Science",
+    "Department": "Engineering",
+    "Year": 30
+  },
+  {
+    "Name": "Jessie Cheng",
+    "ID": "1155123456",
+    "Major": "Philosophy",
+    "Department": "Art",
+    "Year": 2
+  }
+]

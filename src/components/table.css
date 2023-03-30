@@ -35,7 +35,7 @@
 .wrap {
   width: 50%;
   position: relative;
-  left: 50%;
+  left: 40%;
   transform: translate(-50%, -50%);
 }
 
@@ -63,11 +63,6 @@ thead th {
 }
 tbody tr:hover {
   background-color: rgba(255, 255, 255, 0.3);
-}
-.arrow {
-  vertical-align: middle;
-  margin-left: 20%;
-  margin-top: 28%;
 }
 
 #rm {
