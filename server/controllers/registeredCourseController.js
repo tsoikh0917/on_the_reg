@@ -2,7 +2,7 @@
 const con = require('../Models/mysqlModel');
 
 const getRegisteredCourses = async (req, res) => {
-  const { studentID } = req.params;
+  const { studentID } = req.body;
 
   // ? is a placeholder for a value to be inserted into the query
   let sql = `SELECT * 
@@ -14,7 +14,7 @@ const getRegisteredCourses = async (req, res) => {
   // third parameter: callback function
   con.query(sql, [studentID],  (err, result) => {
     if (err) throw err;
-    res.send(result);
+    res.status(201).send(result);
   });
 }
 
