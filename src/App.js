@@ -20,73 +20,70 @@ import EnrollmentStatus from "./components/studentCourseManage/enrollmentStatus"
 import Topbar from "./components/sidebar/topbar";
 import ASideBar from "./components/sidebar/sidebar_a";
 import Login from "./components/Login/login";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const isLoggedIn = true;
-const isAdmin = false;
+const isAdmin = true;
 
-function LoginPage(){
-  return(<Login/>);
+function LoginPage() {
+  return <Login />;
 }
 
-function StudentPage(){
-return(    <ProSidebarProvider>
-  <Topbar />
+function StudentPage() {
+  return (
+    <ProSidebarProvider>
+      <Topbar />
 
-  <div class="side">
-    <SSideBar />
-  </div>
-  <div className="App">
-    <Routes>
-      <Route path="/" element={<MainS />} />
-      <Route path="/profile" element={<Profile />} />
-      <Route path="/viewClass" element={<ViewClass />} />
-      <Route path="/classSchedule" element={<ClassSchedule />} />
-      <Route path="/enrollment" element={<EnrollmentStatus />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/search/classOption" element={<Option />} />
-      <Route path="/search/classOption/confirm" element={<Confirm />} />
-    </Routes>
-  </div>
-</ProSidebarProvider>);
+      <div class="side">
+        <SSideBar />
+      </div>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<MainS />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/viewClass" element={<ViewClass />} />
+          <Route path="/classSchedule" element={<ClassSchedule />} />
+          <Route path="/enrollment" element={<EnrollmentStatus />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/search/classOption" element={<Option />} />
+          <Route path="/search/classOption/confirm" element={<Confirm />} />
+        </Routes>
+      </div>
+    </ProSidebarProvider>
+  );
 }
-function Admin(){
-  return(
-<ProSidebarProvider>
-  <Topbar />
+function Admin() {
+  return (
+    <ProSidebarProvider>
+      <Topbar />
 
-  <div class="side">
-    <ASideBar />
-  </div>
-  <div className="App">
-    <Routes>
-      <Route path="/" element={<MainA />} />
-      <Route path="/aAddCourse" element={<AdminAddCourse />} />
-      <Route path="/aEditCourse" element={<AdminEditCourse />} />
-      <Route path="/aViewCourse" element={<AdminViewCourse />} />
-      <Route path="/aAddUser" element={<AdminAddUser />} />
-      <Route path="/aEditUser" element={<AdminEditUser />} />
-      <Route path="/aViewUser" element={<AdminViewUser />} />
-    </Routes>
-  </div>
-</ProSidebarProvider>);
+      <div class="side">
+        <ASideBar />
+      </div>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<MainA />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/aAddCourse" element={<AdminAddCourse />} />
+          <Route path="/aEditCourse" element={<AdminEditCourse />} />
+          <Route path="/aViewCourse" element={<AdminViewCourse />} />
+          <Route path="/aAddUser" element={<AdminAddUser />} />
+          <Route path="/aEditUser" element={<AdminEditUser />} />
+          <Route path="/aViewUser" element={<AdminViewUser />} />
+        </Routes>
+      </div>
+    </ProSidebarProvider>
+  );
 }
 
 function App() {
-  if(isLoggedIn == false){
-    return(<LoginPage/>);
+  if (isLoggedIn == false) {
+    return <LoginPage />;
+  } else if (isAdmin == false) {
+    return <StudentPage />;
+  } else {
+    return <Admin />;
   }
-  else if(isAdmin == false){
-    return (
-      <StudentPage/>
-    );
-  }
-  else{
-    return(
-      <Admin/>
-    );
-  }
-
-  
 }
 
 export default App;

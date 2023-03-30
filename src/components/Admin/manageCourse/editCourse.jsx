@@ -18,7 +18,7 @@ function AdminEditCourse() {
       <form id="form_info" action="" method="post">
         <div id="main">
           <h1 id="alignLeft">Edit Course</h1>
-          <button onClick={() => navigate(-1)} class="custom-btn btn">
+          <button onClick={() => navigate(-1)} class="custom-fbtn fbtn">
             <span>Back</span>
           </button>
         </div>
