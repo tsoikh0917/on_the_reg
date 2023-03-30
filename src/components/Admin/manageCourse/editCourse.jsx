@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import "../form.css";
 
 function AdminEditCourse() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,8 +15,13 @@ function AdminEditCourse() {
 
   return (
     <div id="resize">
-      <h1>Edit Course</h1>
       <form id="form_info" action="" method="post">
+        <div id="main">
+          <h1 id="alignLeft">Edit Course</h1>
+          <button onClick={() => navigate(-1)} class="custom-btn btn">
+            <span>Back</span>
+          </button>
+        </div>
         <fieldset>
           <h4>Course ID:</h4>
           <input
@@ -102,6 +109,7 @@ function AdminEditCourse() {
             type="submit"
             id="contact-submit"
             data-submit="...Sending"
+            class="custom-btn btn"
           >
             Submit
           </button>

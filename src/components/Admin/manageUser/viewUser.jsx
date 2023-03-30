@@ -3,6 +3,7 @@ import "../../table.css";
 import { FaSearch, FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import { useTable } from "react-table";
 import fakeData from "../../MOCK_USER.json";
+import { Link } from "react-router-dom";
 
 function AdminViewUser() {
   const data = React.useMemo(() => fakeData, []);
@@ -75,9 +76,11 @@ function AdminViewUser() {
                     <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
                   ))}
                   <td>
-                    <button id="rm">
-                      <FaEdit />
-                    </button>
+                    <Link to="/aEditUser">
+                      <button id="rm">
+                        <FaEdit />
+                      </button>
+                    </Link>
                   </td>
                   <td>
                     <button id="rm">

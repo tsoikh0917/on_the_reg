@@ -1,5 +1,5 @@
 import React from "react";
-import icon from "./image/icon.png";
+import icon from "../image/icon.png";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import {
   FaRegistered,
 } from "react-icons/fa";
 
-function SideBar() {
+function ASideBar() {
   return (
     <div
       style={{
@@ -28,29 +28,17 @@ function SideBar() {
           <t1>On The Reg</t1>
         </div>
         <Menu>
-          <MenuItem icon={<FaReadme />} component={<Link to="/viewClass" />}>
-            View Class
-          </MenuItem>
           <MenuItem
             icon={<FaCalendarAlt />}
-            component={<Link to="/classSchedule" />}
+            component={<Link to="/aViewCourse" />}
           >
-            Class Schedule
-          </MenuItem>
-          <MenuItem icon={<FaSearch />} component={<Link to="/search" />}>
-            Add Class
+            Manage Course
           </MenuItem>
           <MenuItem
             icon={<FaRegTrashAlt />}
-            component={<Link to="/viewClass" />}
+            component={<Link to="/aViewUser" />}
           >
-            Drop Class
-          </MenuItem>
-          <MenuItem
-            icon={<FaRegistered />}
-            component={<Link to="/enrollment" />}
-          >
-            Enrollment Status
+            Manage User
           </MenuItem>
         </Menu>
       </Sidebar>
@@ -59,4 +47,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default ASideBar;

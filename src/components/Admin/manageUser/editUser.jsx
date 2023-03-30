@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 function AdminEditUser() {
+  const navigate = useNavigate();
   return (
     <div id="resize">
-      <h1>Edit User</h1>
       <form id="form_info" action="" method="post">
+        <div id="main">
+          <h1 id="alignLeft">Edit User</h1>
+          <button onClick={() => navigate(-1)} class="custom-btn btn">
+            <span>Back</span>
+          </button>
+        </div>
         <fieldset>
           <h4>Name:</h4>
           <input
@@ -84,6 +91,7 @@ function AdminEditUser() {
             type="submit"
             id="contact-submit"
             data-submit="...Sending"
+            class="custom-btn btn"
           >
             Submit
           </button>

@@ -12,11 +12,12 @@ import AdminViewCourse from "./components/Admin/manageCourse/viewCourse";
 import AdminAddUser from "./components/Admin/manageUser/addUser";
 import AdminEditUser from "./components/Admin/manageUser/editUser";
 import AdminViewUser from "./components/Admin/manageUser/viewUser";
-import SideBar from "./components/sidebar/sidebar";
+import SSideBar from "./components/sidebar/sidebar_s";
 import ViewClass from "./components/studentCourseManage/viewClass";
 import ClassSchedule from "./components/studentCourseManage/classSchedule";
 import EnrollmentStatus from "./components/studentCourseManage/enrollmentStatus";
 import Topbar from "./components/sidebar/topbar";
+import ASideBar from "./components/sidebar/sidebar_a";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
       <Topbar />
 
       <div class="side">
-        <SideBar />
+        <SSideBar />
       </div>
       <div className="App">
         <Routes>
