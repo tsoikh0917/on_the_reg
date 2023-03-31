@@ -39,13 +39,13 @@ function EnrollmentStatus() {
     <div id="test">
       <h1>Enrollment Status</h1>
 
-      <div>
-        <table {...getTableProps()}>
+      <div id="outer">
+        <table id="table" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
+                  <th id="th" {...column.getHeaderProps()}>
                     {column.render("Header")}
                   </th>
                 ))}
@@ -58,7 +58,9 @@ function EnrollmentStatus() {
               return (
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
+                    <td id="td" {...cell.getCellProps()}>
+                      {cell.render("Cell")}{" "}
+                    </td>
                   ))}
                 </tr>
               );

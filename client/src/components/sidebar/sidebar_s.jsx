@@ -31,7 +31,7 @@ function SSideBar() {
         </Link>
         <Menu>
           <MenuItem icon={<FaReadme />} component={<Link to="/viewClass" />}>
-            View Class
+            View/Drop Class
           </MenuItem>
           <MenuItem
             icon={<FaCalendarAlt />}
@@ -42,12 +42,7 @@ function SSideBar() {
           <MenuItem icon={<FaSearch />} component={<Link to="/search" />}>
             Add Class
           </MenuItem>
-          <MenuItem
-            icon={<FaRegTrashAlt />}
-            component={<Link to="/viewClass" />}
-          >
-            Drop Class
-          </MenuItem>
+
           <MenuItem
             icon={<FaRegistered />}
             component={<Link to="/enrollment" />}

@@ -66,16 +66,16 @@ function Search() {
         </div>
       </div>
       <div>
-        <table {...getTableProps()}>
+        <table id="table" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th class="tableT" {...column.getHeaderProps()}>
+                  <th id="th" {...column.getHeaderProps()}>
                     {column.render("Header")}
                   </th>
                 ))}
-                <th></th>
+                <th id="th"></th>
               </tr>
             ))}
           </thead>
@@ -85,10 +85,12 @@ function Search() {
               return (
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
+                    <td id="td" {...cell.getCellProps()}>
+                      {cell.render("Cell")}{" "}
+                    </td>
                   ))}
                   <button id="rmstyle">
-                    <td>
+                    <td id="td">
                       <img src={arrow} width="40%" alt="arrow" />
                     </td>
                   </button>

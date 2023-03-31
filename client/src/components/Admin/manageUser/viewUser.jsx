@@ -52,18 +52,18 @@ function AdminViewUser() {
           </button>
         </div>
       </div>
-      <div>
-        <table {...getTableProps()}>
+      <div id="outer">
+        <table id="table" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
+                  <th id="th" {...column.getHeaderProps()}>
                     {column.render("Header")}
                   </th>
                 ))}
-                <th></th>
-                <th></th>
+                <th id="th"></th>
+                <th id="th"></th>
               </tr>
             ))}
           </thead>
@@ -73,16 +73,18 @@ function AdminViewUser() {
               return (
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
+                    <td id="td" {...cell.getCellProps()}>
+                      {cell.render("Cell")}{" "}
+                    </td>
                   ))}
-                  <td>
+                  <td id="td">
                     <Link to="/aEditUser">
                       <button id="rm">
                         <FaEdit />
                       </button>
                     </Link>
                   </td>
-                  <td>
+                  <td id="td">
                     <button id="rm">
                       <FaRegTrashAlt />
                     </button>
