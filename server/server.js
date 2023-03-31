@@ -4,6 +4,7 @@ const waitlistRoutes = require('./routes/waitlist')
 const classRoutes = require('./routes/class')
 const courseRoutes = require('./routes/course')
 const registeredCourseRoutes = require('./routes/registeredcourse')
+const adminRoutes = require('./routes/admin')
 const studentRoutes = require('./routes/student')
 
 // import modules
@@ -36,6 +37,7 @@ app.use('/auth', authRoutes)
 app.use('/waitlist', waitlistRoutes)
 app.use('/class', classRoutes)
 app.use('/course', courseRoutes)
+app.use('/admin', adminRoutes)
 app.use('/student', studentRoutes)
 app.use('/registeredcourse', registeredCourseRoutes)
 
