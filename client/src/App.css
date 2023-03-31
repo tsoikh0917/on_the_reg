@@ -45,3 +45,10 @@ body {
   margin: 0;
   padding: 0;
 }
+
+h1 {
+  color: #fff;
+  -webkit-text-fill-color: darkmagenta;
+  text-shadow: 2px 2px 3px rgba(88, 86, 86, 0.6);
+  font-family: monospace;
+}

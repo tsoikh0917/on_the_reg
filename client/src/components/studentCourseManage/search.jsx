@@ -71,7 +71,7 @@ function Search() {
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
+                  <th class="tableT" {...column.getHeaderProps()}>
                     {column.render("Header")}
                   </th>
                 ))}
@@ -87,11 +87,11 @@ function Search() {
                   {row.cells.map((cell) => (
                     <td {...cell.getCellProps()}> {cell.render("Cell")} </td>
                   ))}
-                  <td>
-                    <button id="rm">
+                  <button id="rmstyle">
+                    <td>
                       <img src={arrow} width="40%" alt="arrow" />
-                    </button>
-                  </td>
+                    </td>
+                  </button>
                 </tr>
               );
             })}

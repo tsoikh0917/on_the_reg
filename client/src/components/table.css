@@ -42,7 +42,7 @@ table {
   width: 80%;
   border-collapse: collapse;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.1);
 }
 th,
 td {
@@ -50,14 +50,13 @@ td {
   background-color: rgba(255, 255, 255, 0.2);
   text-align: center;
 }
-th {
-  text-align: center;
-}
+
 thead th {
+  text-align: center;
   background-color: #9898b8;
 }
 tbody tr:hover {
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: rgba(183, 207, 205, 0.3);
 }
 
 #rm {

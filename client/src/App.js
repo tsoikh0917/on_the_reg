@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import MainS from "./components/studentCourseManage/main_S";
 import MainA from "./components/Admin/main_A";
@@ -23,7 +23,7 @@ import Login from "./components/Login/login";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const isLoggedIn = true;
-const isAdmin = true;
+const isAdmin = false;
 
 function LoginPage() {
   return <Login />;
@@ -47,6 +47,7 @@ function StudentPage() {
           <Route path="/search" element={<Search />} />
           <Route path="/search/classOption" element={<Option />} />
           <Route path="/search/classOption/confirm" element={<Confirm />} />
+          <Route path="*" element={<Navigate to="/" />}></Route>
         </Routes>
       </div>
     </ProSidebarProvider>
@@ -70,6 +71,7 @@ function Admin() {
           <Route path="/aAddUser" element={<AdminAddUser />} />
           <Route path="/aEditUser" element={<AdminEditUser />} />
           <Route path="/aViewUser" element={<AdminViewUser />} />
+          <Route path="*" element={<Navigate to="/" />}></Route>
         </Routes>
       </div>
     </ProSidebarProvider>
@@ -77,9 +79,9 @@ function Admin() {
 }
 
 function App() {
-  if (isLoggedIn == false) {
+  if (isLoggedIn === false) {
     return <LoginPage />;
-  } else if (isAdmin == false) {
+  } else if (isAdmin === false) {
     return <StudentPage />;
   } else {
     return <Admin />;

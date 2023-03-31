@@ -1,0 +1,30 @@
+.profile {
+  border: 1px solid red;
+  font-family: monospace;
+  font-size: larger;
+}
+
+li {
+  list-style-type: none;
+  padding: 1%;
+  font-weight: bold;
+  text-align: center;
+}
+
+#BorderStyle {
+  margin: auto;
+  margin-top: 2%;
+  width: 50%;
+  background-color: lightblue;
+}
+
+#listStyle {
+  margin-left: 20%;
+}
+
+#prefix {
+  float: left;
+}
+#suffix {
+  margin-left: 20%;
+}

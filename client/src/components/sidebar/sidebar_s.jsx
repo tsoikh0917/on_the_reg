@@ -23,10 +23,12 @@ function SSideBar() {
       class="side"
     >
       <Sidebar>
-        <div class="header" style={{ display: "flex", alignItems: "center" }}>
-          <img src={icon} width="20%" alt="icon" />
-          <t1>On The Reg</t1>
-        </div>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <div class="header" style={{ display: "flex", alignItems: "center" }}>
+            <img src={icon} width="20%" alt="icon" />
+            <t1>On The Reg</t1>
+          </div>
+        </Link>
         <Menu>
           <MenuItem icon={<FaReadme />} component={<Link to="/viewClass" />}>
             View Class
