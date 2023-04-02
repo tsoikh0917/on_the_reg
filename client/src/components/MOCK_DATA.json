@@ -18,5 +18,35 @@
     "department": "engineering",
     "instructor": "Michael Lyu",
     "capacity": 150
+  },
+  {
+    "course_ID": "csci3100",
+    "course_name": "Software engineering",
+    "day": "Monday",
+    "time": "00:00-23:59",
+    "place": "Lee Shau Kee Building LT",
+    "department": "engineering",
+    "instructor": "Michael Lyu",
+    "capacity": 150
+  },
+  {
+    "course_ID": "csci3100",
+    "course_name": "Software engineering",
+    "day": "Monday",
+    "time": "00:00-23:59",
+    "place": "Lee Shau Kee Building LT",
+    "department": "engineering",
+    "instructor": "Michael Lyu",
+    "capacity": 150
+  },
+  {
+    "course_ID": "csci3100",
+    "course_name": "Software engineering",
+    "day": "Monday",
+    "time": "00:00-23:59",
+    "place": "Lee Shau Kee Building LT",
+    "department": "engineering",
+    "instructor": "Michael Lyu",
+    "capacity": 150
   }
 ]

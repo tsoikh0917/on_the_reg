@@ -50,14 +50,14 @@ function AdminViewCourse() {
     <div id="test">
       <h1>View/Manage Course</h1>
 
-      <div class="wrap">
-        <div class="search">
+      <div className="wrap">
+        <div className="search">
           <input
             type="text"
-            class="searchTerm"
+            className="searchTerm"
             placeholder="Input course code/ course name for searching"
           ></input>
-          <button type="submit" class="searchButton">
+          <button type="submit" className="searchButton">
             <div id="icon1">
               <FaSearch />
             </div>
@@ -68,7 +68,7 @@ function AdminViewCourse() {
         <table id="table" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr id="tr1" {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th id="th" {...column.getHeaderProps()}>
                     {column.render("Header")}
@@ -83,7 +83,7 @@ function AdminViewCourse() {
             {rows.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
+                <tr id="tr2" {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <td id="td" {...cell.getCellProps()}>
                       {cell.render("Cell")}{" "}

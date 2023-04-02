@@ -5,8 +5,6 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-import Topbar from "./components/sidebar/topbar";
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 document.body.style.backgroundColor = "#F5F5F5";
 

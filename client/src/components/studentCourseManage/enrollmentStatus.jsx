@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "../table.css";
-import { FaSearch } from "react-icons/fa";
 import { useTable } from "react-table";
 import fakeData from "../MOCK_ENROLLMENT.json";
-import arrow from "../image/arrow.png";
 
 function EnrollmentStatus() {
   const data = React.useMemo(() => fakeData, []);
@@ -43,7 +41,7 @@ function EnrollmentStatus() {
         <table id="table" {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
+              <tr id="tr1" {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th id="th" {...column.getHeaderProps()}>
                     {column.render("Header")}
@@ -56,7 +54,7 @@ function EnrollmentStatus() {
             {rows.map((row) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
+                <tr id="tr2" {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <td id="td" {...cell.getCellProps()}>
                       {cell.render("Cell")}{" "}

@@ -7,7 +7,6 @@ import {
   FaSearch,
   FaCalendarAlt,
   FaReadme,
-  FaRegTrashAlt,
   FaRegistered,
 } from "react-icons/fa";
 
@@ -20,13 +19,16 @@ function SSideBar() {
         width: "20%",
         position: "relative",
       }}
-      class="side"
+      className="side"
     >
       <Sidebar>
         <Link to="/" style={{ textDecoration: "none" }}>
-          <div class="header" style={{ display: "flex", alignItems: "center" }}>
+          <div
+            className="header"
+            style={{ display: "flex", alignItems: "center" }}
+          >
             <img src={icon} width="20%" alt="icon" />
-            <t1>On The Reg</t1>
+            <h2>On The Reg</h2>
           </div>
         </Link>
         <Menu>

@@ -7,7 +7,7 @@ function AdminEditUser() {
       <form id="form_info" action="" method="post">
         <div id="main">
           <h1 id="alignLeft">Edit User</h1>
-          <button onClick={() => navigate(-1)} class="custom-fbtn fbtn">
+          <button onClick={() => navigate(-1)} className="custom-fbtn fbtn">
             <span>Back</span>
           </button>
         </div>
@@ -91,7 +91,7 @@ function AdminEditUser() {
             type="submit"
             id="contact-submit"
             data-submit="...Sending"
-            class="custom-btn btn"
+            className="custom-btn btn"
           >
             Submit
           </button>

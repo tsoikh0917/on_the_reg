@@ -21,70 +21,73 @@ import Topbar from "./components/sidebar/topbar";
 import ASideBar from "./components/sidebar/sidebar_a";
 import Login from "./components/Login/login";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-const isLoggedIn = true;
-const isAdmin = false;
-
-function LoginPage() {
-  return <Login />;
-}
+import { useState } from "react";
 
 function StudentPage() {
   return (
-    <ProSidebarProvider>
-      <Topbar />
-
-      <div class="side">
-        <SSideBar />
-      </div>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<MainS />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/viewClass" element={<ViewClass />} />
-          <Route path="/classSchedule" element={<ClassSchedule />} />
-          <Route path="/enrollment" element={<EnrollmentStatus />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/search/classOption" element={<Option />} />
-          <Route path="/search/classOption/confirm" element={<Confirm />} />
-          <Route path="*" element={<Navigate to="/" />}></Route>
-        </Routes>
-      </div>
-    </ProSidebarProvider>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<MainS />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/viewClass" element={<ViewClass />} />
+        <Route path="/classSchedule" element={<ClassSchedule />} />
+        <Route path="/enrollment" element={<EnrollmentStatus />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/search/classOption" element={<Option />} />
+        <Route path="/search/classOption/confirm" element={<Confirm />} />
+        <Route path="*" element={<Navigate to="/" />}></Route>
+      </Routes>
+    </div>
   );
 }
 function Admin() {
   return (
-    <ProSidebarProvider>
-      <Topbar />
-
-      <div class="side">
-        <ASideBar />
-      </div>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<MainA />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/aAddCourse" element={<AdminAddCourse />} />
-          <Route path="/aEditCourse" element={<AdminEditCourse />} />
-          <Route path="/aViewCourse" element={<AdminViewCourse />} />
-          <Route path="/aAddUser" element={<AdminAddUser />} />
-          <Route path="/aEditUser" element={<AdminEditUser />} />
-          <Route path="/aViewUser" element={<AdminViewUser />} />
-          <Route path="*" element={<Navigate to="/" />}></Route>
-        </Routes>
-      </div>
-    </ProSidebarProvider>
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<MainA />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/aAddCourse" element={<AdminAddCourse />} />
+        <Route path="/aEditCourse" element={<AdminEditCourse />} />
+        <Route path="/aViewCourse" element={<AdminViewCourse />} />
+        <Route path="/aAddUser" element={<AdminAddUser />} />
+        <Route path="/aEditUser" element={<AdminEditUser />} />
+        <Route path="/aViewUser" element={<AdminViewUser />} />
+        <Route path="*" element={<Navigate to="/" />}></Route>
+      </Routes>
+    </div>
   );
 }
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  function handleLogin(state) {
+    setIsLoggedIn((current) => state);
+    console.log("argument from logout: ", state);
+  }
+
   if (isLoggedIn === false) {
-    return <LoginPage />;
+    return <Login handleLogin={handleLogin} />;
   } else if (isAdmin === false) {
-    return <StudentPage />;
+    return (
+      <ProSidebarProvider>
+        <Topbar handleLogin={handleLogin} />
+        <div class="side">
+          <SSideBar />
+        </div>
+        <StudentPage />
+      </ProSidebarProvider>
+    );
   } else {
-    return <Admin />;
+    return (
+      <ProSidebarProvider>
+        <Topbar handleLogin={handleLogin} />
+        <div class="side">
+          <ASideBar />
+        </div>
+        <Admin />
+      </ProSidebarProvider>
+    );
   }
 }
 
