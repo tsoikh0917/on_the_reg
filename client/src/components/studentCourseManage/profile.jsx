@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./profile.css";
+import { Link } from "react-router-dom";
 
 function Profile() {
   const [name, setName] = useState("Chan Tai Ming");
@@ -22,23 +23,73 @@ function Profile() {
   });
 
   return (
-    <div className="profile">
+    <div>
       <h1>Personal Profile</h1>
-      <div id="BorderStyle">
-        <div id="listStyle">
-          <li>
-            <div id="prefix">Name:</div>
-            <div id="suffix">{name}</div>
-          </li>
-          <li>
-            <div id="prefix">:</div>
-            <div id="suffix">{name}</div>
-          </li>
-          <li>Gender: {name}</li>
-          <li>Major: {major}</li>
-          <li>ID: {id}</li>
-          <li>Year: {year}</li>
-          <li>Emergency Contact: {name}</li>
+      <div className="profile">
+        <div class="card shadow-sm">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0">Account Information</h3>
+          </div>
+          <div class="card-body pt-0">
+            <table class="table table-bordered">
+              <tr>
+                <th width="40%">User ID</th>
+                <td width="2%">:</td>
+                <td>1155123456</td>
+              </tr>
+              <tr>
+                <th>Username</th>
+                <td>:</td>
+                <td>chantaiming</td>
+              </tr>
+              <tr>
+                <th>Password</th>
+                <td>:</td>
+                <td>12345678</td>
+              </tr>
+            </table>
+            <Link to="/changePW">
+              <button className="custom-btn b-profile">Change Password</button>
+            </Link>
+          </div>
+        </div>
+
+        <div class="card shadow-sm" id="p2">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="mb-0">General Information</h3>
+          </div>
+          <div class="card-body pt-0">
+            <table class="table table-bordered">
+              <tr>
+                <th width="40%">Name</th>
+                <td width="2%">:</td>
+                <td>Chan Tai Ming</td>
+              </tr>
+              <tr>
+                <th>Gender</th>
+                <td>:</td>
+                <td>Male</td>
+              </tr>
+              <tr>
+                <th>Major</th>
+                <td>:</td>
+                <td>Computer Science</td>
+              </tr>
+              <tr>
+                <th>Year of Study</th>
+                <td>:</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <th>Emergency Contact</th>
+                <td>:</td>
+                <td>12345678</td>
+              </tr>
+            </table>
+            <Link to="/viewClass">
+              <button className="custom-btn b-profile">View Class</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

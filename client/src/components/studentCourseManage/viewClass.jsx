@@ -3,7 +3,6 @@ import "../table.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable } from "react-table";
 import fakeData from "../MOCK_DATA.json";
-
 function ViewClass() {
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(

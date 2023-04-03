@@ -6,7 +6,9 @@ function ClassSchedule() {
   return (
     <div>
       <h1>Weekly Schedule</h1>
-      <DayPilotCalendar viewType="Week" />
+      <div id="scheduleTable">
+        <DayPilotCalendar viewType="Week" />
+      </div>
     </div>
   );
 }

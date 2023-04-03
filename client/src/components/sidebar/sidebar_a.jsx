@@ -23,7 +23,7 @@ function ASideBar() {
             style={{ display: "flex", alignItems: "center" }}
           >
             <img src={icon} width="20%" alt="icon" />
-            <h2>On The Reg</h2>
+            <span id="s">On The Reg</span>
           </div>
         </Link>
         <Menu>

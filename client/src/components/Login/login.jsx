@@ -13,7 +13,7 @@ function Login({ handleLogin }) {
           <input type="password" name="" required=""></input>
           <label>Password</label>
         </div>
-        <a onClick={(event) => handleLogin(true)}>
+        <a id="submit" onClick={(event) => handleLogin(true)}>
           <span></span>
           <span></span>
           <span></span>

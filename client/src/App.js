@@ -34,7 +34,7 @@ function StudentPage() {
         <Route path="/enrollment" element={<EnrollmentStatus />} />
         <Route path="/search" element={<Search />} />
         <Route path="/search/classOption" element={<Option />} />
-        <Route path="/search/classOption/confirm" element={<Confirm />} />
+        <Route path="/search/confirm" element={<Confirm />} />
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </div>
@@ -59,11 +59,16 @@ function Admin() {
 }
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [count, setCount] = useState(0);
   const [isAdmin, setIsAdmin] = useState(false);
   function handleLogin(state) {
-    setIsLoggedIn((current) => state);
-    console.log("argument from logout: ", state);
+    console.log("argument from state: ", state);
+    console.log("argument from isloggedIn1: ", isLoggedIn);
+    setIsLoggedIn((isLoggedIn) => state);
+    console.log("argument from isloggedIn2: ", isLoggedIn);
+    setCount((count) => count + 1);
+    console.log("count: ", count);
   }
 
   if (isLoggedIn === false) {

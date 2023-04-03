@@ -4,6 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import { useTable } from "react-table";
 import fakeData from "../MOCK_DATA.json";
 import arrow from "../image/arrow.png";
+import { Link } from "react-router-dom";
 
 function Search() {
   const data = React.useMemo(() => fakeData, []);
@@ -89,11 +90,12 @@ function Search() {
                       {cell.render("Cell")}{" "}
                     </td>
                   ))}
-                  <button id="rmstyle">
-                    <td id="td">
+
+                  <td id="td">
+                    <Link to="/search/confirm">
                       <img src={arrow} width="40%" alt="arrow" />
-                    </td>
-                  </button>
+                    </Link>
+                  </td>
                 </tr>
               );
             })}
