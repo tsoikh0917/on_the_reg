@@ -36,7 +36,7 @@ function AdminEditCourse() {
           <h4>Course Name:</h4>
           <input
             placeholder="Input course name here"
-            type="email"
+            type="text"
             tabindex="2"
             required
           ></input>
@@ -45,7 +45,7 @@ function AdminEditCourse() {
           <h4>Course Day:</h4>
           <input
             placeholder="Input weekday here"
-            type="tel"
+            type="text"
             tabindex="3"
             required
           ></input>
@@ -54,7 +54,7 @@ function AdminEditCourse() {
           <h4>Course Time:</h4>
           <input
             placeholder="Input time slot in the format: hh:mm-hh:mm here"
-            type="url"
+            type="text"
             tabindex="4"
             required
           ></input>
@@ -63,7 +63,7 @@ function AdminEditCourse() {
           <h4>Department:</h4>
           <input
             placeholder="Input faculty here"
-            type="url"
+            type="text"
             tabindex="4"
             required
           ></input>
@@ -72,7 +72,7 @@ function AdminEditCourse() {
           <h4>Teacher in Charge:</h4>
           <input
             placeholder="Input instructor's name here"
-            type="url"
+            type="text"
             tabindex="4"
             required
           ></input>
@@ -81,7 +81,7 @@ function AdminEditCourse() {
           <h4>Capacity:</h4>
           <input
             placeholder="Input maximum capacity of the course here"
-            type="url"
+            type="number"
             tabindex="4"
             required
           ></input>
@@ -90,7 +90,7 @@ function AdminEditCourse() {
           <h4>Course Place:</h4>
           <input
             placeholder="Input location for the course lecture here"
-            type="url"
+            type="text"
             tabindex="4"
             required
           ></input>
@@ -99,6 +99,7 @@ function AdminEditCourse() {
           <h4>Course Description:</h4>
           <textarea
             placeholder="Type course outline here...."
+            type="text"
             tabindex="5"
             required
           ></textarea>

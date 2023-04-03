@@ -18,7 +18,7 @@ function Login({ handleLogin }) {
           <span></span>
           <span></span>
           <span></span>
-          Submit
+          Login
         </a>
       </form>
     </div>

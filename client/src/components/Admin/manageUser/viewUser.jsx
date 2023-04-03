@@ -42,7 +42,7 @@ function AdminViewUser() {
         <div className="search">
           <input
             type="text"
-            classNameName="searchTerm"
+            className="searchTerm"
             placeholder="Input course code/ course name for searching"
           ></input>
           <button type="submit" className="searchButton">

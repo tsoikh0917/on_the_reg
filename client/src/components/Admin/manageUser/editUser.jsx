@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../form.css";
+
 function AdminEditUser() {
   const navigate = useNavigate();
   return (
@@ -12,7 +14,7 @@ function AdminEditUser() {
           </button>
         </div>
         <fieldset>
-          <h4>Name:</h4>
+          <h4 id="inputT">Name:</h4>
           <input
             placeholder="Input name here"
             type="text"
@@ -25,7 +27,7 @@ function AdminEditUser() {
           <h4>ID:</h4>
           <input
             placeholder="Input ID here"
-            type="email"
+            type="number"
             tabindex="2"
             required
           ></input>
@@ -34,7 +36,7 @@ function AdminEditUser() {
           <h4>Date of Birth:</h4>
           <input
             placeholder="Input date of birth here"
-            type="tel"
+            type="date"
             tabindex="3"
             required
           ></input>
@@ -43,7 +45,7 @@ function AdminEditUser() {
           <h4>Gender:</h4>
           <input
             placeholder="Input gender here"
-            type="url"
+            type="text"
             tabindex="4"
             required
           ></input>
@@ -52,7 +54,7 @@ function AdminEditUser() {
           <h4>Major:</h4>
           <input
             placeholder="Input study major here"
-            type="url"
+            type="text"
             tabindex="4"
             required
           ></input>
@@ -61,7 +63,7 @@ function AdminEditUser() {
           <h4>Email:</h4>
           <input
             placeholder="Input email address here"
-            type="url"
+            type="email"
             tabindex="4"
             required
           ></input>
@@ -70,7 +72,7 @@ function AdminEditUser() {
           <h4>Contact Number:</h4>
           <input
             placeholder="Input phone number here"
-            type="url"
+            type="number"
             tabindex="4"
             required
           ></input>
@@ -79,7 +81,7 @@ function AdminEditUser() {
           <h4>Year:</h4>
           <input
             placeholder="Input year of study here"
-            type="url"
+            type="number"
             tabindex="4"
             required
           ></input>
