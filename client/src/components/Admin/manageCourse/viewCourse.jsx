@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../table.css";
 import { FaSearch, FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import { useTable } from "react-table";
 import fakeData from "../../MOCK_DATA.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useHistory } from "react-router-dom";
 
 function AdminViewCourse() {
   const data = React.useMemo(() => fakeData, []);
@@ -44,8 +44,36 @@ function AdminViewCourse() {
     ],
     []
   );
+  const [courseInfo, setCourseInfo] = useState({
+    course_ID: "3100",
+    course_name: "",
+    day: "",
+    time: "",
+    place: "",
+    department: "",
+    instructor: "",
+    capacity: 150,
+  });
+  React.useEffect(() => {
+    //console.log(JSON.stringify(courseInfo));
+  }, [courseInfo]);
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
+  const getRowValue = (rowV) => {
+    var CourseV = JSON.parse(JSON.stringify(rowV));
+    setCourseInfo({
+      course_ID: CourseV.course_ID,
+      course_name: CourseV.course_name,
+      day: CourseV.day,
+      time: CourseV.time,
+      place: CourseV.place,
+      department: CourseV.department,
+      instructor: CourseV.instructor,
+      capacity: CourseV.capacity,
+    });
+  };
+
   return (
     <div id="test">
       <h1>View/Manage Course</h1>
@@ -86,17 +114,20 @@ function AdminViewCourse() {
                 <tr id="tr2" {...row.getRowProps()}>
                   {row.cells.map((cell) => (
                     <td id="td" {...cell.getCellProps()}>
-                      {cell.render("Cell")}{" "}
+                      {cell.render("Cell")}
                     </td>
                   ))}
                   <td id="td">
-                    <Link to="/aEditCourse">
-                      <button id="rm">
+                    <button
+                      id="rm"
+                      onMouseEnter={() => getRowValue(row.original)}
+                    >
+                      <Link to="/aEditCourse/new" state={{ courseInfo }}>
                         <FaEdit />
-                      </button>
-                    </Link>
+                      </Link>
+                    </button>
                   </td>
-                  <td id="td">
+                  <td id="td" onClick={() => getRowValue(row.original)}>
                     <button id="rm">
                       <FaRegTrashAlt />
                     </button>

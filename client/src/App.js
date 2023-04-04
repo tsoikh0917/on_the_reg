@@ -47,7 +47,7 @@ function Admin() {
         <Route path="/" element={<MainA />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/aAddCourse" element={<AdminAddCourse />} />
-        <Route path="/aEditCourse" element={<AdminEditCourse />} />
+        <Route path="/aEditCourse/:type" element={<AdminEditCourse />} />
         <Route path="/aViewCourse" element={<AdminViewCourse />} />
         <Route path="/aAddUser" element={<AdminAddUser />} />
         <Route path="/aEditUser" element={<AdminEditUser />} />
@@ -72,22 +72,25 @@ function App() {
   }
 
   if (isLoggedIn === false) {
+    document.body.style.backgroundColor = "white";
     return <Login handleLogin={handleLogin} />;
   } else if (isAdmin === false) {
+    document.body.style.backgroundColor = "#F5F5F5";
     return (
       <ProSidebarProvider>
         <Topbar handleLogin={handleLogin} />
-        <div class="side">
+        <div className="side">
           <SSideBar />
         </div>
         <StudentPage />
       </ProSidebarProvider>
     );
   } else {
+    document.body.style.backgroundColor = "#F5F5F5";
     return (
       <ProSidebarProvider>
         <Topbar handleLogin={handleLogin} />
-        <div class="side">
+        <div className="side">
           <ASideBar />
         </div>
         <Admin />

@@ -10,14 +10,14 @@
     "capacity": 150
   },
   {
-    "course_ID": "csci3100",
-    "course_name": "Software engineering",
-    "day": "Monday",
-    "time": "00:00-23:59",
+    "course_ID": "csci4130",
+    "course_name": "Introduction to CyberSecurity",
+    "day": "Tuesday",
+    "time": "9:30-11:15",
     "place": "Lee Shau Kee Building LT",
     "department": "engineering",
     "instructor": "Michael Lyu",
-    "capacity": 150
+    "capacity": 200
   },
   {
     "course_ID": "csci3100",

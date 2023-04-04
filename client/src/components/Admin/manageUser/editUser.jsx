@@ -18,9 +18,8 @@ function AdminEditUser() {
           <input
             placeholder="Input name here"
             type="text"
-            tabindex="1"
+            tabIndex="1"
             required
-            autofocus
           ></input>
         </fieldset>
         <fieldset>
@@ -28,7 +27,7 @@ function AdminEditUser() {
           <input
             placeholder="Input ID here"
             type="number"
-            tabindex="2"
+            tabIndex="2"
             required
           ></input>
         </fieldset>
@@ -37,7 +36,7 @@ function AdminEditUser() {
           <input
             placeholder="Input date of birth here"
             type="date"
-            tabindex="3"
+            tabIndex="3"
             required
           ></input>
         </fieldset>
@@ -46,7 +45,7 @@ function AdminEditUser() {
           <input
             placeholder="Input gender here"
             type="text"
-            tabindex="4"
+            tabIndex="4"
             required
           ></input>
         </fieldset>
@@ -55,7 +54,7 @@ function AdminEditUser() {
           <input
             placeholder="Input study major here"
             type="text"
-            tabindex="4"
+            tabIndex="5"
             required
           ></input>
         </fieldset>
@@ -64,7 +63,7 @@ function AdminEditUser() {
           <input
             placeholder="Input email address here"
             type="email"
-            tabindex="4"
+            tabIndex="6"
             required
           ></input>
         </fieldset>
@@ -73,7 +72,7 @@ function AdminEditUser() {
           <input
             placeholder="Input phone number here"
             type="number"
-            tabindex="4"
+            tabIndex="7"
             required
           ></input>
         </fieldset>
@@ -82,7 +81,7 @@ function AdminEditUser() {
           <input
             placeholder="Input year of study here"
             type="number"
-            tabindex="4"
+            tabIndex="8"
             required
           ></input>
         </fieldset>

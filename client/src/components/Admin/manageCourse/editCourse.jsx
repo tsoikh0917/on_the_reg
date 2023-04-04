@@ -1,24 +1,27 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "../form.css";
 
-function AdminEditCourse() {
+function AdminEditCourse(props) {
   const navigate = useNavigate();
+  const { type } = useParams();
+  const location = useLocation().state;
+  let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
+
+  React.useEffect(() => {}, []);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
-  console.log(errors);
 
   return (
     <div id="resize">
       <form id="form_info" action="" method="post">
         <div id="main">
           <h1 id="alignLeft">Edit Course</h1>
-          <button onClick={() => navigate(-1)} class="custom-fbtn fbtn">
+          <button onClick={() => navigate(-1)} className="custom-fbtn fbtn">
             <span>Back</span>
           </button>
         </div>
@@ -27,9 +30,10 @@ function AdminEditCourse() {
           <input
             placeholder="Input course code here"
             type="text"
-            tabindex="1"
+            tabIndex="1"
+            value={courseInfo.course_ID}
             required
-            autofocus
+            autoFocus
           ></input>
         </fieldset>
         <fieldset>
@@ -37,7 +41,8 @@ function AdminEditCourse() {
           <input
             placeholder="Input course name here"
             type="text"
-            tabindex="2"
+            tabIndex="2"
+            value={courseInfo.course_name}
             required
           ></input>
         </fieldset>
@@ -46,7 +51,8 @@ function AdminEditCourse() {
           <input
             placeholder="Input weekday here"
             type="text"
-            tabindex="3"
+            tabIndex="3"
+            value={courseInfo.day}
             required
           ></input>
         </fieldset>
@@ -55,7 +61,8 @@ function AdminEditCourse() {
           <input
             placeholder="Input time slot in the format: hh:mm-hh:mm here"
             type="text"
-            tabindex="4"
+            tabIndex="4"
+            value={courseInfo.time}
             required
           ></input>
         </fieldset>
@@ -64,7 +71,8 @@ function AdminEditCourse() {
           <input
             placeholder="Input faculty here"
             type="text"
-            tabindex="4"
+            tabIndex="5"
+            value={courseInfo.department}
             required
           ></input>
         </fieldset>
@@ -73,7 +81,8 @@ function AdminEditCourse() {
           <input
             placeholder="Input instructor's name here"
             type="text"
-            tabindex="4"
+            tabIndex="6"
+            value={courseInfo.instructor}
             required
           ></input>
         </fieldset>
@@ -82,7 +91,8 @@ function AdminEditCourse() {
           <input
             placeholder="Input maximum capacity of the course here"
             type="number"
-            tabindex="4"
+            tabIndex="7"
+            value={courseInfo.capacity}
             required
           ></input>
         </fieldset>
@@ -91,7 +101,8 @@ function AdminEditCourse() {
           <input
             placeholder="Input location for the course lecture here"
             type="text"
-            tabindex="4"
+            tabIndex="8"
+            value={courseInfo.place}
             required
           ></input>
         </fieldset>
@@ -100,7 +111,7 @@ function AdminEditCourse() {
           <textarea
             placeholder="Type course outline here...."
             type="text"
-            tabindex="5"
+            tabIndex="9"
             required
           ></textarea>
         </fieldset>
@@ -110,7 +121,7 @@ function AdminEditCourse() {
             type="submit"
             id="contact-submit"
             data-submit="...Sending"
-            class="custom-btn btn"
+            className="custom-btn btn"
           >
             Submit
           </button>
