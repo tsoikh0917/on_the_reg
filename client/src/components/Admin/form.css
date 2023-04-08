@@ -135,6 +135,15 @@ fieldset {
   outline: none;
   margin-left: auto;
 }
+.fbtn2 {
+  background: rgb(86, 85, 85);
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.fbtn2:hover {
+  background: grey;
+}
 
 .fbtn {
   background: rgb(84, 205, 245);
@@ -148,6 +157,7 @@ fieldset {
   width: 100%;
   height: 100%;
 }
+
 .fbtn:before,
 .fbtn:after {
   position: absolute;
@@ -158,25 +168,30 @@ fieldset {
     -4px -4px 5px 0px rgba(255, 255, 255, 1),
     7px 7px 20px 0px rgba(0, 0, 0, 0.4), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
 }
+
 .fbtn:before {
   right: 0;
   top: 0;
   transition: all 500ms ease;
 }
+
 .fbtn:after {
   left: 0;
   bottom: 0;
   transition: all 500ms ease;
 }
+
 .fbtn:hover {
   background: transparent;
   color: #76aef1;
   box-shadow: none;
 }
+
 .fbtn:hover:before {
   transition: all 500ms ease;
   height: 100%;
 }
+
 .fbtn:hover:after {
   transition: all 500ms ease;
   height: 100%;

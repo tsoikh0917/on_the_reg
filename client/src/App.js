@@ -20,6 +20,7 @@ import EnrollmentStatus from "./components/studentCourseManage/enrollmentStatus"
 import Topbar from "./components/sidebar/topbar";
 import ASideBar from "./components/sidebar/sidebar_a";
 import Login from "./components/Login/login";
+import SignUp from "./components/Login/signUp";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 
@@ -72,8 +73,14 @@ function App() {
   }
 
   if (isLoggedIn === false) {
-    document.body.style.backgroundColor = "white";
-    return <Login handleLogin={handleLogin} />;
+    document.body.style.backgroundColor = "#243b55";
+    return (
+      <Routes>
+        <Route path="" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/signUp" element={<SignUp />} />
+        <Route path="*" element={<Navigate to="/" />}></Route>
+      </Routes>
+    );
   } else if (isAdmin === false) {
     document.body.style.backgroundColor = "#F5F5F5";
     return (
