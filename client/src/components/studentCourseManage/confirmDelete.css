@@ -1,0 +1,69 @@
+.warning {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2%;
+  width: 40%;
+  min-width: 500px;
+  min-height: 200px;
+  background-color: #243b55;
+  border-radius: 20px;
+  margin-left: 20%;
+  margin-top: 20%;
+  display: block;
+  box-shadow: 0px 0px 10px #000;
+}
+
+.warning:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  z-index: -1;
+}
+
+.warning-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+  border-radius: 50%;
+  background-color: #ff7f50;
+  box-shadow: 0 0 20px #ff7f50, 0 0 40px #ff7f50, 0 0 60px #ff7f50,
+    0 0 80px #ff7f50, 0 0 100px #ff7f50, 0 0 120px #ff7f50, 0 0 140px #ff7f50,
+    0 0 160px #ff7f50;
+}
+
+.warning-text {
+  padding: 5px;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff7f50, 0 0 40px #ff7f50,
+    0 0 50px #ff7f50;
+}
+
+.yes {
+  margin-left: 25%;
+  margin-top: 3%;
+  margin-right: 30%;
+  margin-bottom: 1%;
+  border-radius: 10px;
+  padding: 1%;
+}
+.no {
+  margin-top: 3%;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+#rmB {
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}

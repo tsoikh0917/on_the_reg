@@ -78,14 +78,6 @@ tbody tr:hover {
   background-color: rgba(117, 123, 123, 0.3);
 }
 
-#rm {
-  background: none;
-  color: inherit;
-  border: none;
-  font: inherit;
-  cursor: pointer;
-}
-
 #tr1 {
   background-image: linear-gradient(-45deg, #553c9a, #8269c8);
 }

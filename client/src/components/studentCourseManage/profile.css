@@ -1,9 +1,9 @@
 .profile {
-  margin-left: 10%;
   width: 60%;
   font-family: monospace;
   font-size: larger;
   box-shadow: 3px 3px 2px #0000001a;
+  min-width: 500px;
 }
 
 #BorderStyle {
@@ -79,4 +79,9 @@
 }
 .b-profile:active {
   top: 2px;
+}
+
+.main_h1 {
+  width: 100%;
+  font-size: 30px;
 }

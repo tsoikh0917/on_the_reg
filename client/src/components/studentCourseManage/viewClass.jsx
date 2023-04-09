@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "../table.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable } from "react-table";
 import fakeData from "../MOCK_DATA.json";
+import { Link } from "react-router-dom";
 function ViewClass() {
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
@@ -39,8 +40,24 @@ function ViewClass() {
     ],
     []
   );
+
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
+  const [courseInfo, setCourse] = useState({
+    course_ID: "",
+    course_name: "",
+  });
+  React.useEffect(() => {
+    console.log(JSON.stringify(courseInfo));
+  }, [courseInfo]);
+  const getCourse = (rowV) => {
+    var CourseV = JSON.parse(JSON.stringify(rowV));
+    setCourse({
+      course_ID: CourseV.course_ID,
+      course_name: CourseV.course_name,
+    });
+  };
+
   return (
     <div>
       <h1>View Classes</h1>
@@ -69,7 +86,11 @@ function ViewClass() {
                     </td>
                   ))}
                   <td id="td">
-                    <FaRegTrashAlt />
+                    <Link to="confirmDelete/new" state={{ courseInfo }}>
+                      <FaRegTrashAlt
+                        onMouseEnter={() => getCourse(row.original)}
+                      />
+                    </Link>
                   </td>
                 </tr>
               );

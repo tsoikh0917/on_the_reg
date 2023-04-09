@@ -1,0 +1,100 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cardA,
+.cardB,
+.cardC,
+.cardD {
+  width: 300px;
+  height: 200px;
+  margin: 20px;
+  background-color: white;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  background-image: linear-gradient(0deg, #5f85cd1a, #245ecb1a);
+
+  border-radius: 20px;
+}
+.card3,
+.card4,
+.card5,
+.card6 {
+  width: 300px;
+  height: 200px;
+  margin: 20px;
+  background-color: rgb(255, 235, 235);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  background-image: linear-gradient(0deg, #5f85cd1a, #245ecb1a);
+  border: 5px solid rgb(200, 200, 200);
+  border-radius: 20px;
+}
+.cardA:hover,
+.cardB:hover,
+.cardC:hover,
+.cardD:hover {
+  background-color: lightgray; /* Set the background color on hover */
+}
+
+.cardA h2,
+.cardB h2,
+.cardC h2,
+.cardD h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.cardA p,
+.cardB p,
+.cardC p,
+.cardD p {
+  font-size: 18px;
+  color: #555;
+}
+
+.icon {
+  text-align: center;
+  display: block;
+}
+
+#main_icon {
+  text-align: center;
+}
+.image-button,
+.image-button2,
+.image-button3,
+.image-button4 {
+  margin-right: 2%;
+}
+
+.image-container,
+.image-container2,
+.image-container3,
+.image-container4 {
+  display: none;
+  margin-right: 2%;
+}
+
+.image-button:hover,
+.image-button2:hover,
+.image-button3:hover,
+.image-button4:hover {
+  display: none;
+}
+
+.image-button:hover + .image-container,
+.image-button2:hover + .image-container2,
+.image-button3:hover + .image-container3,
+.image-button4:hover + .image-container4 {
+  display: block;
+}
+
+.main_image {
+  margin-top: 10%;
+  color: rgb(57, 21, 129);
+}

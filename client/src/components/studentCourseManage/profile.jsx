@@ -26,7 +26,7 @@ function Profile() {
     <div>
       <h1>Personal Profile</h1>
       <div className="profile">
-        <div class="card shadow-sm">
+        <div class="card shadow-sm" style={{ minWidth: "500px" }}>
           <div class="card-header bg-transparent border-0">
             <h3 class="mb-0">Account Information</h3>
           </div>

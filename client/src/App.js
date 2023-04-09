@@ -20,7 +20,9 @@ import EnrollmentStatus from "./components/studentCourseManage/enrollmentStatus"
 import Topbar from "./components/sidebar/topbar";
 import ASideBar from "./components/sidebar/sidebar_a";
 import Login from "./components/Login/login";
+import ConfirmDelete from "./components/studentCourseManage/confirmDelete";
 import SignUp from "./components/Login/signUp";
+import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
 
@@ -29,8 +31,13 @@ function StudentPage() {
     <div className="App">
       <Routes>
         <Route path="/" element={<MainS />} />
+        <Route path="/changePW" element={<ChangePW />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/viewClass" element={<ViewClass />} />
+        <Route
+          path={"/viewClass/confirmDelete/:type"}
+          element={<ConfirmDelete />}
+        />
         <Route path="/classSchedule" element={<ClassSchedule />} />
         <Route path="/enrollment" element={<EnrollmentStatus />} />
         <Route path="/search" element={<Search />} />
