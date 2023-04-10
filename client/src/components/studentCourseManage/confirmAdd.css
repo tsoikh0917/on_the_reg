@@ -1,0 +1,32 @@
+.description {
+  background-color: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.description-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.description-content {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #777;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-label input {
+  margin-left: 2%;
+  margin-right: 10px;
+}

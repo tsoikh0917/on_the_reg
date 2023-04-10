@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import icon from "../image/icon.png";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import "./sidebar.css";
@@ -7,38 +7,29 @@ import { FaCalendarAlt, FaUserAlt } from "react-icons/fa";
 
 function ASideBar() {
   return (
-    <div
-      style={{
-        display: "flex",
-        height: "100%",
-        width: "20%",
-        position: "relative",
-      }}
-      className="side"
-    >
-      <Sidebar>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <div
-            className="header"
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <img src={icon} width="20%" alt="icon" />
-            <span id="s">On The Reg</span>
-          </div>
-        </Link>
-        <Menu>
-          <MenuItem
-            icon={<FaCalendarAlt />}
-            component={<Link to="/aViewCourse" />}
-          >
-            Manage Course
-          </MenuItem>
-          <MenuItem icon={<FaUserAlt />} component={<Link to="/aViewUser" />}>
-            Manage User
-          </MenuItem>
-        </Menu>
+    <div id="side">
+      <Sidebar style={{ height: "100%", position: "absolute" }} className="si">
+        <main>
+          <Menu>
+            <MenuItem
+              icon={<img src={icon} width="100%" alt="icon" />}
+              component={<Link to="/" />}
+              id="ts"
+            >
+              <span id="s">On The Reg</span>
+            </MenuItem>
+            <MenuItem
+              icon={<FaCalendarAlt />}
+              component={<Link to="/aViewCourse" />}
+            >
+              Manage Course
+            </MenuItem>
+            <MenuItem icon={<FaUserAlt />} component={<Link to="/aViewUser" />}>
+              Manage User
+            </MenuItem>
+          </Menu>
+        </main>
       </Sidebar>
-      <main></main>
     </div>
   );
 }

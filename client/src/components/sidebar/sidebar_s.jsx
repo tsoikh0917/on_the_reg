@@ -12,40 +12,42 @@ import {
 
 function SSideBar() {
   return (
-    <div
-      style={{
-        display: "flex",
-        height: "100%",
-        width: "20%",
-        position: "relative",
-      }}
-      className="side"
-    >
-      <Sidebar>
-        <Link to="/" style={{ textDecoration: "none" }}>
-          <div
-            className="header"
-            style={{ display: "flex", alignItems: "center" }}
-          >
-            <img src={icon} width="20%" alt="icon" />
-            <span id="s">On The Reg</span>
-          </div>
-        </Link>
+    <div id="side">
+      <Sidebar style={{ height: "100%", position: "absolute" }} className="si">
         <Menu>
-          <MenuItem icon={<FaReadme />} component={<Link to="/viewClass" />}>
+          <MenuItem
+            icon={<img src={icon} width="100%" alt="icon" />}
+            component={<Link to="/" />}
+            id="ts"
+          >
+            <span id="s" className="header">
+              On The Reg
+            </span>
+          </MenuItem>
+          <MenuItem
+            id="st"
+            icon={<FaReadme />}
+            component={<Link to="/viewClass" />}
+          >
             View/Drop Class
           </MenuItem>
           <MenuItem
+            id="st"
             icon={<FaCalendarAlt />}
             component={<Link to="/classSchedule" />}
           >
             Class Schedule
           </MenuItem>
-          <MenuItem icon={<FaSearch />} component={<Link to="/search" />}>
+          <MenuItem
+            id="st"
+            icon={<FaSearch />}
+            component={<Link to="/search" />}
+          >
             Add Class
           </MenuItem>
 
           <MenuItem
+            id="st"
             icon={<FaRegistered />}
             component={<Link to="/enrollment" />}
           >
@@ -53,7 +55,6 @@ function SSideBar() {
           </MenuItem>
         </Menu>
       </Sidebar>
-      <main></main>
     </div>
   );
 }

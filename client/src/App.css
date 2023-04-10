@@ -1,10 +1,5 @@
 .App {
-  margin-left: 20%;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  margin-left: 300px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -63,4 +58,7 @@ h1 {
   border: none;
   font: inherit;
   cursor: pointer;
+}
+.page-align {
+  margin-top: 1%;
 }

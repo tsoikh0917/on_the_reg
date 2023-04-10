@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../table.css";
 import { FaSearch, FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import { useTable } from "react-table";
@@ -54,9 +54,8 @@ function AdminViewCourse() {
     instructor: "",
     capacity: 150,
   });
-  React.useEffect(() => {
-    //console.log(JSON.stringify(courseInfo));
-  }, [courseInfo]);
+
+  React.useEffect(() => {}, [courseInfo]);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data });
@@ -76,8 +75,8 @@ function AdminViewCourse() {
 
   return (
     <div id="test">
+      <script>document.body.style.backgroundColor = "yellow";</script>
       <h1>View/Manage Course</h1>
-
       <div className="wrap">
         <div className="search">
           <input

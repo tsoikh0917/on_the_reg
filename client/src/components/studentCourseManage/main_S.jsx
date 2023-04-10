@@ -20,7 +20,9 @@ function MainS() {
           <Link to="/viewClass" style={{ textDecoration: "none" }}>
             <div class="cardA">
               <h1 class="main_h1">View Course</h1>
-              <p>You can search Class here!</p>
+              <p class="main_text">
+                You can check out the class that you have succesfully registered
+              </p>
             </div>
           </Link>
         </div>
@@ -29,7 +31,7 @@ function MainS() {
           <Link to="/viewClass" style={{ textDecoration: "none" }}>
             <div class="card3">
               <h1 class="main_h1">View Course</h1>
-              <FaSearch size={50} className="main_image" />
+              <FaReadme size={50} className="main_image" />
             </div>
           </Link>
         </div>
@@ -37,7 +39,7 @@ function MainS() {
           <Link to="/classSchedule" style={{ textDecoration: "none" }}>
             <div class="cardB">
               <h1 class="main_h1">Class Schedule</h1>
-              <p>You can search Class here!</p>
+              <p class="main_text">You can check out your weekly schedule</p>
             </div>
           </Link>
         </div>
@@ -45,7 +47,7 @@ function MainS() {
           <Link to="/classSchedule" style={{ textDecoration: "none" }}>
             <div class="card4">
               <h1 class="main_h1">Class Schedule</h1>
-              <FaSearch size={50} className="main_image" />
+              <FaCalendarAlt size={50} className="main_image" />
             </div>
           </Link>
         </div>
@@ -53,7 +55,9 @@ function MainS() {
           <Link to="/search" style={{ textDecoration: "none" }}>
             <div class="cardC">
               <h1 class="main_h1">Search Course</h1>
-              <p>You can search Class here!</p>
+              <p class="main_text">
+                You can search for the classs that you want to register
+              </p>
             </div>
           </Link>
         </div>
@@ -69,7 +73,10 @@ function MainS() {
           <Link to="/enrollment" style={{ textDecoration: "none" }}>
             <div class="cardD">
               <h1 class="main_h1">Enrollment Status</h1>
-              <p>You can search Class here!</p>
+              <p class="main_text">
+                You can find your enrollment status after you have add the
+                course{" "}
+              </p>
             </div>
           </Link>
         </div>
@@ -77,7 +84,7 @@ function MainS() {
           <Link to="/enrollment" style={{ textDecoration: "none" }}>
             <div class="card6">
               <h1 class="main_h1">Enrollment Status</h1>
-              <FaSearch size={50} className="main_image" />
+              <FaRegistered size={50} className="main_image" />
             </div>
           </Link>
         </div>
