@@ -20,7 +20,6 @@ import EnrollmentStatus from "./components/studentCourseManage/enrollmentStatus"
 import Topbar from "./components/sidebar/topbar";
 import ASideBar from "./components/sidebar/sidebar_a";
 import Login from "./components/Login/login";
-import ConfirmDelete from "./components/studentCourseManage/confirmDelete";
 import SignUp from "./components/Login/signUp";
 import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -34,10 +33,6 @@ function StudentPage() {
         <Route path="/changePW" element={<ChangePW />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/viewClass" element={<ViewClass />} />
-        <Route
-          path={"/viewClass/confirmDelete/:type"}
-          element={<ConfirmDelete />}
-        />
         <Route path="/classSchedule" element={<ClassSchedule />} />
         <Route path="/enrollment" element={<EnrollmentStatus />} />
         <Route path="/search" element={<Search />} />
@@ -59,7 +54,7 @@ function Admin() {
         <Route path="/aEditCourse/:type" element={<AdminEditCourse />} />
         <Route path="/aViewCourse" element={<AdminViewCourse />} />
         <Route path="/aAddUser" element={<AdminAddUser />} />
-        <Route path="/aEditUser" element={<AdminEditUser />} />
+        <Route path="/aEditUser/:type" element={<AdminEditUser />} />
         <Route path="/aViewUser" element={<AdminViewUser />} />
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
@@ -94,13 +89,15 @@ function App() {
     return (
       <ProSidebarProvider>
         <div>
-          <Topbar handleLogin={handleLogin} />
-          <div className="side">
-            <SSideBar />
+          <div>
+            <Topbar handleLogin={handleLogin} />
+            <div className="side">
+              <SSideBar />
+            </div>
           </div>
-        </div>
 
-        <StudentPage />
+          <StudentPage />
+        </div>
       </ProSidebarProvider>
     );
   } else {

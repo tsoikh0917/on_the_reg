@@ -2,9 +2,9 @@
   max-width: 40%;
   margin: 0 auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 3px solid #85bbd2;
   border-radius: 5px;
-  margin-top: 10%;
+  box-shadow: 10px 10px 5px lightblue;
 }
 h2 {
   margin-top: 0;
@@ -34,4 +34,10 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: #3e8e41;
+}
+
+#spacing {
+  margin-top: 10%;
+  margin-left: 10%;
+  position: absolute;
 }

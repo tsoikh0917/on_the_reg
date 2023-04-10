@@ -1,5 +1,5 @@
 .warning {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,7 +10,7 @@
   background-color: #243b55;
   border-radius: 20px;
   margin-left: 20%;
-  margin-top: 20%;
+  margin-top: 15%;
   display: block;
   box-shadow: 0px 0px 10px #000;
 }

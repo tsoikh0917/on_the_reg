@@ -3,8 +3,9 @@ import "../table.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable } from "react-table";
 import fakeData from "../MOCK_DATA.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function ViewClass() {
+  const navigate = useNavigate();
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
@@ -58,45 +59,74 @@ function ViewClass() {
     });
   };
 
+  const [showWarn, setWarn] = useState(false);
+
+  const [isBlurred, setIsBlurred] = useState(false);
+
+  const toggleWarn = () => {
+    setWarn(!showWarn);
+    setIsBlurred(!isBlurred);
+  };
+
   return (
     <div>
-      <h1>View Classes</h1>
-      <div>
-        <table id="table" {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr id="tr1" {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th id="th" {...column.getHeaderProps()}>
-                    {column.render("Header")}
-                  </th>
-                ))}
-                <th id="th"></th>
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
-              prepareRow(row);
-              return (
-                <tr id="tr2" {...row.getRowProps()}>
-                  {row.cells.map((cell) => (
-                    <td id="td" {...cell.getCellProps()}>
-                      {cell.render("Cell")}{" "}
-                    </td>
+      {showWarn && (
+        <div className="warning">
+          <p className="warning-text">Are you sure you want to delete</p>
+          <p className="warning-text">
+            {courseInfo.course_ID} - {courseInfo.course_name}?
+          </p>
+          <button onClick={toggleWarn} id="rmB" class="yes">
+            <p className="warning-text">Yes</p>
+          </button>
+          <button onClick={toggleWarn} id="rmB" class="no">
+            <p className="warning-text">No</p>
+          </button>
+        </div>
+      )}
+      <div
+        className={`blur-content ${isBlurred ? "is-blurred" : ""}`}
+        style={{ zIndex: 1, pointerEvents: isBlurred ? "none" : "auto" }}
+      >
+        <h1>View Classes</h1>
+        <div>
+          <table id="table" {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr id="tr1" {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <th id="th" {...column.getHeaderProps()}>
+                      {column.render("Header")}
+                    </th>
                   ))}
-                  <td id="td">
-                    <Link to="confirmDelete/new" state={{ courseInfo }}>
-                      <FaRegTrashAlt
-                        onMouseEnter={() => getCourse(row.original)}
-                      />
-                    </Link>
-                  </td>
+                  <th id="th"></th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr id="tr2" {...row.getRowProps()}>
+                    {row.cells.map((cell) => (
+                      <td id="td" {...cell.getCellProps()}>
+                        {cell.render("Cell")}{" "}
+                      </td>
+                    ))}
+                    <td id="td">
+                      <button onClick={toggleWarn} id="rm">
+                        <FaRegTrashAlt
+                          onMouseEnter={() => getCourse(row.original)}
+                          style={{ color: "red" }}
+                        />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

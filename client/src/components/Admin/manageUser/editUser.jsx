@@ -1,9 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "../form.css";
 
 function AdminEditUser() {
   const navigate = useNavigate();
+  const { type } = useParams();
+  const location = useLocation().state;
+  let userInfo = JSON.parse(JSON.stringify(location.userInfo));
   return (
     <div id="resize">
       <form id="form_info" action="" method="post">
@@ -19,6 +22,7 @@ function AdminEditUser() {
             placeholder="Input name here"
             type="text"
             tabIndex="1"
+            value={userInfo.Name}
             required
           ></input>
         </fieldset>
@@ -28,6 +32,7 @@ function AdminEditUser() {
             placeholder="Input ID here"
             type="number"
             tabIndex="2"
+            value={userInfo.ID}
             required
           ></input>
         </fieldset>
@@ -55,15 +60,36 @@ function AdminEditUser() {
             placeholder="Input study major here"
             type="text"
             tabIndex="5"
+            value={userInfo.Major}
             required
           ></input>
         </fieldset>
         <fieldset>
+          <h4>Department:</h4>
+          <input
+            placeholder="Input study major here"
+            type="text"
+            tabIndex="6"
+            value={userInfo.Department}
+            required
+          ></input>
+        </fieldset>
+        <fieldset>
+          <fieldset>
+            <h4>Year:</h4>
+            <input
+              placeholder="Input year of study here"
+              type="number"
+              tabIndex="7"
+              value={userInfo.Year}
+              required
+            ></input>
+          </fieldset>
           <h4>Email:</h4>
           <input
             placeholder="Input email address here"
             type="email"
-            tabIndex="6"
+            tabIndex="8"
             required
           ></input>
         </fieldset>
@@ -72,16 +98,7 @@ function AdminEditUser() {
           <input
             placeholder="Input phone number here"
             type="number"
-            tabIndex="7"
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Year:</h4>
-          <input
-            placeholder="Input year of study here"
-            type="number"
-            tabIndex="8"
+            tabIndex="9"
             required
           ></input>
         </fieldset>

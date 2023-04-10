@@ -60,20 +60,11 @@ function SignUp() {
             ></input>
           </fieldset>
           <fieldset>
-            <h4>Email:</h4>
+            <h4>Department:</h4>
             <input
-              placeholder="Input email address here"
-              type="email"
-              tabIndex="6"
-              required
-            ></input>
-          </fieldset>
-          <fieldset>
-            <h4>Contact Number:</h4>
-            <input
-              placeholder="Input phone number here"
+              placeholder="Input department here"
               type="number"
-              tabIndex="7"
+              tabIndex="6"
               required
             ></input>
           </fieldset>
@@ -82,7 +73,25 @@ function SignUp() {
             <input
               placeholder="Input year of study here"
               type="number"
+              tabIndex="7"
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <h4>Email:</h4>
+            <input
+              placeholder="Input email address here"
+              type="email"
               tabIndex="8"
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <h4>Contact Number:</h4>
+            <input
+              placeholder="Input phone number here"
+              type="number"
+              tabIndex="9"
               required
             ></input>
           </fieldset>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "./confirmDelete.css";
 import { Link } from "react-router-dom";
@@ -8,6 +8,11 @@ function ConfirmDelete() {
   const { type } = useParams();
   const location = useLocation().state;
   let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
+  const [showWarn, setWarn] = useState(false);
+
+  const handleWarn = () => {
+    setWarn(true);
+  };
   return (
     <div>
       <div className="warning">
