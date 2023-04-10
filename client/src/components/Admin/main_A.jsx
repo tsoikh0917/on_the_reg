@@ -12,32 +12,36 @@ function MainA() {
 
         <div className="card-container">
           <div className=" image-button3">
-            <Link to="/search" style={{ textDecoration: "none" }}>
-              <div class="cardC">
+            <Link to="/aViewCourse" style={{ textDecoration: "none" }}>
+              <div class="cardA">
                 <h1 class="main_h1">Manage Course</h1>
-                <p>You can search Class here!</p>
+                <p class="main_text">
+                  You can add, edit or delete courses here
+                </p>
               </div>
             </Link>
           </div>
           <div className="image-container3">
-            <Link to="/search" style={{ textDecoration: "none" }}>
-              <div class="card5">
+            <Link to="/aViewCourse" style={{ textDecoration: "none" }}>
+              <div class="card3">
                 <h1 class="main_h1">Manage Course</h1>
                 <FaCalendarAlt size={50} className="main_image" />
               </div>
             </Link>
           </div>
           <div className=" image-button4">
-            <Link to="/enrollment" style={{ textDecoration: "none" }}>
-              <div class="cardD">
+            <Link to="/aViewUser" style={{ textDecoration: "none" }}>
+              <div class="cardB">
                 <h1 class="main_h1">Manage User</h1>
-                <p>You can search Class here!</p>
+                <p className="main_text">
+                  You can add, edit or delete users here
+                </p>
               </div>
             </Link>
           </div>
           <div className="image-container4">
-            <Link to="/enrollment" style={{ textDecoration: "none" }}>
-              <div class="card6">
+            <Link to="/aViewUser" style={{ textDecoration: "none" }}>
+              <div class="card4">
                 <h1 class="main_h1">Manage User</h1>
                 <FaUserAlt size={50} className="main_image" />
               </div>

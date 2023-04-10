@@ -1,10 +1,11 @@
 import React from "react";
 import "../table.css";
 import { FaSearch } from "react-icons/fa";
-import { useTable } from "react-table";
+import { useTable, useFilters } from "react-table";
 import fakeData from "../MOCK_DATA.json";
 import arrow from "../image/arrow.png";
 import { Link } from "react-router-dom";
+import { ColumnFilter } from "../columnFilter";
 
 function Search() {
   const data = React.useMemo(() => fakeData, []);
@@ -13,41 +14,52 @@ function Search() {
       {
         Header: "course id",
         accessor: "course_ID",
+        Filter: ColumnFilter,
+        disableFilters: true,
       },
 
       {
         Header: "course name",
         accessor: "course_name",
+        Filter: ColumnFilter,
+        disableFilters: true,
       },
       {
         Header: "day",
         accessor: "day",
+        Filter: ColumnFilter,
       },
       {
         Header: "time",
         accessor: "time",
+        Filter: ColumnFilter,
       },
       {
         Header: "place",
         accessor: "place",
+        Filter: ColumnFilter,
       },
       {
         Header: "department",
         accessor: "department",
+        Filter: ColumnFilter,
       },
       {
         Header: "instructor",
         accessor: "instructor",
+        Filter: ColumnFilter,
       },
       {
         Header: "capacity",
         accessor: "capacity",
+        Filter: ColumnFilter,
+        disableFilters: true,
       },
     ],
     []
   );
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+    useTable({ columns, data }, useFilters);
   return (
     <div id="test">
       <h1>Search Classes</h1>
@@ -73,7 +85,10 @@ function Search() {
               <tr id="tr1" {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
                   <th id="th" {...column.getHeaderProps()}>
-                    {column.render("Header")}
+                    <div style={{ display: "column" }}>
+                      {column.render("Header")}
+                      {column.canFilter ? column.render("Filter") : null}
+                    </div>
                   </th>
                 ))}
                 <th id="th"></th>

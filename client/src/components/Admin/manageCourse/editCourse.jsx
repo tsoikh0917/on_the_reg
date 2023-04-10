@@ -26,7 +26,7 @@ function AdminEditCourse(props) {
           </button>
         </div>
         <fieldset>
-          <h4>Course ID:</h4> engineering?
+          <h4>Course ID:</h4>
           <input
             placeholder="Input course code here"
             type="text"

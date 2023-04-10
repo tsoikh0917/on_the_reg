@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "../../table.css";
-import { FaSearch, FaEdit, FaRegTrashAlt } from "react-icons/fa";
-import { useTable } from "react-table";
+import { FaSearch, FaEdit, FaRegTrashAlt, FaPlus } from "react-icons/fa";
+import { useTable, useFilters } from "react-table";
 import fakeData from "../../MOCK_DATA.json";
 import { Link } from "react-router-dom";
+import { ColumnFilter } from "../../columnFilter";
 
 function AdminViewCourse() {
   const data = React.useMemo(() => fakeData, []);
@@ -12,34 +13,45 @@ function AdminViewCourse() {
       {
         Header: "course ID",
         accessor: "course_ID",
+        Filter: ColumnFilter,
+        disableFilters: true,
       },
       {
         Header: "course name",
         accessor: "course_name",
+        Filter: ColumnFilter,
+        disableFilters: true,
       },
       {
         Header: "day",
         accessor: "day",
+        Filter: ColumnFilter,
       },
       {
         Header: "time",
         accessor: "time",
+        Filter: ColumnFilter,
       },
       {
         Header: "place",
         accessor: "place",
+        Filter: ColumnFilter,
       },
       {
         Header: "department",
         accessor: "department",
+        Filter: ColumnFilter,
       },
       {
         Header: "instructor",
         accessor: "instructor",
+        Filter: ColumnFilter,
       },
       {
         Header: "capacity",
         accessor: "capacity",
+        Filter: ColumnFilter,
+        disableFilters: true,
       },
     ],
     []
@@ -58,7 +70,7 @@ function AdminViewCourse() {
   React.useEffect(() => {}, [courseInfo]);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+    useTable({ columns, data }, useFilters);
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
     setCourseInfo({
@@ -75,8 +87,8 @@ function AdminViewCourse() {
 
   return (
     <div id="test">
-      <script>document.body.style.backgroundColor = "yellow";</script>
       <h1>View/Manage Course</h1>
+
       <div className="wrap">
         <div className="search">
           <input
@@ -91,6 +103,14 @@ function AdminViewCourse() {
           </button>
         </div>
       </div>
+      <Link to="/aAddCourse">
+        <button class="add-btn">
+          <div id="verticalAlign">
+            <FaPlus id="plus" size={15} />
+            <span id="newCourse">Add new course</span>
+          </div>
+        </button>
+      </Link>
       <div id="outer">
         <table id="table" {...getTableProps()}>
           <thead>
@@ -99,6 +119,7 @@ function AdminViewCourse() {
                 {headerGroup.headers.map((column) => (
                   <th id="th" {...column.getHeaderProps()}>
                     {column.render("Header")}
+                    {column.canFilter ? column.render("Filter") : null}
                   </th>
                 ))}
                 <th id="th"></th>
@@ -128,7 +149,7 @@ function AdminViewCourse() {
                   </td>
                   <td id="td" onClick={() => getRowValue(row.original)}>
                     <button id="rm">
-                      <FaRegTrashAlt />
+                      <FaRegTrashAlt style={{ color: "red" }} />
                     </button>
                   </td>
                 </tr>
