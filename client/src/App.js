@@ -23,6 +23,7 @@ import Login from "./components/Login/login";
 import SignUp from "./components/Login/signUp";
 import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Calendar from "./components/studentCourseManage/calender";
 import { useState } from "react";
 
 function StudentPage() {
@@ -95,8 +96,9 @@ function App() {
               <SSideBar />
             </div>
           </div>
-
-          <StudentPage />
+          <div id="align-main">
+            <StudentPage />
+          </div>
         </div>
       </ProSidebarProvider>
     );

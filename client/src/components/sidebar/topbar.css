@@ -41,8 +41,9 @@ html {
   text-shadow: 0 0 10px #fff;
 }
 
-#topbar {
-  background-color: #243b55;
+#my_topbar {
+  position: flex;
+  background: linear-gradient(to right, #979494, #243b55);
   width: 100%;
   float: right;
   padding-top: 5px;

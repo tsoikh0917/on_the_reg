@@ -11,7 +11,7 @@ function Topbar({ handleLogin }) {
     navigate(link);
   }
   return (
-    <div id="topbar">
+    <div id="my_topbar">
       <span id="block">
         <Dropdown style={{ height: "10%" }}>
           <DropdownButton id="dropdown-basic-button" title={userName}>
