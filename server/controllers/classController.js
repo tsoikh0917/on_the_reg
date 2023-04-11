@@ -2,38 +2,40 @@
 const con = require('../Models/mysqlModel');
 
 const getAllClass = async (req, res) => {
+    // Get the classID from the request
     const classID = req.param('classID');
 
-    // ? is a placeholder for a value to be inserted into the query
+    // Prepare the SQL query
     let sql = `SELECT classID, location, capasity, maxCapasity, courseID, lectrueName
                FROM class
                WHERE isActive = 1`
 
-    // first parameter: sql query
-    // second parameter: array of values to be inserted into the query
-    // third parameter: callback function
+    // Execute the query
     con.query(sql, [classID], (err, result) => {
         if (err) throw err;
         res.status(200).send(result);
     });
 }
 
-const getClass = async (req, res) => {
-    const classID = req.param('classID');
+//Get the classID from the request params
+const classID = req.param('classID');
 
-    let sql = `SELECT classID, location, capasity, maxCapasity, courseID, lectrueName
-               FROM class
-               WHERE classID = ? AND isActive = 1`
+//Create the SQL statement with the classID
+let sql = `SELECT classID, location, capasity, maxCapasity, courseID, lectrueName
+           FROM class
+           WHERE classID = ? AND isActive = 1`
 
-    con.query(sql, [classID], (err, result) => {
-        if (err) throw err;
-        res.status(200).send(result);
-    });
-}
+//Run the SQL query and return the result
+con.query(sql, [classID], (err, result) => {
+    if (err) throw err;
+    res.status(200).send(result);
+});
 
 const getCoursebyClass = async (req, res) => {
+    // Get the classID from the request
     const classID = req.param('classID');
 
+    // Get the courseID of the class
     let sql1 = `SELECT courseID
                 FROM class
                 WHERE classID = ? AND isActive = 1`
@@ -45,7 +47,8 @@ const getCoursebyClass = async (req, res) => {
 
     requested_course_id = data[0].courseID;
 
-    let sql2 = `SELECT courseID, courseName, courseCode, courseDescription, courseCredit, courseLevel, coursePrerequisite, courseType
+    // Get the course information of the class
+    let sql2 = `SELECT courseID, courseName, description, faculty
                 FROM course
                 WHERE courseID = ? AND isActive = 1`
 
@@ -54,6 +57,8 @@ const getCoursebyClass = async (req, res) => {
         res.status(200).send(result);
     });
 }
+
+
 
 const addClass = async (req, res) => {
     const data = req.body;
