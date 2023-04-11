@@ -7,7 +7,7 @@ import {
   FaPlus,
   FaFilter,
 } from "react-icons/fa";
-import { useTable, useFilters } from "react-table";
+import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../../MOCK_USER.json";
 import { Link } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
@@ -46,8 +46,23 @@ function AdminViewUser() {
     ],
     []
   );
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data }, useFilters);
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    prepareRow,
+    pageOptions,
+    state: { pageIndex, pageSize },
+  } = useTable(
+    { columns, data, initialState: { pageSize: 5 } },
+    useFilters,
+    usePagination
+  );
   const [userInfo, setUserInfo] = useState({
     Name: "Chan Tai Min",
     ID: "",
@@ -157,7 +172,7 @@ function AdminViewUser() {
               ))}
             </thead>
             <tbody {...getTableBodyProps()}>
-              {rows.map((row) => {
+              {page.map((row) => {
                 prepareRow(row);
                 return (
                   <tr
@@ -190,6 +205,31 @@ function AdminViewUser() {
               })}
             </tbody>
           </table>
+          {pageOptions.length > 1 && (
+            <div id="pagin">
+              <button
+                id="pagin-btn"
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                Previous
+              </button>
+              <span id="pagin-num">
+                Page{"  "}
+                <strong>
+                  {pageIndex + 1} of {pageOptions.length}
+                </strong>
+              </span>
+
+              <button
+                id="pagin-btn"
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

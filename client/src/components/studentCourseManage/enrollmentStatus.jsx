@@ -1,6 +1,6 @@
 import React from "react";
 import "../table.css";
-import { useTable } from "react-table";
+import { useTable, usePagination } from "react-table";
 import fakeData from "../MOCK_ENROLLMENT.json";
 
 function EnrollmentStatus() {
@@ -31,8 +31,19 @@ function EnrollmentStatus() {
     ],
     []
   );
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    prepareRow,
+    pageOptions,
+    state: { pageIndex, pageSize },
+  } = useTable({ columns, data, initialState: { pageSize: 5 } }, usePagination);
   return (
     <div id="test">
       <h1>Enrollment Status</h1>
@@ -51,7 +62,7 @@ function EnrollmentStatus() {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {rows.map((row) => {
+            {page.map((row) => {
               prepareRow(row);
               return (
                 <tr id="tr2" {...row.getRowProps()}>
@@ -65,6 +76,31 @@ function EnrollmentStatus() {
             })}
           </tbody>
         </table>
+        {pageOptions.length > 1 && (
+          <div id="pagin">
+            <button
+              id="pagin-btn"
+              onClick={() => previousPage()}
+              disabled={!canPreviousPage}
+            >
+              Previous
+            </button>
+            <span id="pagin-num">
+              Page{"  "}
+              <strong>
+                {pageIndex + 1} of {pageOptions.length}
+              </strong>
+            </span>
+
+            <button
+              id="pagin-btn"
+              onClick={() => nextPage()}
+              disabled={!canNextPage}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

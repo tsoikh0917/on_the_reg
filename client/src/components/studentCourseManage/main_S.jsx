@@ -10,6 +10,32 @@ import {
 } from "react-icons/fa";
 
 function MainS() {
+  const [checkHover, setCheckHover] = useState(false);
+  const [checkHover2, setCheckHover2] = useState(false);
+  const [checkHover3, setCheckHover3] = useState(false);
+  const [checkHover4, setCheckHover4] = useState(false);
+  function open(num) {
+    if (num === 1) {
+      setCheckHover(true);
+    } else if (num === 2) {
+      setCheckHover2(true);
+    } else if (num === 3) {
+      setCheckHover3(true);
+    } else if (num === 4) {
+      setCheckHover4(true);
+    }
+  }
+  function close(num) {
+    if (num === 1) {
+      setCheckHover(false);
+    } else if (num === 2) {
+      setCheckHover2(false);
+    } else if (num === 3) {
+      setCheckHover3(false);
+    } else if (num === 4) {
+      setCheckHover4(false);
+    }
+  }
   return (
     <div>
       <div id="main_icon">
@@ -17,75 +43,63 @@ function MainS() {
       </div>
 
       <div className="card-container">
-        <div className=" image-button">
+        <div onMouseEnter={() => open(1)} onMouseLeave={() => close(1)}>
           <Link to="/viewClass" style={{ textDecoration: "none" }}>
             <div class="cardA">
               <h1 class="main_h1">View Course</h1>
-              <p class="main_text">
-                You can check out the class that you have succesfully registered
-              </p>
+              {checkHover ? (
+                <FaReadme size={50} className="main_image" />
+              ) : (
+                <p class="main_text">
+                  You can check out the class that you have succesfully
+                  registered
+                </p>
+              )}
             </div>
           </Link>
         </div>
 
-        <div className="image-container">
-          <Link to="/viewClass" style={{ textDecoration: "none" }}>
-            <div class="card3">
-              <h1 class="main_h1">View Course</h1>
-              <FaReadme size={50} className="main_image" />
-            </div>
-          </Link>
-        </div>
-        <div className=" image-button2">
+        <div onMouseEnter={() => open(2)} onMouseLeave={() => close(2)}>
           <Link to="/classSchedule" style={{ textDecoration: "none" }}>
             <div class="cardB">
               <h1 class="main_h1">Class Schedule</h1>
-              <p class="main_text">You can check out your weekly schedule</p>
+
+              {checkHover2 ? (
+                <FaCalendarAlt size={50} className="main_image" />
+              ) : (
+                <p class="main_text">You can check out your weekly schedule</p>
+              )}
             </div>
           </Link>
         </div>
-        <div className="image-container2">
-          <Link to="/classSchedule" style={{ textDecoration: "none" }}>
-            <div class="card4">
-              <h1 class="main_h1">Class Schedule</h1>
-              <FaCalendarAlt size={50} className="main_image" />
-            </div>
-          </Link>
-        </div>
-        <div className=" image-button3">
+
+        <div onMouseEnter={() => open(3)} onMouseLeave={() => close(3)}>
           <Link to="/search" style={{ textDecoration: "none" }}>
             <div class="cardC">
               <h1 class="main_h1">Search Course</h1>
-              <p class="main_text">
-                You can search for the classs that you want to register
-              </p>
+              {checkHover3 ? (
+                <FaSearch size={50} className="main_image" />
+              ) : (
+                <p class="main_text">
+                  You can search for the classs that you want to register
+                </p>
+              )}
             </div>
           </Link>
         </div>
-        <div className="image-container3">
-          <Link to="/search" style={{ textDecoration: "none" }}>
-            <div class="card5">
-              <h1 class="main_h1">Search Course</h1>
-              <FaSearch size={50} className="main_image" />
-            </div>
-          </Link>
-        </div>
-        <div className=" image-button4">
+
+        <div onMouseEnter={() => open(4)} onMouseLeave={() => close(4)}>
           <Link to="/enrollment" style={{ textDecoration: "none" }}>
             <div class="cardD">
               <h1 class="main_h1">Enrollment Status</h1>
-              <p class="main_text">
-                You can find your enrollment status after you have add the
-                course{" "}
-              </p>
-            </div>
-          </Link>
-        </div>
-        <div className="image-container4">
-          <Link to="/enrollment" style={{ textDecoration: "none" }}>
-            <div class="card6">
-              <h1 class="main_h1">Enrollment Status</h1>
-              <FaRegistered size={50} className="main_image" />
+              {checkHover4 ? (
+                <FaRegistered size={50} className="main_image" />
+              ) : (
+                <p class="main_text">
+                  You can find your enrollment status after you have add the
+                  course{" "}
+                </p>
+              )}
             </div>
           </Link>
         </div>

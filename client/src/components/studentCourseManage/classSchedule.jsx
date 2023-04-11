@@ -1,5 +1,4 @@
 import React from "react";
-import { DayPilot, DayPilotCalendar } from "@daypilot/daypilot-lite-react";
 import "./classSchedule.css";
 import Calendar from "./calender";
 

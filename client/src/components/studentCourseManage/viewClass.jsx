@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../table.css";
 import { FaRegTrashAlt } from "react-icons/fa";
-import { useTable } from "react-table";
+import { useTable, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA.json";
 import { Link, useNavigate } from "react-router-dom";
 function ViewClass() {
@@ -42,8 +42,20 @@ function ViewClass() {
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    prepareRow,
+    pageOptions,
+    state: { pageIndex, pageSize },
+  } = useTable({ columns, data, initialState: { pageSize: 5 } }, usePagination);
+
   const [courseInfo, setCourse] = useState({
     course_ID: "",
     course_name: "",
@@ -104,7 +116,7 @@ function ViewClass() {
               ))}
             </thead>
             <tbody {...getTableBodyProps()}>
-              {rows.map((row) => {
+              {page.map((row) => {
                 prepareRow(row);
                 return (
                   <tr id="tr2" {...row.getRowProps()}>
@@ -126,6 +138,31 @@ function ViewClass() {
               })}
             </tbody>
           </table>
+          {pageOptions.length > 1 && (
+            <div id="pagin">
+              <button
+                id="pagin-btn"
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                Previous
+              </button>
+              <span id="pagin-num">
+                Page{"  "}
+                <strong>
+                  {pageIndex + 1} of {pageOptions.length}
+                </strong>
+              </span>
+
+              <button
+                id="pagin-btn"
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

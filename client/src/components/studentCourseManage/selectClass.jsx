@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import "../table.css";
-import { FaSearch, FaFilter, FaArrowAltCircleRight } from "react-icons/fa";
-import { useTable, useFilters, usePagination } from "react-table";
+import { FaSearch, FaFilter } from "react-icons/fa";
+import { useTable, useFilters } from "react-table";
 import fakeData from "../MOCK_DATA.json";
+import arrow from "../image/arrow.png";
 import { Link } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
 
-function Search() {
+function SelectClass() {
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
@@ -61,23 +62,8 @@ function Search() {
   const showFilter = () => {
     setToggleFilter(!toggleFilter);
   };
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    page,
-    nextPage,
-    previousPage,
-    canNextPage,
-    canPreviousPage,
-    prepareRow,
-    pageOptions,
-    state: { pageIndex, pageSize },
-  } = useTable(
-    { columns, data, initialState: { pageSize: 5 } },
-    useFilters,
-    usePagination
-  );
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({ columns, data }, useFilters);
   return (
     <div id="test">
       <h1>Search Classes</h1>
@@ -127,7 +113,7 @@ function Search() {
             ))}
           </thead>
           <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
+            {rows.map((row) => {
               prepareRow(row);
               return (
                 <tr id="tr2" {...row.getRowProps()}>
@@ -139,7 +125,7 @@ function Search() {
 
                   <td id="td">
                     <Link to="/search/confirm">
-                      <FaArrowAltCircleRight />
+                      <img src={arrow} width="20%" alt="arrow" />
                     </Link>
                   </td>
                 </tr>
@@ -147,34 +133,9 @@ function Search() {
             })}
           </tbody>
         </table>
-        {pageOptions.length > 1 && (
-          <div id="pagin">
-            <button
-              id="pagin-btn"
-              onClick={() => previousPage()}
-              disabled={!canPreviousPage}
-            >
-              Previous
-            </button>
-            <span id="pagin-num">
-              Page{"  "}
-              <strong>
-                {pageIndex + 1} of {pageOptions.length}
-              </strong>
-            </span>
-
-            <button
-              id="pagin-btn"
-              onClick={() => nextPage()}
-              disabled={!canNextPage}
-            >
-              Next
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
 }
 
-export default Search;
+export default SelectClass;
