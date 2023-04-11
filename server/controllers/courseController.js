@@ -16,7 +16,7 @@ const ViewAllCourse = async (req, res) => {
     });
 }
 
-const ViewSpecificCourse = async (req, res) => {
+/*const ViewSpecificCourse = async (req, res) => {
     const courseID = req.param('courseID');
 
     // ? is a placeholder for a value to be inserted into the query
@@ -31,7 +31,7 @@ const ViewSpecificCourse = async (req, res) => {
         if (err) throw err;
         res.status(200).send(result);
     });
-}
+}*/
 const AddCourse = async (req, res) => { 
     const data = req.body;
 
@@ -69,10 +69,24 @@ const EditCourse = (req, res) => {
     });
 
 }
+const ViewCourseFromSearchBar = (req, res) => {
+    const data = req.param('SearchBarInput');
+    let sql = `SELECT * 
+                FROM course
+                where courseID LIKE '%${req.param('SearchBarInput')}%'
+                or courseName LIKE '%${req.param('SearchBarInput')}%'
+                or faculty LIKE '%${req.param('SearchBarInput')}%'`
+    con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.status(201).send(result);
+    });
+    
+
+}
 module.exports = {
     ViewAllCourse,
-    ViewSpecificCourse,
     AddCourse,
     DeleteCourse,
     EditCourse,
+    ViewCourseFromSearchBar
 }
