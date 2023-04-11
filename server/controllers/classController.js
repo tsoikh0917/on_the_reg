@@ -6,7 +6,7 @@ const getAllClass = async (req, res) => {
     const classID = req.param('classID');
 
     // Prepare the SQL query
-    let sql = `SELECT classID, location, capacity, maxCapacity, courseID, lectureName
+    let sql = `SELECT *
                FROM class`
 
     // Execute the query
@@ -21,7 +21,7 @@ const getClass = async (req, res) => {
     const classID = req.param('classID');
 
     //Create the SQL statement with the classID
-    let sql = `SELECT classID, location, capacity, maxCapacity, courseID, lectureName
+    let sql = `SELECT *
             FROM class
             WHERE classID = ?`
 
@@ -65,10 +65,10 @@ const addClass = async (req, res) => {
     const data = req.body;
 
     let sql = `INSERT INTO class
-               (location, capacity, maxCapacity, courseID, lectureName)
-               VALUE (?, ?, ?, ?, ?)`
+               (location, capacity, maxCapacity, courseID, lectureName, week, start_time, end_time)
+               VALUE (?, ?, ?, ?, ?, ?, ?, ?)`
     
-    con.query(sql, [data.location, data.capacity, data.maxCapacity, data.courseID, data.lectureName], (err, result) => {
+    con.query(sql, [data.location, data.capacity, data.maxCapacity, data.courseID, data.lectureName, data.week, data.start_time, data.end_time], (err, result) => {
         if (err) throw err;
         res.status(201).send(result);
     });
@@ -84,9 +84,12 @@ const updateClass = async (req, res) => {
                maxCapacity = ?, 
                courseID = ?, 
                lectureName = ?
+               week = ?,
+               start_time = ?,
+               end_time = ?
                WHERE classID = ?`
 
-    con.query(sql, [data.location, data.capacity, data.maxCapacity, data.courseID, data.lectureName, classID], (err, result) => {
+    con.query(sql, [data.location, data.capacity, data.maxCapacity, data.courseID, data.lectureName, classID, data.week, data.end_time], (err, result) => {
         if (err) throw err;
         res.status(200).send(result);
     });
