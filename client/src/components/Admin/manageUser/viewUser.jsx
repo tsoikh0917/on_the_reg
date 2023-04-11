@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 import "../../table.css";
-import { FaSearch, FaEdit, FaRegTrashAlt, FaPlus } from "react-icons/fa";
+import {
+  FaSearch,
+  FaEdit,
+  FaRegTrashAlt,
+  FaPlus,
+  FaFilter,
+} from "react-icons/fa";
 import { useTable, useFilters } from "react-table";
 import fakeData from "../../MOCK_USER.json";
 import { Link } from "react-router-dom";
@@ -60,6 +66,10 @@ function AdminViewUser() {
       Department: UserV.Department,
       Year: UserV.Year,
     });
+  };
+  const [toggleFilter, setToggleFilter] = useState(false);
+  const showFilter = () => {
+    setToggleFilter(!toggleFilter);
   };
 
   const [showWarn, setWarn] = useState(false);
@@ -123,11 +133,25 @@ function AdminViewUser() {
                     <th id="th" {...column.getHeaderProps()}>
                       <div className="table_filter">
                         {column.render("Header")}
-                        {column.canFilter ? column.render("Filter") : null}
+                        {toggleFilter ? (
+                          <div>
+                            {column.canFilter ? column.render("Filter") : null}
+                          </div>
+                        ) : null}
                       </div>
                     </th>
                   ))}
-                  <th id="th"></th>
+                  <th id="th">
+                    {" "}
+                    {toggleFilter ? (
+                      <FaFilter
+                        style={{ color: "darkgrey" }}
+                        onClick={showFilter}
+                      />
+                    ) : (
+                      <FaFilter id="FaFilter" onClick={showFilter} />
+                    )}
+                  </th>
                   <th id="th"></th>
                 </tr>
               ))}
