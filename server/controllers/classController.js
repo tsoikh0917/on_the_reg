@@ -95,7 +95,7 @@ const updateClass = async (req, res) => {
 const deleteClass = async (req, res) => {
     const classID = req.param('classID');
 
-    let sql = `UPDATE class SET
+    let sql = `DELETE FROM class
                WHERE classID = ?`
 
     con.query(sql, [classID], (err, result) => {
