@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "../table.css";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaFilter } from "react-icons/fa";
 import { useTable, useFilters } from "react-table";
 import fakeData from "../MOCK_DATA.json";
 import arrow from "../image/arrow.png";
@@ -58,6 +58,10 @@ function Search() {
     ],
     []
   );
+  const [toggleFilter, setToggleFilter] = useState(false);
+  const showFilter = () => {
+    setToggleFilter(!toggleFilter);
+  };
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({ columns, data }, useFilters);
   return (
@@ -87,11 +91,24 @@ function Search() {
                   <th id="th" {...column.getHeaderProps()}>
                     <div style={{ display: "column" }}>
                       {column.render("Header")}
-                      {column.canFilter ? column.render("Filter") : null}
+                      {toggleFilter ? (
+                        <div>
+                          {column.canFilter ? column.render("Filter") : null}
+                        </div>
+                      ) : null}
                     </div>
                   </th>
                 ))}
-                <th id="th"></th>
+                <th id="th">
+                  {toggleFilter ? (
+                    <FaFilter
+                      style={{ color: "darkgrey" }}
+                      onClick={showFilter}
+                    />
+                  ) : (
+                    <FaFilter id="FaFilter" onClick={showFilter} />
+                  )}
+                </th>
               </tr>
             ))}
           </thead>
@@ -108,7 +125,7 @@ function Search() {
 
                   <td id="td">
                     <Link to="/search/confirm">
-                      <img src={arrow} width="40%" alt="arrow" />
+                      <img src={arrow} width="20%" alt="arrow" />
                     </Link>
                   </td>
                 </tr>

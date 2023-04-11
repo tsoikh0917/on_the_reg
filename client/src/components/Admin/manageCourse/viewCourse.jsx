@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "../../table.css";
-import { FaSearch, FaEdit, FaRegTrashAlt, FaPlus } from "react-icons/fa";
+import {
+  FaSearch,
+  FaEdit,
+  FaRegTrashAlt,
+  FaPlus,
+  FaFilter,
+} from "react-icons/fa";
 import { useTable, useFilters } from "react-table";
 import fakeData from "../../MOCK_DATA.json";
 import { Link } from "react-router-dom";
@@ -84,6 +90,10 @@ function AdminViewCourse() {
       capacity: CourseV.capacity,
     });
   };
+  const [toggleFilter, setToggleFilter] = useState(false);
+  const showFilter = () => {
+    setToggleFilter(!toggleFilter);
+  };
 
   const [showWarn, setWarn] = useState(false);
 
@@ -145,10 +155,24 @@ function AdminViewCourse() {
                   {headerGroup.headers.map((column) => (
                     <th id="th" {...column.getHeaderProps()}>
                       {column.render("Header")}
-                      {column.canFilter ? column.render("Filter") : null}
+
+                      {toggleFilter ? (
+                        <div>
+                          {column.canFilter ? column.render("Filter") : null}
+                        </div>
+                      ) : null}
                     </th>
                   ))}
-                  <th id="th"></th>
+                  <th id="th">
+                    {toggleFilter ? (
+                      <FaFilter
+                        style={{ color: "darkgrey" }}
+                        onClick={showFilter}
+                      />
+                    ) : (
+                      <FaFilter id="FaFilter" onClick={showFilter} />
+                    )}
+                  </th>
                   <th id="th"></th>
                 </tr>
               ))}

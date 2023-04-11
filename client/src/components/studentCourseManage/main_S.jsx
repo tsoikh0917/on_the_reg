@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./main_S.css";
 import icon from "../image/icon.png";
 import { Link } from "react-router-dom";
@@ -8,6 +8,7 @@ import {
   FaReadme,
   FaRegistered,
 } from "react-icons/fa";
+
 function MainS() {
   return (
     <div>
