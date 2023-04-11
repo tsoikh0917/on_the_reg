@@ -5,7 +5,7 @@ create table class (
     location varchar(255), 
     capasity int, 
     maxCapasity int, 
-    courseID int, 
+    courseID varchar(8), 
     lectrueName varchar(255),
     primary key (classID),
     foreign key(courseID) references course(courseID)
