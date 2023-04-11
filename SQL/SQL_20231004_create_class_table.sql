@@ -1,12 +1,12 @@
 USE onTheRegDB;
 
 create table class (
-	classID int NOT null, 
+	classID int NOT null AUTO_INCREMENT, 
     location varchar(255), 
-    capasity int, 
-    maxCapasity int, 
+    capacity int, 
+    maxCapacity int, 
     courseID varchar(8), 
-    lectrueName varchar(255),
+    lectureName varchar(255),
     primary key (classID),
     foreign key(courseID) references course(courseID)
 );

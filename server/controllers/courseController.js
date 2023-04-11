@@ -36,10 +36,10 @@ const AddCourse = async (req, res) => {
     const data = req.body;
 
     let sql = `INSERT INTO course
-               (courseName, description, faculty)
-               VALUES (?, ?, ?)`
+               (courseID, courseName, description, faculty)
+               VALUES (?, ?, ?, ?)`
 
-    con.query(sql, [data.courseName, data.description, data.faculty], (err, result) => {
+    con.query(sql, [data.courseID,data.courseName, data.description, data.faculty], (err, result) => {
         if (err) throw err;
         res.status(201).send(result);
     });
