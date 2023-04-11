@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./profile.css";
 import { Link } from "react-router-dom";
 
-function Profile() {
+function AdminProfile() {
   const [name, setName] = useState("Chan Tai Ming");
   const [id, setID] = useState("1155123456");
   const [major, setMajor] = useState("Computer Science");
@@ -35,7 +34,7 @@ function Profile() {
               <tr>
                 <th width="40%">User ID</th>
                 <td width="2%">:</td>
-                <td>{id}</td>
+                <td>1155123456</td>
               </tr>
               <tr>
                 <th>Username</th>
@@ -63,7 +62,7 @@ function Profile() {
               <tr>
                 <th width="40%">Name</th>
                 <td width="2%">:</td>
-                <td>{name}</td>
+                <td>Chan Tai Ming</td>
               </tr>
               <tr>
                 <th>Gender</th>
@@ -73,12 +72,12 @@ function Profile() {
               <tr>
                 <th>Major</th>
                 <td>:</td>
-                <td>{major}</td>
+                <td>Computer Science</td>
               </tr>
               <tr>
                 <th>Year of Study</th>
                 <td>:</td>
-                <td>{year}</td>
+                <td>3</td>
               </tr>
               <tr>
                 <th>Emergency Contact</th>
@@ -86,9 +85,6 @@ function Profile() {
                 <td>12345678</td>
               </tr>
             </table>
-            <Link to="/viewClass">
-              <button className="custom-btn b-profile">View Class</button>
-            </Link>
           </div>
         </div>
       </div>
@@ -96,4 +92,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default AdminProfile;

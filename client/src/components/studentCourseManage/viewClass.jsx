@@ -3,9 +3,7 @@ import "../table.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA.json";
-import { Link, useNavigate } from "react-router-dom";
 function ViewClass() {
-  const navigate = useNavigate();
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
@@ -79,6 +77,20 @@ function ViewClass() {
     setWarn(!showWarn);
     setIsBlurred(!isBlurred);
   };
+  const handleNext = () => {
+    nextPage();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const handlePrevious = () => {
+    previousPage();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div>
@@ -119,7 +131,11 @@ function ViewClass() {
               {page.map((row) => {
                 prepareRow(row);
                 return (
-                  <tr id="tr2" {...row.getRowProps()}>
+                  <tr
+                    id="tr2"
+                    {...row.getRowProps()}
+                    onMouseEnter={() => getCourse(row.original)}
+                  >
                     {row.cells.map((cell) => (
                       <td id="td" {...cell.getCellProps()}>
                         {cell.render("Cell")}{" "}
@@ -127,10 +143,7 @@ function ViewClass() {
                     ))}
                     <td id="td">
                       <button onClick={toggleWarn} id="rm">
-                        <FaRegTrashAlt
-                          onMouseEnter={() => getCourse(row.original)}
-                          style={{ color: "red" }}
-                        />
+                        <FaRegTrashAlt style={{ color: "red" }} />
                       </button>
                     </td>
                   </tr>
@@ -141,8 +154,8 @@ function ViewClass() {
           {pageOptions.length > 1 && (
             <div id="pagin">
               <button
-                id="pagin-btn"
-                onClick={() => previousPage()}
+                className="custom-btn b-page"
+                onClick={() => handlePrevious()}
                 disabled={!canPreviousPage}
               >
                 Previous
@@ -155,8 +168,8 @@ function ViewClass() {
               </span>
 
               <button
-                id="pagin-btn"
-                onClick={() => nextPage()}
+                className="custom-btn b-page"
+                onClick={() => handleNext()}
                 disabled={!canNextPage}
               >
                 Next

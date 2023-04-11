@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import "./confirmAdd.css";
 function Confirm() {
   const [isChecked, setIsChecked] = useState(false);
+  var courseID = "CSCI3100";
+  var courseName = "Software Engineering";
   function handleCheckboxChange() {
     setIsChecked(!isChecked);
   }
   return (
     <div>
-      <h1>CSCI3100</h1>
+      <h1>
+        {courseID} - {courseName}
+      </h1>
       <div className="description">
         <h2 className="description-title">Course Outline:</h2>
         <p className="description-content">This is the course outline</p>
@@ -26,6 +30,7 @@ function Confirm() {
         <input type="checkbox" />
         Add to waitlist if the course is full?
       </label>
+      <button className="custom-btn b-confirm">Add</button>
     </div>
   );
 }

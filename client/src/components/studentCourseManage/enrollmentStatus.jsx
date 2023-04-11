@@ -79,7 +79,7 @@ function EnrollmentStatus() {
         {pageOptions.length > 1 && (
           <div id="pagin">
             <button
-              id="pagin-btn"
+              className="custom-btn b-page"
               onClick={() => previousPage()}
               disabled={!canPreviousPage}
             >
@@ -93,7 +93,7 @@ function EnrollmentStatus() {
             </span>
 
             <button
-              id="pagin-btn"
+              className="custom-btn b-page"
               onClick={() => nextPage()}
               disabled={!canNextPage}
             >

@@ -7,6 +7,7 @@ import Option from "./components/studentCourseManage/classOption";
 import Confirm from "./components/studentCourseManage/confirmAdd";
 import Profile from "./components/studentCourseManage/profile";
 import Search from "./components/studentCourseManage/search";
+import AdminProfile from "./components/Admin/profile_A";
 import AdminAddCourse from "./components/Admin/manageCourse/addCourse";
 import AdminEditCourse from "./components/Admin/manageCourse/editCourse";
 import AdminViewCourse from "./components/Admin/manageCourse/viewCourse";
@@ -48,7 +49,7 @@ function Admin() {
     <div className="App">
       <Routes>
         <Route path="/" element={<MainA />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<AdminProfile />} />
         <Route path="/changePW" element={<ChangePW />} />
         <Route path="/aAddCourse" element={<AdminAddCourse />} />
         <Route path="/aEditCourse/:type" element={<AdminEditCourse />} />

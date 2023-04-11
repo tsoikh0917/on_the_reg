@@ -1,8 +1,8 @@
 .changePW {
   max-width: 40%;
   margin: 0 auto;
-  padding: 20px;
-  border: 3px solid #85bbd2;
+  padding: 30px;
+  border: 2px solid #85bbd2;
   border-radius: 5px;
   box-shadow: 10px 10px 5px lightblue;
 }
@@ -13,6 +13,8 @@ h2 {
 label {
   display: block;
   margin-bottom: 5px;
+  font-weight: bold;
+  text-shadow: 1px 0px 2px rgb(81, 80, 80);
 }
 
 input[type="password"] {

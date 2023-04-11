@@ -5,7 +5,7 @@ function ChangePW() {
     <div>
       <div id="spacing">
         <form className="changePW">
-          <h2>Change Password</h2>
+          <h1>Change Password</h1>
           <label for="current-password">Current Password:</label>
           <input
             type="password"

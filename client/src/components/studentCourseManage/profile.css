@@ -80,6 +80,75 @@
   top: 2px;
 }
 
+.b-confirm {
+  float: left;
+  background: #668aa1;
+  border: none;
+  z-index: 1;
+}
+.b-confirm:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  background-color: rgb(83, 132, 181);
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.b-confirm:hover {
+  color: #fff;
+}
+.b-confirm:hover:after {
+  left: 0;
+  width: 100%;
+}
+.b-confirm:active {
+  top: 2px;
+}
+.b-page {
+  width: 100px;
+  text-align: center;
+  float: none;
+  background: #9578a3;
+  border: none;
+  z-index: 1;
+}
+.b-page:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  background-color: #6453a1;
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.b-page:hover {
+  color: #fff;
+}
+.b-page:hover:after {
+  left: 0;
+  width: 100%;
+}
+.b-page:active {
+  top: 2px;
+}
+.b-page:disabled {
+  background-color: #ccc;
+  color: #666;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
 .main_h1 {
   width: 100%;
   font-size: 30px;

@@ -78,6 +78,21 @@ function Search() {
     useFilters,
     usePagination
   );
+  const handleNext = () => {
+    nextPage();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  const handlePrevious = () => {
+    previousPage();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div id="test">
       <h1>Search Classes</h1>
@@ -150,8 +165,8 @@ function Search() {
         {pageOptions.length > 1 && (
           <div id="pagin">
             <button
-              id="pagin-btn"
-              onClick={() => previousPage()}
+              className="custom-btn b-page"
+              onClick={() => handlePrevious()}
               disabled={!canPreviousPage}
             >
               Previous
@@ -164,8 +179,8 @@ function Search() {
             </span>
 
             <button
-              id="pagin-btn"
-              onClick={() => nextPage()}
+              className="custom-btn b-page"
+              onClick={() => handleNext()}
               disabled={!canNextPage}
             >
               Next

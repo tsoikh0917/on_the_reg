@@ -22,7 +22,7 @@ function AdminEditUser() {
             placeholder="Input name here"
             type="text"
             tabIndex="1"
-            value={userInfo.Name}
+            defaultValue={userInfo.Name}
             required
           ></input>
         </fieldset>
@@ -32,7 +32,7 @@ function AdminEditUser() {
             placeholder="Input ID here"
             type="number"
             tabIndex="2"
-            value={userInfo.ID}
+            defaultValue={userInfo.ID}
             required
           ></input>
         </fieldset>
@@ -60,7 +60,7 @@ function AdminEditUser() {
             placeholder="Input study major here"
             type="text"
             tabIndex="5"
-            value={userInfo.Major}
+            defaultValue={userInfo.Major}
             required
           ></input>
         </fieldset>
@@ -70,7 +70,7 @@ function AdminEditUser() {
             placeholder="Input study major here"
             type="text"
             tabIndex="6"
-            value={userInfo.Department}
+            defaultValue={userInfo.Department}
             required
           ></input>
         </fieldset>
@@ -81,7 +81,7 @@ function AdminEditUser() {
               placeholder="Input year of study here"
               type="number"
               tabIndex="7"
-              value={userInfo.Year}
+              defaultValue={userInfo.Year}
               required
             ></input>
           </fieldset>

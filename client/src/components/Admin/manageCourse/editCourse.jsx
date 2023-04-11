@@ -1,20 +1,13 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../form.css";
 
 function AdminEditCourse(props) {
   const navigate = useNavigate();
-  const { type } = useParams();
   const location = useLocation().state;
   let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
 
-  React.useEffect(() => {}, []);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [inputValue, setInputValue] = useState("default value");
 
   return (
     <div id="resize">
@@ -31,7 +24,7 @@ function AdminEditCourse(props) {
             placeholder="Input course code here"
             type="text"
             tabIndex="1"
-            value={courseInfo.course_ID}
+            defaultValue={courseInfo.course_ID}
             required
             autoFocus
           ></input>
@@ -42,7 +35,7 @@ function AdminEditCourse(props) {
             placeholder="Input course name here"
             type="text"
             tabIndex="2"
-            value={courseInfo.course_name}
+            defaultValue={courseInfo.course_name}
             required
           ></input>
         </fieldset>
@@ -52,7 +45,7 @@ function AdminEditCourse(props) {
             placeholder="Input weekday here"
             type="text"
             tabIndex="3"
-            value={courseInfo.day}
+            defaultValue={courseInfo.day}
             required
           ></input>
         </fieldset>
@@ -62,7 +55,7 @@ function AdminEditCourse(props) {
             placeholder="Input time slot in the format: hh:mm-hh:mm here"
             type="text"
             tabIndex="4"
-            value={courseInfo.time}
+            defaultValue={courseInfo.time}
             required
           ></input>
         </fieldset>
@@ -72,7 +65,7 @@ function AdminEditCourse(props) {
             placeholder="Input faculty here"
             type="text"
             tabIndex="5"
-            value={courseInfo.department}
+            defaultValue={courseInfo.department}
             required
           ></input>
         </fieldset>
@@ -82,7 +75,7 @@ function AdminEditCourse(props) {
             placeholder="Input instructor's name here"
             type="text"
             tabIndex="6"
-            value={courseInfo.instructor}
+            defaultValue={courseInfo.instructor}
             required
           ></input>
         </fieldset>
@@ -92,7 +85,7 @@ function AdminEditCourse(props) {
             placeholder="Input maximum capacity of the course here"
             type="number"
             tabIndex="7"
-            value={courseInfo.capacity}
+            defaultValue={courseInfo.capacity}
             required
           ></input>
         </fieldset>
@@ -102,7 +95,7 @@ function AdminEditCourse(props) {
             placeholder="Input location for the course lecture here"
             type="text"
             tabIndex="8"
-            value={courseInfo.place}
+            defaultValue={courseInfo.place}
             required
           ></input>
         </fieldset>

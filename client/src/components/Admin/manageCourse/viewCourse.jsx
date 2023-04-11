@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../../table.css";
 import {
   FaSearch,
@@ -86,7 +86,7 @@ function AdminViewCourse() {
     canPreviousPage,
     prepareRow,
     pageOptions,
-    state: { pageIndex, pageSize },
+    state: { pageIndex },
   } = useTable(
     { columns, data, initialState: { pageSize: 5 } },
     useFilters,
@@ -126,10 +126,10 @@ function AdminViewCourse() {
           <p className="warning-text">
             {courseInfo.course_ID} - {courseInfo.course_name}?
           </p>
-          <button onClick={toggleWarn} id="rmB" class="yes">
+          <button onClick={toggleWarn} id="rmB" className="yes">
             <p className="warning-text">Yes</p>
           </button>
-          <button onClick={toggleWarn} id="rmB" class="no">
+          <button onClick={toggleWarn} id="rmB" className="no">
             <p className="warning-text">No</p>
           </button>
         </div>
@@ -155,7 +155,7 @@ function AdminViewCourse() {
           </div>
         </div>
         <Link to="/aAddCourse">
-          <button class="add-btn">
+          <button className="add-btn">
             <div id="verticalAlign">
               <FaPlus id="plus" size={15} />
               <span id="newCourse">Add new course</span>
@@ -196,17 +196,18 @@ function AdminViewCourse() {
               {page.map((row) => {
                 prepareRow(row);
                 return (
-                  <tr id="tr2" {...row.getRowProps()}>
+                  <tr
+                    id="tr2"
+                    {...row.getRowProps()}
+                    onMouseEnter={() => getRowValue(row.original)}
+                  >
                     {row.cells.map((cell) => (
                       <td id="td" {...cell.getCellProps()}>
                         {cell.render("Cell")}
                       </td>
                     ))}
                     <td id="td">
-                      <button
-                        id="rm"
-                        onMouseEnter={() => getRowValue(row.original)}
-                      >
+                      <button id="rm">
                         <Link
                           to={`/aEditCourse/${courseInfo.course_ID}`}
                           state={{ courseInfo }}
@@ -215,7 +216,7 @@ function AdminViewCourse() {
                         </Link>
                       </button>
                     </td>
-                    <td id="td" onClick={() => getRowValue(row.original)}>
+                    <td id="td">
                       <button onClick={toggleWarn} id="rm">
                         <FaRegTrashAlt style={{ color: "red" }} />
                       </button>
@@ -228,7 +229,7 @@ function AdminViewCourse() {
           {pageOptions.length > 1 && (
             <div id="pagin">
               <button
-                id="pagin-btn"
+                className="custom-btn b-page"
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
               >
@@ -242,7 +243,7 @@ function AdminViewCourse() {
               </span>
 
               <button
-                id="pagin-btn"
+                className="custom-btn b-page"
                 onClick={() => nextPage()}
                 disabled={!canNextPage}
               >

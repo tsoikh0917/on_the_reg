@@ -104,10 +104,10 @@ function AdminViewUser() {
           <p className="warning-text">
             {userInfo.Name} - {userInfo.ID}?
           </p>
-          <button onClick={toggleWarn} id="rmB" class="yes">
+          <button onClick={toggleWarn} id="rmB" className="yes">
             <p className="warning-text">Yes</p>
           </button>
-          <button onClick={toggleWarn} id="rmB" class="no">
+          <button onClick={toggleWarn} id="rmB" className="no">
             <p className="warning-text">No</p>
           </button>
         </div>
@@ -132,7 +132,7 @@ function AdminViewUser() {
           </div>
         </div>
         <Link to="/aAddUser">
-          <button class="add-btn">
+          <button className="add-btn">
             <div id="verticalAlign">
               <FaPlus id="plus" size={15} />
               <span id="newCourse">Add new user</span>
@@ -208,7 +208,7 @@ function AdminViewUser() {
           {pageOptions.length > 1 && (
             <div id="pagin">
               <button
-                id="pagin-btn"
+                className="custom-btn b-page"
                 onClick={() => previousPage()}
                 disabled={!canPreviousPage}
               >
@@ -222,7 +222,7 @@ function AdminViewUser() {
               </span>
 
               <button
-                id="pagin-btn"
+                className="custom-btn b-page"
                 onClick={() => nextPage()}
                 disabled={!canNextPage}
               >
