@@ -7,8 +7,7 @@ const getAllClass = async (req, res) => {
 
     // Prepare the SQL query
     let sql = `SELECT classID, location, capasity, maxCapasity, courseID, lectrueName
-               FROM class
-               WHERE isActive = 1`
+               FROM class`
 
     // Execute the query
     con.query(sql, [classID], (err, result) => {
@@ -24,7 +23,7 @@ const getClass = async (req, res) => {
     //Create the SQL statement with the classID
     let sql = `SELECT classID, location, capasity, maxCapasity, courseID, lectrueName
             FROM class
-            WHERE classID = ? AND isActive = 1`
+            WHERE classID = ?`
 
     //Run the SQL query and return the result
     con.query(sql, [classID], (err, result) => {
@@ -40,7 +39,7 @@ const getCoursebyClass = async (req, res) => {
     // Get the courseID of the class
     let sql1 = `SELECT courseID
                 FROM class
-                WHERE classID = ? AND isActive = 1`
+                WHERE classID = ?`
 
     let data = con.query(sql1, [classID], (err, result) => {
         if (err) throw err;
@@ -52,7 +51,7 @@ const getCoursebyClass = async (req, res) => {
     // Get the course information of the class
     let sql2 = `SELECT courseID, courseName, description, faculty
                 FROM course
-                WHERE courseID = ? AND isActive = 1`
+                WHERE courseID = ?`
 
     con.query(sql2, [requested_course_id], (err, result) => {
         if (err) throw err;
@@ -66,10 +65,10 @@ const addClass = async (req, res) => {
     const data = req.body;
 
     let sql = `INSERT INTO class
-               (location, capasity, maxCapasity, courseID, lectrueName)
-               VALUE (?, ?, ?, ?, ?)`
+               (classID, location, capasity, maxCapasity, courseID, lectrueName)
+               VALUE (?, ?, ?, ?, ?, ?)`
     
-    con.query(sql, [data.location, data.capasity, data.maxCapasity, data.courseID, data.lectrueName], (err, result) => {
+    con.query(sql, [data.classID, data.location, data.capasity, data.maxCapasity, data.courseID, data.lectrueName], (err, result) => {
         if (err) throw err;
         res.status(201).send(result);
     });
@@ -97,7 +96,6 @@ const deleteClass = async (req, res) => {
     const classID = req.param('classID');
 
     let sql = `UPDATE class SET
-               isActive = 0
                WHERE classID = ?`
 
     con.query(sql, [classID], (err, result) => {
