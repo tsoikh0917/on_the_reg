@@ -5,6 +5,8 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
     try {
         // log in the user...
         const { accessToken, role } = await api.authLogin(loginInfo).data
+        
+        // todo: fetch the user info from the server
 
         // dispatch the user to the store
         dispatch({ 
@@ -15,6 +17,7 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
             "role": role
           }
         });
+        dispatch({ type: 'USER_LOGIN', payload: loginInfo.username });
     } catch (error) {
         console.log(error);
     }

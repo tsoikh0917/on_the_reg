@@ -23,8 +23,6 @@ export const authRefresh = () => axios.get(`${url}/${auth}/refresh`)
 export const authRegister = (user) => axios.post(`${url}/${auth}/register`, user)
 
 
-
-
 // Registered Course
 export const getAllRegisteredCourse = () => axios.get(`${url}/${registeredCourse}`) // get all registered course
 
@@ -77,6 +75,6 @@ export const getStudent = (id) => axios.get(`${url}/${student}/${id}`)
 
 export const createStudent = (newStudent) => axios.post(`${url}/${student}`, newStudent)
 
-export const updateStudent = (updatedStudent) => axios.put(`${url}/${student}`, updatedStudent)
+export const updateStudent = (id, updatedStudent) => axios.put(`${url}/${student}/${id}`, updatedStudent)
 
 export const deleteStudent = (id) => axios.delete(`${url}/${student}/${id}`)
