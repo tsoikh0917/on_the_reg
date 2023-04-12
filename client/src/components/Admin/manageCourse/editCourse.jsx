@@ -6,23 +6,17 @@ import axios from "axios";
 function AdminEditCourse(props) {
   const navigate = useNavigate();
   const location = useLocation().state;
-  let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
-  const [classInfo, setClassInfo] = useState([]);
-  useEffect(() => {
-    axios
-      .get("")
-      .then((response) => setClassInfo(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+  let courseInfo = JSON.parse(JSON.stringify(location.classInfo));
+
   const [formData, setFormData] = useState({
-    ID: courseInfo.course_ID,
-    name: courseInfo.Name,
-    day: courseInfo.day,
-    time: courseInfo.time,
-    department: courseInfo.department,
-    instructor: courseInfo.instructor,
-    capacity: courseInfo.capacity,
-    place: courseInfo.place,
+    ID: "",
+    name: "",
+    day: "",
+    time: "",
+    department: "",
+    instructor: "",
+    capacity: "",
+    place: "",
     description: "",
   });
   const handleInputChange = (event) => {
@@ -50,33 +44,7 @@ function AdminEditCourse(props) {
             <span>Back</span>
           </button>
         </div>
-        <fieldset>
-          <h4>Course ID:</h4>
-          <input
-            placeholder="Input course code here"
-            type="text"
-            tabIndex="1"
-            defaultValue={courseInfo.course_ID}
-            name="ID"
-            id="ID"
-            onChange={handleInputChange}
-            required
-            autoFocus
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Course Name:</h4>
-          <input
-            placeholder="Input course name here"
-            type="text"
-            tabIndex="2"
-            name="name"
-            id="name"
-            onChange={handleInputChange}
-            defaultValue={courseInfo.course_name}
-            required
-          ></input>
-        </fieldset>
+
         <fieldset>
           <h4>Course Day:</h4>
           <input
@@ -93,11 +61,12 @@ function AdminEditCourse(props) {
         <fieldset>
           <h4>Course Time:</h4>
           <input
-            placeholder="Input time slot in the format: hh:mm-hh:mm here"
+            placeholder="Input in the format: hh:mm-hh:mm"
             type="text"
             tabIndex="4"
             name="time"
             id="time"
+            pattern="\d{2}:\d{2}-\d{2}:\d{2}"
             onChange={handleInputChange}
             defaultValue={courseInfo.time}
             required
@@ -154,18 +123,6 @@ function AdminEditCourse(props) {
             defaultValue={courseInfo.place}
             required
           ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Course Description:</h4>
-          <textarea
-            placeholder="Type course outline here...."
-            type="text"
-            tabIndex="9"
-            name="description"
-            id="description"
-            onChange={handleInputChange}
-            required
-          ></textarea>
         </fieldset>
         <fieldset>
           <button

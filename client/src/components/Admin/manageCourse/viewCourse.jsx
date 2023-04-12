@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "../../table.css";
 import {
   FaSearch,
-  FaEdit,
   FaRegTrashAlt,
   FaPlus,
   FaFilter,
+  FaArrowAltCircleRight,
 } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../../MOCK_DATA.json";
@@ -15,80 +15,29 @@ import axios from "axios";
 
 function AdminViewCourse() {
   const data = React.useMemo(() => fakeData, []);
-  const [search, setSearch] = useState("");
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-    console.log(search);
-  };
-  const searchSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post("/api/contact", search);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const columns = React.useMemo(
     () => [
       {
-        Header: "course ID",
+        Header: "course id",
         accessor: "course_ID",
         Filter: ColumnFilter,
-        disableFilters: true,
       },
+
       {
         Header: "course name",
         accessor: "course_name",
         Filter: ColumnFilter,
-        disableFilters: true,
       },
       {
-        Header: "day",
-        accessor: "day",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "time",
-        accessor: "time",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "place",
-        accessor: "place",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "department",
-        accessor: "department",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "instructor",
-        accessor: "instructor",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "capacity",
-        accessor: "capacity",
+        Header: "Number of classes",
+        accessor: "num",
         Filter: ColumnFilter,
         disableFilters: true,
       },
     ],
     []
   );
-  const [courseInfo, setCourseInfo] = useState({
-    course_ID: "3100",
-    course_name: "",
-    day: "",
-    time: "",
-    place: "",
-    department: "",
-    instructor: "",
-    capacity: 150,
-  });
-
-  React.useEffect(() => {}, [courseInfo]);
 
   const {
     getTableProps,
@@ -107,18 +56,18 @@ function AdminViewCourse() {
     useFilters,
     usePagination
   );
+
+  const [courseInfo, setCourseInfo] = useState({
+    course_ID: "",
+    course_name: "",
+  });
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
     setCourseInfo({
       course_ID: CourseV.course_ID,
       course_name: CourseV.course_name,
-      day: CourseV.day,
-      time: CourseV.time,
-      place: CourseV.place,
-      department: CourseV.department,
-      instructor: CourseV.instructor,
-      capacity: CourseV.capacity,
     });
+    console.log(courseInfo);
   };
   const [toggleFilter, setToggleFilter] = useState(false);
   const showFilter = () => {
@@ -155,25 +104,7 @@ function AdminViewCourse() {
       >
         <h1>View/Manage Course</h1>
 
-        <div className="wrap">
-          <div className="search">
-            <input
-              type="text"
-              className="searchTerm"
-              placeholder="Input course code/ course name for searching"
-              onChange={handleSearch}
-            ></input>
-            <button
-              onClick={searchSubmit}
-              type="submit"
-              className="searchButton"
-            >
-              <div id="icon1">
-                <FaSearch />
-              </div>
-            </button>
-          </div>
-        </div>
+        <div className="wrap"></div>
         <Link to="/aAddCourse">
           <button className="add-btn">
             <div id="verticalAlign">
@@ -226,20 +157,19 @@ function AdminViewCourse() {
                         {cell.render("Cell")}
                       </td>
                     ))}
-                    <td id="td">
-                      <button id="rm">
-                        <Link
-                          to={`/aEditCourse/${courseInfo.course_ID}`}
-                          state={{ courseInfo }}
-                        >
-                          <FaEdit />
-                        </Link>
-                      </button>
-                    </td>
+
                     <td id="td">
                       <button onClick={toggleWarn} id="rm">
                         <FaRegTrashAlt style={{ color: "red" }} />
                       </button>
+                    </td>
+                    <td>
+                      <Link
+                        to={`/aSelectClass/${courseInfo.course_ID}`}
+                        state={{ courseInfo }}
+                      >
+                        <FaArrowAltCircleRight />
+                      </Link>
                     </td>
                   </tr>
                 );

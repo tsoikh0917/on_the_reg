@@ -14,6 +14,7 @@ import AdminViewCourse from "./components/Admin/manageCourse/viewCourse";
 import AdminAddUser from "./components/Admin/manageUser/addUser";
 import AdminEditUser from "./components/Admin/manageUser/editUser";
 import AdminViewUser from "./components/Admin/manageUser/viewUser";
+import AdminSelectClass from "./components/Admin/manageCourse/selectClass_A";
 import SSideBar from "./components/sidebar/sidebar_s";
 import ViewClass from "./components/studentCourseManage/viewClass";
 import ClassSchedule from "./components/studentCourseManage/classSchedule";
@@ -56,6 +57,7 @@ function Admin() {
         <Route path="/profile" element={<AdminProfile />} />
         <Route path="/changePW" element={<ChangePW />} />
         <Route path="/aAddCourse" element={<AdminAddCourse />} />
+        <Route path="/aSelectClass/:type" element={<AdminSelectClass />} />
         <Route path="/aEditCourse/:type" element={<AdminEditCourse />} />
         <Route path="/aViewCourse" element={<AdminViewCourse />} />
         <Route path="/aAddUser" element={<AdminAddUser />} />
@@ -70,7 +72,7 @@ function Admin() {
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   function handleLogin(state) {
     console.log("argument from state: ", state);
     console.log("argument from isloggedIn1: ", isLoggedIn);

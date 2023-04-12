@@ -7,15 +7,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
 import axios from "axios";
 
-function Search() {
+function SelectClass() {
   const navigate = useNavigate();
-  const [classInfo, setClassInfo] = useState([]);
-
+  const [classInfo, setClassInfo] = useState({
+    id: "CSCI3100",
+    name: "Software Engineering",
+  });
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
     setSearch(event.target.value);
     console.log(search);
   };
+
   const searchSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -25,22 +28,10 @@ function Search() {
       console.log(error);
     }
   };
+
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
-      {
-        Header: "course id",
-        accessor: "course_ID",
-        Filter: ColumnFilter,
-        disableFilters: true,
-      },
-
-      {
-        Header: "course name",
-        accessor: "course_name",
-        Filter: ColumnFilter,
-        disableFilters: true,
-      },
       {
         Header: "day",
         accessor: "day",
@@ -75,10 +66,12 @@ function Search() {
     ],
     []
   );
+
   const [toggleFilter, setToggleFilter] = useState(false);
   const showFilter = () => {
     setToggleFilter(!toggleFilter);
   };
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -113,7 +106,9 @@ function Search() {
 
   return (
     <div id="test">
-      <h1>Select Classes</h1>
+      <h1>
+        {classInfo.name} - {classInfo.id}
+      </h1>
       <button onClick={() => navigate(-1)} className="custom-btn b-search">
         <span>Back</span>
       </button>
@@ -198,4 +193,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SelectClass;

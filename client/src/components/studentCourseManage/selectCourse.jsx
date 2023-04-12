@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
 import { useNavigate } from "react-router-dom";
 
-function Search() {
+function SelectCourse() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const handleSearch = (event) => {
@@ -41,9 +41,15 @@ function Search() {
     ],
     []
   );
+  const startTime = "2001-01-01T09:30:00";
+  const Time = startTime.substring(11);
+  const time = Time.replace(/:00$/, "");
+
+  //time = datetime.replace(/:00$/, "");
   const [toggleFilter, setToggleFilter] = useState(false);
   const showFilter = () => {
     setToggleFilter(!toggleFilter);
+    console.log(time);
   };
   const {
     getTableProps,
@@ -201,4 +207,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default SelectCourse;
