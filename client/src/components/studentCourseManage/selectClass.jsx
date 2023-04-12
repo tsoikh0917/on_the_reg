@@ -10,12 +10,7 @@ import axios from "axios";
 function Search() {
   const navigate = useNavigate();
   const [classInfo, setClassInfo] = useState([]);
-  useEffect(() => {
-    axios
-      .get("")
-      .then((response) => setClassInfo(response.data))
-      .catch((error) => console.log(error));
-  }, []);
+
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
     setSearch(event.target.value);
