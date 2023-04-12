@@ -4,8 +4,8 @@ const RegisteredCourse  = require('../controllers/registeredCourseController')
 
 const router = express.Router()
 
-router.get('/', RegisteredCourse.getRegisteredCourses)
-router.delete('/:id', RegisteredCourse.deleteRegisteredCourse)
+router.get('/:studentID', RegisteredCourse.getRegisteredCoursesByStudent)
+router.delete('/', RegisteredCourse.deleteRegisteredCourse)
 router.post('/add', RegisteredCourse.addRegisteredCourse)
 router.put('/edit', RegisteredCourse.updateRegisteredCourse)
 

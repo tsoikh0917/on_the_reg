@@ -10,3 +10,6 @@ create table class (
     primary key (classID),
     foreign key(courseID) references course(courseID)
 );
+
+use onTheRegDB;
+ALTER TABLE user_course RENAME COLUMN CourseID TO courseID;
