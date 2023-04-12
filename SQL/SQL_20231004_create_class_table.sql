@@ -25,4 +25,8 @@ ADD saltedPassword varchar(255) not null,
 ADD refreshToken varchar(255);
 
 
+INSERT INTO status values (1, "Success");
+INSERT INTO status values (2, "Waitlist");
+INSERT INTO status values (3, "Error");
+
 
