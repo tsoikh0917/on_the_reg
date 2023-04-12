@@ -77,7 +77,7 @@ function App() {
   }
 
   if (isLoggedIn === false) {
-    document.body.style.backgroundColor = "#243b55";
+    document.body.style.backgroundColor = "#F3F3F9";
     return (
       <Routes>
         <Route path="" element={<Login handleLogin={handleLogin} />} />
