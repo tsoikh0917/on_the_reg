@@ -16,6 +16,18 @@ const getAllClass = async (req, res) => {
     });
 }
 
+const getClassByCourseID = async (req, res) => {
+    const { courseID } = req.params;
+    let sql = `SELECT *
+               FROM class
+               WHERE courseID = ?`
+    
+    con.query(sql, [courseID], (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result)
+    })
+}
+
 const getClass = async (req, res) => {
     //Get the classID from the request params
     const classID = req.param('classID');
@@ -110,6 +122,7 @@ const deleteClass = async (req, res) => {
 module.exports = {
     getAllClass,
     getClass,
+    getClassByCourseID,
     //getCoursebyClass,
     addClass,
     updateClass,

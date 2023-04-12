@@ -1,6 +1,11 @@
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux"; 
+// import reducers from "./reducers";
+// import thunk from "redux-thunk";
+
 import MainS from "./components/studentCourseManage/main_S";
 import MainA from "./components/Admin/main_A";
 import Option from "./components/studentCourseManage/classOption";
@@ -25,9 +30,13 @@ import Login from "./components/Login/login";
 import SignUp from "./components/Login/signUp";
 import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
+import { getPosts } from './actions/posts'
 import SelectClass from "./components/studentCourseManage/selectClass";
 import SelectCourse from "./components/studentCourseManage/selectCourse";
-import { useState } from "react";
+
+// const store = createStore(reducers, compose(applyMiddleware(thunk)))
 
 function StudentPage() {
   return (
@@ -70,6 +79,12 @@ function Admin() {
 }
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+  
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
   const [isAdmin, setIsAdmin] = useState(true);
@@ -118,7 +133,6 @@ function App() {
             <ASideBar />
           </div>
         </div>
-
         <Admin />
       </ProSidebarProvider>
     );

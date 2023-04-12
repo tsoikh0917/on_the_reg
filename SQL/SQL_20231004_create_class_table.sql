@@ -24,6 +24,10 @@ ALTER TABLE admin
 ADD saltedPassword varchar(255) not null,
 ADD refreshToken varchar(255);
 
+ALTER TABLE student
+ADD saltedPassword varchar(255) not null,
+ADD refreshToken varchar(255);
+
 
 INSERT INTO status values (1, "Success");
 INSERT INTO status values (2, "Waitlist");
