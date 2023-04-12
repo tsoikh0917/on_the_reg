@@ -1,12 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import "./signUp.css";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+
 function SignUp() {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    name: "",
+    ID: "",
+    dob: "",
+    gender: "",
+    major: "",
+    department: "",
+    year: "",
+    email: "",
+    contact: "",
+  });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      //const response = await axios.post("/api/contact", formData);
+      //console.log(response.data);
+      //navigate(-1);
+      console.log(formData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="signUp">
       <div id="resize">
-        <form id="form_sign" action="" method="post">
+        <form id="form_sign" onSubmit={handleSubmit}>
           <div id="main">
             <h1 id="dark">Sign Up</h1>
 
@@ -20,6 +48,9 @@ function SignUp() {
               placeholder="Input name here"
               type="text"
               tabIndex="1"
+              name="name"
+              id="name"
+              onChange={handleInputChange}
               required
             ></input>
           </fieldset>
@@ -29,6 +60,9 @@ function SignUp() {
               placeholder="Input ID here"
               type="number"
               tabIndex="2"
+              name="ID"
+              id="ID"
+              onChange={handleInputChange}
               required
             ></input>
           </fieldset>
@@ -38,6 +72,10 @@ function SignUp() {
               placeholder="Input date of birth here"
               type="date"
               tabIndex="3"
+              name="dob"
+              id="dob"
+              onChange={handleInputChange}
+              style={{ color: "white" }}
               required
             ></input>
           </fieldset>
@@ -47,6 +85,9 @@ function SignUp() {
               placeholder="Input gender here"
               type="text"
               tabIndex="4"
+              name="gender"
+              id="gender"
+              onChange={handleInputChange}
               required
             ></input>
           </fieldset>
@@ -56,6 +97,9 @@ function SignUp() {
               placeholder="Input study major here"
               type="text"
               tabIndex="5"
+              name="major"
+              id="major"
+              onChange={handleInputChange}
               required
             ></input>
           </fieldset>
@@ -65,6 +109,9 @@ function SignUp() {
               placeholder="Input department here"
               type="number"
               tabIndex="6"
+              name="department"
+              id="departmentr"
+              onChange={handleInputChange}
               required
             ></input>
           </fieldset>
@@ -74,6 +121,9 @@ function SignUp() {
               placeholder="Input year of study here"
               type="number"
               tabIndex="7"
+              name="year"
+              id="year"
+              onChange={handleInputChange}
               required
             ></input>
           </fieldset>
@@ -83,6 +133,9 @@ function SignUp() {
               placeholder="Input email address here"
               type="email"
               tabIndex="8"
+              name="email"
+              id="email"
+              onChange={handleInputChange}
               required
             ></input>
           </fieldset>
@@ -92,6 +145,9 @@ function SignUp() {
               placeholder="Input phone number here"
               type="number"
               tabIndex="9"
+              name="contact"
+              id="contact"
+              onChange={handleInputChange}
               required
             ></input>
           </fieldset>

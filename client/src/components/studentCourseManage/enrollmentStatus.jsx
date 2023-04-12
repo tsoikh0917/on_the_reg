@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../table.css";
 import { useTable, usePagination } from "react-table";
 import fakeData from "../MOCK_ENROLLMENT.json";
+import axios from "axios";
 
 function EnrollmentStatus() {
+  const [enroll, setEnroll] = useState([]);
+  useEffect(() => {
+    axios
+      .get("")
+      .then((response) => setEnroll(response.data))
+      .catch((error) => console.log(error));
+  }, []);
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [

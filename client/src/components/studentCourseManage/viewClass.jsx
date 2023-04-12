@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../table.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA.json";
+import axios from "axios";
 function ViewClass() {
+  const [classInfo, setClassInfo] = useState([]);
+  useEffect(() => {
+    axios
+      .get("")
+      .then((response) => setClassInfo(response.data))
+      .catch((error) => console.log(error));
+  }, []);
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [

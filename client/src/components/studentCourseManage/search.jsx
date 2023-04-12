@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../table.css";
 import { FaSearch, FaFilter, FaArrowAltCircleRight } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA.json";
 import { Link } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
+import axios from "axios";
 
 function Search() {
+  const [classInfo, setClassInfo] = useState([]);
+  useEffect(() => {
+    axios
+      .get("")
+      .then((response) => setClassInfo(response.data))
+      .catch((error) => console.log(error));
+  }, []);
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
