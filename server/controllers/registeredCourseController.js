@@ -1,6 +1,9 @@
 // con: connection to the database
 const con = require('../Models/mysqlModel');
 
+const getAllRegisteredCourses = async (req, res) => {
+}
+
 const getRegisteredCoursesByStudent = async (req, res) => {
   const { studentID } = req.body;
 
@@ -99,6 +102,7 @@ const updateRegisteredCourse = async (req, res) => {
 }
 
 module.exports = {
+  getAllRegisteredCourses,
   getRegisteredCoursesByStudent,
   deleteRegisteredCourse,
   addRegisteredCourse,
