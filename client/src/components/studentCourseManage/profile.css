@@ -80,6 +80,39 @@
   top: 2px;
 }
 
+.b-search {
+  background: #668aa1;
+  border: none;
+  z-index: 1;
+  float: none;
+  display: "block";
+  margin-bottom: 10px;
+}
+.b-search:after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  background-color: rgb(83, 132, 181);
+  border-radius: 5px;
+  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+.b-search:hover {
+  color: #fff;
+}
+.b-search:hover:after {
+  left: 0;
+  width: 100%;
+}
+.b-search:active {
+  top: 2px;
+}
+
 .b-confirm {
   float: left;
   background: #668aa1;

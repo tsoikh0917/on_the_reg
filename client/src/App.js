@@ -29,6 +29,8 @@ import Login from "./components/Login/login";
 import SignUp from "./components/Login/signUp";
 import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SelectClass from "./components/studentCourseManage/selectClass";
+import SelectCourse from "./components/studentCourseManage/selectCourse";
 import { useState } from "react";
 
 // const store = createStore(reducers, compose(applyMiddleware(thunk)))
@@ -44,6 +46,8 @@ function StudentPage() {
         <Route path="/classSchedule" element={<ClassSchedule />} />
         <Route path="/enrollment" element={<EnrollmentStatus />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/selectCourse/:type" element={<SelectCourse />} />
+        <Route path="/selectClass/:type" element={<SelectClass />} />
         <Route path="/search/classOption" element={<Option />} />
         <Route path="/search/confirm" element={<Confirm />} />
         <Route path="*" element={<Navigate to="/" />}></Route>
@@ -73,7 +77,7 @@ function Admin() {
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   function handleLogin(state) {
     console.log("argument from state: ", state);
     console.log("argument from isloggedIn1: ", isLoggedIn);
