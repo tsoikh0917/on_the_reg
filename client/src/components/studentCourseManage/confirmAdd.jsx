@@ -1,6 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./confirmAdd.css";
+import { useNavigate } from "react-router-dom";
 function Confirm() {
+  const navigate = useNavigate();
+  const [classInfo, setClassInfo] = useState([]);
+  useEffect(() => {
+    axios
+      .get("")
+      .then((response) => setClassInfo(response.data))
+      .catch((error) => console.log(error));
+  }, []);
+  const handleAddCourse = () => {
+    axios
+      .post("", classInfo)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+    navigate("/enrollment");
+  };
+
   const [isChecked, setIsChecked] = useState(false);
   var courseID = "CSCI3100";
   var courseName = "Software Engineering";
@@ -30,7 +48,12 @@ function Confirm() {
         <input type="checkbox" />
         Add to waitlist if the course is full?
       </label>
-      <button className="custom-btn b-confirm">Add</button>
+      <button
+        className="custom-btn b-confirm"
+        onClick={() => handleAddCourse()}
+      >
+        Add
+      </button>
     </div>
   );
 }

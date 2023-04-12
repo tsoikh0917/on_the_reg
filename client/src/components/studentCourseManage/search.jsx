@@ -1,12 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../table.css";
 import { FaSearch, FaFilter, FaArrowAltCircleRight } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA.json";
 import { Link } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
+import axios from "axios";
 
 function Search() {
+  const [classInfo, setClassInfo] = useState([]);
+  useEffect(() => {
+    axios
+      .get("")
+      .then((response) => setClassInfo(response.data))
+      .catch((error) => console.log(error));
+  }, []);
+  const [search, setSearch] = useState("");
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+    console.log(search);
+  };
+  const searchSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("/api/contact", search);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
@@ -103,8 +125,9 @@ function Search() {
             type="text"
             className="searchTerm"
             placeholder="What are you looking for?"
+            onChange={handleSearch}
           ></input>
-          <button type="submit" className="searchButton">
+          <button type="submit" className="searchButton" onClick={searchSubmit}>
             <div id="icon1">
               <FaSearch />
             </div>

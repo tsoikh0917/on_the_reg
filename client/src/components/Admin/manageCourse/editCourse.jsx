@@ -1,17 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../form.css";
+import axios from "axios";
 
 function AdminEditCourse(props) {
   const navigate = useNavigate();
   const location = useLocation().state;
   let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
-
-  const [inputValue, setInputValue] = useState("default value");
+  const [classInfo, setClassInfo] = useState([]);
+  useEffect(() => {
+    axios
+      .get("")
+      .then((response) => setClassInfo(response.data))
+      .catch((error) => console.log(error));
+  }, []);
+  const [formData, setFormData] = useState({
+    ID: courseInfo.course_ID,
+    name: courseInfo.Name,
+    day: courseInfo.day,
+    time: courseInfo.time,
+    department: courseInfo.department,
+    instructor: courseInfo.instructor,
+    capacity: courseInfo.capacity,
+    place: courseInfo.place,
+    description: "",
+  });
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+    console.log(formData);
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("/api/contact", formData);
+      console.log(response.data);
+      navigate(-1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div id="resize">
-      <form id="form_info" action="" method="post">
+      <form id="form_info" onSubmit={handleSubmit}>
         <div id="main">
           <h1 id="alignLeft">Edit Course</h1>
           <button onClick={() => navigate(-1)} className="custom-fbtn fbtn">
@@ -25,6 +57,9 @@ function AdminEditCourse(props) {
             type="text"
             tabIndex="1"
             defaultValue={courseInfo.course_ID}
+            name="ID"
+            id="ID"
+            onChange={handleInputChange}
             required
             autoFocus
           ></input>
@@ -35,6 +70,9 @@ function AdminEditCourse(props) {
             placeholder="Input course name here"
             type="text"
             tabIndex="2"
+            name="name"
+            id="name"
+            onChange={handleInputChange}
             defaultValue={courseInfo.course_name}
             required
           ></input>
@@ -45,6 +83,9 @@ function AdminEditCourse(props) {
             placeholder="Input weekday here"
             type="text"
             tabIndex="3"
+            name="day"
+            id="day"
+            onChange={handleInputChange}
             defaultValue={courseInfo.day}
             required
           ></input>
@@ -55,6 +96,9 @@ function AdminEditCourse(props) {
             placeholder="Input time slot in the format: hh:mm-hh:mm here"
             type="text"
             tabIndex="4"
+            name="time"
+            id="time"
+            onChange={handleInputChange}
             defaultValue={courseInfo.time}
             required
           ></input>
@@ -65,6 +109,9 @@ function AdminEditCourse(props) {
             placeholder="Input faculty here"
             type="text"
             tabIndex="5"
+            name="department"
+            id="department"
+            onChange={handleInputChange}
             defaultValue={courseInfo.department}
             required
           ></input>
@@ -75,6 +122,9 @@ function AdminEditCourse(props) {
             placeholder="Input instructor's name here"
             type="text"
             tabIndex="6"
+            name="instructor"
+            id="instructor"
+            onChange={handleInputChange}
             defaultValue={courseInfo.instructor}
             required
           ></input>
@@ -85,6 +135,9 @@ function AdminEditCourse(props) {
             placeholder="Input maximum capacity of the course here"
             type="number"
             tabIndex="7"
+            name="capacity"
+            id="capacity"
+            onChange={handleInputChange}
             defaultValue={courseInfo.capacity}
             required
           ></input>
@@ -95,6 +148,9 @@ function AdminEditCourse(props) {
             placeholder="Input location for the course lecture here"
             type="text"
             tabIndex="8"
+            name="place"
+            id="place"
+            onChange={handleInputChange}
             defaultValue={courseInfo.place}
             required
           ></input>
@@ -105,6 +161,9 @@ function AdminEditCourse(props) {
             placeholder="Type course outline here...."
             type="text"
             tabIndex="9"
+            name="description"
+            id="description"
+            onChange={handleInputChange}
             required
           ></textarea>
         </fieldset>
@@ -113,7 +172,6 @@ function AdminEditCourse(props) {
             name="submit"
             type="submit"
             id="contact-submit"
-            data-submit="...Sending"
             className="custom-btn btn"
           >
             Submit

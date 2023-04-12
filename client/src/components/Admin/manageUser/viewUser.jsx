@@ -11,6 +11,7 @@ import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../../MOCK_USER.json";
 import { Link } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
+import axios from "axios";
 
 function AdminViewUser() {
   const data = React.useMemo(() => fakeData, []);
@@ -95,6 +96,20 @@ function AdminViewUser() {
     setWarn(!showWarn);
     setIsBlurred(!isBlurred);
   };
+  const [search, setSearch] = useState("");
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+    console.log(search);
+  };
+  const searchSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("/api/contact", search);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div id="test">
@@ -123,8 +138,13 @@ function AdminViewUser() {
               type="text"
               className="searchTerm"
               placeholder="Input course code/ course name for searching"
+              onChange={handleSearch}
             ></input>
-            <button type="submit" className="searchButton">
+            <button
+              onClick={searchSubmit}
+              type="submit"
+              className="searchButton"
+            >
               <div id="icon1">
                 <FaSearch />
               </div>

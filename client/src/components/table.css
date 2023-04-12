@@ -131,3 +131,7 @@ tbody tr:hover {
   margin-left: 1%;
   margin-right: 1%;
 }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) sepia(100%) saturate(10000%) hue-rotate(270deg);
+}
