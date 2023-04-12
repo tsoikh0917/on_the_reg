@@ -5,7 +5,7 @@ export const getAllCourses = () => async (dispatch) => {
     // fetch all courses...
     // maybe here need to change for 
     const { data } = await api.fetchAllCourses();
-    dispatch({ type: 'FETCH_ALL', payload: data });
+    dispatch({ type: 'FETCH_COURSES', payload: data });
   } catch (error) {
     console.log(error.message);
   }
