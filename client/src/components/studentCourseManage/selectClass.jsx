@@ -3,11 +3,12 @@ import "../table.css";
 import { FaSearch, FaFilter, FaArrowAltCircleRight } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA.json";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
 import axios from "axios";
 
 function Search() {
+  const navigate = useNavigate();
   const [classInfo, setClassInfo] = useState([]);
   useEffect(() => {
     axios
@@ -118,7 +119,9 @@ function Search() {
   return (
     <div id="test">
       <h1>Select Classes</h1>
-
+      <button onClick={() => navigate(-1)} className="custom-btn b-search">
+        <span>Back</span>
+      </button>
       <div>
         <table id="table" {...getTableProps()}>
           <thead>

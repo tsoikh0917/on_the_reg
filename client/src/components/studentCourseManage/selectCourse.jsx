@@ -93,7 +93,9 @@ function Search() {
   return (
     <div id="test">
       <h1>Select/Search Course</h1>
-
+      <button onClick={() => navigate(-1)} className="custom-btn b-search">
+        <span>Back</span>
+      </button>
       <div className="wrap">
         <form>
           <div className="search">
