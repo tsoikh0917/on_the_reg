@@ -24,7 +24,9 @@ import Login from "./components/Login/login";
 import SignUp from "./components/Login/signUp";
 import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from 'react-redux';
+import { getPosts } from './actions/posts'
 
 function StudentPage() {
   return (
@@ -64,6 +66,12 @@ function Admin() {
 }
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+  
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
   const [isAdmin, setIsAdmin] = useState(true);
