@@ -6,6 +6,7 @@
   border-radius: 5px;
   box-shadow: 10px 10px 5px lightblue;
 }
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
 h2 {
   margin-top: 0;
 }
@@ -14,7 +15,8 @@ label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  text-shadow: 1px 0px 2px rgb(81, 80, 80);
+  text-shadow: 0px 0px 0px #1212d4;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 input[type="password"] {
