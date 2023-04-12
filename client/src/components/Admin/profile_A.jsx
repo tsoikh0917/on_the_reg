@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getAdmin } from "../../redux/api/api";
 
-function AdminProfile() {
-  const posts = useSelector((state) => state.posts);
-  console.log(posts);
+function AdminProfile() { 
   const [name, setName] = useState("Chan Tai Ming");
   const [id, setID] = useState("1155123456");
   const [major, setMajor] = useState("Computer Science");

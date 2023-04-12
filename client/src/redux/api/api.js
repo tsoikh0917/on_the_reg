@@ -3,7 +3,7 @@ import axios from 'axios'
 // `{${window.location.origin.toString()+'/'+item.id}`
 
 // const url = 'https://localhost:8000/'
-const url = 'http://localhost:8080/'
+const url = 'http://localhost:8080'
 const course = 'course'
 const auth = 'auth'
 const waitlist = 'waitlist'
@@ -34,6 +34,8 @@ export const updateRegisteredCourse = (updatedRegisteredCourse) => axios.put(`${
 
 // Course
 export const getAllCourse = () => axios.get(`${url}/${course}`) // get all course
+
+export const getCourse = (id) => axios.get(`${url}/${course}/${id}`) // get course
 
 export const createCourse = (newCourse) => axios.post(`${url}/${course}/add`, newCourse)
 

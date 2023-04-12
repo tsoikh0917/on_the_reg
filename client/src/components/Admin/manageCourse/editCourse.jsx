@@ -2,12 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../form.css";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getCourse } from "../../../redux/actions/courseAction";
 
 function AdminEditCourse(props) {
   const navigate = useNavigate();
   const location = useLocation().state;
-  let courseInfo = JSON.parse(JSON.stringify(location.classInfo));
-
+  let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
+  const [classInfo, setClassInfo] = useState([]);
+  const course = useSelector((state) => state.course);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCourse('CHEM1070'))
+    .then((response) => setClassInfo(response))
+    .catch((error) => console.log(error));
+  }, []);
   const [formData, setFormData] = useState({
     ID: "",
     name: "",

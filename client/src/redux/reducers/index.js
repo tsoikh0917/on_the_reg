@@ -6,7 +6,6 @@ import registerCourseForAdmin from "./registerCourseForAdmin";
 import registerCourseForStudent from "./registerCourseForStudent";
 import classForAdmin from "./classForAdmin";
 import classForStudent from "./classForStudent";
-import waitlist from "./waitlist";
 
 
 export default combineReducers({

@@ -8,36 +8,108 @@ import {
   FaArrowAltCircleRight,
 } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
-import fakeData from "../../MOCK_DATA.json";
 import { Link } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getAllCourses } from "../../../redux/actions/courseAction";
 
 function AdminViewCourse() {
-  const data = React.useMemo(() => fakeData, []);
+  
+  const course = useSelector((state) => state.course);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllCourses());
+  }, []);
+
+  const data = React.useMemo(() => course, []);
+  const [search, setSearch] = useState("");
+
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+    console.log(search);
+  };
+  const searchSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("/api/contact", search);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const columns = React.useMemo(
     () => [
       {
-        Header: "course id",
-        accessor: "course_ID",
+        Header: "course ID",
+        accessor: "courseID",
         Filter: ColumnFilter,
       },
 
       {
         Header: "course name",
-        accessor: "course_name",
+        accessor: "courseName",
         Filter: ColumnFilter,
       },
       {
-        Header: "Number of classes",
-        accessor: "num",
+        Header: "description",
+        accessor: "description",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "faculty",
+        accessor: "faculty",
+        Filter: ColumnFilter,
+      }
+      /*{
+        Header: "day",
+        accessor: "day",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "time",
+        accessor: "time",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "place",
+        accessor: "place",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "department",
+        accessor: "department",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "instructor",
+        accessor: "instructor",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "capacity",
+        accessor: "capacity",
         Filter: ColumnFilter,
         disableFilters: true,
-      },
+      },*/
     ],
     []
   );
+
+  const [courseInfo, setCourseInfo] = useState({
+    course_ID: "3100",
+    course_name: "",
+    day: "",
+    time: "",
+    place: "",
+    department: "",
+    instructor: "",
+    capacity: 150,
+  });
+
+  React.useEffect(() => {}, [courseInfo]);
 
   const {
     getTableProps,
@@ -57,10 +129,11 @@ function AdminViewCourse() {
     usePagination
   );
 
-  const [courseInfo, setCourseInfo] = useState({
-    course_ID: "",
-    course_name: "",
-  });
+  /*const [courseInfo, setCourseInfo] = useState({
+    courseID: "",
+    courseName: "",
+  });*/
+
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
     setCourseInfo({
@@ -69,6 +142,7 @@ function AdminViewCourse() {
     });
     console.log(courseInfo);
   };
+
   const [toggleFilter, setToggleFilter] = useState(false);
   const showFilter = () => {
     setToggleFilter(!toggleFilter);

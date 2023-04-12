@@ -1,11 +1,21 @@
-import * as api from '../api'
+import * as api from '../api/api'
 
 export const getAllCourses = () => async (dispatch) => {
   try {
     // fetch all courses...
     // maybe here need to change for 
-    const { data } = await api.fetchAllCourses();
+    const { data } = await api.getAllCourse();
     dispatch({ type: 'FETCH_COURSES', payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+export const getCourse = (id) => async (dispatch) => {
+  try {
+    const { data } = await api.getCourse(id);
+    console.log(data);
+    dispatch({ type: 'FETCH_COURSE', payload: data });
   } catch (error) {
     console.log(error.message);
   }

@@ -1,11 +1,6 @@
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux"; 
-// import reducers from "./reducers";
-// import thunk from "redux-thunk";
-
 import MainS from "./components/studentCourseManage/main_S";
 import MainA from "./components/Admin/main_A";
 import Option from "./components/studentCourseManage/classOption";
@@ -32,7 +27,6 @@ import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
-import { getPosts } from './actions/posts'
 import SelectClass from "./components/studentCourseManage/selectClass";
 import SelectCourse from "./components/studentCourseManage/selectCourse";
 
@@ -79,11 +73,6 @@ function Admin() {
 }
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
   
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
