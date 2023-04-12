@@ -12,7 +12,7 @@ const reducers = (auth = [], action) => {
     case 'LOGIN':
       return action.payload;
     case 'LOGOUT':
-      return [];
+      return action.payload;
     case 'refreshToken':
       return action.payload;
     case 'register':
