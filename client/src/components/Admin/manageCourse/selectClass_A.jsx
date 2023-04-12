@@ -1,52 +1,82 @@
-import React, { useState } from "react";
-import "../../table.css";
-import {
-  FaSearch,
-  FaEdit,
-  FaRegTrashAlt,
-  FaPlus,
-  FaFilter,
-} from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+
+import { FaEdit, FaFilter, FaRegTrashAlt } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
-import fakeData from "../../MOCK_USER.json";
-import { Link } from "react-router-dom";
+import fakeData from "../../MOCK_DATA.json";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
 import axios from "axios";
 
-function AdminViewUser() {
+function AdminSelectClass() {
+  const navigate = useNavigate();
+  const location = useLocation().state;
+  let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
+
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
       {
-        Header: "Name",
-        accessor: "Name",
+        Header: "day",
+        accessor: "day",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "time",
+        accessor: "time",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "place",
+        accessor: "place",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "department",
+        accessor: "department",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "instructor",
+        accessor: "instructor",
+        Filter: ColumnFilter,
+      },
+      {
+        Header: "capacity",
+        accessor: "capacity",
         Filter: ColumnFilter,
         disableFilters: true,
-      },
-      {
-        Header: "ID",
-        accessor: "ID",
-        Filter: ColumnFilter,
-        disableFilters: true,
-      },
-      {
-        Header: "Major",
-        accessor: "Major",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "Department",
-        accessor: "Department",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "Year",
-        accessor: "Year",
-        Filter: ColumnFilter,
       },
     ],
     []
   );
+  const [classInfo, setClassInfo] = useState({
+    class_ID: "1",
+    day: "",
+    time: "",
+    place: "",
+    department: "",
+    instructor: "",
+    capacity: 150,
+  });
+  const getRowValue = (rowV) => {
+    var CourseV = JSON.parse(JSON.stringify(rowV));
+
+    setClassInfo({
+      class_ID: "1",
+      day: CourseV.day,
+      time: CourseV.time,
+      place: CourseV.place,
+      department: CourseV.department,
+      instructor: CourseV.instructor,
+      capacity: CourseV.capacity,
+    });
+    console.log(classInfo);
+  };
+  const [toggleFilter, setToggleFilter] = useState(false);
+  const showFilter = () => {
+    setToggleFilter(!toggleFilter);
+  };
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -64,51 +94,27 @@ function AdminViewUser() {
     useFilters,
     usePagination
   );
-  const [userInfo, setUserInfo] = useState({
-    Name: "Chan Tai Min",
-    ID: "",
-    Major: "",
-    Department: "",
-    Year: 0,
-  });
-
-  const getRowValue = (rowV) => {
-    console.log(rowV);
-    var UserV = JSON.parse(JSON.stringify(rowV));
-    setUserInfo({
-      Name: UserV.Name,
-      ID: UserV.ID,
-      Major: UserV.Major,
-      Department: UserV.Department,
-      Year: UserV.Year,
+  const handleNext = () => {
+    nextPage();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
     });
   };
-  const [toggleFilter, setToggleFilter] = useState(false);
-  const showFilter = () => {
-    setToggleFilter(!toggleFilter);
+  const handlePrevious = () => {
+    previousPage();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const [showWarn, setWarn] = useState(false);
 
   const [isBlurred, setIsBlurred] = useState(false);
-
   const toggleWarn = () => {
     setWarn(!showWarn);
     setIsBlurred(!isBlurred);
-  };
-  const [search, setSearch] = useState("");
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-    console.log(search);
-  };
-  const searchSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post("/api/contact", search);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -116,9 +122,7 @@ function AdminViewUser() {
       {showWarn && (
         <div className="warning">
           <p className="warning-text">Are you sure you want to delete</p>
-          <p className="warning-text">
-            {userInfo.Name} - {userInfo.ID}?
-          </p>
+          <p className="warning-text">classid?</p>
           <button onClick={toggleWarn} id="rmB" className="yes">
             <p className="warning-text">Yes</p>
           </button>
@@ -127,48 +131,23 @@ function AdminViewUser() {
           </button>
         </div>
       )}
-      <h1>View/Manage User</h1>
       <div
         className={`blur-content ${isBlurred ? "is-blurred" : ""}`}
         style={{ zIndex: 1, pointerEvents: isBlurred ? "none" : "auto" }}
       >
-        <div className="wrap">
-          <form>
-            <div className="search">
-              <input
-                type="text"
-                className="searchTerm"
-                placeholder="Input course code/ course name for searching"
-                onChange={handleSearch}
-              ></input>
-              <button
-                onClick={searchSubmit}
-                type="submit"
-                className="searchButton"
-              >
-                <div id="icon1">
-                  <FaSearch />
-                </div>
-              </button>
-            </div>
-          </form>
-        </div>
-        <Link to="/aAddUser">
-          <button className="add-btn">
-            <div id="verticalAlign">
-              <FaPlus id="plus" size={15} />
-              <span id="newCourse">Add new user</span>
-            </div>
-          </button>
-        </Link>
-        <div id="outer">
+        <h1>{courseInfo.course_ID}</h1>
+        <h1>{courseInfo.course_name}</h1>
+        <button onClick={() => navigate(-1)} className="custom-btn b-search">
+          <span>Back</span>
+        </button>
+        <div>
           <table id="table" {...getTableProps()}>
             <thead>
               {headerGroups.map((headerGroup) => (
                 <tr id="tr1" {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
                     <th id="th" {...column.getHeaderProps()}>
-                      <div className="table_filter">
+                      <div style={{ display: "column" }}>
                         {column.render("Header")}
                         {toggleFilter ? (
                           <div>
@@ -179,7 +158,6 @@ function AdminViewUser() {
                     </th>
                   ))}
                   <th id="th">
-                    {" "}
                     {toggleFilter ? (
                       <FaFilter
                         style={{ color: "darkgrey" }}
@@ -210,16 +188,15 @@ function AdminViewUser() {
 
                     <td id="td">
                       <Link
-                        to={`/aEditUser/${userInfo.ID}`}
-                        state={{ userInfo }}
+                        to={`/aEditCourse/${courseInfo.course_ID}`}
+                        state={{ classInfo }}
                       >
-                        <FaEdit size={20} />
+                        <FaEdit />
                       </Link>
                     </td>
-
                     <td id="td">
                       <button onClick={toggleWarn} id="rm">
-                        <FaRegTrashAlt size={20} style={{ color: "red" }} />
+                        <FaRegTrashAlt style={{ color: "red" }} />
                       </button>
                     </td>
                   </tr>
@@ -231,7 +208,7 @@ function AdminViewUser() {
             <div id="pagin">
               <button
                 className="custom-btn b-page"
-                onClick={() => previousPage()}
+                onClick={() => handlePrevious()}
                 disabled={!canPreviousPage}
               >
                 Previous
@@ -245,7 +222,7 @@ function AdminViewUser() {
 
               <button
                 className="custom-btn b-page"
-                onClick={() => nextPage()}
+                onClick={() => handleNext()}
                 disabled={!canNextPage}
               >
                 Next
@@ -258,4 +235,4 @@ function AdminViewUser() {
   );
 }
 
-export default AdminViewUser;
+export default AdminSelectClass;

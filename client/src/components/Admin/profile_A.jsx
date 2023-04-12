@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 function AdminProfile() {
+  const posts = useSelector((state) => state.posts);
+  console.log(posts);
   const [name, setName] = useState("Chan Tai Ming");
   const [id, setID] = useState("1155123456");
   const [major, setMajor] = useState("Computer Science");
@@ -11,7 +14,7 @@ function AdminProfile() {
   const [profileInfo, setProfileInfo] = useState([]);
   useEffect(() => {
     axios
-      .get("")
+      .get("https://official-joke-api.appspot.com/random_joke")
       .then((response) => setProfileInfo(response.data))
       .catch((error) => console.log(error));
   }, []);
@@ -35,11 +38,6 @@ function AdminProfile() {
                 <th>Username</th>
                 <td>:</td>
                 <td>chantaiming</td>
-              </tr>
-              <tr>
-                <th>Password</th>
-                <td>:</td>
-                <td>12345678</td>
               </tr>
             </table>
             <Link to="/changePW">

@@ -22,6 +22,11 @@ function Confirm() {
   const [isChecked, setIsChecked] = useState(false);
   var courseID = "CSCI3100";
   var courseName = "Software Engineering";
+  var time = "Monday: 00:00-23:59";
+  var place = "Lee Shau Kee Building LT";
+  var department = "ERG";
+  var Instructor = "Michael Lyu";
+  var capacity = "150/150";
   function handleCheckboxChange() {
     setIsChecked(!isChecked);
   }
@@ -30,19 +35,20 @@ function Confirm() {
       <h1>
         {courseID} - {courseName}
       </h1>
+      <button onClick={() => navigate(-1)} className="custom-btn b-search">
+        <span>Back</span>
+      </button>
+
       <div className="description">
         <h2 className="description-title">Course Outline:</h2>
         <p className="description-content">This is the course outline</p>
       </div>
       <div className="description">
-        <h2 className="description-title">Course Date:</h2>
-        <p className="description-content">1/1 ,1/1 ,1/1 ,1/1 ,1/1 ,1/1</p>
-      </div>
-      <div className="description">
-        <h2 className="description-title">Course Availability:</h2>
-        <p className="description-content">
-          The course is full of capacity: 150/150
-        </p>
+        <h2 className="description-title">Course Detail:</h2>
+        <p className="description-content">Time: {time}</p>
+        <p className="description-content">Department: {department}</p>
+        <p className="description-content">Instructor: {Instructor}</p>
+        <p className="description-content">Capacity: {capacity}</p>
       </div>
       <label className="checkbox-label">
         <input type="checkbox" />

@@ -2,76 +2,55 @@ import React, { useState, useEffect } from "react";
 import "../table.css";
 import { FaSearch, FaFilter, FaArrowAltCircleRight } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
-import fakeData from "../MOCK_DATA.json";
-import { Link, useNavigate } from "react-router-dom";
+import fakeData from "../MOCK_DATA2.json";
+import { Link } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
-import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-function SelectClass() {
-  const navigate = useNavigate();
-  const [classInfo, setClassInfo] = useState({
-    id: "CSCI3100",
-    name: "Software Engineering",
-  });
+function SelectCourse() {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   const handleSearch = (event) => {
     setSearch(event.target.value);
     console.log(search);
   };
-
-  const searchSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post("/api/contact", search);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
+  const searchSubmit = () => {
+    if (search != "") {
+      navigate(`/selectCourse/${search}`);
     }
   };
-
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
       {
-        Header: "day",
-        accessor: "day",
+        Header: "course id",
+        accessor: "course_ID",
+        Filter: ColumnFilter,
+      },
+
+      {
+        Header: "course name",
+        accessor: "course_name",
         Filter: ColumnFilter,
       },
       {
-        Header: "time",
-        accessor: "time",
+        Header: "Number of classes",
+        accessor: "num",
         Filter: ColumnFilter,
-      },
-      {
-        Header: "place",
-        accessor: "place",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "department",
-        accessor: "department",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "instructor",
-        accessor: "instructor",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "capacity",
-        accessor: "capacity",
-        Filter: ColumnFilter,
-        disableFilters: true,
       },
     ],
     []
   );
+  const startTime = "2001-01-01T09:30:00";
+  const Time = startTime.substring(11);
+  const time = Time.replace(/:00$/, "");
 
+  //time = datetime.replace(/:00$/, "");
   const [toggleFilter, setToggleFilter] = useState(false);
   const showFilter = () => {
     setToggleFilter(!toggleFilter);
+    console.log(time);
   };
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -89,6 +68,19 @@ function SelectClass() {
     useFilters,
     usePagination
   );
+  const [courseInfo, setCourseInfo] = useState({
+    course_ID: "3100",
+    course_name: "",
+    course_num: "",
+  });
+  const getRowValue = (rowV) => {
+    var CourseV = JSON.parse(JSON.stringify(rowV));
+    setCourseInfo({
+      course_ID: CourseV.course_ID,
+      course_name: CourseV.course_name,
+      course_num: CourseV.course_num,
+    });
+  };
   const handleNext = () => {
     nextPage();
     window.scrollTo({
@@ -106,12 +98,31 @@ function SelectClass() {
 
   return (
     <div id="test">
-      <h1>
-        {classInfo.name} - {classInfo.id}
-      </h1>
+      <h1>Select/Search Course</h1>
       <button onClick={() => navigate(-1)} className="custom-btn b-search">
         <span>Back</span>
       </button>
+      <div className="wrap">
+        <form>
+          <div className="search">
+            <input
+              type="text"
+              className="searchTerm"
+              placeholder="What are you looking for?"
+              onChange={handleSearch}
+            ></input>
+            <button
+              type="submit"
+              className="searchButton"
+              onClick={searchSubmit}
+            >
+              <div id="icon1">
+                <FaSearch />
+              </div>
+            </button>
+          </div>
+        </form>
+      </div>
       <div>
         <table id="table" {...getTableProps()}>
           <thead>
@@ -154,7 +165,10 @@ function SelectClass() {
                   ))}
 
                   <td id="td">
-                    <Link to="/search/confirm">
+                    <Link
+                      to={`/selectClass/${courseInfo.course_ID}`}
+                      state={{ courseInfo }}
+                    >
                       <FaArrowAltCircleRight />
                     </Link>
                   </td>
@@ -193,4 +207,4 @@ function SelectClass() {
   );
 }
 
-export default SelectClass;
+export default SelectCourse;

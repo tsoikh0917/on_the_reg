@@ -8,7 +8,7 @@ function Login({ handleLogin }) {
     username: "",
     password: "",
   });
-  const [valid, setValid] = useState(true);
+  const [valid, setValid] = useState(false);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -59,9 +59,11 @@ function Login({ handleLogin }) {
             Sign Up here!
           </Link>
         </div>
-        <div>
-          <span style={{ color: "red" }}>Wrong account or password</span>
-        </div>
+        {valid && (
+          <div>
+            <span style={{ color: "red" }}>Wrong account or password</span>
+          </div>
+        )}
         <button className="custom-btn b-login" type="submit">
           Submit
         </button>

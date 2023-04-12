@@ -37,11 +37,6 @@ function Profile() {
                 <td>:</td>
                 <td>chantaiming</td>
               </tr>
-              <tr>
-                <th>Password</th>
-                <td>:</td>
-                <td>12345678</td>
-              </tr>
             </table>
             <Link to="/changePW">
               <button className="custom-btn b-profile">Change Password</button>
