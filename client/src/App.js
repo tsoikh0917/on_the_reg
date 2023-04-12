@@ -1,6 +1,11 @@
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux"; 
+// import reducers from "./reducers";
+// import thunk from "redux-thunk";
+
 import MainS from "./components/studentCourseManage/main_S";
 import MainA from "./components/Admin/main_A";
 import Option from "./components/studentCourseManage/classOption";
@@ -25,6 +30,8 @@ import SignUp from "./components/Login/signUp";
 import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from "react";
+
+// const store = createStore(reducers, compose(applyMiddleware(thunk)))
 
 function StudentPage() {
   return (
@@ -112,7 +119,6 @@ function App() {
             <ASideBar />
           </div>
         </div>
-
         <Admin />
       </ProSidebarProvider>
     );
