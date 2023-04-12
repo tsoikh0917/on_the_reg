@@ -15,6 +15,20 @@ function Search() {
       .then((response) => setClassInfo(response.data))
       .catch((error) => console.log(error));
   }, []);
+  const [search, setSearch] = useState("");
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+    console.log(search);
+  };
+  const searchSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("/api/contact", search);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
@@ -111,8 +125,9 @@ function Search() {
             type="text"
             className="searchTerm"
             placeholder="What are you looking for?"
+            onChange={handleSearch}
           ></input>
-          <button type="submit" className="searchButton">
+          <button type="submit" className="searchButton" onClick={searchSubmit}>
             <div id="icon1">
               <FaSearch />
             </div>

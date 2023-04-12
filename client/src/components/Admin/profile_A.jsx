@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function AdminProfile() {
   const [name, setName] = useState("Chan Tai Ming");
@@ -7,19 +8,13 @@ function AdminProfile() {
   const [major, setMajor] = useState("Computer Science");
   const [year, setYear] = useState(3);
 
+  const [profileInfo, setProfileInfo] = useState([]);
   useEffect(() => {
-    fetch("http://127.0.0.1:8080/student/3")
-      .then((res) => res.json())
-      .then((data) => {
-        setName(data[0].name);
-        setID(data[0].userID);
-        setMajor(data[0].major);
-        setYear(data[0].yearOfStudy);
-      })
-      .catch((error) => {
-        console.error(error);
-      }, []);
-  });
+    axios
+      .get("")
+      .then((response) => setProfileInfo(response.data))
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <div>

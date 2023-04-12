@@ -11,9 +11,24 @@ import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../../MOCK_DATA.json";
 import { Link } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
+import axios from "axios";
 
 function AdminViewCourse() {
   const data = React.useMemo(() => fakeData, []);
+  const [search, setSearch] = useState("");
+  const handleSearch = (event) => {
+    setSearch(event.target.value);
+    console.log(search);
+  };
+  const searchSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("/api/contact", search);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const columns = React.useMemo(
     () => [
       {
@@ -146,8 +161,13 @@ function AdminViewCourse() {
               type="text"
               className="searchTerm"
               placeholder="Input course code/ course name for searching"
+              onChange={handleSearch}
             ></input>
-            <button type="submit" className="searchButton">
+            <button
+              onClick={searchSubmit}
+              type="submit"
+              className="searchButton"
+            >
               <div id="icon1">
                 <FaSearch />
               </div>
