@@ -1,6 +1,11 @@
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux"; 
+// import reducers from "./reducers";
+// import thunk from "redux-thunk";
+
 import MainS from "./components/studentCourseManage/main_S";
 import MainA from "./components/Admin/main_A";
 import Option from "./components/studentCourseManage/classOption";
@@ -27,6 +32,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { getPosts } from './actions/posts'
+import SelectClass from "./components/studentCourseManage/selectClass";
+import SelectCourse from "./components/studentCourseManage/selectCourse";
+
+// const store = createStore(reducers, compose(applyMiddleware(thunk)))
 
 function StudentPage() {
   return (
@@ -39,6 +48,8 @@ function StudentPage() {
         <Route path="/classSchedule" element={<ClassSchedule />} />
         <Route path="/enrollment" element={<EnrollmentStatus />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/selectCourse/:type" element={<SelectCourse />} />
+        <Route path="/selectClass/:type" element={<SelectClass />} />
         <Route path="/search/classOption" element={<Option />} />
         <Route path="/search/confirm" element={<Confirm />} />
         <Route path="*" element={<Navigate to="/" />}></Route>
@@ -74,7 +85,7 @@ function App() {
   
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
   function handleLogin(state) {
     console.log("argument from state: ", state);
     console.log("argument from isloggedIn1: ", isLoggedIn);
@@ -120,7 +131,6 @@ function App() {
             <ASideBar />
           </div>
         </div>
-
         <Admin />
       </ProSidebarProvider>
     );

@@ -50,8 +50,8 @@ class Calendar extends Component {
       {
         id: 2,
         text: "Event 2",
-        start: "2023-04-10T09:30:00",
-        end: "2023-04-10T11:30:00",
+        start: "2001-01-01T09:30:00",
+        end: "2001-01-01T11:30:00",
         backColor: "#6aa84f",
       },
       {
@@ -73,7 +73,7 @@ class Calendar extends Component {
     dp.dayBeginsHour = 6;
     dp.dayEndsHour = 20;
     dp.update();
-    const startDate = "2023-04-09";
+    const startDate = "2001-01-01";
     const headerDateFormat = "dddd";
 
     this.calendar.update({
@@ -86,20 +86,6 @@ class Calendar extends Component {
   render() {
     return (
       <div style={styles.wrap} id="cdr">
-        <div style={styles.left}>
-          <DayPilotNavigator
-            selectMode={"week"}
-            showMonths={3}
-            skipMonths={3}
-            startDate={"2023-04-09"}
-            selectionDay={"2023-04-11"}
-            onTimeRangeSelected={(args) => {
-              this.calendar.update({
-                startDate: args.day,
-              });
-            }}
-          />
-        </div>
         <div style={styles.main}>
           <DayPilotCalendar {...this.state} ref={this.calendarRef} />
         </div>
