@@ -38,9 +38,16 @@ function SelectClass() {
         Filter: ColumnFilter,
       },
       {
-        Header: "time",
-        accessor: "time",
+        Header: "start",
+        accessor: "start_time",
         Filter: ColumnFilter,
+        Cell: ({ value, format }) => formatTime(value),
+      },
+      {
+        Header: "end",
+        accessor: "end_time",
+        Filter: ColumnFilter,
+        Cell: ({ value, format }) => formatTime(value),
       },
       {
         Header: "place",
@@ -70,6 +77,15 @@ function SelectClass() {
   const [toggleFilter, setToggleFilter] = useState(false);
   const showFilter = () => {
     setToggleFilter(!toggleFilter);
+  };
+
+  const formatTime = (value) => {
+    const date = new Date(value);
+    const timeStr = date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return timeStr;
   };
 
   const {
