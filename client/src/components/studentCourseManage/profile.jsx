@@ -6,17 +6,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { getStudent } from "../../redux/actions/studentAction";
 
 function Profile() {
-  const [name, setName] = useState("Chan Tai Ming");
-  const [id, setID] = useState("1155123456");
-  const [major, setMajor] = useState("Computer Science");
-  const [year, setYear] = useState(3);
   const student = useSelector((state) => state.student);
+  const user = localStorage.getItem("user");
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getStudent(2));
-    console.log("student: " + student);
+    dispatch(getStudent(user.userID));
+    console.log("user: " + user.userID);
   }, []);
-  let profileInfo = JSON.parse(JSON.stringify(student[0]));
+  let profileInfo = student[0];
 
   return (
     <div>

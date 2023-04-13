@@ -4,14 +4,16 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable, usePagination } from "react-table";
 import { useDispatch, useSelector } from "react-redux";
 import { getRegisteredCourseById } from "../../redux/actions/registerCourseForStudentAction";
+import { getUserLoginStatusWithAuth } from "../../redux/actions/authAndUserAction";
 
 function ViewClass() {
   const course = useSelector((state) => state.registerCourseForStudent);
   const dispatch = useDispatch();
+  const user = localStorage.getItem("user");
   useEffect(() => {
-    dispatch(getRegisteredCourseById(2));
-    console.log("Course: " + course);
+    dispatch(getRegisteredCourseById(user.userID));
   }, []);
+
   const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
     () => [

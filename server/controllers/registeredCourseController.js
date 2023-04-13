@@ -11,7 +11,6 @@ const getRegisteredCoursesByStudent = async (req, res) => {
              FROM user_course a, course b, class c
              WHERE a.courseID = b.courseID 
              AND a.classID = c.classID 
-             AND a.userID = c.userID 
              AND a.userID = ?`;
 
   // first parameter: sql query
