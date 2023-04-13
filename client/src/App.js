@@ -17,6 +17,7 @@ import AdminViewUser from "./components/Admin/manageUser/viewUser";
 import AdminAddClass from "./components/Admin/manageCourse/addClass";
 import AdminSelectClass from "./components/Admin/manageCourse/selectClass_A";
 import AdminEditClass from "./components/Admin/manageCourse/editClass";
+import AdminTopbar from "./components/sidebar/topbar_a";
 import SSideBar from "./components/sidebar/sidebar_s";
 import ViewClass from "./components/studentCourseManage/viewClass";
 import ClassSchedule from "./components/studentCourseManage/classSchedule";
@@ -42,43 +43,43 @@ function App() {
   }, [])
 
   // use here to change is user are logged in or admin
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [count, setCount] = useState(0);
   const [isAdmin, setIsAdmin] = useState(true);
 
 
   // show different page according to the role
   function checkLogin() {
-    if (auth?.role === 'student' || (isLoggedIn && !isAdmin) ){
-      return (
-      <>
-        <div>
-          <Topbar handleLogin={handleLogin} />
-          <div className="side">
-            <SSideBar />
-          </div>
-        </div>
-        <div id="align-main">
-          <MainS />
-        </div>
-      </>
-      )
-    }
-    if (auth?.role === 'admin' || (isLoggedIn && isAdmin) ){
-      return (
-        <>
-          <div>
-            <AdminTopbar handleLogin={handleLogin} />
-            <div className="side">
-              <ASideBar />
-            </div>
-          </div>
-          <div id="align-main">
-            <MainA />
-          </div>
-        </>
-      )
-    }  
+    // if (auth?.role === 'student' || (isLoggedIn && !isAdmin) ){
+    //   return (
+    //   <>
+    //     <div>
+    //       <Topbar handleLogin={handleLogin} />
+    //       <div className="side">
+    //         <SSideBar />
+    //       </div>
+    //     </div>
+    //     <div id="align-main">
+    //       <MainS />
+    //     </div>
+    //   </>
+    //   )
+    // }
+    // if (auth?.role === 'admin' || (isLoggedIn && isAdmin) ){
+    //   return (
+    //     <>
+    //       <div>
+    //         <AdminTopbar handleLogin={handleLogin} />
+    //         <div className="side">
+    //           <ASideBar />
+    //         </div>
+    //       </div>
+    //       <div id="align-main">
+    //         <MainA />
+    //       </div>
+    //     </>
+    //   )
+    // }  
     return <Login handleLogin={handleLogin} />
   }
 

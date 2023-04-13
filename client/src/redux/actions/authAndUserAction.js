@@ -24,7 +24,8 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
 
     // By api
     // log in the user...
-    const { accessToken, role } = await api.authLogin(loginInfo).data;
+    const { data } = await api.authLogin(loginInfo);
+    console.log(data);
 
     // todo: fetch the user info from the server
 
@@ -32,12 +33,12 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
     dispatch({
       type: "LOGIN",
       payload: {
-        name: loginInfo.username,
-        token: accessToken,
-        role: role,
+        name: username,
+        token: data.accessToken,
+        role: data.role,
       },
     });
-    // dispatch({ type: "LOGIN", payload: data});
+    dispatch({ type: "LOGIN", payload: data});
 
     // By local storage
     // if (!username || !password) {

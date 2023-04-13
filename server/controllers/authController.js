@@ -95,7 +95,7 @@ const userLogin = async (req, res) => {
         let UserInfo = await asyncQuery(userSql, [username])
   
         res.cookie('auth', refreshToken, { httpOnly: true, maxAge: 24*60*60*1000 }) // secure
-        res.json(Object.assign(UserInfo[0], { accessToken: accessToken}))
+        res.json(Object.assign(UserInfo[0], { accessToken: accessToken, role: role}))
       }else{
         res.status(401).send("Invalid username or password")
       }
