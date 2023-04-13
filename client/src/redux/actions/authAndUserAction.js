@@ -4,7 +4,8 @@ export const getUserLoginStatusWithAuth = () => async (dispatch) => {
   try {
     // get the user login status...
 
-    const auth = localStorage.getItem("auth") || null
+    const auth = JSON.parse(localStorage.getItem("auth")) || null
+
     // dispatch the user to the store
     dispatch({ type: "GET_AUTH_STATUS", payload: auth });
   } catch (error) {

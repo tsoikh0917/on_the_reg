@@ -43,13 +43,41 @@ function App() {
   // use here to change is user are logged in or admin
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
 
   // show different page according to the role
   function checkLogin() {
-    if (auth?.role === 'student' || (isLoggedIn && !isAdmin) ) return <MainS />
-    if (auth?.role === 'admin' || (isLoggedIn && isAdmin) ) return <MainA />
+    if (auth?.role === 'student' || (isLoggedIn && !isAdmin) ){
+      return (
+      <>
+        <div>
+          <Topbar handleLogin={handleLogin} />
+          <div className="side">
+            <SSideBar />
+          </div>
+        </div>
+        <div id="align-main">
+          <MainS />
+        </div>
+      </>
+      )
+    }
+    if (auth?.role === 'admin' || (isLoggedIn && isAdmin) ){
+      return (
+        <>
+          <div>
+            <Topbar handleLogin={handleLogin} />
+            <div className="side">
+              <ASideBar />
+            </div>
+          </div>
+          <div id="align-main">
+            <MainA />
+          </div>
+        </>
+      )
+    }  
     return <Login handleLogin={handleLogin} />
   }
 
@@ -73,6 +101,7 @@ function App() {
         {/* need login to access */}
         {/* student */}
         <Route path="/" element={<RoleRoutes required='student' isLoggedIn={isLoggedIn} isAdmin={isAdmin} />}>
+          {/* <Route path="/" element={<MainS />} /> */}
           <Route path="/changePW" element={<ChangePW />} />
           <Route path="/studProfile" element={<Profile />} />
           <Route path="/viewClass" element={<ViewClass />} />
@@ -87,6 +116,7 @@ function App() {
 
         {/* admin */}
         <Route path="/" element={<RoleRoutes required='admin' isLoggedIn={isLoggedIn} isAdmin={isAdmin}/>}>
+          {/* <Route path="/" element={<MainA />} /> */}
           <Route path="/profile" element={<AdminProfile />} />
           <Route path="/changePW" element={<ChangePW />} />
           <Route path="/aAddCourse" element={<AdminAddCourse />} />

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Fragment } from 'react'
 import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserLoginStatusWithAuth } from '../redux/actions/authAndUserAction.js'
@@ -7,7 +7,7 @@ import Topbar from "../components/sidebar/topbar";
 import ASideBar from "../components/sidebar/sidebar_a";
 
 
-const RoleRoutes = (require, handleLogin,  isLoggedIn, isAdmin) => {
+const RoleRoutes = (require, handleLogin,  isAdmin) => {
   // fetch the role from redux store
   // if no role, redirect to login page
   const { role } = useSelector((state) => state.auth)
@@ -17,12 +17,17 @@ const RoleRoutes = (require, handleLogin,  isLoggedIn, isAdmin) => {
   }, [])
   const location = useLocation()
 
-  const roleRoutes = () => {
-    if (!role) return <Navigate to="/" state={{ from: location }} replace/>
+  const RoutesByRole = () => {
+    console.log("role", role, typeof role)
+    console.log("require", require)
 
-    if ((require === "admin" && role === "admin") || isAdmin)  {
+
+    // if (!role) return <Navigate to="/"/>
+
+    if ((require === "student" && role === "student") || !isAdmin)  {
+      console.log("student")
       return (
-        <div>
+        <Fragment>
           <div>
             <Topbar handleLogin={handleLogin} />
             <div className="side">
@@ -32,13 +37,14 @@ const RoleRoutes = (require, handleLogin,  isLoggedIn, isAdmin) => {
           <div id="align-main">
             <Outlet />
           </div>
-        </div>
+        </Fragment>
       )
     } 
 
-    if ((require === "student" && role === "student") || isLoggedIn) {
+    if ((require == "admin" && role == "admin") || isAdmin) {
+      console.log("admin")
       return (
-        <>
+        <Fragment>
           <div>
             <Topbar handleLogin={handleLogin} />
             <div className="side">
@@ -46,13 +52,15 @@ const RoleRoutes = (require, handleLogin,  isLoggedIn, isAdmin) => {
             </div>
           </div>
           <Outlet />
-        </>
+        </Fragment>
       )
     }
-    return <Navigate to="/" state={{ from: location }} replace/>
+
+    console.log("no role")
+    return <Navigate to="/"/>
   }
 
-  return roleRoutes
+  return <RoutesByRole/>
 }
 
 export default RoleRoutes
