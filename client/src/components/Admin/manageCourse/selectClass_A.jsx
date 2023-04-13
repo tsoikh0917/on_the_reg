@@ -21,9 +21,15 @@ function AdminSelectClass() {
         Filter: ColumnFilter,
       },
       {
-        Header: "time",
-        accessor: "time",
-        Filter: ColumnFilter,
+        Header: "start",
+        accessor: "start_time",
+        Cell: ({ value, format }) => formatTime(value),
+      },
+      {
+        Header: "end",
+        accessor: "end_time",
+
+        Cell: ({ value, format }) => formatTime(value),
       },
       {
         Header: "place",
@@ -49,6 +55,16 @@ function AdminSelectClass() {
     ],
     []
   );
+
+  const formatTime = (value) => {
+    const date = new Date(value);
+    const timeStr = date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return timeStr;
+  };
+
   const [classInfo, setClassInfo] = useState({
     class_ID: "1",
     day: "",
