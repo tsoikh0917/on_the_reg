@@ -5,14 +5,13 @@ const getAllRegisteredCourses = async (req, res) => {
 }
 
 const getRegisteredCoursesByStudent = async (req, res) => {
-  const { studentID } = req.body;
+  const { studentID } = req.params;
 
   // ? is a placeholder for a value to be inserted into the query
   let sql = `SELECT * 
              FROM user_course a, course b, class c
              WHERE a.courseID = b.courseID 
              AND a.classID = c.classID 
-             AND a.userID = c.userID 
              AND a.userID = ?`
 
   // first parameter: sql query
