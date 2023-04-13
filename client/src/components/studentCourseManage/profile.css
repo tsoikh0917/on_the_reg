@@ -83,33 +83,47 @@
 }
 
 .b-search {
-  background: #668aa1;
-  border: none;
+  overflow: hidden;
+  color: #8d71f0;
+  border: 10px;
+  box-shadow: 0 0 0 0 #0032f9, 0 0 0 0 #ff00bb;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
   z-index: 1;
   float: none;
   display: "block";
   margin-bottom: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+  border: #8d71f0 1.5px solid;
 }
 .b-search:after {
   position: absolute;
   content: "";
-  width: 0;
-  height: 100%;
-  top: 0;
+  width: 200px;
+  height: 200px;
+  top: -80px;
   right: 0;
+  left: -50px;
   z-index: -1;
-  background-color: rgb(83, 132, 181);
-  border-radius: 5px;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  z-index: -1;
+  background-color: #7d7fec;
+  background-image: linear-gradient(
+    115deg,
+    #e9e9fe 0%,
+    #e1e1ff 50%,
+    #c5c5ff 100%
+  );
+  z-index: -1;
+  border-radius: 10px;
+  transition: all 0.8s ease;
 }
 .b-search:hover {
-  color: #fff;
+  transform: translate(0, -1px);
+  transform: scale(1.01);
+  box-shadow: -3px -3px 5px 0 #bebffe, 3px 3px 5px 0 #7d7fec;
 }
 .b-search:hover:after {
-  left: 0;
-  width: 100%;
+  transform: rotate(200deg);
 }
 .b-search:active {
   top: 2px;
@@ -117,30 +131,46 @@
 
 .b-confirm {
   float: left;
-  background: #668aa1;
-  border: none;
+  overflow: hidden;
+  color: #f3f3f9;
+  box-shadow: 0 0 0 0 #00a2ff, 0 0 0 0 #d000ff;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  border: 10px;
   z-index: 1;
+  border: none;
+  margin-top: 10px;
+  font-size: 24px;
+  padding-top: 12px;
 }
 .b-confirm:after {
   position: absolute;
   content: "";
-  width: 0;
-  height: 100%;
-  top: 0;
+  width: 200px;
+  height: 200px;
+  top: -80px;
   right: 0;
+  left: -50px;
   z-index: -1;
-  background-color: rgb(83, 132, 181);
-  border-radius: 5px;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  background-color: #7d7fec;
+  background-image: linear-gradient(
+    115deg,
+    #adade3 0%,
+    #8585de 50%,
+    rgb(105, 107, 230) 100.56%
+  );
+  z-index: -1;
+  border-radius: 10px;
+  /* box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1); */
+  transition: all 0.8s ease;
 }
 .b-confirm:hover {
-  color: #fff;
+  transform: translate(0, -1px);
+  transform: scale(1.05);
+  box-shadow: -3px -3px 5px 0 #bebffe, 3px 3px 5px 0 #7d7fec;
 }
 .b-confirm:hover:after {
-  left: 0;
-  width: 100%;
+  transform: rotate(200deg);
 }
 .b-confirm:active {
   top: 2px;

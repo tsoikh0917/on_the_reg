@@ -188,7 +188,7 @@ function SelectClass() {
                       to={`/search/confirm/${courseInfo.courseID}-${classOut.classID}`}
                       state={{ courseInfo, classOut }}
                     >
-                      <FaArrowAltCircleRight />
+                      <FaArrowAltCircleRight style={{ color: "#7D7FEC" }}/>
                     </Link>
                   </td>
                 </tr>

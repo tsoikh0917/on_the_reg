@@ -189,7 +189,7 @@ function SelectCourse() {
                       to={`/selectClass/${courseInfo.courseID}`}
                       state={{ courseInfo }}
                     >
-                      <FaArrowAltCircleRight />
+                      <FaArrowAltCircleRight style={{ color: "#7D7FEC" }}/>
                     </Link>
                   </td>
                 </tr>

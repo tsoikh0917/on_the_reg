@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500&display=swap');
 .description {
   background-color: white;
   border-radius: 10px;
@@ -10,15 +11,19 @@
 }
 
 .description-title {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 35px;
+  font-weight: 500;
   margin-bottom: 10px;
+  font-family: 'Rajdhani', sans-serif;
+  color: #646482;
 }
 
 .description-content {
-  font-size: 16px;
+  font-size: 25px;
+  font-weight: 400;
   line-height: 1.5;
-  color: #777;
+  color: #646482;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .checkbox-label {
