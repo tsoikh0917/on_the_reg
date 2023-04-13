@@ -64,8 +64,8 @@ const addRegisteredCourse = async (req, res) => {
     if (result.length === 0) {
       // add the course
       sql = `INSERT INTO user_course
-             (userID, courseID, classID)
-             VALUES (?, ?)`
+             (userID, courseID, classID, status)
+             VALUES (?, ?, ?, 1)`
       con.query(sql, [newCourse.courseID, newCourse.studentID, newCourse.classID], (err, result) => {
         if (err) throw err;
         res.status(201).send(result);
