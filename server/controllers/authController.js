@@ -106,7 +106,43 @@ const userLogin = async (req, res) => {
 }
 
 const userRegister = async (req, res) => {
+  const { username, major, name, email, gender, yearOfStudy, emergencyContact, password } = req.body
   
+  // check if all fields are provided
+  if ( parseInt(username) == NaN || parseInt(yearOfStudy) == NaN || parseInt(emergencyContact) == NaN) {
+    res.status(400).send("Bad request")
+    return
+  }
+  
+  // check if username is 10 digits
+  if (username.length != 10 || emergencyContact.length != 8) return res.status(400).send("Bad request")
+
+  let saltRounds = 10
+  let saltedPassword = bcrypt.hashSync(password, saltRounds)
+
+  console.log("saltedPassword", saltedPassword)
+
+
+  let sql = `INSERT INTO student
+             (username, major, name, email, gender, yearOfStudy, emergencyContact, saltedPassword)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+
+  let selectSql = `select name, username, userID, major, yearOfStudy
+                   from student
+                   where username LIKE ?`
+
+  try {
+    // insert into db
+    await asyncQuery(sql, [username, major, name, email, gender, parseInt(yearOfStudy), emergencyContact, saltedPassword])
+
+    // select user info
+    con.query(selectSql, [username], (err, result) => {
+      if (err) throw err
+      res.status(201).json(result[0])
+    })
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const userLogout = async (req, res) => {
