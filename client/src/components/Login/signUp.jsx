@@ -2,31 +2,39 @@ import React, { useState } from "react";
 import "./signUp.css";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { userRegisterWithAuth } from "../../redux/actions/authAndUserAction";
 
 function SignUp() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // userID, major, name, email, gender, yearOfStudy, emergencyContact, username
+
   const [formData, setFormData] = useState({
     name: "",
-    ID: "",
-    dob: "",
+    username: "",
+    // dob: "",
     gender: "",
     major: "",
-    department: "",
-    year: "",
+    // department: "",
+    yearOfStudy: "",
     email: "",
-    contact: "",
+    emergencyContact: "",
+    password: "",
   });
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      //const response = await axios.post("/api/contact", formData);
-      //console.log(response.data);
-      //navigate(-1);
-      console.log(formData);
+      dispatch(userRegisterWithAuth(formData));
+      alert("Sign up successfully!");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -55,18 +63,19 @@ function SignUp() {
             ></input>
           </fieldset>
           <fieldset>
-            <h4>ID:</h4>
+            <h4>Username (student ID, 10 digit):</h4>
             <input
               placeholder="Input ID here"
               type="number"
               tabIndex="2"
-              name="ID"
-              id="ID"
+              name="username"
+              id="username"
               onChange={handleInputChange}
               required
+              pattern="[0-9]{8}"
             ></input>
           </fieldset>
-          <fieldset>
+          {/* <fieldset>
             <h4>Date of Birth:</h4>
             <input
               placeholder="Input date of birth here"
@@ -78,7 +87,7 @@ function SignUp() {
               style={{ color: "white" }}
               required
             ></input>
-          </fieldset>
+          </fieldset> */}
           <fieldset>
             <h4>Gender:</h4>
             <input
@@ -88,6 +97,7 @@ function SignUp() {
               name="gender"
               id="gender"
               onChange={handleInputChange}
+              pattern="[MmFf]{1}"
               required
             ></input>
           </fieldset>
@@ -103,27 +113,28 @@ function SignUp() {
               required
             ></input>
           </fieldset>
-          <fieldset>
+          {/* <fieldset>
             <h4>Department:</h4>
             <input
               placeholder="Input department here"
-              type="number"
+              type="text"
               tabIndex="6"
               name="department"
-              id="departmentr"
+              id="department"
               onChange={handleInputChange}
               required
             ></input>
-          </fieldset>
+          </fieldset> */}
           <fieldset>
-            <h4>Year:</h4>
+            <h4>Year of study:</h4>
             <input
               placeholder="Input year of study here"
               type="number"
               tabIndex="7"
-              name="year"
-              id="year"
+              name="yearOfStudy"
+              id="yearOfStudy"
               onChange={handleInputChange}
+              pattern="[1-4]{1}"
               required
             ></input>
           </fieldset>
@@ -145,13 +156,23 @@ function SignUp() {
               placeholder="Input phone number here"
               type="number"
               tabIndex="9"
-              name="contact"
-              id="contact"
+              name="emergencyContact"
+              id="emergencyContact"
               onChange={handleInputChange}
               required
             ></input>
           </fieldset>
-
+          <fieldset>
+            <h4>Password:</h4>
+            <input
+              type="password"
+              tabIndex="9"
+              name="password"
+              id="password"
+              onChange={handleInputChange}
+              required
+            ></input>
+          </fieldset>
           <fieldset>
             <button
               name="submit"

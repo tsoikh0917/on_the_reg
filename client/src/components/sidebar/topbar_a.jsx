@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./topbar.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { DropdownButton } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { userLogoutWithAuth } from "../../redux/actions/authAndUserAction";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserLoginStatusWithAuth, userLogoutWithAuth } from "../../redux/actions/authAndUserAction";
+
 
 
 function AdminTopbar({ handleLogin }) {
-  const userName = "Chan Tai Ming";
+  const user = useSelector((state) => state.user);
+  const userName = user.name;
+  
+  useEffect(() => {
+    dispatch(getUserLoginStatusWithAuth());
+  }, []);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -19,6 +26,7 @@ function AdminTopbar({ handleLogin }) {
   function handleLogout() {
     console.log("logout");
     dispatch(userLogoutWithAuth())
+    navigate("/");
   }
 
 

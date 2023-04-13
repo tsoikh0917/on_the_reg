@@ -24,8 +24,8 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
       role: null,
     }
 
-    // By api
-    // log in the user...
+    // // By api
+    // // log in the user...
     const { data } = await api.authLogin(loginInfo);
     console.log(data);
 
@@ -130,7 +130,7 @@ export const userLogoutWithAuth = () => async (dispatch) => {
     localStorage.setItem("auth", JSON.stringify({}));
     dispatch({ type: "USER_LOGOUT", payload: {} });
     localStorage.setItem("user", JSON.stringify({}));
-    
+
   } catch (error) {
   }
 };
@@ -143,6 +143,9 @@ export const userRefreshWithAuth = () => async (dispatch) => {
 
 export const userRegisterWithAuth = (registerInfo) => async (dispatch) => {
   try {
+    // register the user...
+    const { data } = await api.authRegister(registerInfo);
+    console.log(data);
   } catch (error) {
     console.log(error);
   }

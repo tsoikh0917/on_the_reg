@@ -7,14 +7,14 @@ import { getRegisteredCourseById } from "../../redux/actions/registerCourseForSt
 
 function EnrollmentStatus() {
   const [enroll, setEnroll] = useState([]);
-  //TODO: Add student ID
   const course = useSelector((state) => state.registerCourseForStudent);
   const dispatch = useDispatch();
+  const user = localStorage.getItem("user");
   useEffect(() => {
-    dispatch(getRegisteredCourseById(2));
-    console.log("Course: " + course);
+    dispatch(getRegisteredCourseById(user.userID));
+    console.log("Course: " + user.userID);
   }, []);
-  const data = React.useMemo(() => fakeData, []);
+  const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
     () => [
       {
