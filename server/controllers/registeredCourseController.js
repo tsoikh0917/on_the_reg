@@ -56,17 +56,17 @@ const addRegisteredCourse = async (req, res) => {
 
   let sql = `SELECT * 
              FROM user_course 
-             WHERE courseID = ? AND studentID = ?`
+             WHERE courseID = ? AND studentID = ? AND classID = ?`
 
   // check if the course exists
-  con.query(sql, [newCourse.courseID, newCourse.studentID], (err, result) => {
+  con.query(sql, [newCourse.courseID, newCourse.studentID, newCourse.classID], (err, result) => {
     if (err) throw err;
     if (result.length === 0) {
       // add the course
       sql = `INSERT INTO user_course
-             (studentID, courseID)
+             (studentID, courseID, classID)
              VALUES (?, ?)`
-      con.query(sql, [newCourse.courseID, newCourse.studentID], (err, result) => {
+      con.query(sql, [newCourse.courseID, newCourse.studentID, newCourse.classID], (err, result) => {
         if (err) throw err;
         res.status(201).send(result);
       })

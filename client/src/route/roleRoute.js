@@ -7,7 +7,7 @@ import Topbar from "../components/sidebar/topbar";
 import ASideBar from "../components/sidebar/sidebar_a";
 
 
-const RoleRoutes = (required, handleLogin,  isAdmin, isLoggedIn) => {
+const RoleRoutes = ({required, handleLogin,  isAdmin, isLoggedIn}) => {
   // fetch the role from redux store
   // if no role, redirect to login page
   const { role } = useSelector((state) => state.auth)
