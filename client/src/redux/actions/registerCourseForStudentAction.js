@@ -17,7 +17,7 @@ export const createRegisteredCourse =
         studentID: studentID,
         courseID: courseID,
         classID: classID,
-      }
+      };
       const { data } = await api.createRegisteredCourse(updateInfo);
       dispatch({ type: "ADD_REGISTERED_COURSES_BY_STUDENTID", payload: data });
     } catch (error) {

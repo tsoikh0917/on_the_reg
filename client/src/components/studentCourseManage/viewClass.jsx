@@ -12,7 +12,7 @@ function ViewClass() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRegisteredCourseById(user?.userID));
-    console.log("Course: " + course);
+    console.log("Course: " + JSON.stringify(course));
   }, []);
   const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
@@ -127,6 +127,7 @@ function ViewClass() {
     });
   };
   const deleteConfirm = (courseID) => {
+    console.log(courseInfo.courseID);
     dispatch(updateRegisteredCourse(user?.userID, courseID));
     setWarn(!showWarn);
     setIsBlurred(!isBlurred);

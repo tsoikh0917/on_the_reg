@@ -11,12 +11,8 @@ function Profile() {
   const [major, setMajor] = useState("Computer Science");
   const [year, setYear] = useState(3);
   const student = useSelector((state) => state.student);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getStudent(2));
-    console.log("student: " + student);
-  }, []);
-  let profileInfo = JSON.parse(JSON.stringify(student[0]));
+  const user = JSON.parse(localStorage.getItem("user"));
+  useEffect(() => {}, []);
 
   return (
     <div>
@@ -31,32 +27,32 @@ function Profile() {
               <tr>
                 <th width="40%">User ID</th>
                 <td width="2%">:</td>
-                <td>{profileInfo.userID}</td>
+                <td>{user.userID}</td>
               </tr>
               <tr>
                 <th width="40%">Name</th>
                 <td width="2%">:</td>
-                <td>{profileInfo.name}</td>
+                <td>{user.name}</td>
               </tr>
               <tr>
                 <th>Gender</th>
                 <td>:</td>
-                <td>{profileInfo.gender}</td>
+                <td>{user.gender}</td>
               </tr>
               <tr>
                 <th>Major</th>
                 <td>:</td>
-                <td>{profileInfo.major}</td>
+                <td>{user.major}</td>
               </tr>
               <tr>
                 <th>Year of Study</th>
                 <td>:</td>
-                <td>{profileInfo.yearOfStudy}</td>
+                <td>{user.yearOfStudy}</td>
               </tr>
               <tr>
                 <th>Emergency Contact</th>
                 <td>:</td>
-                <td>{profileInfo.emergencyContact}</td>
+                <td>{user.emergencyContact}</td>
               </tr>
             </table>
             <Link to="/viewClass">

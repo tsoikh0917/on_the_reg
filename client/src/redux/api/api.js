@@ -57,7 +57,8 @@ export const getAllClass = () => axios.get(`${url}/${class1}`); // for admin
 
 export const getClassById = (id) => axios.get(`${url}/${class1}/${id}`);
 
-export const getClassByCourseID = (id) => axios.get(`${url}/${class1}/course/${id}`);
+export const getClassByCourseID = (id) =>
+  axios.get(`${url}/${class1}/course/${id}`);
 
 // export const getClassByClassID = (id) => axios.get(`${url}/${class1}/${id}`);
 
@@ -82,7 +83,8 @@ export const deleteWaitlist = (waitlistNumber, id) =>
 // Admin
 export const getAdminByID = (id) => axios.get(`${url}/${admin}/${id}`);
 
-export const getAdminByUsername = (username) => axios.get(`${url}/${admin}/username/${username}`);
+export const getAdminByUsername = (username) =>
+  axios.get(`${url}/${admin}/username/${username}`);
 
 // Student
 export const getAllStudents = () => axios.get(`${url}/${student}/`);
