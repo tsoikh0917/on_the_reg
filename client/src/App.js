@@ -1,5 +1,5 @@
 import "./App.css";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
 import MainS from "./components/studentCourseManage/main_S";
 import MainA from "./components/Admin/main_A";
@@ -27,54 +27,27 @@ import SignUp from "./components/Login/signUp";
 import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SelectClass from "./components/studentCourseManage/selectClass";
 import SelectCourse from "./components/studentCourseManage/selectCourse";
-
-// const store = createStore(reducers, compose(applyMiddleware(thunk)))
-
-function StudentPage() {
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<MainS />} />
-        <Route path="/changePW" element={<ChangePW />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/viewClass" element={<ViewClass />} />
-        <Route path="/classSchedule" element={<ClassSchedule />} />
-        <Route path="/enrollment" element={<EnrollmentStatus />} />
-        <Route path="/search" element={<Search />} />
-        <Route path="/selectCourse/:type" element={<SelectCourse />} />
-        <Route path="/selectClass/:type" element={<SelectClass />} />
-        <Route path="/search/classOption" element={<Option />} />
-        <Route path="/search/confirm/:type" element={<Confirm />} />
-        <Route path="*" element={<Navigate to="/" />}></Route>
-      </Routes>
-    </div>
-  );
-}
-function Admin() {
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/" element={<MainA />} />
-        <Route path="/profile" element={<AdminProfile />} />
-        <Route path="/changePW" element={<ChangePW />} />
-        <Route path="/aAddCourse" element={<AdminAddCourse />} />
-        <Route path="/aSelectClass/:id" element={<AdminSelectClass />} />
-        <Route path="/aEditClass/:id" element={<AdminEditClass />} />
-        <Route path="/aEditCourse/:id" element={<AdminEditCourse />} />
-        <Route path="/aViewCourse" element={<AdminViewCourse />} />
-        <Route path="/aAddUser" element={<AdminAddUser />} />
-        <Route path="/aEditUser/:id" element={<AdminEditUser />} />
-        <Route path="/aViewUser" element={<AdminViewUser />} />
-        <Route path="*" element={<Navigate to="/" />}></Route>
-      </Routes>
-    </div>
-  );
-}
+import RoleRoutes from "./route/roleRoute";
+import { getUserLoginStatusWithAuth } from './redux/actions/authAndUserAction.js'
 
 function App() {
+  const auth = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(getUserLoginStatusWithAuth());
+  }, [])
+  const location = useLocation()
+
+  function checkLogin() {
+    if (auth?.role === 'student') return <MainS />
+    if (auth?.role === 'admin') return <MainA />
+    return <Login handleLogin={handleLogin} />
+  }
+
+
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
   const [isAdmin, setIsAdmin] = useState(true);
@@ -87,46 +60,135 @@ function App() {
     console.log("count: ", count);
   }
 
-  if (isLoggedIn === false) {
-    document.body.style.backgroundColor = "#F3F3F9";
-    return (
+  return (
+    <ProSidebarProvider>
       <Routes>
-        <Route path="" element={<Login handleLogin={handleLogin} />} />
+        {/* todo: distinct the user and admin and login */}
+        <Route path="/" element={checkLogin()} />
         <Route path="/signUp" element={<SignUp />} />
+        
+        {/* need login to access */}
+        {/* student */}
+        <Route path="/" element={<RoleRoutes required='student'/>}>
+          <Route path="/changePW" element={<ChangePW />} />
+          <Route path="/studProfile" element={<Profile />} />
+          <Route path="/viewClass" element={<ViewClass />} />
+          <Route path="/classSchedule" element={<ClassSchedule />} />
+          <Route path="/enrollment" element={<EnrollmentStatus />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/selectCourse/:type" element={<SelectCourse />} />
+          <Route path="/selectClass/:type" element={<SelectClass />} />
+          <Route path="/search/classOption" element={<Option />} />
+          <Route path="/search/confirm/:type" element={<Confirm />} />
+        </Route>
+
+        {/* admin */}
+        <Route path="/" element={<RoleRoutes required='admin'/>}>
+          <Route path="/profile" element={<AdminProfile />} />
+          <Route path="/changePW" element={<ChangePW />} />
+          <Route path="/aAddCourse" element={<AdminAddCourse />} />
+          <Route path="/aSelectClass/:id" element={<AdminSelectClass />} />
+          <Route path="/aEditClass/:id" element={<AdminEditClass />} />
+          <Route path="/aEditCourse/:id" element={<AdminEditCourse />} />
+          <Route path="/aViewCourse" element={<AdminViewCourse />} />
+          <Route path="/aAddUser" element={<AdminAddUser />} />
+          <Route path="/aEditUser/:id" element={<AdminEditUser />} />
+          <Route path="/aViewUser" element={<AdminViewUser />} />
+        </Route>
+
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
-    );
-  } else if (isAdmin === false) {
-    document.body.style.backgroundColor = "#F5F5F5";
-    return (
-      <ProSidebarProvider>
-        <div>
-          <div>
-            <Topbar handleLogin={handleLogin} />
-            <div className="side">
-              <SSideBar />
-            </div>
-          </div>
-          <div id="align-main">
-            <StudentPage />
-          </div>
-        </div>
-      </ProSidebarProvider>
-    );
-  } else {
-    document.body.style.backgroundColor = "#F5F5F5";
-    return (
-      <ProSidebarProvider>
-        <div>
-          <Topbar handleLogin={handleLogin} />
-          <div className="side">
-            <ASideBar />
-          </div>
-        </div>
-        <Admin />
-      </ProSidebarProvider>
-    );
-  }
+
+    </ProSidebarProvider>
+  )
+
+
+
+  
+  // const store = createStore(reducers, compose(applyMiddleware(thunk)))
+
+// function StudentPage() {
+//   return (
+//     <div className="App">
+//       <Routes>
+//         <Route path="/" element={<MainS />} />
+//         <Route path="/changePW" element={<ChangePW />} />
+//         <Route path="/profile" element={<Profile />} />
+//         <Route path="/viewClass" element={<ViewClass />} />
+//         <Route path="/classSchedule" element={<ClassSchedule />} />
+//         <Route path="/enrollment" element={<EnrollmentStatus />} />
+//         <Route path="/search" element={<Search />} />
+//         <Route path="/selectCourse/:type" element={<SelectCourse />} />
+//         <Route path="/selectClass/:type" element={<SelectClass />} />
+//         <Route path="/search/classOption" element={<Option />} />
+//         <Route path="/search/confirm/:type" element={<Confirm />} />
+//         <Route path="*" element={<Navigate to="/" />}></Route>
+//       </Routes>
+//     </div>
+//   );
+// }
+// function Admin() {
+//   return (
+//     <div className="App">
+//       <Routes>
+//         <Route path="/" element={<MainA />} />
+//         <Route path="/profile" element={<AdminProfile />} />
+//         <Route path="/changePW" element={<ChangePW />} />
+//         <Route path="/aAddCourse" element={<AdminAddCourse />} />
+//         <Route path="/aSelectClass/:id" element={<AdminSelectClass />} />
+//         <Route path="/aEditClass/:id" element={<AdminEditClass />} />
+//         <Route path="/aEditCourse/:id" element={<AdminEditCourse />} />
+//         <Route path="/aViewCourse" element={<AdminViewCourse />} />
+//         <Route path="/aAddUser" element={<AdminAddUser />} />
+//         <Route path="/aEditUser/:id" element={<AdminEditUser />} />
+//         <Route path="/aViewUser" element={<AdminViewUser />} />
+//         <Route path="*" element={<Navigate to="/" />}></Route>
+//       </Routes>
+//     </div>
+//   );
+// }
+
+
+  // if (isLoggedIn === false) {
+  //   document.body.style.backgroundColor = "#F3F3F9";
+  //   return (
+  //     <Routes>
+  //       <Route path="" element={<Login handleLogin={handleLogin} />} />
+  //       <Route path="/signUp" element={<SignUp />} />
+  //       <Route path="*" element={<Navigate to="/" />}></Route>
+  //     </Routes>
+  //   );
+  // } else if (isAdmin === false) {
+  //   document.body.style.backgroundColor = "#F5F5F5";
+  //   return (
+  //     <ProSidebarProvider>
+  //       <div>
+  //         <div>
+  //           <Topbar handleLogin={handleLogin} />
+  //           <div className="side">
+  //             <SSideBar />
+  //           </div>
+  //         </div>
+  //         <div id="align-main">
+  //           <StudentPage />
+  //         </div>
+  //       </div>
+  //     </ProSidebarProvider>
+  //   );
+  // } else {
+  //   document.body.style.backgroundColor = "#F5F5F5";
+  //   return (
+  //     <ProSidebarProvider>
+  //       <div>
+  //         <Topbar handleLogin={handleLogin} />
+  //         <div className="side">
+  //           <ASideBar />
+  //         </div>
+  //       </div>
+  //       <Admin />
+  //     </ProSidebarProvider>
+  //   );
+  // }
 }
 
 export default App;
