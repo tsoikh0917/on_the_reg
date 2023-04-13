@@ -75,7 +75,7 @@ function Admin() {
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   function handleLogin(state) {
     console.log("argument from state: ", state);
     console.log("argument from isloggedIn1: ", isLoggedIn);
