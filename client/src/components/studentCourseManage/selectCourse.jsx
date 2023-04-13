@@ -3,39 +3,53 @@ import "../table.css";
 import { FaSearch, FaFilter, FaArrowAltCircleRight } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA2.json";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCourse } from "../../redux/actions/courseAction";
 
 function SelectCourse() {
+  const location = useLocation().state;
+  const courseID = location.search;
+  const course = useSelector((state) => state.course);
+
+  const dispatch = useDispatch();
+  useEffect(
+    () => {
+      dispatch(getCourse(courseID));
+    },
+    [courseID],
+    [course]
+  );
+  const data = React.useMemo(() => course, []);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const handleSearch = (event) => {
     setSearch(event.target.value);
-    console.log(search);
   };
   const searchSubmit = () => {
     if (search != "") {
       navigate(`/selectCourse/${search}`);
     }
   };
-  const data = React.useMemo(() => fakeData, []);
+
   const columns = React.useMemo(
     () => [
       {
         Header: "course id",
-        accessor: "course_ID",
+        accessor: "courseID",
         Filter: ColumnFilter,
       },
 
       {
         Header: "course name",
-        accessor: "course_name",
+        accessor: "courseName",
         Filter: ColumnFilter,
       },
       {
-        Header: "Number of classes",
-        accessor: "num",
+        Header: "description",
+        accessor: "description",
         Filter: ColumnFilter,
       },
     ],

@@ -4,25 +4,28 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA.json";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { getAllStudents } from "../../redux/actions/studentAction";
+
 function ViewClass() {
   const [classInfo, setClassInfo] = useState([]);
+  const course = useSelector((state) => state.course);
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get("")
-      .then((response) => setClassInfo(response.data))
-      .catch((error) => console.log(error));
+    dispatch(getAllStudents());
   }, []);
-  const data = React.useMemo(() => fakeData, []);
+  const data = React.useMemo(() => course, []);
   const columns = React.useMemo(
     () => [
       {
         Header: "course id",
-        accessor: "course_ID",
+        accessor: "courseID",
       },
 
       {
         Header: "course name",
-        accessor: "course_name",
+        accessor: "className",
       },
       {
         Header: "day",
