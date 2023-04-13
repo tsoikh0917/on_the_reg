@@ -13,6 +13,7 @@ function EnrollmentStatus() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRegisteredCourseById(user?.userID));
+    console.log("course: " + JSON.stringify(course));
   }, []);
   const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(

@@ -4,6 +4,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable, usePagination } from "react-table";
 import { useDispatch, useSelector } from "react-redux";
 import { getRegisteredCourseById } from "../../redux/actions/registerCourseForStudentAction";
+import { updateRegisteredCourse } from "../../redux/actions/registerCourseForStudentAction";
 
 function ViewClass() {
   const course = useSelector((state) => state.registerCourseForStudent);
@@ -11,7 +12,7 @@ function ViewClass() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRegisteredCourseById(user?.userID));
-    console.log("Course: " + JSON.stringify(course));
+    console.log("Course: " + course);
   }, []);
   const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
@@ -78,10 +79,20 @@ function ViewClass() {
     state: { pageIndex, pageSize },
   } = useTable({ columns, data, initialState: { pageSize: 5 } }, usePagination);
 
-  const [courseInfo, setCourse] = useState({
-    course_ID: "",
-    course_name: "",
+  const [courseInfo, setCourseInfo] = useState({
+    courseID: "",
+    courseName: "",
   });
+
+  const getRowValue = (rowV) => {
+    var CourseV = JSON.parse(JSON.stringify(rowV));
+    console.log(CourseV);
+    setCourseInfo({
+      courseID: CourseV["courseID"],
+      courseName: CourseV["courseName"],
+    });
+    console.log(courseInfo);
+  };
   // React.useEffect(() => {
   //   console.log(JSON.stringify(courseInfo));
   // }, [courseInfo]);
@@ -115,19 +126,10 @@ function ViewClass() {
       behavior: "smooth",
     });
   };
-
-  const popdeleteWindow = (row) => {
-    console.log(row);
-    setCourse((prev) => ({
-      ...prev,
-      classID: row.original.classID,
-    }));
-    toggleWarn();
-  };
-
-  const handleDelete = () => {
-    console.log(courseInfo);
-    // dispatch(deleteCourse(courseInfo.classID))
+  const deleteConfirm = (courseID) => {
+    dispatch(updateRegisteredCourse(user?.userID, courseID));
+    setWarn(!showWarn);
+    setIsBlurred(!isBlurred);
   };
 
   return (
@@ -136,9 +138,13 @@ function ViewClass() {
         <div className="warning">
           <p className="warning-text">Are you sure you want to delete</p>
           <p className="warning-text">
-            {courseInfo.course_ID} - {courseInfo.course_name}?
+            {courseInfo.courseID} - {courseInfo.courseName}?
           </p>
-          <button onClick={toggleWarn} id="rmB" class="yes">
+          <button
+            onClick={() => deleteConfirm(courseInfo.courseID)}
+            id="rmB"
+            class="yes"
+          >
             <p className="warning-text">Yes</p>
           </button>
           <button onClick={toggleWarn} id="rmB" class="no">
@@ -172,7 +178,7 @@ function ViewClass() {
                   <tr
                     id="tr2"
                     {...row.getRowProps()}
-                    // onMouseEnter={() => getCourse(row.original)}
+                    onMouseEnter={() => getRowValue(row.original)}
                   >
                     {row.cells.map((cell) => (
                       <td id="td" {...cell.getCellProps()}>
@@ -180,7 +186,7 @@ function ViewClass() {
                       </td>
                     ))}
                     <td id="td">
-                      <button onClick={() => popdeleteWindow(row)} id="rm">
+                      <button onClick={() => toggleWarn()} id="rm">
                         <FaRegTrashAlt style={{ color: "red" }} />
                       </button>
                     </td>

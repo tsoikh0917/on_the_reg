@@ -11,16 +11,21 @@ function Confirm() {
   const location = useLocation().state;
   const courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
   const classInfo = JSON.parse(JSON.stringify(location.classOut));
-
+  const user = JSON.parse(localStorage.getItem("user"));
   const dispatch = useDispatch();
+
   useEffect(() => {
-    console.log("classID: ", classInfo.classID);
-  }, [classInfo]);
+    console.log("user: " + user.userID);
+  }, [user]);
   const handleAddCourse = () => {
     try {
       console.log(classInfo.classId);
       dispatch(
-        createRegisteredCourse(2, courseInfo.courseID, classInfo.classID)
+        createRegisteredCourse(
+          user.userID,
+          courseInfo.courseID,
+          classInfo.classID
+        )
       ); //need to add the studentId HERE
     } catch (error) {
       console.log(error.message);
