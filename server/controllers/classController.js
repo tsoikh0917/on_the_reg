@@ -1,5 +1,5 @@
 // con: connection to the database
-const con = require('../Models/mysqlModel');
+const { con } = require('../Models/mysqlModel');
 
 const getAllClass = async (req, res) => {
     // Get the classID from the request
