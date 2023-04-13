@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { createStudent, getAllStudents } from "../../../redux/actions/studentAction";
+import { createStudent } from "../../../redux/actions/studentAction";
 
 function AdminAddUser() {
   const dispatch = useDispatch();
@@ -23,7 +23,6 @@ function AdminAddUser() {
   const handleSubmit = async (event) => {
     console.log(formData)
     dispatch(createStudent(formData));
-    dispatch(getAllStudents());
     window.history.back();
     event.preventDefault();
   };
@@ -65,7 +64,7 @@ function AdminAddUser() {
           <input
             placeholder="Input gender here"
             type="text"
-            tabIndex="4"
+            tabIndex="2"
             name="gender"
             id="gender"
             onChange={handleInputChange}
@@ -77,7 +76,7 @@ function AdminAddUser() {
           <input
             placeholder="Input study major here"
             type="text"
-            tabIndex="5"
+            tabIndex="3"
             name="major"
             id="major"
             onChange={handleInputChange}
@@ -101,7 +100,7 @@ function AdminAddUser() {
           <input
             placeholder="Input year of study here"
             type="number"
-            tabIndex="7"
+            tabIndex="4"
             name="yearOfStudy"
             id="yearOfStudy"
             onChange={handleInputChange}
@@ -113,7 +112,7 @@ function AdminAddUser() {
           <input
             placeholder="Input email address here"
             type="email"
-            tabIndex="8"
+            tabIndex="5"
             name="email"
             id="email"
             onChange={handleInputChange}
@@ -125,7 +124,7 @@ function AdminAddUser() {
           <input
             placeholder="Input phone number here"
             type="number"
-            tabIndex="9"
+            tabIndex="6"
             name="emergencyContact"
             id="emergencyContact"
             onChange={handleInputChange}

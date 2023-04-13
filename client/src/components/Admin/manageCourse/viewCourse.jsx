@@ -6,6 +6,7 @@ import {
   FaPlus,
   FaFilter,
   FaArrowAltCircleRight,
+  FaEdit,
 } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import { Link, Navigate } from "react-router-dom";
@@ -67,7 +68,7 @@ function AdminViewCourse() {
         Header: "faculty",
         accessor: "faculty",
         Filter: ColumnFilter,
-      },
+      }
       /*{
         Header: "day",
         accessor: "day",
@@ -222,7 +223,7 @@ function AdminViewCourse() {
                 prepareRow(row);
                 return (
                   <tr
-                    id="tr2"
+                    id="tr"
                     {...row.getRowProps()}
                     onMouseEnter={() => getRowValue(row.original)}
                   >
@@ -231,14 +232,22 @@ function AdminViewCourse() {
                         {cell.render("Cell")}
                       </td>
                     ))}
-
+                    <td id="td">
+                      <Link
+                        to={`/aEditCourse/${courseInfo.courseID}`}
+                      >
+                        <FaEdit />
+                      </Link>
+                    </td>
                     <td id="td">
                       <button onClick={toggleWarn} id="rm">
                         <FaRegTrashAlt style={{ color: "red" }} />
                       </button>
                     </td>
-                    <td>
-                      <Link to={`/aSelectClass/${courseInfo.courseID}`}>
+                    <td id ="td">
+                      <Link 
+                        to={`/aSelectClass/${courseInfo.courseID}`}
+                        state = {{courseInfo}}>
                         <FaArrowAltCircleRight />
                       </Link>
                     </td>

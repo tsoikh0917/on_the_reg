@@ -24,7 +24,7 @@ function AdminEditClass(props) {
     });
     return timeStr;
   };
-  
+
   const [formData, setFormData] = useState({
     classID: classInfo['classID'],
     courseID: classInfo['courseID'],
@@ -40,13 +40,11 @@ function AdminEditClass(props) {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
   };
-  
+
   const handleSubmit = async (event) => {
     formData.start_time = new Date(formData.start_time);
     formData.end_time = new Date(formData.end_time);
-    console.log(formData);
     dispatch(updateClass(classInfo.classID, formData));
     window.history.back();
     event.preventDefault();
@@ -56,123 +54,124 @@ function AdminEditClass(props) {
     event.preventDefault();
     navigate(-1);
   }
+  if (classes.length == 1) {
+    return (
+      <div id="resize">
+        <form id="form_info" onSubmit={handleSubmit}>
+          <div id="main">
+            <h1 id="alignLeft">Edit Class</h1>
+            <button onClick={handleClick} className="custom-fbtn fbtn">
+              <span>Back</span>
+            </button>
+          </div>
 
-  return (
-    <div id="resize">
-      <form id="form_info" onSubmit={handleSubmit}>
-        <div id="main">
-          <h1 id="alignLeft">Edit Class</h1>
-          <button onClick={handleClick} className="custom-fbtn fbtn">
-            <span>Back</span>
-          </button>
-        </div>
-
-        <fieldset>
-          <h4>Course Code:</h4>
-          <input
-            placeholder="Input course code here"
-            type="text"
-            tabIndex="1"
-            name="courseID"
-            id="courseID"
-            onChange={handleInputChange}
-            defaultValue={classInfo.courseID}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>School Day:</h4>
-          <input
-            placeholder="Input week here"
-            type="text"
-            tabIndex="2"
-            name="week"
-            id="week"
-            onChange={handleInputChange}
-            defaultValue={classInfo.week}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Class Start Time:</h4>
-          <input
-            placeholder="Input in the format: hh:mm"
-            type="datetime-local"
-            tabIndex="3"
-            name="start_time"
-            id="start_time"
-            pattern="\d{2}:\d{2}"
-            onChange={handleInputChange}
-            defaultValue={formatTime(classInfo.start_time)}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Class End Time:</h4>
-          <input
-            placeholder="Input in the format: hh:mm"
-            type="datetime-local"
-            tabIndex="4"
-            name="end_time"
-            id="end_time"
-            pattern="\d{2}:\d{2}"
-            onChange={handleInputChange}
-            defaultValue={formatTime(classInfo.end_time)}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Teacher in Charge:</h4>
-          <input
-            placeholder="Input instructor's name here"
-            type="text"
-            tabIndex="5"
-            name="lectureName"
-            id="lectureName"
-            onChange={handleInputChange}
-            defaultValue={classInfo.lectureName}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Maximum Capacity:</h4>
-          <input
-            placeholder="Input maximum capacity of the course here"
-            type="number"
-            tabIndex="6"
-            name="capacity"
-            id="capacity"
-            onChange={handleInputChange}
-            defaultValue={classInfo.maxCapacity}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Class Place:</h4>
-          <input
-            placeholder="Input location for the course lecture here"
-            type="text"
-            tabIndex="7"
-            name="location"
-            id="location"
-            onChange={handleInputChange}
-            defaultValue={classInfo.location}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <button
-            name="submit"
-            type="submit"
-            id="contact-submit"
-            className="custom-btn btn"
-          >
-            Submit
-          </button>
-        </fieldset>
-      </form>
-    </div>
-  );
+          <fieldset>
+            <h4>Course Code:</h4>
+            <input
+              placeholder="Input course code here"
+              type="text"
+              tabIndex="1"
+              name="courseID"
+              id="courseID"
+              onChange={handleInputChange}
+              defaultValue={classInfo.courseID}
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <h4>School Day:</h4>
+            <input
+              placeholder="Input week here"
+              type="text"
+              tabIndex="2"
+              name="week"
+              id="week"
+              onChange={handleInputChange}
+              defaultValue={classInfo.week}
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <h4>Class Start Time:</h4>
+            <input
+              placeholder="Input in the format: hh:mm"
+              type="datetime-local"
+              tabIndex="3"
+              name="start_time"
+              id="start_time"
+              pattern="\d{2}:\d{2}"
+              onChange={handleInputChange}
+              defaultValue={Date(classInfo.start_time)}
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <h4>Class End Time:</h4>
+            <input
+              placeholder="Input in the format: hh:mm"
+              type="datetime-local"
+              tabIndex="4"
+              name="end_time"
+              id="end_time"
+              pattern="\d{2}:\d{2}"
+              onChange={handleInputChange}
+              defaultValue={Date(classInfo.end_time)}
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <h4>Teacher in Charge:</h4>
+            <input
+              placeholder="Input instructor's name here"
+              type="text"
+              tabIndex="5"
+              name="lectureName"
+              id="lectureName"
+              onChange={handleInputChange}
+              defaultValue={classInfo.lectureName}
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <h4>Maximum Capacity:</h4>
+            <input
+              placeholder="Input maximum capacity of the course here"
+              type="number"
+              tabIndex="6"
+              name="capacity"
+              id="capacity"
+              onChange={handleInputChange}
+              defaultValue={classInfo.maxCapacity}
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <h4>Class Place:</h4>
+            <input
+              placeholder="Input location for the course lecture here"
+              type="text"
+              tabIndex="7"
+              name="location"
+              id="location"
+              onChange={handleInputChange}
+              defaultValue={classInfo.location}
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <button
+              name="submit"
+              type="submit"
+              id="contact-submit"
+              className="custom-btn btn"
+            >
+              Submit
+            </button>
+          </fieldset>
+        </form>
+      </div>
+    );
+  }
 }
 
 export default AdminEditClass;

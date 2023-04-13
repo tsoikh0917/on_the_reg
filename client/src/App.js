@@ -14,6 +14,7 @@ import AdminViewCourse from "./components/Admin/manageCourse/viewCourse";
 import AdminAddUser from "./components/Admin/manageUser/addUser";
 import AdminEditUser from "./components/Admin/manageUser/editUser";
 import AdminViewUser from "./components/Admin/manageUser/viewUser";
+import AdminAddClass from "./components/Admin/manageCourse/addClass";
 import AdminSelectClass from "./components/Admin/manageCourse/selectClass_A";
 import AdminEditClass from "./components/Admin/manageCourse/editClass";
 import SSideBar from "./components/sidebar/sidebar_s";
@@ -101,7 +102,6 @@ function App() {
         {/* need login to access */}
         {/* student */}
         <Route path="/" element={<RoleRoutes required='student' isLoggedIn={isLoggedIn} isAdmin={isAdmin} />}>
-          {/* <Route path="/" element={<MainS />} /> */}
           <Route path="/changePW" element={<ChangePW />} />
           <Route path="/studProfile" element={<Profile />} />
           <Route path="/viewClass" element={<ViewClass />} />
@@ -121,6 +121,7 @@ function App() {
           <Route path="/changePW" element={<ChangePW />} />
           <Route path="/aAddCourse" element={<AdminAddCourse />} />
           <Route path="/aSelectClass/:id" element={<AdminSelectClass />} />
+          <Route path="/aAddClass/:id" element={<AdminAddClass />} />
           <Route path="/aEditClass/:id" element={<AdminEditClass />} />
           <Route path="/aEditCourse/:id" element={<AdminEditCourse />} />
           <Route path="/aViewCourse" element={<AdminViewCourse />} />

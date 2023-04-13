@@ -59,11 +59,12 @@ const DeleteCourse = (req, res) => {
 }
 const EditCourse = (req, res) => {
     const data = req.body;
-    let sql = `UPDATE FROM course
+    let sql = `UPDATE course
                SET courseName = ?,
                description = ?,
+               faculty = ?
                WHERE courseID = ?`
-    con.query(sql, [data.courseName, data.description, data.courseID], (err, result) => {
+    con.query(sql, [data.courseName, data.description, data.faculty, data.courseID], (err, result) => {
     if (err) throw err;
     res.status(201).send(result);
     });
