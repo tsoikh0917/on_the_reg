@@ -16,7 +16,7 @@ const ViewAllCourse = async (req, res) => {
     });
 }
 
-/*const ViewSpecificCourse = async (req, res) => {
+const ViewSpecificCourse = async (req, res) => {
     const courseID = req.param('courseID');
 
     // ? is a placeholder for a value to be inserted into the query
@@ -31,7 +31,7 @@ const ViewAllCourse = async (req, res) => {
         if (err) throw err;
         res.status(200).send(result);
     });
-}*/
+}
 const AddCourse = async (req, res) => { 
     const data = req.body;
 
@@ -86,6 +86,7 @@ const ViewCourseFromSearchBar = (req, res) => {
 }
 module.exports = {
     ViewAllCourse,
+    ViewSpecificCourse,
     AddCourse,
     DeleteCourse,
     EditCourse,

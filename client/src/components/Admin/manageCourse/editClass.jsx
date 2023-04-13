@@ -1,48 +1,44 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../form.css";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { getCourse } from "../../../redux/actions/courseAction";
+import { getClass, updateClass } from "../../../redux/actions/classForAdminAction";
 
-function AdminEditCourse(props) {
-  const param = useParams();
+function AdminEditClass(props) {
+  const { id } = useParams();
   const navigate = useNavigate();
-  const location = useLocation().state;
-  let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
-  const [classInfo, setClassInfo] = useState([]);
-  const course = useSelector((state) => state.course);
+
+  const classes = useSelector((state) => state.classForAdmin);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCourse('CHEM1070'))
-    .then((response) => setClassInfo(response))
-    .catch((error) => console.log(error));
+    console.log("test");
+    dispatch(getClass(id));
   }, []);
+
+  let classInfo = JSON.parse(JSON.stringify(classes[0]));
+
   const [formData, setFormData] = useState({
-    ID: "",
-    name: "",
-    day: "",
-    time: "",
-    department: "",
-    instructor: "",
-    capacity: "",
-    place: "",
-    description: "",
+    courseID: classInfo['courseID'],
+    week: classInfo['week'],
+    start_time: classInfo['start_time'],
+    end_time: classInfo['end_time'],
+    location: classInfo['location'],
+    lectureName: classInfo['lectureName'],
+    capacity: classInfo['capacity'],
+    maxCapacity: classInfo['maxCapacity'],
   });
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     console.log(formData);
   };
+  
   const handleSubmit = async (event) => {
+    console.log(formData)
+    dispatch(updateClass(classInfo.classID, formData));
+    window.history.back();
     event.preventDefault();
-    try {
-      const response = await axios.post("/api/contact", formData);
-      console.log(response.data);
-      navigate(-1);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (
@@ -56,42 +52,56 @@ function AdminEditCourse(props) {
         </div>
 
         <fieldset>
-          <h4>Course Day:</h4>
-          <input
-            placeholder="Input weekday here"
-            type="text"
-            tabIndex="3"
-            name="day"
-            id="day"
-            onChange={handleInputChange}
-            defaultValue={courseInfo.day}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Course Time:</h4>
-          <input
-            placeholder="Input in the format: hh:mm-hh:mm"
-            type="text"
-            tabIndex="4"
-            name="time"
-            id="time"
-            pattern="\d{2}:\d{2}-\d{2}:\d{2}"
-            onChange={handleInputChange}
-            defaultValue={courseInfo.time}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
-          <h4>Department:</h4>
+          <h4>Course Code:</h4>
           <input
             placeholder="Input faculty here"
             type="text"
             tabIndex="5"
-            name="department"
-            id="department"
+            name="courseID"
+            id="courseID"
             onChange={handleInputChange}
-            defaultValue={courseInfo.department}
+            defaultValue={classInfo.courseID}
+            required
+          ></input>
+        </fieldset>
+        <fieldset>
+          <h4>Course Day:</h4>
+          <input
+            placeholder="Input week here"
+            type="text"
+            tabIndex="3"
+            name="week"
+            id="start_time"
+            week={handleInputChange}
+            defaultValue={classInfo.week}
+            required
+          ></input>
+        </fieldset>
+        <fieldset>
+          <h4>Course Start Time:</h4>
+          <input
+            placeholder="Input in the format: hh:mm-hh:mm"
+            type="text"
+            tabIndex="4"
+            name="start_time"
+            id="start_time"
+            //pattern="\d{2}:\d{2}-\d{2}:\d{2}"
+            onChange={handleInputChange}
+            defaultValue={classInfo.start_time}
+            required
+          ></input>
+        </fieldset>
+        <fieldset>
+          <h4>Course End Time:</h4>
+          <input
+            placeholder="Input in the format: hh:mm-hh:mm"
+            type="text"
+            tabIndex="4"
+            name="end_time"
+            id="end_time"
+            //pattern="\d{2}:\d{2}-\d{2}:\d{2}"
+            onChange={handleInputChange}
+            defaultValue={classInfo.end_time}
             required
           ></input>
         </fieldset>
@@ -101,15 +111,15 @@ function AdminEditCourse(props) {
             placeholder="Input instructor's name here"
             type="text"
             tabIndex="6"
-            name="instructor"
-            id="instructor"
+            name="lectureName"
+            id="lectureName"
             onChange={handleInputChange}
-            defaultValue={courseInfo.instructor}
+            defaultValue={classInfo.lectureName}
             required
           ></input>
         </fieldset>
         <fieldset>
-          <h4>Capacity:</h4>
+          <h4>Maximum  Capacity:</h4>
           <input
             placeholder="Input maximum capacity of the course here"
             type="number"
@@ -117,7 +127,7 @@ function AdminEditCourse(props) {
             name="capacity"
             id="capacity"
             onChange={handleInputChange}
-            defaultValue={courseInfo.capacity}
+            defaultValue={classInfo.maxCapacity}
             required
           ></input>
         </fieldset>
@@ -127,10 +137,10 @@ function AdminEditCourse(props) {
             placeholder="Input location for the course lecture here"
             type="text"
             tabIndex="8"
-            name="place"
-            id="place"
+            name="location"
+            id="location"
             onChange={handleInputChange}
-            defaultValue={courseInfo.place}
+            defaultValue={classInfo.location}
             required
           ></input>
         </fieldset>
@@ -149,4 +159,4 @@ function AdminEditCourse(props) {
   );
 }
 
-export default AdminEditCourse;
+export default AdminEditClass;

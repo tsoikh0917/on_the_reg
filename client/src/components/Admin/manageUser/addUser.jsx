@@ -1,33 +1,31 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { createStudent, getAllStudents } from "../../../redux/actions/studentAction";
 
 function AdminAddUser() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
-    ID: "",
-    dob: "",
+    //dob: "",
     gender: "",
     major: "",
-    department: "",
-    year: "",
+    //department: "",
+    yearOfStudy: "",
     email: "",
-    contact: "",
+    emergencyContact: "",
   });
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
   const handleSubmit = async (event) => {
+    console.log(formData)
+    dispatch(createStudent(formData));
+    dispatch(getAllStudents());
+    window.history.back();
     event.preventDefault();
-    try {
-      const response = await axios.post("/api/contact", formData);
-      console.log(response.data);
-      navigate(-1);
-    } catch (error) {
-      console.log(error);
-    }
   };
   return (
     <div id="resize">
@@ -50,19 +48,7 @@ function AdminAddUser() {
             required
           ></input>
         </fieldset>
-        <fieldset>
-          <h4>ID:</h4>
-          <input
-            placeholder="Input ID here"
-            type="number"
-            tabIndex="2"
-            name="ID"
-            id="ID"
-            onChange={handleInputChange}
-            required
-          ></input>
-        </fieldset>
-        <fieldset>
+        {/*<fieldset>
           <h4>Date of Birth:</h4>
           <input
             placeholder="Input date of birth here"
@@ -73,7 +59,7 @@ function AdminAddUser() {
             onChange={handleInputChange}
             required
           ></input>
-        </fieldset>
+  </fieldset>*/}
         <fieldset>
           <h4>Gender:</h4>
           <input
@@ -98,7 +84,7 @@ function AdminAddUser() {
             required
           ></input>
         </fieldset>
-        <fieldset>
+        {/*<fieldset>
           <h4>Department:</h4>
           <input
             placeholder="Input department here"
@@ -109,15 +95,15 @@ function AdminAddUser() {
             onChange={handleInputChange}
             required
           ></input>
-        </fieldset>
+</fieldset>*/}
         <fieldset>
           <h4>Year:</h4>
           <input
             placeholder="Input year of study here"
             type="number"
             tabIndex="7"
-            name="year"
-            id="year"
+            name="yearOfStudy"
+            id="yearOfStudy"
             onChange={handleInputChange}
             required
           ></input>
@@ -140,8 +126,8 @@ function AdminAddUser() {
             placeholder="Input phone number here"
             type="number"
             tabIndex="9"
-            name="contact"
-            id="contact"
+            name="emergencyContact"
+            id="emergencyContact"
             onChange={handleInputChange}
             required
           ></input>

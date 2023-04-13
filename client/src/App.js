@@ -1,11 +1,6 @@
 import "./App.css";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { ProSidebarProvider } from "react-pro-sidebar";
-import { Provider } from "react-redux";
-import { createStore, applyMiddleware, compose } from "redux"; 
-// import reducers from "./reducers";
-// import thunk from "redux-thunk";
-
 import MainS from "./components/studentCourseManage/main_S";
 import MainA from "./components/Admin/main_A";
 import Option from "./components/studentCourseManage/classOption";
@@ -20,6 +15,7 @@ import AdminAddUser from "./components/Admin/manageUser/addUser";
 import AdminEditUser from "./components/Admin/manageUser/editUser";
 import AdminViewUser from "./components/Admin/manageUser/viewUser";
 import AdminSelectClass from "./components/Admin/manageCourse/selectClass_A";
+import AdminEditClass from "./components/Admin/manageCourse/editClass";
 import SSideBar from "./components/sidebar/sidebar_s";
 import ViewClass from "./components/studentCourseManage/viewClass";
 import ClassSchedule from "./components/studentCourseManage/classSchedule";
@@ -31,8 +27,7 @@ import SignUp from "./components/Login/signUp";
 import ChangePW from "./components/Login/changePW";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
-import { useDispatch } from 'react-redux';
-import { getPosts } from './actions/posts'
+import { useDispatch } from "react-redux";
 import SelectClass from "./components/studentCourseManage/selectClass";
 import SelectCourse from "./components/studentCourseManage/selectCourse";
 
@@ -52,7 +47,7 @@ function StudentPage() {
         <Route path="/selectCourse/:type" element={<SelectCourse />} />
         <Route path="/selectClass/:type" element={<SelectClass />} />
         <Route path="/search/classOption" element={<Option />} />
-        <Route path="/search/confirm" element={<Confirm />} />
+        <Route path="/search/confirm/:type" element={<Confirm />} />
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </div>
@@ -66,11 +61,12 @@ function Admin() {
         <Route path="/profile" element={<AdminProfile />} />
         <Route path="/changePW" element={<ChangePW />} />
         <Route path="/aAddCourse" element={<AdminAddCourse />} />
-        <Route path="/aSelectClass/:type" element={<AdminSelectClass />} />
-        <Route path="/aEditCourse/:type" element={<AdminEditCourse />} />
+        <Route path="/aSelectClass/:id" element={<AdminSelectClass />} />
+        <Route path="/aEditClass/:id" element={<AdminEditClass />} />
+        <Route path="/aEditCourse/:id" element={<AdminEditCourse />} />
         <Route path="/aViewCourse" element={<AdminViewCourse />} />
         <Route path="/aAddUser" element={<AdminAddUser />} />
-        <Route path="/aEditUser/:type" element={<AdminEditUser />} />
+        <Route path="/aEditUser/:id" element={<AdminEditUser />} />
         <Route path="/aViewUser" element={<AdminViewUser />} />
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
@@ -79,12 +75,6 @@ function Admin() {
 }
 
 function App() {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
-  
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
   const [isAdmin, setIsAdmin] = useState(true);

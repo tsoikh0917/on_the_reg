@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { createCourse } from "../../../redux/actions/courseAction";
+import { useDispatch } from "react-redux";
+
 function AdminAddCourse() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    ID: "",
+    courseID: "", 
+    courseName: "", 
+    description: "", 
+    faculty: ""
+    /*ID: "",
     name: "",
     day: "",
     time: "",
@@ -12,20 +19,17 @@ function AdminAddCourse() {
     instructor: "",
     capacity: "",
     place: "",
-    description: "",
+    description: "",*/
   });
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
   const handleSubmit = async (event) => {
+    console.log(formData)
+    dispatch(createCourse(formData));
+    window.history.back();
     event.preventDefault();
-    try {
-      const response = await axios.post("/api/contact", formData);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
   };
   return (
     <div id="resize">
@@ -42,7 +46,7 @@ function AdminAddCourse() {
             placeholder="Input course code here"
             type="text"
             tabIndex="1"
-            name="ID"
+            name="courseID"
             id="ID"
             onChange={handleInputChange}
             required
@@ -55,13 +59,13 @@ function AdminAddCourse() {
             placeholder="Input course name here"
             type="text"
             tabIndex="2"
-            name="name"
+            name="courseName"
             id="name"
             onChange={handleInputChange}
             required
           ></input>
         </fieldset>
-        <fieldset>
+        {/*<fieldset>
           <h4>Course Day:</h4>
           <input
             placeholder="Input weekday here"
@@ -84,20 +88,20 @@ function AdminAddCourse() {
             onChange={handleInputChange}
             required
           ></input>
-        </fieldset>
+  </fieldset>*/}
         <fieldset>
           <h4>Department:</h4>
           <input
             placeholder="Input faculty here"
             type="text"
             tabIndex="5"
-            name="department"
+            name="faculty"
             id="department"
             onChange={handleInputChange}
             required
           ></input>
         </fieldset>
-        <fieldset>
+        {/*<fieldset>
           <h4>Teacher in Charge:</h4>
           <input
             placeholder="Input instructor's name here"
@@ -132,7 +136,7 @@ function AdminAddCourse() {
             onChange={handleInputChange}
             required
           ></input>
-        </fieldset>
+</fieldset>*/}
         <fieldset>
           <h4>Course Description:</h4>
           <textarea

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../table.css";
 import {
   FaSearch,
@@ -8,40 +8,48 @@ import {
   FaFilter,
 } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
-import fakeData from "../../MOCK_USER.json";
 import { Link } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
-import axios from "axios";
+import { deleteStudent, getAllStudents } from "../../../redux/actions/studentAction";
+import { useDispatch, useSelector } from "react-redux";
+import { connect } from 'react-redux';
 
-function AdminViewUser() {
-  const data = React.useMemo(() => fakeData, []);
+function AdminViewUser() {  
+  const user = useSelector((state) => state.student);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAllStudents());
+  }, [dispatch]);
+  console.log("user" + user);
+
+  const data = React.useMemo(() => user, []);
   const columns = React.useMemo(
     () => [
       {
         Header: "Name",
-        accessor: "Name",
+        accessor: "name",
         Filter: ColumnFilter,
         disableFilters: true,
       },
       {
         Header: "ID",
-        accessor: "ID",
+        accessor: "userID",
         Filter: ColumnFilter,
         disableFilters: true,
       },
       {
         Header: "Major",
-        accessor: "Major",
+        accessor: "major",
         Filter: ColumnFilter,
       },
-      {
+      /*{
         Header: "Department",
-        accessor: "Department",
+        accessor: "department",
         Filter: ColumnFilter,
-      },
+      },*/
       {
         Header: "Year",
-        accessor: "Year",
+        accessor: "yearOfStudy",
         Filter: ColumnFilter,
       },
     ],
@@ -73,14 +81,14 @@ function AdminViewUser() {
   });
 
   const getRowValue = (rowV) => {
-    console.log(rowV);
+    //console.log(rowV);
     var UserV = JSON.parse(JSON.stringify(rowV));
     setUserInfo({
-      Name: UserV.Name,
-      ID: UserV.ID,
-      Major: UserV.Major,
-      Department: UserV.Department,
-      Year: UserV.Year,
+      Name: UserV.name,
+      ID: UserV.userID,
+      Major: UserV.major,
+      //Department: UserV.Department,
+      Year: UserV.yearOfStudy,
     });
   };
   const [toggleFilter, setToggleFilter] = useState(false);
@@ -96,19 +104,27 @@ function AdminViewUser() {
     setWarn(!showWarn);
     setIsBlurred(!isBlurred);
   };
+
+  const deleteConfirm = (id) => {
+    dispatch(deleteStudent(id))
+    console.log(user);
+    setWarn(!showWarn);
+    setIsBlurred(!isBlurred);
+  }
+
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
     setSearch(event.target.value);
-    console.log(search);
+    //console.log(search);
   };
   const searchSubmit = async (event) => {
     event.preventDefault();
-    try {
+    /*try {
       const response = await axios.post("/api/contact", search);
       console.log(response.data);
     } catch (error) {
       console.log(error);
-    }
+    }*/
   };
 
   return (
@@ -119,7 +135,7 @@ function AdminViewUser() {
           <p className="warning-text">
             {userInfo.Name} - {userInfo.ID}?
           </p>
-          <button onClick={toggleWarn} id="rmB" className="yes">
+          <button onClick={() => deleteConfirm(userInfo.ID)} id="rmB" className="yes">
             <p className="warning-text">Yes</p>
           </button>
           <button onClick={toggleWarn} id="rmB" className="no">

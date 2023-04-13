@@ -32,15 +32,13 @@ function Search() {
               placeholder="What are you looking for?"
               onChange={handleSearch}
             ></input>
-            <button
-              type="submit"
-              className="searchButton"
-              onClick={searchSubmit}
-            >
-              <div id="icon1" onClick={searchSubmit}>
-                <FaSearch />
-              </div>
-            </button>
+            <Link to={`/selectCourse/${search}`} state={{ search }}>
+              <button type="submit" className="searchButton">
+                <div id="icon1">
+                  <FaSearch />
+                </div>
+              </button>
+            </Link>
           </div>
         </form>
       </div>

@@ -1,43 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getAdmin } from "../../redux/actions/adminAction";
 
 function AdminProfile() {
-  const posts = useSelector((state) => state.posts);
-  console.log(posts);
-  const [name, setName] = useState("Chan Tai Ming");
-  const [id, setID] = useState("1155123456");
-  const [major, setMajor] = useState("Computer Science");
-  const [year, setYear] = useState(3);
-
-  const [profileInfo, setProfileInfo] = useState([]);
+  const admin = useSelector((state) => state.admin);
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get("https://official-joke-api.appspot.com/random_joke")
-      .then((response) => setProfileInfo(response.data))
-      .catch((error) => console.log(error));
+    dispatch(getAdmin(id));
   }, []);
+
+  let profileInfo = JSON.parse(JSON.stringify(admin[0]));
+
+  const [id, setID] = useState("1");
+
+  /*const [profileInfo, setProfileInfo] = useState({
+    id: "",
+    name: "",
+    major: "",
+    year: ""
+  });*/
 
   return (
     <div>
       <h1>Personal Profile</h1>
       <div className="profile">
-        <div class="card shadow-sm" style={{ minWidth: "500px" }}>
-          <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0">Account Information</h3>
+        <div className="card shadow-sm" style={{ minWidth: "500px" }}>
+          <div className="card-header bg-transparent border-0">
+            <h3 className="mb-0">Account Information</h3>
           </div>
-          <div class="card-body pt-0">
-            <table class="table table-bordered">
+          <div className="card-body pt-0">
+            <table className="table table-bordered">
               <tr>
                 <th width="40%">User ID</th>
                 <td width="2%">:</td>
-                <td>1155123456</td>
+                <td>{profileInfo.userID}</td>
               </tr>
               <tr>
                 <th>Username</th>
                 <td>:</td>
-                <td>chantaiming</td>
+                <td>{profileInfo.username}</td>
               </tr>
             </table>
             <Link to="/changePW">
@@ -46,23 +48,28 @@ function AdminProfile() {
           </div>
         </div>
 
-        <div class="card shadow-sm" id="p2">
-          <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0">General Information</h3>
+        <div className="card shadow-sm" id="p2">
+          <div className="card-header bg-transparent border-0">
+            <h3 className="mb-0">General Information</h3>
           </div>
-          <div class="card-body pt-0">
-            <table class="table table-bordered">
+          <div className="card-body pt-0">
+            <table className="table table-bordered">
               <tr>
                 <th width="40%">Name</th>
                 <td width="2%">:</td>
-                <td>Chan Tai Ming</td>
+                <td>{profileInfo.name}</td>
               </tr>
               <tr>
                 <th>Gender</th>
                 <td>:</td>
-                <td>Male</td>
+                <td>{profileInfo.gender}</td>
               </tr>
               <tr>
+                <th>Email</th>
+                <td>:</td>
+                <td>{profileInfo.email}</td>
+              </tr>
+              {/*<tr>
                 <th>Major</th>
                 <td>:</td>
                 <td>Computer Science</td>
@@ -76,7 +83,7 @@ function AdminProfile() {
                 <th>Emergency Contact</th>
                 <td>:</td>
                 <td>12345678</td>
-              </tr>
+  </tr>*/}
             </table>
           </div>
         </div>

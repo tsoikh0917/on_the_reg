@@ -4,14 +4,16 @@
 
 const reducers = (student = [], action) => {
   switch (action.type) {
+    case 'FETCH_STUDENT':
+      return action.payload;
     case 'FETCH_STUDENTS':
       return action.payload;
     case 'CREATE_STUDENT':
       return [...student, action.payload];
     case 'DELETE_STUDENT':
-      return student.filter((student) => student.courseID !== action.payload.courseID);
+      return student.filter((student) => student.userID !== action.payload);
     case 'UPDATE_STUDENT':
-      return student.map((student) => student.courseID === action.payload.courseID ? action.payload : student);
+      return student.map((student) => student.userID === action.payload.userID ? action.payload : student);
     default:
       return student;
   }

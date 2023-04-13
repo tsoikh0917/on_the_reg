@@ -45,12 +45,12 @@ function MainS() {
       <div className="card-container">
         <div onMouseEnter={() => open(1)} onMouseLeave={() => close(1)}>
           <Link to="/viewClass" style={{ textDecoration: "none" }}>
-            <div class="cardA">
-              <h1 class="main_h1">View Course</h1>
+            <div className="cardA">
+              <h1 className="main_h1">View Course</h1>
               {checkHover ? (
                 <FaReadme size={50} className="main_image" />
               ) : (
-                <p class="main_text">
+                <p className="main_text">
                   You can check out the class that you have succesfully
                   registered
                 </p>
@@ -61,13 +61,13 @@ function MainS() {
 
         <div onMouseEnter={() => open(2)} onMouseLeave={() => close(2)}>
           <Link to="/classSchedule" style={{ textDecoration: "none" }}>
-            <div class="cardB">
-              <h1 class="main_h1">Class Schedule</h1>
+            <div className="cardB">
+              <h1 className="main_h1">className Schedule</h1>
 
               {checkHover2 ? (
                 <FaCalendarAlt size={50} className="main_image" />
               ) : (
-                <p class="main_text">You can check out your weekly schedule</p>
+                <p className="main_text">You can check out your weekly schedule</p>
               )}
             </div>
           </Link>
@@ -75,12 +75,12 @@ function MainS() {
 
         <div onMouseEnter={() => open(3)} onMouseLeave={() => close(3)}>
           <Link to="/search" style={{ textDecoration: "none" }}>
-            <div class="cardC">
-              <h1 class="main_h1">Search Course</h1>
+            <div className="cardC">
+              <h1 className="main_h1">Search Course</h1>
               {checkHover3 ? (
                 <FaSearch size={50} className="main_image" />
               ) : (
-                <p class="main_text">
+                <p className="main_text">
                   You can search for the classs that you want to register
                 </p>
               )}
@@ -90,12 +90,12 @@ function MainS() {
 
         <div onMouseEnter={() => open(4)} onMouseLeave={() => close(4)}>
           <Link to="/enrollment" style={{ textDecoration: "none" }}>
-            <div class="cardD">
-              <h1 class="main_h1">Enrollment Status</h1>
+            <div className="cardD">
+              <h1 className="main_h1">Enrollment Status</h1>
               {checkHover4 ? (
                 <FaRegistered size={50} className="main_image" />
               ) : (
-                <p class="main_text">
+                <p className="main_text">
                   You can find your enrollment status after you have add the
                   course{" "}
                 </p>

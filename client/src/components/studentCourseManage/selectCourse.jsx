@@ -3,40 +3,52 @@ import "../table.css";
 import { FaSearch, FaFilter, FaArrowAltCircleRight } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA2.json";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getCourse } from "../../redux/actions/courseAction";
 
 function SelectCourse() {
+  const location = useLocation().state;
+  const courseID = location.search;
+  const course = useSelector((state) => state.course);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCourse(courseID));
+  }, [courseID]);
+  const data = React.useMemo(() => course, [course]);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const handleSearch = (event) => {
     setSearch(event.target.value);
-    console.log(search);
   };
   const searchSubmit = () => {
     if (search != "") {
       navigate(`/selectCourse/${search}`);
     }
   };
-  const data = React.useMemo(() => fakeData, []);
+
   const columns = React.useMemo(
     () => [
       {
         Header: "course id",
-        accessor: "course_ID",
+        accessor: "courseID",
         Filter: ColumnFilter,
       },
 
       {
         Header: "course name",
-        accessor: "course_name",
+        accessor: "courseName",
         Filter: ColumnFilter,
       },
+      { Header: "Department", accessor: "faculty", Filter: ColumnFilter },
       {
-        Header: "Number of classes",
-        accessor: "num",
+        Header: "description",
+        accessor: "description",
         Filter: ColumnFilter,
+        disableFilters: true,
       },
     ],
     []
@@ -69,16 +81,19 @@ function SelectCourse() {
     usePagination
   );
   const [courseInfo, setCourseInfo] = useState({
-    course_ID: "3100",
-    course_name: "",
-    course_num: "",
+    courseID: "",
+    courseName: "",
+    facutly: "",
+    description: "",
   });
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
+    console.log(rowV);
     setCourseInfo({
-      course_ID: CourseV.course_ID,
-      course_name: CourseV.course_name,
-      course_num: CourseV.course_num,
+      courseID: CourseV.courseID,
+      courseName: CourseV.courseName,
+      faculty: CourseV.faculty,
+      description: CourseV.description,
     });
   };
   const handleNext = () => {
@@ -157,7 +172,11 @@ function SelectCourse() {
             {page.map((row) => {
               prepareRow(row);
               return (
-                <tr id="tr2" {...row.getRowProps()}>
+                <tr
+                  id="tr2"
+                  {...row.getRowProps()}
+                  onMouseEnter={() => getRowValue(row.original)}
+                >
                   {row.cells.map((cell) => (
                     <td id="td" {...cell.getCellProps()}>
                       {cell.render("Cell")}{" "}
@@ -166,7 +185,7 @@ function SelectCourse() {
 
                   <td id="td">
                     <Link
-                      to={`/selectClass/${courseInfo.course_ID}`}
+                      to={`/selectClass/${courseInfo.courseID}`}
                       state={{ courseInfo }}
                     >
                       <FaArrowAltCircleRight />
