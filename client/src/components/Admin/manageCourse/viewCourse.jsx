@@ -8,7 +8,7 @@ import {
   FaArrowAltCircleRight,
 } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -128,6 +128,12 @@ function AdminViewCourse() {
     useFilters,
     usePagination
   );
+
+  function handleNextPageClick() {
+    if (canNextPage) {
+      Navigate(`/aEditCourse?courseId=CHEM1070`);
+    }
+  }
 
   /*const [courseInfo, setCourseInfo] = useState({
     courseID: "",

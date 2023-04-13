@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "../form.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourse } from "../../../redux/actions/courseAction";
 
 function AdminEditCourse(props) {
+  const param = useParams();
   const navigate = useNavigate();
   const location = useLocation().state;
   let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));

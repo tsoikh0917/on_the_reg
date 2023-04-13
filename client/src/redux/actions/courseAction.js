@@ -14,7 +14,6 @@ export const getAllCourses = () => async (dispatch) => {
 export const getCourse = (id) => async (dispatch) => {
   try {
     const { data } = await api.getCourse(id);
-    console.log(data);
     dispatch({ type: 'FETCH_COURSE', payload: data });
   } catch (error) {
     console.log(error.message);

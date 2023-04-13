@@ -1,51 +1,51 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../form.css";
-import axios from "axios";
+import { getAllStudents, getStudent, updateStudent } from "../../../redux/actions/studentAction";
+import { useDispatch, useSelector } from "react-redux";
 
 function AdminEditUser() {
-  const navigate = useNavigate();
-  const { type } = useParams();
-  const location = useLocation().state;
-  let userInfo = JSON.parse(JSON.stringify(location.userInfo));
-  const [uInfo, setUInfo] = useState([]);
+  const { id } = useParams();
+  const user = useSelector((state) => state.student);
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get("")
-      .then((response) => setUInfo(response.data))
-      .catch((error) => console.log(error));
+    dispatch(getStudent(id));
   }, []);
+  const navigate = useNavigate();
+  //const location = useLocation().state;
+  let userInfo = JSON.parse(JSON.stringify(user[0]));
+
+  console.log(userInfo);
+  //const [uInfo, setUInfo] = useState([]);
   const [formData, setFormData] = useState({
-    name: userInfo.Name,
-    ID: userInfo.ID,
-    dob: "",
-    gender: "",
-    major: userInfo.Major,
-    department: userInfo.Department,
-    year: userInfo.Year,
-    email: "",
-    contact: "",
+    name: userInfo["name"],
+    userID: userInfo["userID"],
+    //dob: "",
+    gender: userInfo["gender"],
+    major: userInfo["major"],
+    //department: userInfo.Department,
+    yearOfStudy: userInfo["yearOfStudy"],
+    email: userInfo["email"],
+    emergencyContact: userInfo["emergencyContact"],
   });
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
   const handleSubmit = async (event) => {
+    console.log(formData)
+    dispatch(updateStudent(userInfo["userID"], formData));
+    window.history.back();
     event.preventDefault();
-    try {
-      const response = await axios.post("/api/contact", formData);
-      console.log(response.data);
-      navigate(-1);
-    } catch (error) {
-      console.log(error);
-    }
+
   };
+  
   return (
     <div id="resize">
       <form id="form_info" onSubmit={handleSubmit}>
         <div id="main">
           <h1 id="alignLeft">Edit User</h1>
-          <button onClick={() => navigate(-1)} className="custom-fbtn fbtn">
+          <button onClick={() => {navigate(-1);}} className="custom-fbtn fbtn">
             <span>Back</span>
           </button>
         </div>
@@ -58,7 +58,7 @@ function AdminEditUser() {
             name="name"
             id="name"
             onChange={handleInputChange}
-            defaultValue={userInfo.Name}
+            defaultValue={userInfo["name"]}
             required
           ></input>
         </fieldset>
@@ -71,11 +71,11 @@ function AdminEditUser() {
             name="ID"
             id="ID"
             onChange={handleInputChange}
-            defaultValue={userInfo.ID}
+            defaultValue={userInfo["userID"]}
             required
           ></input>
         </fieldset>
-        <fieldset>
+        {/*<fieldset>
           <h4>Date of Birth:</h4>
           <input
             placeholder="Input date of birth here"
@@ -86,7 +86,7 @@ function AdminEditUser() {
             onChange={handleInputChange}
             required
           ></input>
-        </fieldset>
+  </fieldset>*/}
         <fieldset>
           <h4>Gender:</h4>
           <input
@@ -96,6 +96,7 @@ function AdminEditUser() {
             name="gender"
             id="gender"
             onChange={handleInputChange}
+            defaultValue={userInfo["gender"]}
             required
           ></input>
         </fieldset>
@@ -108,11 +109,11 @@ function AdminEditUser() {
             name="major"
             id="major"
             onChange={handleInputChange}
-            defaultValue={userInfo.Major}
+            defaultValue={userInfo["major"]}
             required
           ></input>
         </fieldset>
-        <fieldset>
+        {/*<fieldset>
           <h4>Department:</h4>
           <input
             placeholder="Input study major here"
@@ -121,10 +122,10 @@ function AdminEditUser() {
             name="department"
             id="department"
             onChange={handleInputChange}
-            defaultValue={userInfo.Department}
+            defaultValue={userInfo["Department"]}
             required
           ></input>
-        </fieldset>
+  </fieldset>*/}
         <fieldset>
           <fieldset>
             <h4>Year:</h4>
@@ -135,7 +136,7 @@ function AdminEditUser() {
               name="year"
               id="year"
               onChange={handleInputChange}
-              defaultValue={userInfo.Year}
+              defaultValue={userInfo["yearOfStudy"]}
               required
             ></input>
           </fieldset>
@@ -147,6 +148,7 @@ function AdminEditUser() {
             name="email"
             id="email"
             onChange={handleInputChange}
+            defaultValue={userInfo["email"]}
             required
           ></input>
         </fieldset>
@@ -156,9 +158,10 @@ function AdminEditUser() {
             placeholder="Input phone number here"
             type="number"
             tabIndex="9"
-            name="contact"
+            name="emergencyContact"
             id="contact"
             onChange={handleInputChange}
+            defaultValue={userInfo["emergencyContact"]}
             required
           ></input>
         </fieldset>

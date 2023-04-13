@@ -61,10 +61,10 @@ function Admin() {
         <Route path="/changePW" element={<ChangePW />} />
         <Route path="/aAddCourse" element={<AdminAddCourse />} />
         <Route path="/aSelectClass/:type" element={<AdminSelectClass />} />
-        <Route path="/aEditCourse/:type" element={<AdminEditCourse />} />
+        <Route path="/aEditCourse/:id" element={<AdminEditCourse />} />
         <Route path="/aViewCourse" element={<AdminViewCourse />} />
         <Route path="/aAddUser" element={<AdminAddUser />} />
-        <Route path="/aEditUser/:type" element={<AdminEditUser />} />
+        <Route path="/aEditUser/:id" element={<AdminEditUser />} />
         <Route path="/aViewUser" element={<AdminViewUser />} />
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>

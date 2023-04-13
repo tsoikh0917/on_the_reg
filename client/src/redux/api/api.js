@@ -71,7 +71,7 @@ export const deleteWaitlist = (waitlistNumber, id) => axios.delete(`${url}/${wai
 export const getAdmin = (id) => axios.get(`${url}/${admin}/${id}`) 
 
 // Student
-export const getAllStudent = (id) => axios.get(`${url}/${student}/`)
+export const getAllStudents = () => axios.get(`${url}/${student}/`)
 
 export const getStudent = (id) => axios.get(`${url}/${student}/${id}`)
 
@@ -79,4 +79,4 @@ export const createStudent = (newStudent) => axios.post(`${url}/${student}`, new
 
 export const updateStudent = (id, updatedStudent) => axios.put(`${url}/${student}/${id}`, updatedStudent)
 
-export const deleteStudent = (id) => axios.delete(`${url}/${student}/${id}`)
+export const deleteStudent = (id) => axios.delete(`${url}/${student}/delete/${id}`)
