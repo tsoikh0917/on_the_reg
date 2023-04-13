@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../form.css";
-import { getAllStudents, getStudent, updateStudent } from "../../../redux/actions/studentAction";
+import { getStudent, updateStudent } from "../../../redux/actions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
 
 function AdminEditUser() {
   const { id } = useParams();
+  const navigate = useNavigate();
+  
   const user = useSelector((state) => state.student);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getStudent(id));
   }, []);
-  const navigate = useNavigate();
-  //const location = useLocation().state;
   let userInfo = JSON.parse(JSON.stringify(user[0]));
 
   console.log(userInfo);
-  //const [uInfo, setUInfo] = useState([]);
+
   const [formData, setFormData] = useState({
     name: userInfo["name"],
     userID: userInfo["userID"],
@@ -39,13 +39,18 @@ function AdminEditUser() {
     event.preventDefault();
 
   };
-  
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    navigate(-1);
+  }
+
   return (
     <div id="resize">
       <form id="form_info" onSubmit={handleSubmit}>
         <div id="main">
           <h1 id="alignLeft">Edit User</h1>
-          <button onClick={() => {navigate(-1);}} className="custom-fbtn fbtn">
+          <button onClick={handleClick} className="custom-fbtn fbtn">
             <span>Back</span>
           </button>
         </div>

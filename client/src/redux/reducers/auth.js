@@ -5,8 +5,16 @@
 //   role: null,
 // }
 
-const reducers = (auth = [], action) => {
+const initialState = {
+  name: null,
+  token: null,
+  role: null,
+};
+
+const reducers = (auth = initialState, action) => {
   switch (action.type) {
+    case 'GET_AUTH_STATUS':
+      return action.payload;
     case 'setCredentials':
       return action.payload;
     case 'LOGIN':

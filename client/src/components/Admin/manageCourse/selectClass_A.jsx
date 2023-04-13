@@ -19,7 +19,7 @@ function AdminSelectClass() {
     dispatch(getClassByCourseID(id));
   }, []);
 
-  const data = React.useMemo(() => classes, []);
+  const data = React.useMemo(() => classes, [classes]);
   const columns = React.useMemo(
     () => [
       {
@@ -37,11 +37,6 @@ function AdminSelectClass() {
         accessor: "end_time",
 
         Cell: ({ value, format }) => formatTime(value),
-      },
-      {
-        Header: "end time",
-        accessor: "end_time",
-        Filter: ColumnFilter,
       },
       {
         Header: "location",

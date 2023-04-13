@@ -1,5 +1,17 @@
 import * as api from "../api/api";
 
+export const getUserLoginStatusWithAuth = () => async (dispatch) => {
+  try {
+    // get the user login status...
+
+    const auth = localStorage.getItem("auth") || null
+    // dispatch the user to the store
+    dispatch({ type: "GET_AUTH_STATUS", payload: auth });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
   try {
     // log in the user...
