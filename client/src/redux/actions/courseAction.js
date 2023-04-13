@@ -30,10 +30,10 @@ export const createCourse = (course) => async (dispatch) => {
   }
 };
 
-export const updateCourse = (courseID, course) => async (dispatch) => {
+export const updateCourse = (updatedCourse) => async (dispatch) => {
   try {
     // update a course...
-    const { data } = await api.updateCourse(courseID, course);
+    const { data } = await api.updateCourse(updatedCourse);
     dispatch({ type: "UPDATE_COURSE", payload: data });
   } catch (error) {
     console.log(error.message);
