@@ -13,17 +13,17 @@ function Topbar({ handleLogin }) {
   return (
     <div id="my_topbar">
       <span id="block">
-        <Dropdown style={{ height: "10%" }}>
+        <Dropdown style={{ height: "10%" }} >
           <DropdownButton id="dropdown-basic-button" title={userName}>
-            <Dropdown.Item onClick={(event) => handleLinkClick("/profile")}>
+            <Dropdown.Item onClick={(event) => handleLinkClick("/profile")} id="dropdown_item">
               profile
             </Dropdown.Item>
 
-            <Dropdown.Item onClick={(event) => handleLinkClick("/changePW")}>
+            <Dropdown.Item onClick={(event) => handleLinkClick("/changePW")} id="dropdown_item">
               change password
             </Dropdown.Item>
             {/* todo: use redux auth to handle */}
-            <Dropdown.Item onClick={(event) => handleLogin(false)}>
+            <Dropdown.Item onClick={(event) => handleLogin(false)} id="dropdown_item">
               logout
             </Dropdown.Item>
           </DropdownButton>
