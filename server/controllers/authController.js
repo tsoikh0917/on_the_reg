@@ -6,8 +6,13 @@ const userLogin = async (req, res) => {
     let { username, password } = req.body;
 
     console.log("login start")
+
+    // check if username and password are provided
+    if (!username || !password) return res.status(400).send("Bad request")
+
+    // if ()
   
-    if (emailFormat.test(email) === false ) return res.status(400).send("Bad request")
+    // if (emailFormat.test(email) === false ) return res.status(400).send("Bad request")
     
     try {
       let rows = await db_all(sql, [email])
