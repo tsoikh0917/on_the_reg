@@ -53,7 +53,9 @@ const RoleRoutes = ({required, handleLogin,  isAdmin, isLoggedIn}) => {
               <ASideBar />
             </div>
           </div>
-          <Outlet />
+          <div id="align-main">
+            <Outlet />
+          </div>
         </Fragment>
       )
     }
