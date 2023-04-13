@@ -9,17 +9,18 @@ function EnrollmentStatus() {
   const [enroll, setEnroll] = useState([]);
   //TODO: Add student ID
   const course = useSelector((state) => state.registerCourseForStudent);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRegisteredCourseById(2));
-    console.log("Course: " + course);
+    dispatch(getRegisteredCourseById(user?.userID));
   }, []);
-  const data = React.useMemo(() => fakeData, []);
+  const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
     () => [
       {
         Header: "Status",
-        accessor: "statusName",
+        accessor: "statusID",
+        Cell: ({ value, format }) => formatStatus(value),
       },
       {
         Header: "Course Code",
@@ -32,6 +33,15 @@ function EnrollmentStatus() {
     ],
     []
   );
+  const formatStatus = (value) => {
+    if (value === 1) {
+      return "success";
+    } else if (value === 2) {
+      return "Waitlist";
+    } else if (value === 3) {
+      return "Error";
+    }
+  };
   const {
     getTableProps,
     getTableBodyProps,

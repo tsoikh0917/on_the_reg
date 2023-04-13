@@ -11,7 +11,7 @@ function ViewClass() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRegisteredCourseById(user?.userID));
-    console.log("Course: " + course);
+    console.log("Course: " + JSON.stringify(course));
   }, []);
   const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
@@ -120,15 +120,15 @@ function ViewClass() {
     console.log(row);
     setCourse((prev) => ({
       ...prev,
-      classID: row.original.classID
-    }))
+      classID: row.original.classID,
+    }));
     toggleWarn();
-  }
+  };
 
   const handleDelete = () => {
     console.log(courseInfo);
     // dispatch(deleteCourse(courseInfo.classID))
-  }    
+  };
 
   return (
     <div>

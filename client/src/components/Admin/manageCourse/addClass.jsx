@@ -24,7 +24,7 @@ function AdminAddClass() {
     console.log(formData);
   };
   const handleSubmit = async (event) => {
-    console.log(formData)
+    console.log(formData);
     dispatch(createClass(formData));
     window.history.back();
     event.preventDefault();
@@ -33,12 +33,12 @@ function AdminAddClass() {
   const handleClick = (event) => {
     event.preventDefault();
     navigate(-1);
-  }
+  };
   return (
     <div id="resize">
       <form id="form_info" onSubmit={handleSubmit}>
         <div id="main">
-          <h1 id="alignLeft">New Course</h1>
+          <h1 id="alignLeft">New Class</h1>
           <button onClick={handleClick} className="custom-fbtn fbtn">
             <span>Back</span>
           </button>
@@ -61,7 +61,9 @@ function AdminAddClass() {
         <fieldset>
           <h4>School Day:</h4>
           <select name="week" id="week" onChange={handleInputChange} required>
-            <option value="" disabled selected>Select a weekday</option>
+            <option value="" disabled selected>
+              Select a weekday
+            </option>
             <option value="Mon">Monday</option>
             <option value="Tue">Tuesday</option>
             <option value="Wed">Wednesday</option>
@@ -79,46 +81,47 @@ function AdminAddClass() {
             onChange={handleInputChange}
             required
   ></input>*/}
-        </fieldset><br/>
+        </fieldset>
+        <br />
         <fieldset>
-            <h4>Class Start Time:</h4>
-            <input
-              placeholder="Input start time in the format: hh:mm"
-              type="datetime-local"
-              tabIndex="3"
-              name="start_time"
-              id="start_time"
-              //pattern="\d{2}:\d{2}"
-              onChange={handleInputChange}
-              required
-            ></input>
-          </fieldset>
-          <fieldset>
-            <h4>Class End Time:</h4>
-            <input
-              placeholder="Input end time in the format: hh:mm"
-              type="datetime-local"
-              tabIndex="4"
-              name="end_time"
-              id="end_time"
-              //pattern="\d{2}:\d{2}"
-              onChange={handleInputChange}
-              required
-            ></input>
-          </fieldset>
-          <fieldset>
-            <h4>Teacher in Charge:</h4>
-            <input
-              placeholder="Input instructor's name here"
-              type="text"
-              tabIndex="5"
-              name="lectureName"
-              id="lectureName"
-              maxLength={30}
-              onChange={handleInputChange}
-              required
-            ></input>
-          </fieldset>
+          <h4>Class Start Time:</h4>
+          <input
+            placeholder="Input start time in the format: hh:mm"
+            type="datetime-local"
+            tabIndex="3"
+            name="start_time"
+            id="start_time"
+            //pattern="\d{2}:\d{2}"
+            onChange={handleInputChange}
+            required
+          ></input>
+        </fieldset>
+        <fieldset>
+          <h4>Class End Time:</h4>
+          <input
+            placeholder="Input end time in the format: hh:mm"
+            type="datetime-local"
+            tabIndex="4"
+            name="end_time"
+            id="end_time"
+            //pattern="\d{2}:\d{2}"
+            onChange={handleInputChange}
+            required
+          ></input>
+        </fieldset>
+        <fieldset>
+          <h4>Teacher in Charge:</h4>
+          <input
+            placeholder="Input instructor's name here"
+            type="text"
+            tabIndex="5"
+            name="lectureName"
+            id="lectureName"
+            maxLength={30}
+            onChange={handleInputChange}
+            required
+          ></input>
+        </fieldset>
         <fieldset>
           <h4>Maximum Capacity:</h4>
           <input

@@ -21,20 +21,6 @@ function SelectClass() {
   }, []);
   const data = React.useMemo(() => classInfo, [classInfo]);
   const [search, setSearch] = useState("");
-  const handleSearch = (event) => {
-    setSearch(event.target.value);
-    console.log(search);
-  };
-
-  const searchSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      const response = await axios.post("/api/contact", search);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   const columns = React.useMemo(
     () => [
