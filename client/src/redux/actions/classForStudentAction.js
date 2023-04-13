@@ -1,8 +1,9 @@
-import * as api from '../api'
+import * as api from '../api/api'
 
-export const getClassByCourseID = (studentId) => async (dispatch) => {
+export const getClassByCourseID = (id) => async (dispatch) => {
   try {
-    const { data } = await api.fetchClassByCourseID(studentId);
+    const { data } = await api.getClassByCourseID(id);
+    console.log(data);
     dispatch({ type: 'FETCH_CLASS', payload: data });
   } catch (error) {
     console.log(error.message);
