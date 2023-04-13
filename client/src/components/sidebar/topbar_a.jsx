@@ -3,7 +3,7 @@ import "./topbar.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { DropdownButton } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-function Topbar({ handleLogin }) {
+function AdminTopbar({ handleLogin }) {
   const userName = "Chan Tai Ming";
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ function Topbar({ handleLogin }) {
         <Dropdown style={{ height: "10%" }}>
           <DropdownButton id="dropdown-basic-button" title={userName}>
             <Dropdown.Item
-              onClick={(event) => handleLinkClick("/studProfile")}
+              onClick={(event) => handleLinkClick("/profile")}
               id="dropdown_item"
             >
               profile
@@ -36,4 +36,4 @@ function Topbar({ handleLogin }) {
   );
 }
 
-export default Topbar;
+export default AdminTopbar;

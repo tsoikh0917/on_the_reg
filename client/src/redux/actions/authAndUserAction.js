@@ -1,4 +1,4 @@
-import * as api from "../api/api";
+import * as api from '../api/api'
 
 export const getUserLoginStatusWithAuth = () => async (dispatch) => {
   try {

@@ -36,7 +36,7 @@ function SSideBar() {
             icon={<FaCalendarAlt />}
             component={<Link to="/classSchedule" />}
           >
-            Class Schedule
+            Class Planner
           </MenuItem>
           <MenuItem
             id="st"
