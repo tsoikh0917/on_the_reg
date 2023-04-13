@@ -47,11 +47,31 @@ function Confirm() {
 
   const [isChecked, setIsChecked] = useState(false);
 
+  const [showWarn, setWarn] = useState(false);
+
+  const [isBlurred, setIsBlurred] = useState(false);
+
+  const toggleWarn = () => {
+    setWarn(!showWarn);
+    setIsBlurred(!isBlurred);
+  };
+
   function handleCheckboxChange() {
     setIsChecked(!isChecked);
   }
   return (
     <div>
+      {showWarn && (
+        <div className="warning">
+          <p className="warning-text">This class is already full!</p>
+          <button onClick={toggleWarn} id="rmB" className="yes">
+            <p className="warning-text">Yes</p>
+          </button>
+          <button onClick={toggleWarn} id="rmB" className="no">
+            <p className="warning-text">No</p>
+          </button>
+        </div>
+      )}
       <h1>
         {courseInfo.courseID} - {courseInfo.courseName}
       </h1>
@@ -79,12 +99,18 @@ function Confirm() {
         <p className="description-content">Capacity: {classInfo.capacity}</p>
       </div>
 
-      <button
-        className="custom-btn b-confirm"
-        onClick={() => handleAddCourse()}
-      >
-        Add
-      </button>
+      {classInfo.capacity == 0 ? (
+        <button onClick={toggleWarn} className="custom-btn b-confirm">
+          Add
+        </button>
+      ) : (
+        <button
+          className="custom-btn b-confirm"
+          onClick={() => handleAddCourse()}
+        >
+          Add
+        </button>
+      )}
     </div>
   );
 }

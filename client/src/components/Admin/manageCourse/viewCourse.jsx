@@ -24,7 +24,7 @@ function AdminViewCourse() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCourses());
-  }, [dispatch]);
+  }, []);
 
   const data = React.useMemo(() => course, [course]);
   const [search, setSearch] = useState("");
@@ -103,8 +103,6 @@ function AdminViewCourse() {
     ],
     []
   );
-
-  React.useEffect(() => {}, [courseInfo]);
 
   const {
     getTableProps,
@@ -207,7 +205,7 @@ function AdminViewCourse() {
                   <th id="th">
                     {toggleFilter ? (
                       <FaFilter
-                        style={{ color: '#D2D2F9' }}
+                        style={{ color: "#D2D2F9" }}
                         onClick={showFilter}
                       />
                     ) : (
@@ -234,8 +232,10 @@ function AdminViewCourse() {
                       </td>
                     ))}
                     <td id="td">
-                      <Link to={`/aEditCourse/${courseInfo.courseID}`}
-                                             state={{ courseInfo }}>
+                      <Link
+                        to={`/aEditCourse/${courseInfo.courseID}`}
+                        state={{ courseInfo }}
+                      >
                         <FaEdit style={{ color: "#7D7FEC" }} />
                       </Link>
                     </td>
@@ -249,7 +249,7 @@ function AdminViewCourse() {
                         to={`/aSelectClass/${courseInfo.courseID}`}
                         state={{ courseInfo }}
                       >
-                        <FaArrowAltCircleRight  style={{ color: "#7D7FEC" }}/>
+                        <FaArrowAltCircleRight style={{ color: "#7D7FEC" }} />
                       </Link>
                     </td>
                   </tr>
