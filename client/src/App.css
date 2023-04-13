@@ -1,6 +1,7 @@
 .App, #align-main {
   margin-left: 300px;
 }
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500&display=swap');
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -43,12 +44,14 @@ body {
 
 h1 {
   font-size: 70px;
-  font-weight: 600;
+  font-weight: 500;
   width: 80%;
   background-image: linear-gradient(180deg, #8A8AFB 0%, #8A8AFB 100%);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
+  font-family: 'Rajdhani', sans-serif;
+  background-color: None;
   /* text-shadow: 2px 2px 2px rgba(57, 56, 56, 0.6); */
 }
 

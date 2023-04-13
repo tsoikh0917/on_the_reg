@@ -24,86 +24,86 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
       role: null,
     }
 
-    // By api
-    // log in the user...
-    const { data } = await api.authLogin(loginInfo);
-    console.log(data);
+    // // By api
+    // // log in the user...
+    // const { data } = await api.authLogin(loginInfo);
+    // console.log(data);
 
-    // todo: fetch the user info from the server
-    const authInfo = {
-      name: username,
-      token: data.accessToken,
-      role: data.role,
-    }
-    // dispatch the user to the store
-    dispatch({
-      type: "LOGIN",
-      payload: authInfo,
-    });
-    localStorage.setItem("auth", JSON.stringify(authInfo));
+    // // todo: fetch the user info from the server
+    // const authInfo = {
+    //   name: username,
+    //   token: data.accessToken,
+    //   role: data.role,
+    // }
+    // // dispatch the user to the store
+    // dispatch({
+    //   type: "LOGIN",
+    //   payload: authInfo,
+    // });
+    // localStorage.setItem("auth", JSON.stringify(authInfo));
 
-    // dispatch user info
-    const userInfo = data.role === "admin" 
-                     ?
-                     //  admin info
-                     {
-                        name: data.name,
-                        email: data.email,
-                        gender: data.gender,
-                        userID: data.userID,
-                        username: username,
+    // // dispatch user info
+    // const userInfo = data.role === "admin" 
+    //                  ?
+    //                  //  admin info
+    //                  {
+    //                     name: data.name,
+    //                     email: data.email,
+    //                     gender: data.gender,
+    //                     userID: data.userID,
+    //                     username: username,
 
-                     } :
-                      // student info
-                      {
-                        userID: data.userID, 
-                        major: data.major, 
-                        name: data.name, 
-                        email: data.email,
-                        gender: data.gender,
-                        yearOfStudy: data.yearOfStudy,
-                        emergencyContact: data.emergencyContact,
-                        username: username,
-                      }
+    //                  } :
+    //                   // student info
+    //                   {
+    //                     userID: data.userID, 
+    //                     major: data.major, 
+    //                     name: data.name, 
+    //                     email: data.email,
+    //                     gender: data.gender,
+    //                     yearOfStudy: data.yearOfStudy,
+    //                     emergencyContact: data.emergencyContact,
+    //                     username: username,
+    //                   }
 
-    dispatch({ type: "USER_LOGIN", payload: userInfo});
-    localStorage.setItem("user", JSON.stringify(userInfo));
+    // dispatch({ type: "USER_LOGIN", payload: userInfo});
+    // localStorage.setItem("user", JSON.stringify(userInfo));
 
 
 
     // By local storage
-    // if (!username || !password) {
-    //   dispatch({ type: 'ERROR', payload: {} })
-    //   localStorage.setItem('auth', JSON.stringify(returnData))
-    //   return
-    // }
+    if (!username || !password) {
+      dispatch({ type: 'ERROR', payload: {} })
+      localStorage.setItem('auth', JSON.stringify(returnData))
+      return
+    }
 
-    // // 
-    // if (username === 'admin' && password === '123456') {
-    //   const auth = {
-    //     name: username,
-    //     token: '',
-    //     role: 'admin',
-    //   }
-    //   dispatch({ type: 'LOGIN', payload: auth})
-    //   localStorage.setItem('auth', JSON.stringify(auth))
+    // 
+    if (username === 'admin' && password === '123456') {
+      const auth = {
+        name: username,
+        token: '',
+        role: 'admin',
+      }
+      dispatch({ type: 'LOGIN', payload: auth})
+      localStorage.setItem('auth', JSON.stringify(auth))
 
-    //   return
-    // }
+      return
+    }
 
-    // if (username === 'student' && password === '123456') {
-    //   const auth = {
-    //     name: username,
-    //     token: '',
-    //     role: 'student',
-    //   }
-    //   dispatch({ type: 'LOGIN', payload: auth})
-    //   localStorage.setItem('auth', JSON.stringify(auth))
-    //   return
-    // }
+    if (username === 'student' && password === '123456') {
+      const auth = {
+        name: username,
+        token: '',
+        role: 'student',
+      }
+      dispatch({ type: 'LOGIN', payload: auth})
+      localStorage.setItem('auth', JSON.stringify(auth))
+      return
+    }
 
-    // dispatch({ type: 'ERROR', payload: returnData })
-    // localStorage.setItem('auth', JSON.stringify(returnData))
+    dispatch({ type: 'ERROR', payload: returnData })
+    localStorage.setItem('auth', JSON.stringify(returnData))
 
   } catch (error) {
     if (error.status === 401) {
