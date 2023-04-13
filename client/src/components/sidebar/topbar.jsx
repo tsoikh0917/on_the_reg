@@ -16,7 +16,9 @@ function Topbar({ handleLogin }) {
   }
 
   function handleLogout() {
+    console.log("logout");
     dispatch(userLogoutWithAuth())
+    navigate("/");
   }
 
   return (
@@ -33,7 +35,7 @@ function Topbar({ handleLogin }) {
 
             {/* todo: use redux auth to handle */}
             <Dropdown.Item
-              onClick={(event) => handleLogin(false)}
+              onClick={() => handleLogout()}
               id="dropdown_item"
             >
               logout

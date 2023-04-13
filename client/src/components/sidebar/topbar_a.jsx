@@ -3,13 +3,25 @@ import "./topbar.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { DropdownButton } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLogoutWithAuth } from "../../redux/actions/authAndUserAction";
+
+
 function AdminTopbar({ handleLogin }) {
   const userName = "Chan Tai Ming";
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
 
   function handleLinkClick(link) {
     navigate(link);
   }
+  function handleLogout() {
+    console.log("logout");
+    dispatch(userLogoutWithAuth())
+  }
+
+
   return (
     <div id="my_topbar">
       <span id="block">
@@ -24,7 +36,7 @@ function AdminTopbar({ handleLogin }) {
 
             {/* todo: use redux auth to handle */}
             <Dropdown.Item
-              onClick={(event) => handleLogin(false)}
+              onClick={() => handleLogout()}
               id="dropdown_item"
             >
               logout

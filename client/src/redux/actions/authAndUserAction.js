@@ -127,6 +127,10 @@ export const userLogoutWithAuth = () => async (dispatch) => {
         role: null,
       },
     });
+    localStorage.setItem("auth", JSON.stringify({}));
+    dispatch({ type: "USER_LOGOUT", payload: {} });
+    localStorage.setItem("user", JSON.stringify({}));
+    
   } catch (error) {
   }
 };

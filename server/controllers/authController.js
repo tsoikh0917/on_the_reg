@@ -110,7 +110,49 @@ const userRegister = async (req, res) => {
 }
 
 const userLogout = async (req, res) => {
-    
+  // on client side, delete cookie
+  const refreshToken = req.cookies?.auth
+  const { role } = req.body
+  console.log("login start")
+
+
+  if (!refreshToken) return res.sendStatus(204) // no content
+
+  // is refresh token in db?
+  let sql = role === "student" ? 
+            `SELECT refrestToken
+              FROM student
+              WHERE refrestToken = ?`
+            :
+            `SELECT refrestToken
+             FROM admin
+             WHERE refrestToken = ?`
+
+  let deleteSQL = role === "student" ? 
+                  `UPDATE student
+                   SET refrestToken = ''
+                   WHERE refrestToken = ?`
+                  :
+                  `UPDATE admin
+                   SET refrestToken = ''
+                   WHERE refrestToken = ?`
+  try {
+    // if refreshtoken not exist, delete cookie and return
+    let user = await asyncQuery(sql, [refreshToken])
+    if (user.length == 0){
+      res.clearCookie('auth', { httpOnly: true, maxAge: 24*60*60*1000 })
+      res.sendStatus(204) 
+      return
+    }
+
+    // delete refresh token in db
+    await asyncQuery(deleteSQL, [refreshToken])
+    res.clearCookie('auth', { httpOnly: true, maxAge: 24*60*60*1000 })
+
+    res.sendStatus(204) // no content
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const userRefresh = async (req, res) => {
