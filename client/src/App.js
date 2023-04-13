@@ -68,7 +68,7 @@ function App() {
       return (
         <>
           <div>
-            <Topbar handleLogin={handleLogin} />
+            <AdminTopbar handleLogin={handleLogin} />
             <div className="side">
               <ASideBar />
             </div>

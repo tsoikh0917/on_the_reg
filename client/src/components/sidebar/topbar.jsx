@@ -16,7 +16,7 @@ function Topbar({ handleLogin }) {
         <Dropdown style={{ height: "10%" }}>
           <DropdownButton id="dropdown-basic-button" title={userName}>
             <Dropdown.Item
-              onClick={(event) => handleLinkClick("/stuProfile")}
+              onClick={(event) => handleLinkClick("/studProfile")}
               id="dropdown_item"
             >
               profile
