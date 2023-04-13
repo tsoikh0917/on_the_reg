@@ -4,9 +4,11 @@ export const getUserLoginStatusWithAuth = () => async (dispatch) => {
   try {
     // get the user login status...
     const auth = JSON.parse(localStorage.getItem("auth")) || null
+    const user = JSON.parse(localStorage.getItem("user")) || null
 
     // dispatch the user to the store
     dispatch({ type: "GET_AUTH_STATUS", payload: auth });
+    dispatch({ type: "GET_USER_INFO", payload: user})
   } catch (error) {
     console.log(error);
   }
