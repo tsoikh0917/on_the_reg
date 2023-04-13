@@ -1,11 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500&display=swap');
 .side {
   font-family: "Helvetica Neue", sans-serif;
   font-weight: bold;
 }
+
 #s {
   font-size: 25px;
-  font-weight: bold;
+  font-weight: 400;
+  font-family: 'Rajdhani', sans-serif;
 }
+
+
+
 .header {
   background-image: linear-gradient(to left, #553c9a, #a577d3);
   color: transparent;
@@ -13,10 +19,41 @@
   -webkit-background-clip: text;
   text-align: center;
 }
+
 .si {
-  background-color: white;
+  background-color: #B6B6FA;
+  color: #4c4c5d;
+  box-shadow: 2px 2px 20px #AFAFE9;
+  font-weight: 400;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 #st {
   color: rgb(26, 40, 59);
+}
+
+#bar_component {
+  transition: 0.5s;
+}
+
+#bar_component:hover{
+  background-color: #d5d5f9;
+  color: #4c4c5d;
+  box-shadow: 1px 1px 10px #AFAFE9;
+  font-weight: 400;
+  font-family: 'Rajdhani', sans-serif;
+  transform: scale(1.01);
+}
+
+#ts{
+  transition: 0.5s;
+}
+
+#ts:hover{
+  background-color: #eeeefd;
+  color: #4c4c5d;
+  box-shadow: 2px 2px 10px #ececf9;
+  font-weight: 400;
+  font-family: 'Rajdhani', sans-serif;
+  transform: scale(1.02);
 }

@@ -21,10 +21,10 @@ function ASideBar() {
             <MenuItem
               icon={<FaCalendarAlt />}
               component={<Link to="/aViewCourse" />}
-            >
+            id = "bar_component">
               Manage Course
             </MenuItem>
-            <MenuItem icon={<FaUserAlt />} component={<Link to="/aViewUser" />}>
+            <MenuItem icon={<FaUserAlt />} component={<Link to="/aViewUser" />} id = "bar_component">
               Manage User
             </MenuItem>
           </Menu>
