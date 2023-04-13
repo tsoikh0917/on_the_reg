@@ -21,12 +21,12 @@ function Profile() {
     <div>
       <h1>Personal Profile</h1>
       <div className="profile">
-        <div class="card shadow-sm" style={{ minWidth: "500px" }}>
-          <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0">Account Information</h3>
+        <div className="card shadow-sm" style={{ minWidth: "500px" }}>
+          <div className="card-header bg-transparent border-0">
+            <h3 className="mb-0">Account Information</h3>
           </div>
-          <div class="card-body pt-0">
-            <table class="table table-bordered">
+          <div className="card-body pt-0">
+            <table className="table table-bordered">
               <tr>
                 <th width="40%">User ID</th>
                 <td width="2%">:</td>
@@ -44,12 +44,12 @@ function Profile() {
           </div>
         </div>
 
-        <div class="card shadow-sm" id="p2">
-          <div class="card-header bg-transparent border-0">
-            <h3 class="mb-0">General Information</h3>
+        <div className="card shadow-sm" id="p2">
+          <div className="card-header bg-transparent border-0">
+            <h3 className="mb-0">General Information</h3>
           </div>
-          <div class="card-body pt-0">
-            <table class="table table-bordered">
+          <div className="card-body pt-0">
+            <table className="table table-bordered">
               <tr>
                 <th width="40%">Name</th>
                 <td width="2%">:</td>

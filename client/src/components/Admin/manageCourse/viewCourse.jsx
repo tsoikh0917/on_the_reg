@@ -13,7 +13,7 @@ import { ColumnFilter } from "../../columnFilter";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllCourses } from "../../../redux/actions/courseAction";
+import { deleteCourse, getAllCourses } from "../../../redux/actions/courseAction";
 
 function AdminViewCourse() {
   const course = useSelector((state) => state.course);
@@ -24,7 +24,10 @@ function AdminViewCourse() {
 
   const data = React.useMemo(() => course, [course]);
   const [search, setSearch] = useState("");
-
+  const [courseInfo, setCourseInfo] = useState({
+    courseID: "",
+    courseName: "",
+  });
   const handleSearch = (event) => {
     setSearch(event.target.value);
     console.log(search);
@@ -97,17 +100,6 @@ function AdminViewCourse() {
     []
   );
 
-  const [courseInfo, setCourseInfo] = useState({
-    course_ID: "3100",
-    course_name: "",
-    day: "",
-    time: "",
-    place: "",
-    department: "",
-    instructor: "",
-    capacity: 150,
-  });
-
   React.useEffect(() => {}, [courseInfo]);
 
   const {
@@ -128,22 +120,12 @@ function AdminViewCourse() {
     usePagination
   );
 
-  function handleNextPageClick() {
-    if (canNextPage) {
-      Navigate(`/aEditCourse?courseId=CHEM1070`);
-    }
-  }
-
-  /*const [courseInfo, setCourseInfo] = useState({
-    courseID: "",
-    courseName: "",
-  });*/
-
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
+    console.log(CourseV);
     setCourseInfo({
-      course_ID: CourseV.course_ID,
-      course_name: CourseV.course_name,
+      courseID: CourseV["courseID"],
+      courseName: CourseV["courseName"],
     });
     console.log(courseInfo);
   };
@@ -161,15 +143,21 @@ function AdminViewCourse() {
     setIsBlurred(!isBlurred);
   };
 
+  const deleteConfirm = (id) => {
+    dispatch(deleteCourse(id))
+    setWarn(!showWarn);
+    setIsBlurred(!isBlurred);
+  }
+
   return (
     <div id="test">
       {showWarn && (
         <div className="warning">
           <p className="warning-text">Are you sure you want to delete</p>
           <p className="warning-text">
-            {courseInfo.course_ID} - {courseInfo.course_name}?
+            {courseInfo.courseID} - {courseInfo.courseName}?
           </p>
-          <button onClick={toggleWarn} id="rmB" className="yes">
+          <button onClick={() => deleteConfirm(courseInfo.courseID)} id="rmB" className="yes">
             <p className="warning-text">Yes</p>
           </button>
           <button onClick={toggleWarn} id="rmB" className="no">
@@ -244,8 +232,7 @@ function AdminViewCourse() {
                     </td>
                     <td>
                       <Link
-                        to={`/aSelectClass/${courseInfo.course_ID}`}
-                        state={{ courseInfo }}
+                        to={`/aSelectClass/${courseInfo.courseID}`}
                       >
                         <FaArrowAltCircleRight />
                       </Link>

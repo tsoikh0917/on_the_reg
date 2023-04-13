@@ -3,21 +3,28 @@ import React, { useState, useEffect } from "react";
 import { FaEdit, FaFilter, FaRegTrashAlt } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../../MOCK_DATA.json";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
-import axios from "axios";
+import { getClassByCourseID } from "../../../redux/actions/classForStudentAction";
+import { useDispatch, useSelector } from "react-redux";
+
 
 function AdminSelectClass() {
   const navigate = useNavigate();
-  const location = useLocation().state;
-  let courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
+  const { id } = useParams();
+  console.log("id " +id);
+  const classes = useSelector((state) => state.classForStudent);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getClassByCourseID(id));
+  }, []);
 
-  const data = React.useMemo(() => fakeData, []);
+  const data = React.useMemo(() => classes, []);
   const columns = React.useMemo(
     () => [
       {
-        Header: "day",
-        accessor: "day",
+        Header: "week",
+        accessor: "week",
         Filter: ColumnFilter,
       },
       {
@@ -32,23 +39,29 @@ function AdminSelectClass() {
         Cell: ({ value, format }) => formatTime(value),
       },
       {
-        Header: "place",
-        accessor: "place",
+        Header: "end time",
+        accessor: "end_time",
         Filter: ColumnFilter,
       },
       {
-        Header: "department",
-        accessor: "department",
+        Header: "location",
+        accessor: "location",
         Filter: ColumnFilter,
       },
       {
         Header: "instructor",
-        accessor: "instructor",
+        accessor: "lectureName",
         Filter: ColumnFilter,
       },
       {
         Header: "capacity",
         accessor: "capacity",
+        Filter: ColumnFilter,
+        disableFilters: true,
+      },
+      {
+        Header: "maxCapacity",
+        accessor: "maxCapacity",
         Filter: ColumnFilter,
         disableFilters: true,
       },
@@ -66,25 +79,29 @@ function AdminSelectClass() {
   };
 
   const [classInfo, setClassInfo] = useState({
-    class_ID: "1",
-    day: "",
-    time: "",
-    place: "",
-    department: "",
-    instructor: "",
-    capacity: 150,
+    classID: "",
+    courseID: "",
+    week: "",
+    start_time: "",
+    end_time: "",
+    location: "",
+    lectureName: "",
+    capacity: "",
+    maxCapacity: "",
   });
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
 
     setClassInfo({
-      class_ID: "1",
-      day: CourseV.day,
-      time: CourseV.time,
-      place: CourseV.place,
-      department: CourseV.department,
-      instructor: CourseV.instructor,
+      classID: CourseV.classID,
+      courseID: CourseV.courseID,
+      week: CourseV.week,
+      start_time: CourseV.start_time,
+      end_time: CourseV.end_time,
+      location: CourseV.location,
+      lectureName: CourseV.lectureName,
       capacity: CourseV.capacity,
+      maxCapacity: CourseV.maxCapacity,
     });
     console.log(classInfo);
   };
@@ -151,8 +168,8 @@ function AdminSelectClass() {
         className={`blur-content ${isBlurred ? "is-blurred" : ""}`}
         style={{ zIndex: 1, pointerEvents: isBlurred ? "none" : "auto" }}
       >
-        <h1>{courseInfo.course_ID}</h1>
-        <h1>{courseInfo.course_name}</h1>
+        <h1>{/*courseInfo.course_ID*/}</h1>
+        <h1>{/*courseInfo.course_name*/}</h1>
         <button onClick={() => navigate(-1)} className="custom-btn b-search">
           <span>Back</span>
         </button>
@@ -204,7 +221,7 @@ function AdminSelectClass() {
 
                     <td id="td">
                       <Link
-                        to={`/aEditCourse/${courseInfo.course_ID}`}
+                        to={`/aEditClass/${classInfo.classID}`}
                         state={{ classInfo }}
                       >
                         <FaEdit />
