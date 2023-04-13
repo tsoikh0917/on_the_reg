@@ -3,13 +3,14 @@ import "../table.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable, usePagination } from "react-table";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCourses } from "../../redux/actions/courseAction";
+import { getRegisteredCourseById } from "../../redux/actions/registerCourseForStudentAction";
 
 function ViewClass() {
-  const course = useSelector((state) => state.course);
+  const course = useSelector((state) => state.registerCourseForStudent);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllCourses());
+    dispatch(getRegisteredCourseById(2));
+    console.log("Course: " + course);
   }, []);
   const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(

@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500&display=swap');
 .card-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  font-family: 'Rajdhani', sans-serif;
 }
 
 .cardA,
@@ -11,14 +13,16 @@
   width: 300px;
   height: 200px;
   margin: 20px;
-  background-color: white;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+  color: #f3f3f9;
+  box-shadow: 0 0 0 0 #00a2ff, 0 0 0 0 #d000ff;
   text-align: center;
   padding: 20px;
-  background-image: linear-gradient(0deg, #5f85cd1a, #245ecb1a);
-
+  transition: 0.5s;
   border-radius: 20px;
+  border: 2px solid #D1D1FF;
+
 }
+
 .card3,
 .card4,
 .card5,
@@ -38,14 +42,20 @@
 .cardB:hover,
 .cardC:hover,
 .cardD:hover {
-  background-color: lightgray; /* Set the background color on hover */
+  background: linear-gradient(334.96deg, #E3E3FF 7%, #F0F0FC 91.47%);/* Set the background color on hover */
+  transform: translate(0, -1px);
+  transform: scale(1.02);
+  box-shadow: -5px -5px 10px 0 #bebffe, 5px 5px 10px 0 #7d7fec;
 }
+
+
 
 .cardA h2,
 .cardB h2,
 .cardC h2,
 .cardD h2 {
   font-size: 24px;
+  color: #B2B2BE;
   margin-bottom: 10px;
 }
 
@@ -53,8 +63,11 @@
 .cardB p,
 .cardC p,
 .cardD p {
-  font-size: 18px;
-  color: #555;
+  font-size: 20px;
+  color: #B2B2BE;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 500;
+  text-shadow: none;
 }
 
 .icon {
@@ -64,6 +77,7 @@
 
 #main_icon {
   text-align: center;
+  transform: scale(0.8);
 }
 .image-button,
 .image-button2,
@@ -96,13 +110,16 @@
 
 .main_image {
   margin-top: 10%;
-  color: rgb(124, 91, 190);
+  color: #B2B2BE;
 }
 
 .main_h1 {
   padding-bottom: 5px;
-  border-bottom: 2px solid grey;
+  text-shadow: none;
+  border-bottom: 2px solid #A4A5E9;
 }
+
+
 
 .main_text {
   font-family: "Roboto", sans-serif;

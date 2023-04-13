@@ -45,7 +45,7 @@ h1 {
   font-size: 70px;
   font-weight: 600;
   width: 80%;
-  background-image: linear-gradient(to left, #553c9a, #cb6a56);
+  background-image: linear-gradient(180deg, #8A8AFB 0%, #8A8AFB 100%);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;

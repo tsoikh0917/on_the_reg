@@ -68,7 +68,7 @@ function AdminViewCourse() {
         Header: "faculty",
         accessor: "faculty",
         Filter: ColumnFilter,
-      }
+      },
       /*{
         Header: "day",
         accessor: "day",
@@ -215,6 +215,7 @@ function AdminViewCourse() {
                     )}
                   </th>
                   <th id="th"></th>
+                  <th id="th"></th>
                 </tr>
               ))}
             </thead>
@@ -233,9 +234,7 @@ function AdminViewCourse() {
                       </td>
                     ))}
                     <td id="td">
-                      <Link
-                        to={`/aEditCourse/${courseInfo.courseID}`}
-                      >
+                      <Link to={`/aEditCourse/${courseInfo.courseID}`}>
                         <FaEdit />
                       </Link>
                     </td>
@@ -244,10 +243,11 @@ function AdminViewCourse() {
                         <FaRegTrashAlt style={{ color: "red" }} />
                       </button>
                     </td>
-                    <td id ="td">
-                      <Link 
+                    <td id="td">
+                      <Link
                         to={`/aSelectClass/${courseInfo.courseID}`}
-                        state = {{courseInfo}}>
+                        state={{ courseInfo }}
+                      >
                         <FaArrowAltCircleRight />
                       </Link>
                     </td>
