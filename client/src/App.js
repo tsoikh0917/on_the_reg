@@ -129,7 +129,7 @@ function App() {
           <Route path="/aEditUser/:id" element={<AdminEditUser />} />
           <Route path="/aViewUser" element={<AdminViewUser />} />
         </Route>
-        <Route path="*" element={<p></p>}></Route>
+        <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </ProSidebarProvider>
   )
