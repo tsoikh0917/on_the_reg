@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAdmin } from "../../redux/actions/adminAction";
+import { getAdminByUsername } from "../../redux/actions/adminAction";
 
 function AdminProfile() {
+  const auth = useSelector((state) => state.auth);
   const admin = useSelector((state) => state.admin);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAdmin(id));
-    console.log("admin: " + admin);
+    dispatch(getAdminByUsername(auth.name));
+    console.log(auth);
   }, []);
 
-  let profileInfo = JSON.parse(JSON.stringify(admin));
-
-  const [id, setID] = useState("1");
-
-  /*const [profileInfo, setProfileInfo] = useState({
-    id: "",
-    name: "",
-    major: "",
-    year: ""
-  });*/
+  let profileInfo = JSON.parse(JSON.stringify(admin[0]));
+  console.log(profileInfo.username);
 
   return (
     <div>

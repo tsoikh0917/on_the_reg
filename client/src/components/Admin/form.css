@@ -195,6 +195,7 @@ fieldset {
   color: #fff;
   transform: scale(1.05);
   box-shadow: 1px 1px 10px #8585de;
+  transition: 0.5s;
 }
 
 

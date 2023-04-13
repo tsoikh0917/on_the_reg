@@ -80,7 +80,9 @@ export const deleteWaitlist = (waitlistNumber, id) =>
   axios.delete(`${url}/${waitlist}/${waitlistNumber}/${id}`);
 
 // Admin
-export const getAdmin = (id) => axios.get(`${url}/${admin}/${id}`);
+export const getAdminByID = (id) => axios.get(`${url}/${admin}/${id}`);
+
+export const getAdminByUsername = (username) => axios.get(`${url}/${admin}/username/${username}`);
 
 // Student
 export const getAllStudents = () => axios.get(`${url}/${student}/`);
