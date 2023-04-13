@@ -22,6 +22,7 @@ import ViewClass from "./components/studentCourseManage/viewClass";
 import ClassSchedule from "./components/studentCourseManage/classSchedule";
 import EnrollmentStatus from "./components/studentCourseManage/enrollmentStatus";
 import Topbar from "./components/sidebar/topbar";
+import AdminTopbar from "./components/sidebar/topbar_a";
 import ASideBar from "./components/sidebar/sidebar_a";
 import Login from "./components/Login/login";
 import SignUp from "./components/Login/signUp";

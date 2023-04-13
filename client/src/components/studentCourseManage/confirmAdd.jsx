@@ -11,13 +11,16 @@ function Confirm() {
   const location = useLocation().state;
   const courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
   const classInfo = JSON.parse(JSON.stringify(location.classOut));
-  const newCourse = useSelector((state) => state.registerCourseForStudent);
 
   const dispatch = useDispatch();
+  useEffect(() => {
+    console.log("classID: ", classInfo.classID);
+  }, [classInfo]);
   const handleAddCourse = () => {
     try {
+      console.log(classInfo.classId);
       dispatch(
-        createRegisteredCourse(2, courseInfo.courseID, classInfo.classId)
+        createRegisteredCourse(2, courseInfo.courseID, classInfo.classID)
       ); //need to add the studentId HERE
     } catch (error) {
       console.log(error.message);
@@ -70,10 +73,7 @@ function Confirm() {
         </p>
         <p className="description-content">Capacity: {classInfo.capacity}</p>
       </div>
-      <label className="checkbox-label">
-        <input type="checkbox" />
-        Add to waitlist if the course is full?
-      </label>
+
       <button
         className="custom-btn b-confirm"
         onClick={() => handleAddCourse()}
