@@ -4,32 +4,45 @@ import "../form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourse, updateCourse } from "../../../redux/actions/courseAction";
 
-function AdminEditCourse() {
+function AdminEditCourse(props) {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const course = useSelector((state) => state.course);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCourse(id));
+    dispatch(getCourse(id))
   }, []);
 
-  let courseInfo = JSON.parse(JSON.stringify(course[0]));
+  const [courseInfo, setCourseInfo] = useState({});
+  useEffect(() => {
+    if (course.length == 1) {
+      setCourseInfo(JSON.parse(JSON.stringify(course[0])));
+    }
+  }, [course]);
 
   const [formData, setFormData] = useState({
-    courseID: courseInfo.courseID,
-    courseName: courseInfo.courseName,
-    description: courseInfo.description,
-    faculty: courseInfo.faculty
+    courseID: "",
+    courseName: "",
+    description: "",
+    faculty: ""
   });
+
+  useEffect(() => {
+    setFormData({
+      courseID: courseInfo.courseID,
+      courseName: courseInfo.courseName,
+      description: courseInfo.description,
+      faculty: courseInfo.faculty
+    });
+  }, [courseInfo]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
   };
+
   const handleSubmit = async (event) => {
-    console.log(formData);
     dispatch(updateCourse(courseInfo.courseID, formData));
     window.history.back();
     event.preventDefault();
@@ -40,7 +53,7 @@ function AdminEditCourse() {
     navigate(-1);
   }
 
-  if (course.length == 1) {
+  if (courseInfo != undefined) {
     return (
       <div id="resize">
         <form id="form_info" onSubmit={handleSubmit}>
@@ -67,7 +80,7 @@ function AdminEditCourse() {
             ></input>
           </fieldset>
           <fieldset>
-            <h4>Course Name:</h4>
+            <h4>Ccourse Name:</h4>
             <input
               placeholder="Input course name here"
               type="text"
