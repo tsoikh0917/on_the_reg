@@ -2,20 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./classSchedule.css";
 import Calendar from "./calender";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getCourse } from "../../redux/actions/courseAction";
 
 function ClassSchedule() {
-  const [classInfo, setClassInfo] = useState([]);
+  const courseInfo = useSelector((state) => state.course);
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get("")
-      .then((response) => setClassInfo(response.data))
-      .catch((error) => console.log(error));
+    dispatch(getCourse("CSCI3100"));
   }, []);
+
   return (
     <div>
       <h1>Weekly Schedule</h1>
       <div id="scheduleTable">
-        <Calendar />
+        <Calendar courseInfo={courseInfo} />
       </div>
     </div>
   );

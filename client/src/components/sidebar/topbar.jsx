@@ -22,6 +22,7 @@ function Topbar({ handleLogin }) {
             <Dropdown.Item onClick={(event) => handleLinkClick("/changePW")}>
               change password
             </Dropdown.Item>
+            {/* todo: use redux auth to handle */}
             <Dropdown.Item onClick={(event) => handleLogin(false)}>
               logout
             </Dropdown.Item>

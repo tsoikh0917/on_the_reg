@@ -95,13 +95,13 @@ const updateClass = async (req, res) => {
                capacity = ?, 
                maxCapacity = ?, 
                courseID = ?, 
-               lectureName = ?
+               lectureName = ?,
                week = ?,
                start_time = ?,
                end_time = ?
                WHERE classID = ?`
 
-    con.query(sql, [data.location, data.capacity, data.maxCapacity, data.courseID, data.lectureName, classID, data.week, data.end_time], (err, result) => {
+    con.query(sql, [data.location, data.capacity, data.maxCapacity, data.courseID, data.lectureName, data.week, data.start_time, data.end_time, data.classID], (err, result) => {
         if (err) throw err;
         res.status(200).send(result);
     });

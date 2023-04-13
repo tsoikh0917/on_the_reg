@@ -10,11 +10,15 @@ const userLogin = async (req, res) => {
     // check if username and password are provided
     if (!username || !password) return res.status(400).send("Bad request")
 
-    // if ()
-  
     // if (emailFormat.test(email) === false ) return res.status(400).send("Bad request")
     
     try {
+      // check if user exists
+      let sql = `SELECT * FROM USER WHERE username = ?`
+
+      con.query()
+
+
       let rows = await db_all(sql, [email])
       if (rows.length == 0){
         res.status(401).send("Invalid username or password")

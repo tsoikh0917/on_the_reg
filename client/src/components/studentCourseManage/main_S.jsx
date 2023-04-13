@@ -62,12 +62,14 @@ function MainS() {
         <div onMouseEnter={() => open(2)} onMouseLeave={() => close(2)}>
           <Link to="/classSchedule" style={{ textDecoration: "none" }}>
             <div className="cardB">
-              <h1 className="main_h1">className Schedule</h1>
+              <h1 className="main_h1">Schedule</h1>
 
               {checkHover2 ? (
                 <FaCalendarAlt size={50} className="main_image" />
               ) : (
-                <p className="main_text">You can check out your weekly schedule</p>
+                <p className="main_text">
+                  You can check out your weekly schedule
+                </p>
               )}
             </div>
           </Link>

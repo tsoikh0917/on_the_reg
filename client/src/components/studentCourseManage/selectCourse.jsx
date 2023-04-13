@@ -17,6 +17,7 @@ function SelectCourse() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCourse(courseID));
+    console.log(course);
   }, [courseID]);
   const data = React.useMemo(() => course, [course]);
   const [search, setSearch] = useState("");
@@ -28,6 +29,9 @@ function SelectCourse() {
     if (search != "") {
       navigate(`/selectCourse/${search}`);
     }
+  };
+  const handleBack = () => {
+    navigate("/search");
   };
 
   const columns = React.useMemo(
@@ -53,15 +57,10 @@ function SelectCourse() {
     ],
     []
   );
-  const startTime = "2001-01-01T09:30:00";
-  const Time = startTime.substring(11);
-  const time = Time.replace(/:00$/, "");
 
-  //time = datetime.replace(/:00$/, "");
   const [toggleFilter, setToggleFilter] = useState(false);
   const showFilter = () => {
     setToggleFilter(!toggleFilter);
-    console.log(time);
   };
   const {
     getTableProps,
@@ -114,7 +113,7 @@ function SelectCourse() {
   return (
     <div id="test">
       <h1>Select/Search Course</h1>
-      <button onClick={() => navigate(-1)} className="custom-btn b-search">
+      <button onClick={() => handleBack()} className="custom-btn b-search">
         <span>Back</span>
       </button>
       <div className="wrap">
@@ -126,15 +125,17 @@ function SelectCourse() {
               placeholder="What are you looking for?"
               onChange={handleSearch}
             ></input>
-            <button
-              type="submit"
-              className="searchButton"
-              onClick={searchSubmit}
-            >
-              <div id="icon1">
-                <FaSearch />
-              </div>
-            </button>
+            <Link to={`/selectCourse/${search}`} state={{ search }}>
+              <button
+                type="submit"
+                className="searchButton"
+                onClick={searchSubmit}
+              >
+                <div id="icon1">
+                  <FaSearch />
+                </div>
+              </button>
+            </Link>
           </div>
         </form>
       </div>
