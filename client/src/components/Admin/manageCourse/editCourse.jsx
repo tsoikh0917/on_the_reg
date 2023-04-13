@@ -59,8 +59,10 @@ function AdminEditCourse(props) {
               tabIndex="1"
               name="courseID"
               id="courseID"
+              maxLength={50}
               onChange={handleInputChange}
               defaultValue={courseInfo.courseID}
+              disabled
               required
             ></input>
           </fieldset>
@@ -72,6 +74,7 @@ function AdminEditCourse(props) {
               tabIndex="2"
               name="courseName"
               id="courseName"
+              maxLength={50}
               onChange={handleInputChange}
               defaultValue={courseInfo.courseName}
               required
@@ -85,6 +88,7 @@ function AdminEditCourse(props) {
               tabIndex="3"
               name="faculty"
               id="faculty"
+              maxLength={30}
               onChange={handleInputChange}
               defaultValue={courseInfo.faculty}
               required
@@ -98,6 +102,7 @@ function AdminEditCourse(props) {
               tabIndex="4"
               name="description"
               id="description"
+              maxLength={400}
               onChange={handleInputChange}
               defaultValue={courseInfo.description}
               required

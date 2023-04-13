@@ -47,7 +47,6 @@ function App() {
   const [count, setCount] = useState(0);
   const [isAdmin, setIsAdmin] = useState(true);
 
-
   // show different page according to the role
   function checkLogin() {
     // if (auth?.role === 'student' || (isLoggedIn && !isAdmin) ){

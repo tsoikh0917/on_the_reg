@@ -39,6 +39,7 @@ function AdminAddCourse() {
             tabIndex="1"
             name="courseID"
             id="ID"
+            maxLength={50}
             onChange={handleInputChange}
             required
             autoFocus
@@ -52,6 +53,7 @@ function AdminAddCourse() {
             tabIndex="2"
             name="courseName"
             id="courseName"
+            maxLength={50}
             onChange={handleInputChange}
             required
           ></input>
@@ -64,6 +66,7 @@ function AdminAddCourse() {
             tabIndex="3"
             name="faculty"
             id="faculty"
+            maxLength={30}
             onChange={handleInputChange}
             required
           ></input>
@@ -76,6 +79,7 @@ function AdminAddCourse() {
             tabIndex="4"
             name="description"
             id="description"
+            maxLength={400}
             onChange={handleInputChange}
             required
           ></textarea>
