@@ -11,20 +11,20 @@ function Confirm() {
   const location = useLocation().state;
   const courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
   const classInfo = JSON.parse(JSON.stringify(location.classOut));
-  //TODO: ADD STUDENT ID
-  /*const newCourse = useSelector((state) => state.registerCourseForStudent);
+  const newCourse = useSelector((state) => state.registerCourseForStudent);
 
   const dispatch = useDispatch();
   const handleAddCourse = () => {
     try {
-      dispatch(createRegisteredCourse(1, classInfo.classId)); //need to add the studentId HERE
+      dispatch(
+        createRegisteredCourse(2, courseInfo.courseID, classInfo.classId)
+      ); //need to add the studentId HERE
     } catch (error) {
       console.log(error.message);
     }
 
     navigate("/search");
-  };*/
-  const handleAddCourse = () => {};
+  };
 
   const formatTime = (value) => {
     const date = new Date(value);

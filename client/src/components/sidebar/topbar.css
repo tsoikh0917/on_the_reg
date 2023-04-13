@@ -65,6 +65,8 @@ html {
 #dropdown_item:hover{
   background-color:#7772d1;
   color: #F0F0F8;
+  transform: scale(1.01);
+  box-shadow: 0.5px 0.5px 5px #7772d1;
 }
 
 #my_topbar {
