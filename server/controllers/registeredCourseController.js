@@ -12,8 +12,8 @@ const getRegisteredCoursesByStudent = async (req, res) => {
              FROM user_course a, course b, class c
              WHERE a.courseID = b.courseID 
              AND a.classID = c.classID 
-             AND a.studentID = c.studentID 
-             AND a.studentID = ?`
+             AND a.userID = c.userID 
+             AND a.userID = ?`
 
   // first parameter: sql query
   // second parameter: array of values to be inserted into the query
@@ -30,7 +30,7 @@ const deleteRegisteredCourse = async (req, res) => {
 
   let sql = `SELECT * 
              FROM user_course 
-             WHERE courseID = ? AND studentID = ?`
+             WHERE courseID = ? AND userID = ?`
 
   // check if the course exists
   con.query(sql, [courseID, studentID], (err, result) => {
@@ -40,7 +40,7 @@ const deleteRegisteredCourse = async (req, res) => {
     } else {
       // delete the course
       sql = `DELETE FROM user_course 
-             WHERE courseID = ? AND studentID = ?`
+             WHERE courseID = ? AND userID = ?`
       con.query(sql, [courseID, studentID], (err, result) => {
         if (err) throw err
         res.status(200).send(result)
@@ -56,7 +56,7 @@ const addRegisteredCourse = async (req, res) => {
 
   let sql = `SELECT * 
              FROM user_course 
-             WHERE courseID = ? AND studentID = ? AND classID = ?`
+             WHERE courseID = ? AND userID = ? AND classID = ?`
 
   // check if the course exists
   con.query(sql, [newCourse.courseID, newCourse.studentID, newCourse.classID], (err, result) => {
@@ -64,7 +64,7 @@ const addRegisteredCourse = async (req, res) => {
     if (result.length === 0) {
       // add the course
       sql = `INSERT INTO user_course
-             (studentID, courseID, classID)
+             (userID, courseID, classID)
              VALUES (?, ?)`
       con.query(sql, [newCourse.courseID, newCourse.studentID, newCourse.classID], (err, result) => {
         if (err) throw err;
@@ -81,7 +81,7 @@ const updateRegisteredCourse = async (req, res) => {
 
   let sql = `SELECT * 
              FROM user_course 
-             WHERE courseID = ? AND studentID = ?`
+             WHERE courseID = ? AND userID = ?`
 
   // check if the course exists
   con.query(sql, [oldCourseID, oldStudentID], (err, result) => {
@@ -91,8 +91,8 @@ const updateRegisteredCourse = async (req, res) => {
     } else {
       // update the course
       sql = `UPDATE user_course 
-             SET courseID = ?, studentID = ?
-             WHERE courseID = ? AND studentID = ?`
+             SET courseID = ?, userID = ?
+             WHERE courseID = ? AND userID = ?`
       con.query(sql, [newCourseID, newStudentID, oldCourseID, oldStudentID], (err, result) => {
         if (err) throw err
         res.status(200).send(result)
