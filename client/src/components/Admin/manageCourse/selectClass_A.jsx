@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import { FaEdit, FaFilter, FaRegTrashAlt } from "react-icons/fa";
+import { FaEdit, FaFilter, FaPlus, FaRegTrashAlt } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
-import fakeData from "../../MOCK_DATA.json";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
 import { getClassByCourseID } from "../../../redux/actions/classForStudentAction";
@@ -144,7 +143,7 @@ function AdminSelectClass() {
     setWarn(!showWarn);
     setIsBlurred(!isBlurred);
   };
-
+  
   return (
     <div id="test">
       {showWarn && (
@@ -163,8 +162,15 @@ function AdminSelectClass() {
         className={`blur-content ${isBlurred ? "is-blurred" : ""}`}
         style={{ zIndex: 1, pointerEvents: isBlurred ? "none" : "auto" }}
       >
-        <h1>{/*courseInfo.course_ID*/}</h1>
-        <h1>{/*courseInfo.course_name*/}</h1>
+        <h1>{id}</h1>
+        <Link to={`/aAddClass/${id}`}>
+          <button className="add-btn">
+            <div id="verticalAlign">
+              <FaPlus id="plus" size={15} />
+              <span id="newClass">Add new class</span>
+            </div>
+          </button>
+        </Link>
         <button onClick={() => navigate(-1)} className="custom-btn b-search">
           <span>Back</span>
         </button>

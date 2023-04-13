@@ -32,7 +32,7 @@ function AdminAddCourse() {
           </button>
         </div>
         <fieldset>
-          <h4>Course ID:</h4>
+          <h4>Course Code:</h4>
           <input
             placeholder="Input course code here"
             type="text"
@@ -51,7 +51,7 @@ function AdminAddCourse() {
             type="text"
             tabIndex="2"
             name="courseName"
-            id="name"
+            id="courseName"
             onChange={handleInputChange}
             required
           ></input>
@@ -59,11 +59,11 @@ function AdminAddCourse() {
         <fieldset>
           <h4>Department:</h4>
           <input
-            placeholder="Input faculty here"
+            placeholder="Input department here"
             type="text"
             tabIndex="3"
             name="faculty"
-            id="department"
+            id="faculty"
             onChange={handleInputChange}
             required
           ></input>
