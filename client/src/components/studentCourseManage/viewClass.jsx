@@ -7,9 +7,10 @@ import { getRegisteredCourseById } from "../../redux/actions/registerCourseForSt
 
 function ViewClass() {
   const course = useSelector((state) => state.registerCourseForStudent);
+  const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getRegisteredCourseById(2));
+    dispatch(getRegisteredCourseById(user?.userID));
     console.log("Course: " + course);
   }, []);
   const data = React.useMemo(() => course, [course]);
@@ -22,7 +23,7 @@ function ViewClass() {
 
       {
         Header: "course name",
-        accessor: "className",
+        accessor: "courseName",
       },
       {
         Header: "day",
@@ -41,15 +42,15 @@ function ViewClass() {
       },
       {
         Header: "place",
-        accessor: "place",
+        accessor: "location",
       },
       {
-        Header: "department",
-        accessor: "department",
+        Header: "faculty",
+        accessor: "faculty",
       },
       {
         Header: "instructor",
-        accessor: "instructor",
+        accessor: "lectureName",
       },
     ],
     []
@@ -81,16 +82,16 @@ function ViewClass() {
     course_ID: "",
     course_name: "",
   });
-  React.useEffect(() => {
-    console.log(JSON.stringify(courseInfo));
-  }, [courseInfo]);
-  const getCourse = (rowV) => {
-    var CourseV = JSON.parse(JSON.stringify(rowV));
-    setCourse({
-      course_ID: CourseV.course_ID,
-      course_name: CourseV.course_name,
-    });
-  };
+  // React.useEffect(() => {
+  //   console.log(JSON.stringify(courseInfo));
+  // }, [courseInfo]);
+  // const getCourse = (rowV) => {
+  //   var CourseV = JSON.parse(JSON.stringify(rowV));
+  //   setCourse({
+  //     course_ID: CourseV.course_ID,
+  //     course_name: CourseV.course_name,
+  //   });
+  // };
 
   const [showWarn, setWarn] = useState(false);
 
@@ -114,6 +115,20 @@ function ViewClass() {
       behavior: "smooth",
     });
   };
+
+  const popdeleteWindow = (row) => {
+    console.log(row);
+    setCourse((prev) => ({
+      ...prev,
+      classID: row.original.classID
+    }))
+    toggleWarn();
+  }
+
+  const handleDelete = () => {
+    console.log(courseInfo);
+    // dispatch(deleteCourse(courseInfo.classID))
+  }    
 
   return (
     <div>
@@ -157,7 +172,7 @@ function ViewClass() {
                   <tr
                     id="tr2"
                     {...row.getRowProps()}
-                    onMouseEnter={() => getCourse(row.original)}
+                    // onMouseEnter={() => getCourse(row.original)}
                   >
                     {row.cells.map((cell) => (
                       <td id="td" {...cell.getCellProps()}>
@@ -165,7 +180,7 @@ function ViewClass() {
                       </td>
                     ))}
                     <td id="td">
-                      <button onClick={toggleWarn} id="rm">
+                      <button onClick={() => popdeleteWindow(row)} id="rm">
                         <FaRegTrashAlt style={{ color: "red" }} />
                       </button>
                     </td>
