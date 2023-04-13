@@ -11,13 +11,22 @@ function AdminEditClass(props) {
   const classes = useSelector((state) => state.classForAdmin);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("test");
     dispatch(getClass(id));
   }, []);
 
   let classInfo = JSON.parse(JSON.stringify(classes[0]));
 
+  const formatTime = (value) => {
+    const date = new Date(value);
+    const timeStr = date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return timeStr;
+  };
+  
   const [formData, setFormData] = useState({
+    classID: classInfo['classID'],
     courseID: classInfo['courseID'],
     week: classInfo['week'],
     start_time: classInfo['start_time'],
@@ -35,18 +44,25 @@ function AdminEditClass(props) {
   };
   
   const handleSubmit = async (event) => {
-    console.log(formData)
+    formData.start_time = new Date(formData.start_time);
+    formData.end_time = new Date(formData.end_time);
+    console.log(formData);
     dispatch(updateClass(classInfo.classID, formData));
     window.history.back();
     event.preventDefault();
   };
 
+  const handleClick = (event) => {
+    event.preventDefault();
+    navigate(-1);
+  }
+
   return (
     <div id="resize">
       <form id="form_info" onSubmit={handleSubmit}>
         <div id="main">
-          <h1 id="alignLeft">Edit Course</h1>
-          <button onClick={() => navigate(-1)} className="custom-fbtn fbtn">
+          <h1 id="alignLeft">Edit Class</h1>
+          <button onClick={handleClick} className="custom-fbtn fbtn">
             <span>Back</span>
           </button>
         </div>
@@ -54,9 +70,9 @@ function AdminEditClass(props) {
         <fieldset>
           <h4>Course Code:</h4>
           <input
-            placeholder="Input faculty here"
+            placeholder="Input course code here"
             type="text"
-            tabIndex="5"
+            tabIndex="1"
             name="courseID"
             id="courseID"
             onChange={handleInputChange}
@@ -65,43 +81,43 @@ function AdminEditClass(props) {
           ></input>
         </fieldset>
         <fieldset>
-          <h4>Course Day:</h4>
+          <h4>School Day:</h4>
           <input
             placeholder="Input week here"
             type="text"
-            tabIndex="3"
+            tabIndex="2"
             name="week"
-            id="start_time"
-            week={handleInputChange}
+            id="week"
+            onChange={handleInputChange}
             defaultValue={classInfo.week}
             required
           ></input>
         </fieldset>
         <fieldset>
-          <h4>Course Start Time:</h4>
+          <h4>Class Start Time:</h4>
           <input
-            placeholder="Input in the format: hh:mm-hh:mm"
-            type="text"
-            tabIndex="4"
+            placeholder="Input in the format: hh:mm"
+            type="datetime-local"
+            tabIndex="3"
             name="start_time"
             id="start_time"
-            //pattern="\d{2}:\d{2}-\d{2}:\d{2}"
+            pattern="\d{2}:\d{2}"
             onChange={handleInputChange}
-            defaultValue={classInfo.start_time}
+            defaultValue={formatTime(classInfo.start_time)}
             required
           ></input>
         </fieldset>
         <fieldset>
-          <h4>Course End Time:</h4>
+          <h4>Class End Time:</h4>
           <input
-            placeholder="Input in the format: hh:mm-hh:mm"
-            type="text"
+            placeholder="Input in the format: hh:mm"
+            type="datetime-local"
             tabIndex="4"
             name="end_time"
             id="end_time"
-            //pattern="\d{2}:\d{2}-\d{2}:\d{2}"
+            pattern="\d{2}:\d{2}"
             onChange={handleInputChange}
-            defaultValue={classInfo.end_time}
+            defaultValue={formatTime(classInfo.end_time)}
             required
           ></input>
         </fieldset>
@@ -110,7 +126,7 @@ function AdminEditClass(props) {
           <input
             placeholder="Input instructor's name here"
             type="text"
-            tabIndex="6"
+            tabIndex="5"
             name="lectureName"
             id="lectureName"
             onChange={handleInputChange}
@@ -119,11 +135,11 @@ function AdminEditClass(props) {
           ></input>
         </fieldset>
         <fieldset>
-          <h4>Maximum  Capacity:</h4>
+          <h4>Maximum Capacity:</h4>
           <input
             placeholder="Input maximum capacity of the course here"
             type="number"
-            tabIndex="7"
+            tabIndex="6"
             name="capacity"
             id="capacity"
             onChange={handleInputChange}
@@ -132,11 +148,11 @@ function AdminEditClass(props) {
           ></input>
         </fieldset>
         <fieldset>
-          <h4>Course Place:</h4>
+          <h4>Class Place:</h4>
           <input
             placeholder="Input location for the course lecture here"
             type="text"
-            tabIndex="8"
+            tabIndex="7"
             name="location"
             id="location"
             onChange={handleInputChange}

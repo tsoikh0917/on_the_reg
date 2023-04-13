@@ -22,7 +22,7 @@ function AdminViewUser() {
   }, [dispatch]);
   console.log("user" + user);
 
-  const data = React.useMemo(() => user, []);
+  const data = React.useMemo(() => user, [user]);
   const columns = React.useMemo(
     () => [
       {

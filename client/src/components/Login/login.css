@@ -1,7 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500&display=swap');
+
 html {
   height: 100%;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -62,7 +64,7 @@ body {
 .login-box .user-box {
   top: -20px;
   left: 0;
-  color: #4143c6;
+  color: #797BEB;
   font-size: 12px;
   font-family: 'Rajdhani', sans-serif;
 }
@@ -84,7 +86,7 @@ body {
 
 .login-box a:hover {
   background: #797BEB;
-  color: #fff;
+  color: #B2B2BE;
   border-radius: 5px;
   box-shadow: 0 0 5px #797BEB, 0 0 25px #797BEB, 0 0 50px #797BEB,
     0 0 100px #797BEB;
@@ -99,22 +101,58 @@ body {
 #signup {
   color: #B2B2BE;
   font-family: 'Rajdhani', sans-serif;
-  font-weight: bold;
 }
 
 #rm2 {
   background: none;
   color: inherit;
-  border: none;
+  border: 1.5px solid;
+  padding: 1px 5px 6px 5px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 300;
   font: inherit;
   cursor: pointer;
-  padding: 0;
-  margin: 0;
+  margin: 5px;
   letter-spacing: 0;
   display: inline;
-  color: #cccdf5;
+  color: #7D7FEC;
+  transition: 0.5s;
+  border-radius: 10px;
+  box-shadow: 4px 4px 30px #e8e8f2;
+}
 
-  border-radius: 3px;
+#signUpHere{
+  display: inline;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#rm2 span {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#rm2:hover {
+  color: #e7e7f5;
+}
+
+#rm2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background:#7D7FEC ;
+  z-index: -1;
+  transition: 0.5s;
+  border-radius: 10px 10px 10px 10px;
+  top: 0;
+  
+}
+
+#rm2:hover::before {
+  height: 100%;
 }
 
 .login-box form a {
@@ -132,12 +170,14 @@ body {
 }
 
 .login-box a:hover {
-  background: #797BEB;
-  color: #d2d2f0;
+  /* background: #797BEB; */
+  color: #7575cb;
   border-radius: 5px;
   box-shadow: 0 0 5px #797BEB, 0 0 25px #797BEB, 0 0 50px #797BEB,
     0 0 100px #797BEB;
 }
+
+
 
 #wrongAC {
   color:#B2B2BE;

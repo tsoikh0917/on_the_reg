@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 
 function Login({ handleLogin }) {
   const [formData, setFormData] = useState({
@@ -55,9 +55,9 @@ function Login({ handleLogin }) {
         </div>
         <div>
           <span id="signup">Don't have an account yet? </span>
-          <Link to="/signUp" id="rm2">
-            Sign Up here!
-          </Link>
+            <Link to="/signUp" id="rm2">
+              <font id="signUpHere">Sign Up here!</font>
+            </Link>
         </div>
         {valid && (
           <div>
