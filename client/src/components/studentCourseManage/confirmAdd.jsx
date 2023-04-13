@@ -11,7 +11,8 @@ function Confirm() {
   const location = useLocation().state;
   const courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
   const classInfo = JSON.parse(JSON.stringify(location.classOut));
-  const newCourse = useSelector((state) => state.registerCourseForStudent);
+  //TODO: ADD STUDENT ID
+  /*const newCourse = useSelector((state) => state.registerCourseForStudent);
 
   const dispatch = useDispatch();
   const handleAddCourse = () => {
@@ -22,7 +23,8 @@ function Confirm() {
     }
 
     navigate("/search");
-  };
+  };*/
+  const handleAddCourse = () => {};
 
   const formatTime = (value) => {
     const date = new Date(value);

@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import "./login.css";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { userLoginWithAuth } from "../../redux/actions/authAndUserAction";
 // import axios from "axios";
 
 function Login({ handleLogin }) {
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     username: "",
     password: "",
   });
   const [valid, setValid] = useState(false);
 
+  // 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -23,6 +27,8 @@ function Login({ handleLogin }) {
       //console.log(response.data);
       console.log(formData);
       handleLogin(true);
+      // login
+      dispatch(userLoginWithAuth(formData))
     } catch (error) {
       setValid(false);
       console.log(error);

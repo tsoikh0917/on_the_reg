@@ -11,9 +11,14 @@ export const getRegisteredCourseById = (studentId) => async (dispatch) => {
 
 // add class and course to registered course
 export const createRegisteredCourse =
-  (studentId, courseID) => async (dispatch) => {
+  (studentID, courseID, classID) => async (dispatch) => {
     try {
-      const { data } = await api.createRegisteredCourse(studentId, courseID);
+      const updateInfo = {
+        studentID: studentID,
+        courseID: courseID,
+        classID: classID,
+      }
+      const { data } = await api.createRegisteredCourse(updateInfo);
       dispatch({ type: "ADD_REGISTERED_COURSES_BY_STUDENTID", payload: data });
     } catch (error) {
       console.log(error.message);
