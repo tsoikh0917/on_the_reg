@@ -1,7 +1,8 @@
 // con: connection to the database
-const { con } = require("../Models/mysqlModel");
+const {con} = require('../Models/mysqlModel');
 
-const getAllRegisteredCourses = async (req, res) => {};
+const getAllRegisteredCourses = async (req, res) => {
+}
 
 const getRegisteredCoursesByStudent = async (req, res) => {
   const { studentID } = req.params;
@@ -16,76 +17,70 @@ const getRegisteredCoursesByStudent = async (req, res) => {
   // first parameter: sql query
   // second parameter: array of values to be inserted into the query
   // third parameter: callback function
-  con.query(sql, [studentID], (err, result) => {
-    if (err) throw err;
-    console.log(result);
-    res.status(201).send(result);
+  con.query(sql, [studentID],  (err, result) => {
+    if (err) throw err
+    console.log(result)
+    res.status(201).send(result)
   });
-};
+}
 
 const deleteRegisteredCourse = async (req, res) => {
-  const { courseID, studentID } = req.body;
+  const { courseID, studentID } = req.body
 
   let sql = `SELECT * 
              FROM user_course 
-             WHERE courseID = ? AND userID = ?`;
+             WHERE courseID = ? AND userID = ?`
 
   // check if the course exists
   con.query(sql, [courseID, studentID], (err, result) => {
-    if (err) throw err;
+    if (err) throw err
     if (result.length === 0) {
-      res.status(404).send("Course not found");
+      res.status(404).send("Course not found")
     } else {
       // delete the course
       sql = `DELETE FROM user_course 
-             WHERE courseID = ? AND userID = ?`;
+             WHERE courseID = ? AND userID = ?`
       con.query(sql, [courseID, studentID], (err, result) => {
-        if (err) throw err;
-        res.status(200).send(result);
-      });
+        if (err) throw err
+        res.status(200).send(result)
+      })
     }
-  });
-};
+  })
+
+}
+
 
 const addRegisteredCourse = async (req, res) => {
-  const newCourse = req.body;
+  const newCourse = req.body
 
   let sql = `SELECT * 
              FROM user_course 
-             WHERE courseID = ? AND userID = ? AND classID = ?`;
+             WHERE courseID = ? AND userID = ? AND classID = ?`
 
   // check if the course exists
-  con.query(
-    sql,
-    [newCourse.studentID, newCourse.courseID, newCourse.classID],
-    (err, result) => {
-      if (err) throw err;
-      if (result.length === 0) {
-        // add the course
-        sql = `INSERT INTO user_course
-             (userID, courseID, classID, statusID)
-             VALUES (?, ?, ?, 1)`;
-        con.query(
-          sql,
-          [newCourse.studentID, newCourse.courseID, newCourse.classID],
-          (err, result) => {
-            if (err) throw err;
-            res.status(201).send(result);
-          }
-        );
-      } else {
-        res.status(409).send("Course already exists");
-      }
+  con.query(sql, [newCourse.courseID, newCourse.studentID, newCourse.classID], (err, result) => {
+    if (err) throw err;
+    if (result.length === 0) {
+      // add the course
+      sql = `INSERT INTO user_course
+             (userID, courseID, classID, status)
+             VALUES (?, ?, ?, 1)`
+      con.query(sql, [newCourse.courseID, newCourse.studentID, newCourse.classID], (err, result) => {
+        if (err) throw err;
+        res.status(201).send(result);
+      })
+    } else {
+      res.status(409).send("Course already exists");
     }
-  );
-};
+  })
+}
 
 const updateRegisteredCourse = async (req, res) => {
   const { oldCourseID, oldStudentID, newCourseID, newStudentID } = req.body;
 
   let sql = `SELECT * 
              FROM user_course 
-             WHERE courseID = ? AND userID = ?`;
+             WHERE courseID = ? AND userID = ?`
 
   // check if the course exists
   con.query(sql, [oldCourseID, oldStudentID], (err, result) => {
@@ -96,23 +91,19 @@ const updateRegisteredCourse = async (req, res) => {
       // update the course
       sql = `UPDATE user_course 
              SET courseID = ?, userID = ?
-             WHERE courseID = ? AND userID = ?`;
-      con.query(
-        sql,
-        [newCourseID, newStudentID, oldCourseID, oldStudentID],
-        (err, result) => {
-          if (err) throw err;
-          res.status(200).send(result);
-        }
-      );
+             WHERE courseID = ? AND userID = ?`
+      con.query(sql, [newCourseID, newStudentID, oldCourseID, oldStudentID], (err, result) => {
+        if (err) throw err
+        res.status(200).send(result)
+      })
     }
-  });
-};
+  })
+}
 
 module.exports = {
   getAllRegisteredCourses,
   getRegisteredCoursesByStudent,
   deleteRegisteredCourse,
   addRegisteredCourse,
-  updateRegisteredCourse,
-};
+  updateRegisteredCourse
+}
