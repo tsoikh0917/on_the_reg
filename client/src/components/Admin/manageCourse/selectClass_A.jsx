@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { FaEdit, FaFilter, FaPlus, FaRegTrashAlt } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
 import { getClassByCourseID } from "../../../redux/actions/classForStudentAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 function AdminSelectClass() {
   const navigate = useNavigate();
+  const location = useLocation().state;
   const { id } = useParams();
-  console.log("id " +id);
+  
   const classes = useSelector((state) => state.classForStudent);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -162,7 +163,7 @@ function AdminSelectClass() {
         className={`blur-content ${isBlurred ? "is-blurred" : ""}`}
         style={{ zIndex: 1, pointerEvents: isBlurred ? "none" : "auto" }}
       >
-        <h1>{id}</h1>
+        <h1>{location["courseInfo"]["courseID"]} - {location["courseInfo"]["courseName"]}</h1>
         <Link to={`/aAddClass/${id}`}>
           <button className="add-btn">
             <div id="verticalAlign">

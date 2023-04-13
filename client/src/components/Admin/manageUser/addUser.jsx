@@ -7,6 +7,7 @@ function AdminAddUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    username: "",
     name: "",
     //dob: "",
     gender: "",
@@ -36,13 +37,27 @@ function AdminAddUser() {
           </button>
         </div>
         <fieldset>
+          <h4 id="inputT">Username:</h4>
+          <input
+            placeholder="Input username here"
+            type="text"
+            tabIndex="1"
+            name="username"
+            id="username"
+            maxLength={50}
+            onChange={handleInputChange}
+            required
+          ></input>
+        </fieldset>
+        <fieldset>
           <h4 id="inputT">Name:</h4>
           <input
             placeholder="Input name here"
             type="text"
-            tabIndex="1"
+            tabIndex="2"
             name="name"
             id="name"
+            maxLength={50}
             onChange={handleInputChange}
             required
           ></input>
@@ -64,9 +79,10 @@ function AdminAddUser() {
           <input
             placeholder="Input gender here"
             type="text"
-            tabIndex="2"
+            tabIndex="3"
             name="gender"
             id="gender"
+            pattern="^[FM]$"
             onChange={handleInputChange}
             required
           ></input>
@@ -76,9 +92,10 @@ function AdminAddUser() {
           <input
             placeholder="Input study major here"
             type="text"
-            tabIndex="3"
+            tabIndex="4"
             name="major"
             id="major"
+            maxLength={50}
             onChange={handleInputChange}
             required
           ></input>
@@ -100,9 +117,10 @@ function AdminAddUser() {
           <input
             placeholder="Input year of study here"
             type="number"
-            tabIndex="4"
+            tabIndex="5"
             name="yearOfStudy"
             id="yearOfStudy"
+            max={6}
             onChange={handleInputChange}
             required
           ></input>
@@ -112,7 +130,7 @@ function AdminAddUser() {
           <input
             placeholder="Input email address here"
             type="email"
-            tabIndex="5"
+            tabIndex="6"
             name="email"
             id="email"
             onChange={handleInputChange}
@@ -124,9 +142,10 @@ function AdminAddUser() {
           <input
             placeholder="Input phone number here"
             type="number"
-            tabIndex="6"
+            tabIndex="7"
             name="emergencyContact"
             id="emergencyContact"
+            maxLength={20}
             onChange={handleInputChange}
             required
           ></input>

@@ -20,6 +20,7 @@ function AdminEditUser() {
   const [formData, setFormData] = useState({
     name: userInfo["name"],
     userID: userInfo["userID"],
+    username: userInfo["username"],
     //dob: "",
     gender: userInfo["gender"],
     major: userInfo["major"],
@@ -55,13 +56,28 @@ function AdminEditUser() {
             </button>
           </div>
           <fieldset>
+            <h4 id="inputT">User Name:</h4>
+            <input
+              placeholder="Input username here"
+              type="text"
+              tabIndex="1"
+              name="username"
+              id="username"
+              maxLength={50}
+              onChange={handleInputChange}
+              defaultValue={userInfo["username"]}
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
             <h4 id="inputT">Name:</h4>
             <input
               placeholder="Input name here"
               type="text"
-              tabIndex="1"
+              tabIndex="2"
               name="name"
               id="name"
+              maxLength={50}
               onChange={handleInputChange}
               defaultValue={userInfo["name"]}
               required
@@ -82,11 +98,12 @@ function AdminEditUser() {
           <fieldset>
             <h4>Gender:</h4>
             <input
-              placeholder="Input gender here"
+              placeholder="Input gender in F or M"
               type="text"
-              tabIndex="2"
+              tabIndex="3"
               name="gender"
               id="gender"
+              pattern="^[FM]$"
               onChange={handleInputChange}
               defaultValue={userInfo["gender"]}
               required
@@ -97,9 +114,10 @@ function AdminEditUser() {
             <input
               placeholder="Input study major here"
               type="text"
-              tabIndex="3"
+              tabIndex="4"
               name="major"
               id="major"
+              maxLength={50}
               onChange={handleInputChange}
               defaultValue={userInfo["major"]}
               required
@@ -124,9 +142,10 @@ function AdminEditUser() {
               <input
                 placeholder="Input year of study here"
                 type="number"
-                tabIndex="4"
+                tabIndex="5"
                 name="yearOfStudy"
                 id="yearOfStudy"
+                max={6}
                 onChange={handleInputChange}
                 defaultValue={userInfo["yearOfStudy"]}
                 required
@@ -136,7 +155,7 @@ function AdminEditUser() {
             <input
               placeholder="Input email address here"
               type="email"
-              tabIndex="5"
+              tabIndex="6"
               name="email"
               id="email"
               onChange={handleInputChange}
@@ -149,9 +168,10 @@ function AdminEditUser() {
             <input
               placeholder="Input phone number here"
               type="number"
-              tabIndex="6"
+              tabIndex="7"
               name="emergencyContact"
               id="emergencyContact"
+              maxLength={20}
               onChange={handleInputChange}
               defaultValue={userInfo["emergencyContact"]}
               required

@@ -21,6 +21,7 @@ function AdminAddClass() {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    console.log(formData);
   };
   const handleSubmit = async (event) => {
     console.log(formData)
@@ -45,15 +46,26 @@ function AdminAddClass() {
             tabIndex="1"
             name="courseID"
             id="courseID"
+            maxLength={50}
             onChange={handleInputChange}
             defaultValue={id}
             required
-            autoFocus
+            disabled
           ></input>
         </fieldset>
         <fieldset>
           <h4>School Day:</h4>
-          <input
+          <select name="week" id="week" onChange={handleInputChange} required>
+            <option value="" disabled selected>Select a weekday</option>
+            <option value="Mon">Monday</option>
+            <option value="Tue">Tuesday</option>
+            <option value="Wed">Wednesday</option>
+            <option value="Thu">Thursday</option>
+            <option value="Fri">Friday</option>
+            <option value="Sat">Saturday</option>
+            <option value="Sun">Sunday</option>
+          </select>
+          {/*<input
             placeholder="Input course name here"
             type="text"
             tabIndex="2"
@@ -61,8 +73,8 @@ function AdminAddClass() {
             id="week"
             onChange={handleInputChange}
             required
-          ></input>
-        </fieldset>
+  ></input>*/}
+        </fieldset><br/>
         <fieldset>
             <h4>Class Start Time:</h4>
             <input
@@ -71,7 +83,7 @@ function AdminAddClass() {
               tabIndex="3"
               name="start_time"
               id="start_time"
-              pattern="\d{2}:\d{2}"
+              //pattern="\d{2}:\d{2}"
               onChange={handleInputChange}
               required
             ></input>
@@ -84,7 +96,7 @@ function AdminAddClass() {
               tabIndex="4"
               name="end_time"
               id="end_time"
-              pattern="\d{2}:\d{2}"
+              //pattern="\d{2}:\d{2}"
               onChange={handleInputChange}
               required
             ></input>
@@ -97,6 +109,7 @@ function AdminAddClass() {
               tabIndex="5"
               name="lectureName"
               id="lectureName"
+              maxLength={30}
               onChange={handleInputChange}
               required
             ></input>
@@ -107,6 +120,7 @@ function AdminAddClass() {
             placeholder="Input maximum capacity of the course here"
             type="number"
             tabIndex="6"
+            max={200}
             name="capacity"
             id="capacity"
             onChange={handleInputChange}
@@ -121,6 +135,7 @@ function AdminAddClass() {
             tabIndex="7"
             name="location"
             id="location"
+            maxLength={100}
             onChange={handleInputChange}
             required
           ></input>

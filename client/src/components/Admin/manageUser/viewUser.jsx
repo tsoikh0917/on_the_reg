@@ -23,18 +23,26 @@ function AdminViewUser() {
     dispatch(getAllStudents());
   }, [dispatch]);
 
+  console.log(user[0]);
+
   const data = React.useMemo(() => user, [user]);
   const columns = React.useMemo(
     () => [
       {
-        Header: "Name",
-        accessor: "name",
+        Header: "ID",
+        accessor: "userID",
         Filter: ColumnFilter,
         disableFilters: true,
       },
       {
-        Header: "ID",
-        accessor: "userID",
+        Header: "Username",
+        accessor: "username",
+        Filter: ColumnFilter,
+        disableFilters: true,
+      },
+      {
+        Header: "Name",
+        accessor: "name",
         Filter: ColumnFilter,
         disableFilters: true,
       },
@@ -77,7 +85,8 @@ function AdminViewUser() {
     Name: "Chan Tai Min",
     ID: "",
     Major: "",
-    Department: "",
+    //Department: "",
+    Username: "",
     Year: 0,
   });
 
@@ -88,6 +97,7 @@ function AdminViewUser() {
       Name: UserV.name,
       ID: UserV.userID,
       Major: UserV.major,
+      Username: UserV.username,
       //Department: UserV.Department,
       Year: UserV.yearOfStudy,
     });
