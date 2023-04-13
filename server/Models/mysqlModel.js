@@ -16,16 +16,16 @@ con.connect(function(err) {
  console.log('connection successful');
 });
 
-const asyncQuery = async (sql, params) => {
-  return new Promise((resolve, reject) => {
-    con.query(sql, params, (err, result) => {
-        if (err) {
-            return reject(err)
-        }
-        resolve(result)
-    })
-  })
-}
+// const asyncQuery = async (sql, params) => {
+//   return new Promise((resolve, reject) => {
+//     con.query(sql, params, (err, result) => {
+//         if (err) {
+//             return reject(err)
+//         }
+//         resolve(result)
+//     })
+//   })
+// }
 
 // export this module to use in other files
 module.exports = { con, asyncQuery}

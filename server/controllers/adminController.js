@@ -1,4 +1,4 @@
-const con = require('../Models/mysqlModel');
+const { con } = require('../Models/mysqlModel');
 
 const getAdmin = async (req, res) => {
     const userID = req.param('userID');

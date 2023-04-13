@@ -1,5 +1,5 @@
 // con: connection to the database
-const con = require('../Models/mysqlModel');
+const {con} = require('../Models/mysqlModel');
 
 const getWaitlist = async (req, res) => {
     const userID = req.param('userID');

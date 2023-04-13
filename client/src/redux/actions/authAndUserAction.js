@@ -104,14 +104,17 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
     // localStorage.setItem('auth', JSON.stringify(returnData))
 
   } catch (error) {
-    console.log(error);
+    if (error.status === 401) {
+      dispatch({ type: "ERROR", payload: {} });
+      localStorage.setItem("auth", JSON.stringify({}));
+    }
   }
 };
 
 export const userLogoutWithAuth = () => async (dispatch) => {
   try {
     // log out the user...
-    // await api.authLogout();
+    await api.authLogout();
 
     // dispatch the user to the store
     dispatch({
@@ -123,14 +126,12 @@ export const userLogoutWithAuth = () => async (dispatch) => {
       },
     });
   } catch (error) {
-    console.log(error);
   }
 };
 
 export const userRefreshWithAuth = () => async (dispatch) => {
   try {
   } catch (error) {
-    console.log(error);
   }
 };
 
