@@ -81,7 +81,7 @@ const EditCourse = (req, res) => {
 const ViewCourseFromSearchBar = (req, res) => {
     const data = req.param('SearchBarInput');
     let sql = `SELECT * 
-                FROM course a, class b
+                FROM course a
                 where 
                 courseID LIKE '%${req.param('SearchBarInput')}%'
                 or courseName LIKE '%${req.param('SearchBarInput')}%'
