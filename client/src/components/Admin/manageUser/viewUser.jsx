@@ -10,17 +10,18 @@ import {
 import { useTable, useFilters, usePagination } from "react-table";
 import { Link } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
-import { deleteStudent, getAllStudents } from "../../../redux/actions/studentAction";
+import {
+  deleteStudent,
+  getAllStudents,
+} from "../../../redux/actions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
-import { connect } from 'react-redux';
 
-function AdminViewUser() {  
+function AdminViewUser() {
   const user = useSelector((state) => state.student);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllStudents());
   }, [dispatch]);
-  console.log("user" + user);
 
   const data = React.useMemo(() => user, [user]);
   const columns = React.useMemo(
@@ -106,11 +107,11 @@ function AdminViewUser() {
   };
 
   const deleteConfirm = (id) => {
-    dispatch(deleteStudent(id))
+    dispatch(deleteStudent(id));
     console.log(user);
     setWarn(!showWarn);
     setIsBlurred(!isBlurred);
-  }
+  };
 
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
@@ -135,7 +136,11 @@ function AdminViewUser() {
           <p className="warning-text">
             {userInfo.Name} - {userInfo.ID}?
           </p>
-          <button onClick={() => deleteConfirm(userInfo.ID)} id="rmB" className="yes">
+          <button
+            onClick={() => deleteConfirm(userInfo.ID)}
+            id="rmB"
+            className="yes"
+          >
             <p className="warning-text">Yes</p>
           </button>
           <button onClick={toggleWarn} id="rmB" className="no">
@@ -148,27 +153,6 @@ function AdminViewUser() {
         className={`blur-content ${isBlurred ? "is-blurred" : ""}`}
         style={{ zIndex: 1, pointerEvents: isBlurred ? "none" : "auto" }}
       >
-        <div className="wrap">
-          <form>
-            <div className="search">
-              <input
-                type="text"
-                className="searchTerm"
-                placeholder="Input course code/ course name for searching"
-                onChange={handleSearch}
-              ></input>
-              <button
-                onClick={searchSubmit}
-                type="submit"
-                className="searchButton"
-              >
-                <div id="icon1">
-                  <FaSearch />
-                </div>
-              </button>
-            </div>
-          </form>
-        </div>
         <Link to="/aAddUser">
           <button className="add-btn">
             <div id="verticalAlign">
