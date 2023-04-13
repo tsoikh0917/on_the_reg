@@ -47,27 +47,31 @@ body {
   border-bottom: 1px solid #B2B2BE;
   outline: none;
   background: transparent;
+  border-radius: 0px;
 }
 
 .login-box .user-box label {
   position: absolute;
-  top: 0;
+  top: -20px;
   left: 0;
   padding: 10px 0;
   font-size: 16px;
-  color: #B2B2BE;
+  color: #a4a5e8;
   pointer-events: none;
   transition: 0.5s;
+  font-size: 15px;
+  font-family: 'Rajdhani', sans-serif;
 }
 
-.login-box .user-box input:focus ~ label,
+/* .login-box .user-box input:focus ~ label,
 .login-box .user-box {
-  top: -20px;
-  left: 0;
   color: #4143c6;
   font-size: 12px;
   font-family: 'Rajdhani', sans-serif;
-}
+} */
+
+
+
 
 .login-box form a {
   position: relative;
