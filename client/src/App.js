@@ -46,7 +46,7 @@ function StudentPage() {
         <Route path="/selectCourse/:type" element={<SelectCourse />} />
         <Route path="/selectClass/:type" element={<SelectClass />} />
         <Route path="/search/classOption" element={<Option />} />
-        <Route path="/search/confirm" element={<Confirm />} />
+        <Route path="/search/confirm/:type" element={<Confirm />} />
         <Route path="*" element={<Navigate to="/" />}></Route>
       </Routes>
     </div>

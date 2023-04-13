@@ -13,14 +13,19 @@ function SelectClass() {
   const navigate = useNavigate();
   const location = useLocation().state;
   const courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
-  const classInfo = useSelector((state) => state.course);
+  const classInfo = useSelector((state) => state.classForStudent);
+  var class2;
+  var classID;
 
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log(courseInfo);
-    dispatch(getClassByCourseID(1));
+    dispatch(getClassByCourseID(courseInfo.courseID));
+    class2 = JSON.parse(JSON.stringify(classInfo));
+    console.log("class2:" + class2);
+    classID = class2.classID;
+    console.log("classID:" + classID);
   }, []);
-
+  const data = React.useMemo(() => classInfo, [classInfo]);
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
     setSearch(event.target.value);
@@ -37,12 +42,15 @@ function SelectClass() {
     }
   };
 
-  const data = React.useMemo(() => fakeData, []);
   const columns = React.useMemo(
     () => [
       {
+        Header: "Class ID",
+        accessor: "classID",
+      },
+      {
         Header: "day",
-        accessor: "day",
+        accessor: "week",
         Filter: ColumnFilter,
       },
       {
@@ -59,17 +67,12 @@ function SelectClass() {
       },
       {
         Header: "place",
-        accessor: "place",
-        Filter: ColumnFilter,
-      },
-      {
-        Header: "department",
-        accessor: "department",
+        accessor: "location",
         Filter: ColumnFilter,
       },
       {
         Header: "instructor",
-        accessor: "instructor",
+        accessor: "lectureName",
         Filter: ColumnFilter,
       },
       {
@@ -128,11 +131,34 @@ function SelectClass() {
     });
   };
 
+  const [classOut, setClassOut] = useState({
+    classID: "",
+    week: "",
+    start_time: "",
+    end_time: "",
+    location: "",
+    lectureName: "",
+    capacity: "",
+  });
+  const getRowValue = (rowV) => {
+    var ClassV = JSON.parse(JSON.stringify(rowV));
+
+    setClassOut({
+      classID: ClassV.classID,
+      week: ClassV.week,
+      start_time: ClassV.start_time,
+      end_time: ClassV.end_time,
+      location: ClassV.location,
+      lectureName: ClassV.lectureName,
+      capacity: ClassV.capacity,
+    });
+    console.log(classOut);
+  };
+
   return (
     <div id="test">
-      <h1>
-        {courseInfo.name} - {courseInfo.id}
-      </h1>
+      <h1>{courseInfo.courseID}</h1>
+      <h1>{courseInfo.courseName}</h1>
       <button onClick={() => navigate(-1)} className="custom-btn b-search">
         <span>Back</span>
       </button>
@@ -170,7 +196,11 @@ function SelectClass() {
             {page.map((row) => {
               prepareRow(row);
               return (
-                <tr id="tr2" {...row.getRowProps()}>
+                <tr
+                  id="tr2"
+                  {...row.getRowProps()}
+                  onMouseEnter={() => getRowValue(row.original)}
+                >
                   {row.cells.map((cell) => (
                     <td id="td" {...cell.getCellProps()}>
                       {cell.render("Cell")}{" "}
@@ -178,7 +208,10 @@ function SelectClass() {
                   ))}
 
                   <td id="td">
-                    <Link to="/search/confirm">
+                    <Link
+                      to={`/search/confirm/${courseInfo.courseID}-${classOut.classID}`}
+                      state={{ courseInfo, classOut }}
+                    >
                       <FaArrowAltCircleRight />
                     </Link>
                   </td>

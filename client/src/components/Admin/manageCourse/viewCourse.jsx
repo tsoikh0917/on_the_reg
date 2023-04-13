@@ -16,14 +16,13 @@ import { useEffect } from "react";
 import { getAllCourses } from "../../../redux/actions/courseAction";
 
 function AdminViewCourse() {
-  
   const course = useSelector((state) => state.course);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCourses());
   }, []);
 
-  const data = React.useMemo(() => course, []);
+  const data = React.useMemo(() => course, [course]);
   const [search, setSearch] = useState("");
 
   const handleSearch = (event) => {
@@ -62,7 +61,7 @@ function AdminViewCourse() {
         Header: "faculty",
         accessor: "faculty",
         Filter: ColumnFilter,
-      }
+      },
       /*{
         Header: "day",
         accessor: "day",

@@ -15,14 +15,10 @@ function SelectCourse() {
   const course = useSelector((state) => state.course);
 
   const dispatch = useDispatch();
-  useEffect(
-    () => {
-      dispatch(getCourse(courseID));
-    },
-    [courseID],
-    [course]
-  );
-  const data = React.useMemo(() => course, []);
+  useEffect(() => {
+    dispatch(getCourse(courseID));
+  }, [courseID]);
+  const data = React.useMemo(() => course, [course]);
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
   const handleSearch = (event) => {
@@ -47,10 +43,12 @@ function SelectCourse() {
         accessor: "courseName",
         Filter: ColumnFilter,
       },
+      { Header: "Department", accessor: "faculty", Filter: ColumnFilter },
       {
         Header: "description",
         accessor: "description",
         Filter: ColumnFilter,
+        disableFilters: true,
       },
     ],
     []
@@ -83,16 +81,19 @@ function SelectCourse() {
     usePagination
   );
   const [courseInfo, setCourseInfo] = useState({
-    course_ID: "3100",
-    course_name: "",
-    course_num: "",
+    courseID: "",
+    courseName: "",
+    facutly: "",
+    description: "",
   });
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
+    console.log(rowV);
     setCourseInfo({
-      course_ID: CourseV.course_ID,
-      course_name: CourseV.course_name,
-      course_num: CourseV.course_num,
+      courseID: CourseV.courseID,
+      courseName: CourseV.courseName,
+      faculty: CourseV.faculty,
+      description: CourseV.description,
     });
   };
   const handleNext = () => {
@@ -171,7 +172,11 @@ function SelectCourse() {
             {page.map((row) => {
               prepareRow(row);
               return (
-                <tr id="tr2" {...row.getRowProps()}>
+                <tr
+                  id="tr2"
+                  {...row.getRowProps()}
+                  onMouseEnter={() => getRowValue(row.original)}
+                >
                   {row.cells.map((cell) => (
                     <td id="td" {...cell.getCellProps()}>
                       {cell.render("Cell")}{" "}
@@ -180,7 +185,7 @@ function SelectCourse() {
 
                   <td id="td">
                     <Link
-                      to={`/selectClass/${courseInfo.course_ID}`}
+                      to={`/selectClass/${courseInfo.courseID}`}
                       state={{ courseInfo }}
                     >
                       <FaArrowAltCircleRight />

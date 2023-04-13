@@ -2,38 +2,34 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./confirmAdd.css";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 function Confirm() {
   const navigate = useNavigate();
-  const [classInfo, setClassInfo] = useState([]);
-  useEffect(() => {
-    axios
-      .get("")
-      .then((response) => setClassInfo(response.data))
-      .catch((error) => console.log(error));
-  }, []);
-  const handleAddCourse = () => {
-    axios
-      .post("", classInfo)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
-    navigate("/enrollment");
+  const location = useLocation().state;
+  const courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
+  const classInfo = JSON.parse(JSON.stringify(location.classOut));
+  const formatTime = (value) => {
+    const date = new Date(value);
+    const timeStr = date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+    return timeStr;
   };
+  const startTime = formatTime(classInfo.start_time);
+  const endTime = formatTime(classInfo.end_time);
+
+  const handleAddCourse = () => {};
 
   const [isChecked, setIsChecked] = useState(false);
-  var courseID = "CSCI3100";
-  var courseName = "Software Engineering";
-  var time = "Monday: 00:00-23:59";
-  var place = "Lee Shau Kee Building LT";
-  var department = "ERG";
-  var Instructor = "Michael Lyu";
-  var capacity = "150/150";
+
   function handleCheckboxChange() {
     setIsChecked(!isChecked);
   }
   return (
     <div>
       <h1>
-        {courseID} - {courseName}
+        {courseInfo.courseID} - {courseInfo.courseName}
       </h1>
       <button onClick={() => navigate(-1)} className="custom-btn b-search">
         <span>Back</span>
@@ -41,14 +37,22 @@ function Confirm() {
 
       <div className="description">
         <h2 className="description-title">Course Outline:</h2>
-        <p className="description-content">This is the course outline</p>
+        <p className="description-content">{courseInfo.description}</p>
       </div>
       <div className="description">
         <h2 className="description-title">Course Detail:</h2>
-        <p className="description-content">Time: {time}</p>
-        <p className="description-content">Department: {department}</p>
-        <p className="description-content">Instructor: {Instructor}</p>
-        <p className="description-content">Capacity: {capacity}</p>
+        <p className="description-content">
+          Time: {startTime} - {endTime}
+        </p>
+        <p className="description-content">Class ID: {classInfo.classID}</p>
+        <p className="description-content">Day: {classInfo.week}</p>
+        <p className="description-content">Place: {classInfo.location}</p>
+        <p className="description-content">Department: {courseInfo.faculty}</p>
+
+        <p className="description-content">
+          Instructor: {classInfo.lectureName}
+        </p>
+        <p className="description-content">Capacity: {classInfo.capacity}</p>
       </div>
       <label className="checkbox-label">
         <input type="checkbox" />
