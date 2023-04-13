@@ -15,16 +15,19 @@ function AdminEditClass(props) {
   }, []);
 
   let classInfo = JSON.parse(JSON.stringify(classes[0]));
-
-  const formatTime = (value) => {
+  
+  const formatDateTime = (value) => {
     const date = new Date(value);
+    console.log(date.getTime);
     const timeStr = date.toLocaleTimeString([], {
       hour: "2-digit",
       minute: "2-digit",
     });
+    console.log(timeStr);
     return timeStr;
   };
 
+  formatDateTime("2023-04-27T08:07:00.000Z");
   const [formData, setFormData] = useState({
     classID: classInfo['classID'],
     courseID: classInfo['courseID'],
@@ -73,24 +76,27 @@ function AdminEditClass(props) {
               tabIndex="1"
               name="courseID"
               id="courseID"
+              maxLength={50}
               onChange={handleInputChange}
               defaultValue={classInfo.courseID}
               required
+              disabled
             ></input>
           </fieldset>
           <fieldset>
             <h4>School Day:</h4>
-            <input
-              placeholder="Input week here"
-              type="text"
-              tabIndex="2"
-              name="week"
-              id="week"
-              onChange={handleInputChange}
-              defaultValue={classInfo.week}
-              required
-            ></input>
+            <select name="week" id="week" onChange={handleInputChange} required>
+            <option value="" disabled >Select a weekday</option>
+            <option value="Mon" {...(classInfo.week === "Mon" && {selected: true})}>Monday</option>
+            <option value="Tue" {...(classInfo.week === "Tue" && {selected: true})}>Tuesday</option>
+            <option value="Wed" {...(classInfo.week === "Wed" && {selected: true})}>Wednesday</option>
+            <option value="Thu" {...(classInfo.week === "Thu" && {selected: true})}>Thursday</option>
+            <option value="Fri" {...(classInfo.week === "Fri" && {selected: true})}>Friday</option>
+            <option value="Sat" {...(classInfo.week === "Sat" && {selected: true})}>Saturday</option>
+            <option value="Sun" {...(classInfo.week === "Sun" && {selected: true})}>Sunday</option>
+          </select>
           </fieldset>
+          <br/>
           <fieldset>
             <h4>Class Start Time:</h4>
             <input
@@ -99,9 +105,9 @@ function AdminEditClass(props) {
               tabIndex="3"
               name="start_time"
               id="start_time"
-              pattern="\d{2}:\d{2}"
+              //pattern="\d{2}:\d{2}"
               onChange={handleInputChange}
-              defaultValue={Date(classInfo.start_time)}
+              defaultValue={classInfo.start_time.slice(0,16)}
               required
             ></input>
           </fieldset>
@@ -113,9 +119,9 @@ function AdminEditClass(props) {
               tabIndex="4"
               name="end_time"
               id="end_time"
-              pattern="\d{2}:\d{2}"
+              //pattern="\d{2}:\d{2}"
               onChange={handleInputChange}
-              defaultValue={Date(classInfo.end_time)}
+              defaultValue={classInfo.end_time.slice(0,16)}
               required
             ></input>
           </fieldset>
@@ -127,6 +133,7 @@ function AdminEditClass(props) {
               tabIndex="5"
               name="lectureName"
               id="lectureName"
+              maxLength={30}
               onChange={handleInputChange}
               defaultValue={classInfo.lectureName}
               required
@@ -138,6 +145,7 @@ function AdminEditClass(props) {
               placeholder="Input maximum capacity of the course here"
               type="number"
               tabIndex="6"
+              max={200}
               name="capacity"
               id="capacity"
               onChange={handleInputChange}
@@ -153,6 +161,7 @@ function AdminEditClass(props) {
               tabIndex="7"
               name="location"
               id="location"
+              maxLength={100}
               onChange={handleInputChange}
               defaultValue={classInfo.location}
               required

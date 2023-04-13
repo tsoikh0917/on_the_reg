@@ -6,10 +6,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRegisteredCourseById } from "../../redux/actions/registerCourseForStudentAction";
 
 function ViewClass() {
-  const course = useSelector((state) => state.course);
+  const course = useSelector((state) => state.registerCourseForStudent);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRegisteredCourseById(2));
+    console.log("Course: " + course);
   }, []);
   const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
