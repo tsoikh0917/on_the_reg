@@ -7,7 +7,7 @@ import Topbar from "../components/sidebar/topbar";
 import ASideBar from "../components/sidebar/sidebar_a";
 
 
-const RoleRoutes = (require, handleLogin) => {
+const RoleRoutes = (require, handleLogin,  isLoggedIn, isAdmin) => {
   // fetch the role from redux store
   // if no role, redirect to login page
   const { role } = useSelector((state) => state.auth)
@@ -20,7 +20,7 @@ const RoleRoutes = (require, handleLogin) => {
   const roleRoutes = () => {
     if (!role) return <Navigate to="/" state={{ from: location }} replace/>
 
-    if (require === "admin" && role === "admin")  {
+    if ((require === "admin" && role === "admin") || isAdmin)  {
       return (
         <div>
           <div>
@@ -36,7 +36,7 @@ const RoleRoutes = (require, handleLogin) => {
       )
     } 
 
-    if (require === "student" && role === "student") {
+    if ((require === "student" && role === "student") || isLoggedIn) {
       return (
         <>
           <div>

@@ -39,7 +39,8 @@ function App() {
   useEffect(() => {
     dispatch(getUserLoginStatusWithAuth());
   }, [])
-  const location = useLocation()
+
+  // use here to change is user are logged in or admin
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -47,8 +48,8 @@ function App() {
 
   // show different page according to the role
   function checkLogin() {
-    if (auth?.role === 'student') return <MainS />
-    if (auth?.role === 'admin') return <MainA />
+    if (auth?.role === 'student' || (isLoggedIn && !isAdmin) ) return <MainS />
+    if (auth?.role === 'admin' || (isLoggedIn && isAdmin) ) return <MainA />
     return <Login handleLogin={handleLogin} />
   }
 
@@ -71,7 +72,7 @@ function App() {
         
         {/* need login to access */}
         {/* student */}
-        <Route path="/" element={<RoleRoutes required='student'/>}>
+        <Route path="/" element={<RoleRoutes required='student' isLoggedIn={isLoggedIn} isAdmin={isAdmin} />}>
           <Route path="/changePW" element={<ChangePW />} />
           <Route path="/studProfile" element={<Profile />} />
           <Route path="/viewClass" element={<ViewClass />} />
@@ -85,7 +86,7 @@ function App() {
         </Route>
 
         {/* admin */}
-        <Route path="/" element={<RoleRoutes required='admin'/>}>
+        <Route path="/" element={<RoleRoutes required='admin' isLoggedIn={isLoggedIn} isAdmin={isAdmin}/>}>
           <Route path="/profile" element={<AdminProfile />} />
           <Route path="/changePW" element={<ChangePW />} />
           <Route path="/aAddCourse" element={<AdminAddCourse />} />
