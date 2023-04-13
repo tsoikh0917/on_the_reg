@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,600);
 
+
 #resize {
   width: 60%;
   margin: 0 auto;
@@ -121,23 +122,41 @@ fieldset {
 }
 
 .custom-fbtn {
-  width: 10%;
+  width: 20%;
   height: 1%;
-  color: #fff;
-  border-radius: 5px;
-  padding: 10px 25px;
-  font-family: "Lato", sans-serif;
+  color: inherit;
+  border-radius: 20px;
+  padding: 5px 25px;
+  font-family: 'Rajdhani', sans-serif;
   font-weight: 500;
   background: transparent;
+  background-color: transparent;
+  letter-spacing: 1px;
+  text-decoration: none;
+  outline: none;
+  overflow: hidden;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   position: relative;
   display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
-    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  /* -webkit-mask-image: -webkit-radial-gradient(white, black);  */
+  /* border: none; */
+  border : 1px solid #8585de;
+  /* box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5),
+    7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1); */
   outline: none;
   margin-left: auto;
 }
+
+.custom-fbtn:hover {
+  background: #8585de;
+  color: #fff;
+  transform: scale(1.05);
+  box-shadow: 1px 1px 10px #8585de;
+}
+
+
 
 .fbtn {
   background: #1e90ff;
