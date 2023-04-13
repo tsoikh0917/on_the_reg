@@ -2,39 +2,32 @@ import React, { useEffect, useState } from "react";
 import "../table.css";
 import { useTable, usePagination } from "react-table";
 import fakeData from "../MOCK_ENROLLMENT.json";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { getRegisteredCourseById } from "../../redux/actions/registerCourseForStudentAction";
 
 function EnrollmentStatus() {
   const [enroll, setEnroll] = useState([]);
+
+  const course = useSelector((state) => state.registerCourseForStudent);
+  const dispatch = useDispatch();
   useEffect(() => {
-    axios
-      .get("")
-      .then((response) => setEnroll(response.data))
-      .catch((error) => console.log(error));
+    dispatch(getRegisteredCourseById(1));
+    console.log(course);
   }, []);
-  const data = React.useMemo(() => fakeData, []);
+  const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
     () => [
       {
         Header: "Status",
-        accessor: "status",
+        accessor: "statusName",
       },
       {
         Header: "Course Code",
-        accessor: "course_ID",
+        accessor: "courseID",
       },
       {
         Header: "Course Name",
-        accessor: "course_name",
-      },
-
-      {
-        Header: "Request Type",
-        accessor: "type",
-      },
-      {
-        Header: "Message/Warning/Error",
-        accessor: "message",
+        accessor: "courseName",
       },
     ],
     []

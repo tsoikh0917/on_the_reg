@@ -13,7 +13,10 @@ import { ColumnFilter } from "../../columnFilter";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { deleteCourse, getAllCourses } from "../../../redux/actions/courseAction";
+import {
+  deleteCourse,
+  getAllCourses,
+} from "../../../redux/actions/courseAction";
 
 function AdminViewCourse() {
   const course = useSelector((state) => state.course);
@@ -144,10 +147,10 @@ function AdminViewCourse() {
   };
 
   const deleteConfirm = (id) => {
-    dispatch(deleteCourse(id))
+    dispatch(deleteCourse(id));
     setWarn(!showWarn);
     setIsBlurred(!isBlurred);
-  }
+  };
 
   return (
     <div id="test">
@@ -157,7 +160,11 @@ function AdminViewCourse() {
           <p className="warning-text">
             {courseInfo.courseID} - {courseInfo.courseName}?
           </p>
-          <button onClick={() => deleteConfirm(courseInfo.courseID)} id="rmB" className="yes">
+          <button
+            onClick={() => deleteConfirm(courseInfo.courseID)}
+            id="rmB"
+            className="yes"
+          >
             <p className="warning-text">Yes</p>
           </button>
           <button onClick={toggleWarn} id="rmB" className="no">
@@ -231,9 +238,7 @@ function AdminViewCourse() {
                       </button>
                     </td>
                     <td>
-                      <Link
-                        to={`/aSelectClass/${courseInfo.courseID}`}
-                      >
+                      <Link to={`/aSelectClass/${courseInfo.courseID}`}>
                         <FaArrowAltCircleRight />
                       </Link>
                     </td>

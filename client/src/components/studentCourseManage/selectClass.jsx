@@ -14,16 +14,10 @@ function SelectClass() {
   const location = useLocation().state;
   const courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
   const classInfo = useSelector((state) => state.classForStudent);
-  var class2;
-  var classID;
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getClassByCourseID(courseInfo.courseID));
-    class2 = JSON.parse(JSON.stringify(classInfo));
-    console.log("class2:" + class2);
-    classID = class2.classID;
-    console.log("classID:" + classID);
   }, []);
   const data = React.useMemo(() => classInfo, [classInfo]);
   const [search, setSearch] = useState("");
@@ -44,10 +38,6 @@ function SelectClass() {
 
   const columns = React.useMemo(
     () => [
-      {
-        Header: "Class ID",
-        accessor: "classID",
-      },
       {
         Header: "day",
         accessor: "week",

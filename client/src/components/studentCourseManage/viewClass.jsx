@@ -2,20 +2,16 @@ import React, { useEffect, useState } from "react";
 import "../table.css";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable, usePagination } from "react-table";
-import fakeData from "../MOCK_DATA.json";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { getAllStudents } from "../../redux/actions/studentAction";
+import { getAllCourses } from "../../redux/actions/courseAction";
 
 function ViewClass() {
-  const [classInfo, setClassInfo] = useState([]);
   const course = useSelector((state) => state.course);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getAllStudents());
+    dispatch(getAllCourses());
   }, []);
-  const data = React.useMemo(() => course, []);
+  const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
     () => [
       {
@@ -29,7 +25,7 @@ function ViewClass() {
       },
       {
         Header: "day",
-        accessor: "day",
+        accessor: "week",
       },
       {
         Header: "start",

@@ -7,7 +7,7 @@ const url = "http://localhost:8080";
 const course = "course";
 const auth = "auth";
 const waitlist = "waitlist";
-const classs = "class";
+const class1 = "class";
 const admin = "admin";
 const student = "student";
 const registeredCourse = "registeredcourse";
@@ -53,23 +53,22 @@ export const deleteCourse = (id) =>
   axios.delete(`${url}/${course}/delete/${id}`);
 
 // Class
-export const getAllClass = () => axios.get(`${url}/${classs}`); // for admin
+export const getAllClass = () => axios.get(`${url}/${class1}`); // for admin
 
-export const getClassById = (id) => axios.get(`${url}/${classs}/${id}`);
+export const getClassById = (id) => axios.get(`${url}/${class1}/${id}`);
 
-export const getClassByCourseID = (id) =>
-  axios.get(`${url}/${classs}/course/${id}`);
+export const getClassByCourseID = (id) => axios.get(`${url}/${class1}/course/${id}`);
 
-export const getClassByClassID = (id) => axios.get(`${url}/${classs}/${id}`);
+// export const getClassByClassID = (id) => axios.get(`${url}/${class1}/${id}`);
 
 export const createClass = (newClass) =>
-  axios.post(`${url}/${classs}/add`, newClass);
+  axios.post(`${url}/${class1}/add`, newClass);
 
 export const updateClass = (id, updatedClass) =>
-  axios.put(`${url}/${classs}/${id}`, updatedClass);
+  axios.put(`${url}/${class1}/${id}`, updatedClass);
 
 export const deleteClass = (id) =>
-  axios.delete(`${url}/${classs}/delete/${id}`);
+  axios.delete(`${url}/${class1}/delete/${id}`);
 
 // Waitlist
 export const getAllWaitlist = (id) => axios.get(`${url}/${waitlist}/${id}`); // get all waitlist
