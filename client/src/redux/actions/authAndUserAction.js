@@ -24,8 +24,8 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
       role: null,
     }
 
-    // By api
-    // log in the user...
+    // // By api
+    // // log in the user...
     const { data } = await api.authLogin(loginInfo);
     console.log(data);
 
