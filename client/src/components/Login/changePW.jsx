@@ -31,8 +31,8 @@ function ChangePW() {
   return (
     <div>
       <div id="spacing">
-        <form className="changePW" onSubmit={handleSubmit}>
-          <h1>Change Password</h1>
+        <form className="changePW" onSubmit={handleSubmit} id="space_for_form">
+          <h1 id="topic">Change Password</h1>
           <label htmlFor="current-pw">Current Password:</label>
           <input
             type="password"
