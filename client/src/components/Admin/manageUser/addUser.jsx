@@ -27,12 +27,16 @@ function AdminAddUser() {
     window.history.back();
     event.preventDefault();
   };
+  const handleClick = (event) => {
+    event.preventDefault();
+    navigate(-1);
+  }
   return (
     <div id="resize">
       <form id="form_info" onSubmit={handleSubmit}>
         <div id="main">
           <h1 id="alignLeft">Add User</h1>
-          <button onClick={() => navigate(-1)} className="custom-fbtn fbtn">
+          <button onClick={handleClick} className="custom-fbtn fbtn">
             <span>Back</span>
           </button>
         </div>

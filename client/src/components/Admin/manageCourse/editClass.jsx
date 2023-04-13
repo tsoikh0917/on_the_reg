@@ -14,7 +14,12 @@ function AdminEditClass(props) {
     dispatch(getClass(id));
   }, []);
 
-  let classInfo = JSON.parse(JSON.stringify(classes[0]));
+  const [classInfo, setClassInfo] = useState({});
+  useEffect(() => {
+    if (classes.length == 1) {
+      setClassInfo(JSON.parse(JSON.stringify(classes[0])));
+    }
+  }, [classes]);
   
   const formatDateTime = (value) => {
     const date = new Date(value);
@@ -29,16 +34,31 @@ function AdminEditClass(props) {
 
   formatDateTime("2023-04-27T08:07:00.000Z");
   const [formData, setFormData] = useState({
-    classID: classInfo['classID'],
-    courseID: classInfo['courseID'],
-    week: classInfo['week'],
-    start_time: classInfo['start_time'],
-    end_time: classInfo['end_time'],
-    location: classInfo['location'],
-    lectureName: classInfo['lectureName'],
-    capacity: classInfo['capacity'],
-    maxCapacity: classInfo['maxCapacity'],
+    classID: "",
+    courseID: "",
+    week: "",
+    start_time: "",
+    end_time: "",
+    location: "",
+    lectureName: "",
+    capacity: "",
+    maxCapacity: ""
   });
+
+  useEffect(() => {
+    setFormData({
+      classID: classInfo['classID'],
+      courseID: classInfo['courseID'],
+      week: classInfo['week'],
+      start_time: classInfo['start_time'],
+      end_time: classInfo['end_time'],
+      location: classInfo['location'],
+      lectureName: classInfo['lectureName'],
+      capacity: classInfo['capacity'],
+      maxCapacity: classInfo['maxCapacity'],
+    });
+    console.log(formData);
+  }, [classInfo]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -57,7 +77,9 @@ function AdminEditClass(props) {
     event.preventDefault();
     navigate(-1);
   }
-  if (classes.length == 1) {
+  
+  console.log(classInfo != undefined);
+  if (classInfo != undefined && classInfo.start_time != undefined) {
     return (
       <div id="resize">
         <form id="form_info" onSubmit={handleSubmit}>

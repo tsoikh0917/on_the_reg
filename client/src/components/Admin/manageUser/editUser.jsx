@@ -13,25 +13,44 @@ function AdminEditUser() {
   useEffect(() => {
     dispatch(getStudent(id));
   }, []);
-  let userInfo = JSON.parse(JSON.stringify(user[0]));
 
-  console.log(userInfo);
+  const [userInfo, setUserInfo] = useState({});
+  useEffect(() => {
+    if (user.length == 1) {
+      setUserInfo(JSON.parse(JSON.stringify(user[0])));
+    }
+  }, [user]);
 
   const [formData, setFormData] = useState({
-    name: userInfo["name"],
-    userID: userInfo["userID"],
-    username: userInfo["username"],
-    //dob: "",
-    gender: userInfo["gender"],
-    major: userInfo["major"],
-    //department: userInfo.Department,
-    yearOfStudy: userInfo["yearOfStudy"],
-    email: userInfo["email"],
-    emergencyContact: userInfo["emergencyContact"],
+    name: "",
+    userID: "",
+    username: "",
+    gender: "",
+    major: "",
+    yearOfStudy: "",
+    email: "",
+    emergencyContact: "",
   });
+
+  useEffect(() => {
+    console.log(userInfo);
+    setFormData({
+      name: userInfo.name,
+      userID: userInfo.userID,
+      username: userInfo.username,
+      gender: userInfo.gender,
+      major: userInfo.major,
+      yearOfStudy: userInfo.yearOfStudy,
+      email: userInfo.email,
+      emergencyContact: userInfo.emergencyContact,
+    });
+    console.log(formData);
+  }, [userInfo]);
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    console.log(formData);
   };
   const handleSubmit = async (event) => {
     console.log(formData)
@@ -45,7 +64,9 @@ function AdminEditUser() {
     event.preventDefault();
     navigate(-1);
   }
-  if (user.length == 1) {
+  console.log(userInfo);
+  console.log(userInfo != undefined);
+  if (userInfo != undefined) {
     return (
       <div id="resize">
         <form id="form_info" onSubmit={handleSubmit}>

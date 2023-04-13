@@ -44,8 +44,8 @@ export const getCourse = (id) => axios.get(`${url}/${course}/${id}`); // get cou
 export const createCourse = (newCourse) =>
   axios.post(`${url}/${course}/add`, newCourse);
 
-export const updateCourse = (updatedCourse) =>
-  axios.put(`${url}/${course}/edit`, updatedCourse);
+export const updateCourse = (id, updatedCourse) =>
+  axios.put(`${url}/${course}/${id}`, updatedCourse);
 
 export const searchCourse = (search) => axios.get(`${url}/${course}/${search}`);
 

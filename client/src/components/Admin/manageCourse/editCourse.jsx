@@ -14,24 +14,36 @@ function AdminEditCourse(props) {
     dispatch(getCourse(id))
   }, []);
 
-  let courseInfo = JSON.parse(JSON.stringify(course[0]));
-  console.log(courseInfo);
+  const [courseInfo, setCourseInfo] = useState({});
+  useEffect(() => {
+    if (course.length == 1) {
+      setCourseInfo(JSON.parse(JSON.stringify(course[0])));
+    }
+  }, [course]);
 
   const [formData, setFormData] = useState({
-    courseID: courseInfo.courseID,
-    courseName: courseInfo.courseName,
-    description: courseInfo.description,
-    faculty: courseInfo.faculty
+    courseID: "",
+    courseName: "",
+    description: "",
+    faculty: ""
   });
+
+  useEffect(() => {
+    setFormData({
+      courseID: courseInfo.courseID,
+      courseName: courseInfo.courseName,
+      description: courseInfo.description,
+      faculty: courseInfo.faculty
+    });
+  }, [courseInfo]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    console.log(formData);
   };
+
   const handleSubmit = async (event) => {
-    console.log(formData);
-    dispatch(updateCourse(formData));
+    dispatch(updateCourse(courseInfo.courseID, formData));
     window.history.back();
     event.preventDefault();
   };
@@ -40,7 +52,8 @@ function AdminEditCourse(props) {
     event.preventDefault();
     navigate(-1);
   }
-  if (course.length == 1) {
+
+  if (courseInfo != undefined) {
     return (
       <div id="resize">
         <form id="form_info" onSubmit={handleSubmit}>
