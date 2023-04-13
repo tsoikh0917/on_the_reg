@@ -47,18 +47,19 @@ const AddCourse = async (req, res) => {
 const DeleteCourse = (req, res) => {
     const courseID = req.param('courseID');
 
-    let sql = `DELETE FROM course
-               WHERE courseID = ?`
-
-    con.query(sql, [courseID], (err, result) => {
-        if (err) throw err;
-        res.status(200).send(result);
-    });
+    
 
     let sqlClass = `DELETE FROM class
                WHERE courseID = ?`
 
     con.query(sqlClass, [courseID], (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result);
+    });
+    let sql = `DELETE FROM course
+               WHERE courseID = ?`
+
+    con.query(sql, [courseID], (err, result) => {
         if (err) throw err;
         res.status(200).send(result);
     });
