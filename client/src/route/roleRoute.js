@@ -21,7 +21,7 @@ const RoleRoutes = ({required, handleLogin,  isAdmin, isLoggedIn}) => {
 
     // if (!role) return <Navigate to="/"/>
 
-    if ((required === "student" && role === "student") || (!isAdmin && isLoggedIn))  {
+    if (required === "student" && role === "student")  {
       console.log("student")
       return (
         <Fragment>
@@ -38,7 +38,7 @@ const RoleRoutes = ({required, handleLogin,  isAdmin, isLoggedIn}) => {
       )
     } 
 
-    if ((required == "admin" && role == "admin") || (isAdmin && isLoggedIn)) {
+    if (required == "admin" && role == "admin") {
       console.log("admin")
       return (
         <Fragment>

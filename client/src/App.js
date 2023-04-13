@@ -49,36 +49,36 @@ function App() {
 
   // show different page according to the role
   function checkLogin() {
-    // if (auth?.role === 'student' || (isLoggedIn && !isAdmin) ){
-    //   return (
-    //   <>
-    //     <div>
-    //       <Topbar handleLogin={handleLogin} />
-    //       <div className="side">
-    //         <SSideBar />
-    //       </div>
-    //     </div>
-    //     <div id="align-main">
-    //       <MainS />
-    //     </div>
-    //   </>
-    //   )
-    // }
-    // if (auth?.role === 'admin' || (isLoggedIn && isAdmin) ){
-    //   return (
-    //     <>
-    //       <div>
-    //         <AdminTopbar handleLogin={handleLogin} />
-    //         <div className="side">
-    //           <ASideBar />
-    //         </div>
-    //       </div>
-    //       <div id="align-main">
-    //         <MainA />
-    //       </div>
-    //     </>
-    //   )
-    // }  
+    if (auth?.role === 'student'){
+      return (
+      <>
+        <div>
+          <Topbar handleLogin={handleLogin} />
+          <div className="side">
+            <SSideBar />
+          </div>
+        </div>
+        <div id="align-main">
+          <MainS />
+        </div>
+      </>
+      )
+    }
+    if (auth?.role === 'admin'){
+      return (
+        <>
+          <div>
+            <AdminTopbar handleLogin={handleLogin} />
+            <div className="side">
+              <ASideBar />
+            </div>
+          </div>
+          <div id="align-main">
+            <MainA />
+          </div>
+        </>
+      )
+    }  
     return <Login handleLogin={handleLogin} />
   }
 

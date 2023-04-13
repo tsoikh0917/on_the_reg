@@ -11,6 +11,8 @@
 
 const reducers = (user = {}, action) => {
   switch (action.type) {
+    case 'GET_USER_INFO':
+      return action.payload;
     case 'USER_LOGIN':
       return action.payload;
     case 'USER_LOGOUT':
