@@ -101,7 +101,6 @@ function App() {
         {/* need login to access */}
         {/* student */}
         <Route path="/" element={<RoleRoutes required='student' isLoggedIn={isLoggedIn} isAdmin={isAdmin} />}>
-          {/* <Route path="/" element={<MainS />} /> */}
           <Route path="/changePW" element={<ChangePW />} />
           <Route path="/studProfile" element={<Profile />} />
           <Route path="/viewClass" element={<ViewClass />} />
