@@ -8,9 +8,10 @@ function AdminProfile() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAdmin(id));
+    console.log("admin: " + admin);
   }, []);
 
-  let profileInfo = JSON.parse(JSON.stringify(admin[0]));
+  let profileInfo = JSON.parse(JSON.stringify(admin));
 
   const [id, setID] = useState("1");
 
