@@ -25,6 +25,8 @@ const reducers = (auth = initialState, action) => {
       return action.payload;
     case 'register':
       return action.payload;
+    case 'ERROR':
+      return initialState;
     default:
       return auth;
   }

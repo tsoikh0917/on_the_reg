@@ -40,17 +40,18 @@ function App() {
     dispatch(getUserLoginStatusWithAuth());
   }, [])
   const location = useLocation()
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [count, setCount] = useState(0);
+  const [isAdmin, setIsAdmin] = useState(false);
 
+
+  // show different page according to the role
   function checkLogin() {
     if (auth?.role === 'student') return <MainS />
     if (auth?.role === 'admin') return <MainA />
     return <Login handleLogin={handleLogin} />
   }
 
-
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [count, setCount] = useState(0);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   function handleLogin(state) {
     console.log("argument from state: ", state);
@@ -96,16 +97,14 @@ function App() {
           <Route path="/aEditUser/:id" element={<AdminEditUser />} />
           <Route path="/aViewUser" element={<AdminViewUser />} />
         </Route>
-
-        <Route path="*" element={<Navigate to="/" />}></Route>
+        <Route path="*" element={<p></p>}></Route>
       </Routes>
-
     </ProSidebarProvider>
   )
 
 
 
-  
+
   // const store = createStore(reducers, compose(applyMiddleware(thunk)))
 
 // function StudentPage() {
