@@ -220,13 +220,13 @@ function AdminViewUser() {
                         to={`/aEditUser/${userInfo.ID}`}
                         state={{ userInfo }}
                       >
-                        <FaEdit size={20} />
+                        <FaEdit size={20} style={{ color: "#7D7FEC" }}/>
                       </Link>
                     </td>
 
                     <td id="td">
                       <button onClick={toggleWarn} id="rm">
-                        <FaRegTrashAlt size={20} style={{ color: "red" }} />
+                        <FaRegTrashAlt size={20} style={{ color: "#DF5CCA" }}  />
                       </button>
                     </td>
                   </tr>

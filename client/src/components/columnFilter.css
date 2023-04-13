@@ -1,4 +1,22 @@
 #filter_i {
-  width: 100px;
-  border-radius: 5px;
+  width: 120px;
+  border-radius: 10px;
+  border:none;
+  transition: all 0.5s ease;
 }
+
+#filter_i:hover {
+  transform: scale(1.01);
+  box-shadow: 2px 2px 20px #EBDADA;
+  transition: all 0.5s ease;
+}
+
+#filter_i:focus {
+  border:none;
+  box-shadow: 2px 2px 20px #EBDADA;
+  transform: scale(1.01);
+  transition: all 0.5s ease;
+  outline: none;
+}
+
+
