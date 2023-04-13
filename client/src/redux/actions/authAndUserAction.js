@@ -28,17 +28,46 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
     console.log(data);
 
     // todo: fetch the user info from the server
-
+    const authInfo = {
+      name: username,
+      token: data.accessToken,
+      role: data.role,
+    }
     // dispatch the user to the store
     dispatch({
       type: "LOGIN",
-      payload: {
-        name: username,
-        token: data.accessToken,
-        role: data.role,
-      },
+      payload: authInfo,
     });
-    dispatch({ type: "LOGIN", payload: data});
+    localStorage.setItem("auth", JSON.stringify(authInfo));
+
+    // dispatch user info
+    const userInfo = data.role === "admin" 
+                     ?
+                     //  admin info
+                     {
+                        name: data.name,
+                        email: data.email,
+                        gender: data.gender,
+                        userID: data.userID,
+                        username: username,
+
+                     } :
+                      // student info
+                      {
+                        userID: data.userID, 
+                        major: data.major, 
+                        name: data.name, 
+                        email: data.email,
+                        gender: data.gender,
+                        yearOfStudy: data.yearOfStudy,
+                        emergencyContact: data.emergencyContact,
+                        username: username,
+                      }
+
+    dispatch({ type: "USER_LOGIN", payload: userInfo});
+    localStorage.setItem("user", JSON.stringify(userInfo));
+
+
 
     // By local storage
     // if (!username || !password) {
