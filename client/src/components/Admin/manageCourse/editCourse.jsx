@@ -4,18 +4,17 @@ import "../form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourse, updateCourse } from "../../../redux/actions/courseAction";
 
-function AdminEditCourse(props) {
+function AdminEditCourse() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const course = useSelector((state) => state.course);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getCourse(id))
+    dispatch(getCourse(id));
   }, []);
 
   let courseInfo = JSON.parse(JSON.stringify(course[0]));
-  console.log(courseInfo);
 
   const [formData, setFormData] = useState({
     courseID: courseInfo.courseID,
@@ -31,7 +30,7 @@ function AdminEditCourse(props) {
   };
   const handleSubmit = async (event) => {
     console.log(formData);
-    dispatch(updateCourse(formData));
+    dispatch(updateCourse(courseInfo.courseID, formData));
     window.history.back();
     event.preventDefault();
   };
@@ -40,6 +39,7 @@ function AdminEditCourse(props) {
     event.preventDefault();
     navigate(-1);
   }
+
   if (course.length == 1) {
     return (
       <div id="resize">
@@ -67,7 +67,7 @@ function AdminEditCourse(props) {
             ></input>
           </fieldset>
           <fieldset>
-            <h4>Ccourse Name:</h4>
+            <h4>Course Name:</h4>
             <input
               placeholder="Input course name here"
               type="text"

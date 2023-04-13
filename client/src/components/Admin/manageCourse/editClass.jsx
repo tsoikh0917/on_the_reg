@@ -16,18 +16,6 @@ function AdminEditClass(props) {
 
   let classInfo = JSON.parse(JSON.stringify(classes[0]));
   
-  const formatDateTime = (value) => {
-    const date = new Date(value);
-    console.log(date.getTime);
-    const timeStr = date.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-    console.log(timeStr);
-    return timeStr;
-  };
-
-  formatDateTime("2023-04-27T08:07:00.000Z");
   const [formData, setFormData] = useState({
     classID: classInfo['classID'],
     courseID: classInfo['courseID'],
@@ -57,6 +45,7 @@ function AdminEditClass(props) {
     event.preventDefault();
     navigate(-1);
   }
+
   if (classes.length == 1) {
     return (
       <div id="resize">
@@ -100,7 +89,7 @@ function AdminEditClass(props) {
           <fieldset>
             <h4>Class Start Time:</h4>
             <input
-              placeholder="Input in the format: hh:mm"
+              placeholder="Input start time in the format: hh:mm"
               type="datetime-local"
               tabIndex="3"
               name="start_time"
@@ -114,7 +103,7 @@ function AdminEditClass(props) {
           <fieldset>
             <h4>Class End Time:</h4>
             <input
-              placeholder="Input in the format: hh:mm"
+              placeholder="Input end time in the format: hh:mm"
               type="datetime-local"
               tabIndex="4"
               name="end_time"
@@ -145,9 +134,10 @@ function AdminEditClass(props) {
               placeholder="Input maximum capacity of the course here"
               type="number"
               tabIndex="6"
+              min={0}
               max={200}
-              name="capacity"
-              id="capacity"
+              name="maxCapacity"
+              id="maxCapacity"
               onChange={handleInputChange}
               defaultValue={classInfo.maxCapacity}
               required

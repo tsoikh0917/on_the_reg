@@ -55,16 +55,23 @@ const DeleteCourse = (req, res) => {
         res.status(200).send(result);
     });
 
+    let sqlClass = `DELETE FROM class
+               WHERE courseID = ?`
 
+    con.query(sqlClass, [courseID], (err, result) => {
+        if (err) throw err;
+        res.status(200).send(result);
+    });
 }
 const EditCourse = (req, res) => {
+    const courseID = req.param('courseID');
     const data = req.body;
     let sql = `UPDATE course
                SET courseName = ?,
                description = ?,
                faculty = ?
                WHERE courseID = ?`
-    con.query(sql, [data.courseName, data.description, data.faculty, data.courseID], (err, result) => {
+    con.query(sql, [data.courseName, data.description, data.faculty, courseID], (err, result) => {
     if (err) throw err;
     res.status(201).send(result);
     });
