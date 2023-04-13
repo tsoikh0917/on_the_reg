@@ -45,7 +45,7 @@ function App() {
   // use here to change is user are logged in or admin
   const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [count, setCount] = useState(0);
-  const [isAdmin, setIsAdmin] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // show different page according to the role
   function checkLogin() {
