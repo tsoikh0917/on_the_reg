@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../table.css";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 function Search() {

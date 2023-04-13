@@ -3,11 +3,27 @@ import axios from "axios";
 import "./confirmAdd.css";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createRegisteredCourse } from "../../redux/actions/registerCourseForStudentAction";
+
 function Confirm() {
   const navigate = useNavigate();
   const location = useLocation().state;
   const courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
   const classInfo = JSON.parse(JSON.stringify(location.classOut));
+  const newCourse = useSelector((state) => state.registerCourseForStudent);
+
+  const dispatch = useDispatch();
+  const handleAddCourse = () => {
+    try {
+      dispatch(createRegisteredCourse(1, classInfo.classId)); //need to add the studentId HERE
+    } catch (error) {
+      console.log(error.message);
+    }
+
+    navigate("/search");
+  };
+
   const formatTime = (value) => {
     const date = new Date(value);
     const timeStr = date.toLocaleTimeString([], {
@@ -18,8 +34,6 @@ function Confirm() {
   };
   const startTime = formatTime(classInfo.start_time);
   const endTime = formatTime(classInfo.end_time);
-
-  const handleAddCourse = () => {};
 
   const [isChecked, setIsChecked] = useState(false);
 

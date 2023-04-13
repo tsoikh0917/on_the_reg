@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import {
-  DayPilot,
-  DayPilotCalendar,
-  DayPilotNavigator,
-} from "@daypilot/daypilot-lite-react";
+import { DayPilotCalendar } from "@daypilot/daypilot-lite-react";
 import "./CalendarStyles.css";
 
 const styles = {
@@ -29,8 +25,6 @@ class Calendar extends Component {
       businessBeginsHour: 7,
       businessEndsHour: 19,
 
-      eventMoveHandling: "Disabled",
-      eventResizeHandling: "Disabled",
       timeRangeSelectedHandling: "Disabled",
     };
   }
@@ -44,8 +38,8 @@ class Calendar extends Component {
       {
         id: 1,
         text: "Event 1",
-        start: "2023-04-09T10:30:00",
-        end: "2023-04-09T13:00:00",
+        start: "2001-01-02T10:30:00",
+        end: "2001-01-02T13:00:00",
       },
       {
         id: 2,
