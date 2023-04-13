@@ -207,7 +207,7 @@ function AdminViewCourse() {
                   <th id="th">
                     {toggleFilter ? (
                       <FaFilter
-                        style={{ color: "darkgrey" }}
+                        style={{ color: '#D2D2F9' }}
                         onClick={showFilter}
                       />
                     ) : (
@@ -235,12 +235,12 @@ function AdminViewCourse() {
                     ))}
                     <td id="td">
                       <Link to={`/aEditCourse/${courseInfo.courseID}`}>
-                        <FaEdit />
+                        <FaEdit style={{ color: "#7D7FEC" }} />
                       </Link>
                     </td>
                     <td id="td">
                       <button onClick={toggleWarn} id="rm">
-                        <FaRegTrashAlt style={{ color: "red" }} />
+                        <FaRegTrashAlt style={{ color: "#DF5CCA" }} />
                       </button>
                     </td>
                     <td id="td">
@@ -248,7 +248,7 @@ function AdminViewCourse() {
                         to={`/aSelectClass/${courseInfo.courseID}`}
                         state={{ courseInfo }}
                       >
-                        <FaArrowAltCircleRight />
+                        <FaArrowAltCircleRight  style={{ color: "#7D7FEC" }}/>
                       </Link>
                     </td>
                   </tr>
