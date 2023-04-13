@@ -3,16 +3,24 @@ import "../table.css";
 import { FaSearch, FaFilter, FaArrowAltCircleRight } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import fakeData from "../MOCK_DATA.json";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { ColumnFilter } from "../columnFilter";
+import { useDispatch, useSelector } from "react-redux";
+import { getClassByCourseID } from "../../redux/actions/classForStudentAction";
 import axios from "axios";
 
 function SelectClass() {
   const navigate = useNavigate();
-  const [classInfo, setClassInfo] = useState({
-    id: "CSCI3100",
-    name: "Software Engineering",
-  });
+  const location = useLocation().state;
+  const courseInfo = JSON.parse(JSON.stringify(location.courseInfo));
+  const classInfo = useSelector((state) => state.course);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    console.log(courseInfo);
+    dispatch(getClassByCourseID(1));
+  }, []);
+
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
     setSearch(event.target.value);
@@ -123,7 +131,7 @@ function SelectClass() {
   return (
     <div id="test">
       <h1>
-        {classInfo.name} - {classInfo.id}
+        {courseInfo.name} - {courseInfo.id}
       </h1>
       <button onClick={() => navigate(-1)} className="custom-btn b-search">
         <span>Back</span>
