@@ -39,7 +39,7 @@ function SignUp() {
             <h1 id="dark">Sign Up</h1>
 
             <button onClick={() => navigate(-1)} className="custom-fbtn fbtn2">
-              <span>Back</span>
+              <span id="btn-txt">Back</span>
             </button>
           </div>
           <fieldset>
