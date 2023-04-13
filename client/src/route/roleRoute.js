@@ -18,11 +18,6 @@ const RoleRoutes = ({required, handleLogin,  isAdmin, isLoggedIn}) => {
   const location = useLocation()
 
   const RoutesByRole = () => {
-    console.log("role", role, typeof role)
-    console.log("required", required)
-    console.log("isAdmin", isAdmin)
-    console.log("isLoggedIn", isLoggedIn)
-
 
     // if (!role) return <Navigate to="/"/>
 

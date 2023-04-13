@@ -11,10 +11,19 @@ h2 {
   margin-top: 0;
 }
 
+#topic{
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 400;
+  font-size: 40px;
+  color: #B2B2BE;
+  text-shadow: none;
+}
+
 label {
   display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  margin-bottom: 8px;
+  font-weight: 400;
+  color: #b2b2be;
   text-shadow: 0px 0px 0px #1212d4;
   font-family: 'Rajdhani', sans-serif;
 }
@@ -23,7 +32,7 @@ input[type="password"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #B2B2BE;
-  border-radius: 5px;
+  border-radius: 20px;
   margin-bottom: 20px;
 }
 
@@ -32,7 +41,7 @@ input[type="submit"] {
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
@@ -44,4 +53,11 @@ input[type="submit"]:hover {
   margin-top: 10%;
   margin-left: 10%;
   position: absolute;
+}
+
+#space_for_form{
+  background: linear-gradient(117.47deg, #F4F4FF 3.33%, #E7E7FA 100.44%);
+  box-shadow: 4px 4px 30px #AFAFE9;
+  border-radius: 20px;
+  border: none;
 }

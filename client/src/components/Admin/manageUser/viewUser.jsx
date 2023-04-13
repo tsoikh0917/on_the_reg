@@ -32,7 +32,6 @@ function AdminViewUser() {
         Header: "ID",
         accessor: "userID",
         Filter: ColumnFilter,
-        disableFilters: true,
       },
       {
         Header: "Username",
@@ -44,7 +43,6 @@ function AdminViewUser() {
         Header: "Name",
         accessor: "name",
         Filter: ColumnFilter,
-        disableFilters: true,
       },
       {
         Header: "Major",
@@ -82,7 +80,7 @@ function AdminViewUser() {
     usePagination
   );
   const [userInfo, setUserInfo] = useState({
-    Name: "Chan Tai Min",
+    Name: "",
     ID: "",
     Major: "",
     //Department: "",
@@ -91,7 +89,6 @@ function AdminViewUser() {
   });
 
   const getRowValue = (rowV) => {
-    //console.log(rowV);
     var UserV = JSON.parse(JSON.stringify(rowV));
     setUserInfo({
       Name: UserV.name,
