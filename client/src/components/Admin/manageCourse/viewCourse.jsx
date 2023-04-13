@@ -24,7 +24,7 @@ function AdminViewCourse() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllCourses());
-  }, []);
+  }, [dispatch]);
 
   const data = React.useMemo(() => course, [course]);
   const [search, setSearch] = useState("");
@@ -234,7 +234,8 @@ function AdminViewCourse() {
                       </td>
                     ))}
                     <td id="td">
-                      <Link to={`/aEditCourse/${courseInfo.courseID}`}>
+                      <Link to={`/aEditCourse/${courseInfo.courseID}`}
+                                             state={{ courseInfo }}>
                         <FaEdit style={{ color: "#7D7FEC" }} />
                       </Link>
                     </td>

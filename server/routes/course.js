@@ -8,7 +8,7 @@ router.get('/', Course.ViewAllCourse)
 router.get('/:courseID', Course.ViewSpecificCourse)
 router.post('/add', Course.AddCourse) 
 router.delete('/delete/:courseID', Course.DeleteCourse)
-router.put('/edit', Course.EditCourse)
+router.put('/:courseID', Course.EditCourse)
 router.get('/:SearchBarInput', Course.ViewCourseFromSearchBar)
 
 
