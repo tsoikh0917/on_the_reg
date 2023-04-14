@@ -24,7 +24,7 @@ const getRegisteredCoursesByStudent = async (req, res) => {
 };
 
 const deleteRegisteredCourse = async (req, res) => {
-  const { courseID, studentID } = req.body;
+  const { courseID, studentID } = req.params;
 
   let sql = `SELECT * 
              FROM user_course 
@@ -34,7 +34,8 @@ const deleteRegisteredCourse = async (req, res) => {
   con.query(sql, [courseID, studentID], (err, result) => {
     if (err) throw err;
     if (result.length === 0) {
-      res.status(404).send("Course not found");
+      console.log("courseID: " + courseID + " userID:" + studentID);
+      res.status(303).send("Course not found");
     } else {
       // delete the course
       sql = `DELETE FROM user_course 

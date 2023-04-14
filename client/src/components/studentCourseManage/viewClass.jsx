@@ -4,16 +4,19 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { useTable, usePagination } from "react-table";
 import { useDispatch, useSelector } from "react-redux";
 import { getRegisteredCourseById } from "../../redux/actions/registerCourseForStudentAction";
-import { updateRegisteredCourse } from "../../redux/actions/registerCourseForStudentAction";
+import { deleteRegisteredCourse } from "../../redux/actions/registerCourseForStudentAction";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function ViewClass() {
   const course = useSelector((state) => state.registerCourseForStudent);
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRegisteredCourseById(user?.userID));
     console.log("Course: " + JSON.stringify(course));
-  }, []);
+  }, [dispatch]);
   const data = React.useMemo(() => course, [course]);
   const columns = React.useMemo(
     () => [
@@ -127,10 +130,10 @@ function ViewClass() {
     });
   };
   const deleteConfirm = (courseID) => {
-    console.log(courseInfo.courseID);
-    dispatch(updateRegisteredCourse(user?.userID, courseID));
-    setWarn(!showWarn);
-    setIsBlurred(!isBlurred);
+    console.log("courseID: " + courseID + " userID:" + user?.userID);
+    dispatch(deleteRegisteredCourse(courseID, user?.userID));
+    toggleWarn();
+    window.location.reload();
   };
 
   return (

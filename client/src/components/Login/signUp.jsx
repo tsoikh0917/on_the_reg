@@ -75,7 +75,6 @@ function SignUp() {
               name="dob"
               id="dob"
               onChange={handleInputChange}
-              style={{ color: "white" }}
               required
             ></input>
           </fieldset>
@@ -107,7 +106,7 @@ function SignUp() {
             <h4>Department:</h4>
             <input
               placeholder="Input department here"
-              type="number"
+              type="text"
               tabIndex="6"
               name="department"
               id="departmentr"

@@ -36,6 +36,9 @@ export const createRegisteredCourse = (newRegisteredCourse) =>
 export const updateRegisteredCourse = (updatedRegisteredCourse) =>
   axios.put(`${url}/${registeredCourse}/edit`, updatedRegisteredCourse);
 
+export const deleteRegisteredCourse = (courseId, studentID) =>
+  axios.delete(`${url}/${registeredCourse}/${courseId}/${studentID}`);
+
 // Course
 export const getAllCourse = () => axios.get(`${url}/${course}`); // get all course
 

@@ -25,6 +25,19 @@ export const createRegisteredCourse =
     }
   };
 
+export const deleteRegisteredCourse =
+  (courseID, studentID) => async (dispatch) => {
+    try {
+      const { data } = await api.deleteRegisteredCourse(courseID, studentID);
+      dispatch({
+        type: "DELETE_REGISTERED_COURSES_BY_STUDENTID",
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
 export const updateRegisteredCourse =
   (id, updatedRegisteredCourse) => async (dispatch) => {
     try {
