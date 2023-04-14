@@ -27,6 +27,7 @@ function SignUp() {
       //console.log(response.data);
       //navigate(-1);
       console.log(formData);
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
@@ -38,7 +39,7 @@ function SignUp() {
           <div id="main">
             <h1 id="dark">Sign Up</h1>
 
-            <button onClick={() => navigate(-1)} className="custom-fbtn fbtn2">
+            <button onClick={() => navigate("/")} className="custom-fbtn fbtn2">
               <span id="btn-txt">Back</span>
             </button>
           </div>

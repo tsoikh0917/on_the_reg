@@ -64,12 +64,6 @@ function Confirm() {
       {showWarn && (
         <div className="warning">
           <p className="warning-text">This class is already full!</p>
-          <button onClick={toggleWarn} id="rmB" className="yes">
-            <p className="warning-text">Yes</p>
-          </button>
-          <button onClick={toggleWarn} id="rmB" className="no">
-            <p className="warning-text">No</p>
-          </button>
         </div>
       )}
       <h1>
