@@ -10,6 +10,7 @@ function Topbar({ handleLogin }) {
   const userName = "Chan Tai Ming";
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   function handleLinkClick(link) {
     navigate(link);
@@ -17,7 +18,7 @@ function Topbar({ handleLogin }) {
 
   function handleLogout() {
     console.log("logout");
-    dispatch(userLogoutWithAuth())
+    dispatch(userLogoutWithAuth());
     navigate("/");
   }
 
@@ -25,7 +26,7 @@ function Topbar({ handleLogin }) {
     <div id="my_topbar">
       <span id="block">
         <Dropdown style={{ height: "10%" }}>
-          <DropdownButton id="dropdown-basic-button" title={userName}>
+          <DropdownButton id="dropdown-basic-button" title={user.name}>
             <Dropdown.Item
               onClick={(event) => handleLinkClick("/studProfile")}
               id="dropdown_item"
@@ -34,10 +35,7 @@ function Topbar({ handleLogin }) {
             </Dropdown.Item>
 
             {/* todo: use redux auth to handle */}
-            <Dropdown.Item
-              onClick={() => handleLogout()}
-              id="dropdown_item"
-            >
+            <Dropdown.Item onClick={() => handleLogout()} id="dropdown_item">
               logout
             </Dropdown.Item>
           </DropdownButton>

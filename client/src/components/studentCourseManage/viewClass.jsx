@@ -191,7 +191,7 @@ function ViewClass() {
                     ))}
                     <td id="td">
                       <button onClick={() => toggleWarn()} id="rm">
-                        <FaRegTrashAlt style={{ color: "red" }} />
+                        <FaRegTrashAlt style={{ color: "#7C7EEB" }} />
                       </button>
                     </td>
                   </tr>

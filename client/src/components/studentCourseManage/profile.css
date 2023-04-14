@@ -282,15 +282,15 @@
   justify-content: center;
   align-items: center;
   padding: 2%;
-  width: 40%;
+  width: 35%;
   min-width: 500px;
   min-height: 200px;
-  background-color: #243b55;
+  background: linear-gradient(117.47deg, #F4F4FF 3.33%, #E7E7FA 100.44%);
+  box-shadow: 4px 4px 30px #AFAFE9;
   border-radius: 20px;
   margin-left: 20%;
   margin-top: 15%;
   display: block;
-  box-shadow: 0px 0px 10px #000;
   z-index: 2;
 }
 
@@ -308,11 +308,16 @@
 .warning-text {
   padding: 5px;
   margin: 0;
-  font-size: 24px;
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff7f50, 0 0 40px #ff7f50,
-    0 0 50px #ff7f50;
+  font-size: 30px;
+  font-weight: 500;
+  font-family: "Rajdhani", sans-serif;
+  color: #6d6a9a;
+  /* text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff7f50, 0 0 40px #ff7f50,
+    0 0 50px #ff7f50; */
+}
+
+.rmb{
+  color: #483ddd;
 }
 
 .yes {
@@ -322,11 +327,22 @@
   margin-bottom: 1%;
   border-radius: 10px;
   padding: 1%;
+  border: #8b85de 0px solid;
+  color: #8b85de;
+  transition: 0.3s;
+}
+.yes:hover{
+  transform: scale(1.1);
 }
 .no {
   margin-top: 3%;
   border-radius: 10px;
-  padding: 5px;
+  padding: 1%;
+  border:none;
+  transition: 0.3s;
+}
+.no:hover{
+  transform: scale(1.1);
 }
 
 #rmB {
