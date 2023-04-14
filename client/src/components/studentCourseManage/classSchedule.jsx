@@ -14,7 +14,7 @@ function ClassSchedule() {
 
   return (
     <div>
-      <h1>Weekly Schedule</h1>
+      <h1>Class Planner</h1>
       <div id="scheduleTable">
         <Calendar courseInfo={courseInfo} />
       </div>
