@@ -32,7 +32,7 @@ function Profile() {
               <tr>
                 <th width="40%">Name</th>
                 <td width="2%">:</td>
-                <td>{user.name}</td>
+                <td>{user.username}</td>
               </tr>
               <tr>
                 <th>Gender</th>
