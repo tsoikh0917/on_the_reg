@@ -147,3 +147,13 @@ export const userRegisterWithAuth = (registerInfo) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const register = (user) => async (dispatch) => {
+  try {
+    const { data } = await api.authRegister(user);
+    console.log(data);
+    dispatch({ type: 'REGISTER', payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+}

@@ -114,8 +114,11 @@ const userRegister = async (req, res) => {
     return
   }
   
+  console.log(username);
+  console.log(emergencyContact);
   // check if username is 10 digits
-  if (username.length != 10 || emergencyContact.length != 8) return res.status(400).send("Bad request")
+  if (!username || username.length != 10 || emergencyContact.length != 8) return res.status(400).send("Bad request")
+
 
   let saltRounds = 10
   let saltedPassword = bcrypt.hashSync(password, saltRounds)
@@ -124,8 +127,8 @@ const userRegister = async (req, res) => {
 
 
   let sql = `INSERT INTO student
-             (username, major, name, email, gender, yearOfStudy, emergencyContact, saltedPassword)
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+             (username, major, name, email, gender, yearOfStudy, emergencyContact, saltedPassword, isActive)
+             VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)`
 
   let selectSql = `select name, username, userID, major, yearOfStudy
                    from student

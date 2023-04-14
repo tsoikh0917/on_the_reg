@@ -23,7 +23,7 @@ const reducers = (auth = initialState, action) => {
       return action.payload;
     case 'refreshToken':
       return action.payload;
-    case 'register':
+    case 'REGISTER':
       return action.payload;
     case 'ERROR':
       return initialState;

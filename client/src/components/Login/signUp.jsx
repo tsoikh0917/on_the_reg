@@ -1,35 +1,39 @@
 import React, { useState } from "react";
 import "./signUp.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/actions/authAndUserAction";
 
 function SignUp() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    name: "",
-    ID: "",
-    dob: "",
+    username: "",
     gender: "",
     major: "",
-    department: "",
-    year: "",
+    yearOfStudy: "",
     email: "",
-    contact: "",
+    emergencyContact: "",
+    password: ""
   });
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    console.log(formData);
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      //const response = await axios.post("/api/contact", formData);
-      //console.log(response.data);
-      //navigate(-1);
       console.log(formData);
+      dispatch(register(formData));
+      window.history.back();
     } catch (error) {
       console.log(error);
     }
+  };
+  const handleClick = (event) => {
+    event.preventDefault();
+    navigate(-1);
   };
   return (
     <div className="signUp">
@@ -38,7 +42,7 @@ function SignUp() {
           <div id="main">
             <h1 id="dark">Sign Up</h1>
 
-            <button onClick={() => navigate(-1)} className="custom-fbtn fbtn2">
+            <button onClick={handleClick} className="custom-fbtn fbtn2">
               <span id="btn-txt">Back</span>
             </button>
           </div>
@@ -48,32 +52,10 @@ function SignUp() {
               placeholder="Input name here"
               type="text"
               tabIndex="1"
-              name="name"
-              id="name"
-              onChange={handleInputChange}
-              required
-            ></input>
-          </fieldset>
-          <fieldset>
-            <h4>ID:</h4>
-            <input
-              placeholder="Input ID here"
-              type="number"
-              tabIndex="2"
-              name="ID"
-              id="ID"
-              onChange={handleInputChange}
-              required
-            ></input>
-          </fieldset>
-          <fieldset>
-            <h4>Date of Birth:</h4>
-            <input
-              placeholder="Input date of birth here"
-              type="date"
-              tabIndex="3"
-              name="dob"
-              id="dob"
+              name="username"
+              id="username"
+              maxLength={10}
+              minLength={10}
               onChange={handleInputChange}
               required
             ></input>
@@ -86,6 +68,7 @@ function SignUp() {
               tabIndex="4"
               name="gender"
               id="gender"
+              pattern="^[FM]$"
               onChange={handleInputChange}
               required
             ></input>
@@ -98,18 +81,7 @@ function SignUp() {
               tabIndex="5"
               name="major"
               id="major"
-              onChange={handleInputChange}
-              required
-            ></input>
-          </fieldset>
-          <fieldset>
-            <h4>Department:</h4>
-            <input
-              placeholder="Input department here"
-              type="text"
-              tabIndex="6"
-              name="department"
-              id="departmentr"
+              maxLength={50}
               onChange={handleInputChange}
               required
             ></input>
@@ -120,8 +92,9 @@ function SignUp() {
               placeholder="Input year of study here"
               type="number"
               tabIndex="7"
-              name="year"
-              id="year"
+              name="yearOfStudy"
+              id="yearOfStudy"
+              max={6}
               onChange={handleInputChange}
               required
             ></input>
@@ -144,8 +117,23 @@ function SignUp() {
               placeholder="Input phone number here"
               type="number"
               tabIndex="9"
-              name="contact"
-              id="contact"
+              name="emergencyContact"
+              id="emergencyContact"
+              minLength={8}
+              maxLength={8}
+              onChange={handleInputChange}
+              required
+            ></input>
+          </fieldset>
+          <fieldset>
+            <h4>Contact Password:</h4>
+            <input
+              placeholder="Input password here"
+              type="password"
+              tabIndex="9"
+              name="password"
+              id="password"
+              maxLength={30}
               onChange={handleInputChange}
               required
             ></input>
