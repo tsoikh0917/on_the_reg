@@ -44,26 +44,30 @@ const AddCourse = async (req, res) => {
         res.status(201).send(result);
     });
 }
+
 const DeleteCourse = (req, res) => {
     const courseID = req.param('courseID');
-
-    
+    let message;
 
     let sqlClass = `DELETE FROM class
                WHERE courseID = ?`
 
     con.query(sqlClass, [courseID], (err, result) => {
         if (err) throw err;
-        res.status(200).send(result);
+        message = result;
     });
+
     let sql = `DELETE FROM course
                WHERE courseID = ?`
 
     con.query(sql, [courseID], (err, result) => {
         if (err) throw err;
-        res.status(200).send(result);
+        message += result;
     });
+
+    res.status(200).send(message);
 }
+
 const EditCourse = (req, res) => {
     const courseID = req.param('courseID');
     const data = req.body;

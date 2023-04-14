@@ -126,7 +126,7 @@ function SignUp() {
             ></input>
           </fieldset>
           <fieldset>
-            <h4>Contact Password:</h4>
+            <h4>Password:</h4>
             <input
               placeholder="Input password here"
               type="password"
