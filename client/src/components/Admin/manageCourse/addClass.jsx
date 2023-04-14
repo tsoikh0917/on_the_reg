@@ -51,7 +51,7 @@ function AdminAddClass() {
             tabIndex="1"
             name="courseID"
             id="courseID"
-            maxLength={50}
+            maxLength={8}
             onChange={handleInputChange}
             defaultValue={id}
             required

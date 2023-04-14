@@ -88,6 +88,7 @@ function AdminEditUser() {
               onChange={handleInputChange}
               defaultValue={userInfo["username"]}
               required
+              disabled
             ></input>
           </fieldset>
           <fieldset>

@@ -72,7 +72,7 @@ function AdminEditCourse(props) {
               tabIndex="1"
               name="courseID"
               id="courseID"
-              maxLength={50}
+              maxLength={8}
               onChange={handleInputChange}
               defaultValue={courseInfo.courseID}
               disabled
@@ -101,7 +101,7 @@ function AdminEditCourse(props) {
               tabIndex="3"
               name="faculty"
               id="faculty"
-              maxLength={30}
+              maxLength={10}
               onChange={handleInputChange}
               defaultValue={courseInfo.faculty}
               required
@@ -115,7 +115,7 @@ function AdminEditCourse(props) {
               tabIndex="4"
               name="description"
               id="description"
-              maxLength={400}
+              maxLength={255}
               onChange={handleInputChange}
               defaultValue={courseInfo.description}
               required
