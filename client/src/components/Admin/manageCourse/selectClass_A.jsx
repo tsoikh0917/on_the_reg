@@ -4,17 +4,17 @@ import { FaEdit, FaFilter, FaPlus, FaRegTrashAlt } from "react-icons/fa";
 import { useTable, useFilters, usePagination } from "react-table";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { ColumnFilter } from "../../columnFilter";
-import { getClassByCourseID } from "../../../redux/actions/classForStudentAction";
 import { useDispatch, useSelector } from "react-redux";
+import { deleteClass, getClassByCourseID } from "../../../redux/actions/classForAdminAction";
 
 
 function AdminSelectClass() {
   const navigate = useNavigate();
   const location = useLocation().state;
   const { id } = useParams();
-  
-  const classes = useSelector((state) => state.classForStudent);
+  const classes = useSelector((state) => state.classForAdmin);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getClassByCourseID(id));
   }, []);
@@ -30,12 +30,13 @@ function AdminSelectClass() {
       {
         Header: "start",
         accessor: "start_time",
+        Filter: ColumnFilter,
         Cell: ({ value, format }) => formatTime(value),
       },
       {
         Header: "end",
         accessor: "end_time",
-
+        Filter: ColumnFilter,
         Cell: ({ value, format }) => formatTime(value),
       },
       {
@@ -52,7 +53,6 @@ function AdminSelectClass() {
         Header: "capacity",
         accessor: "capacity",
         Filter: ColumnFilter,
-        disableFilters: true,
       },
       {
         Header: "maxCapacity",
@@ -73,38 +73,6 @@ function AdminSelectClass() {
     return timeStr;
   };
 
-  const [classInfo, setClassInfo] = useState({
-    classID: "",
-    courseID: "",
-    week: "",
-    start_time: "",
-    end_time: "",
-    location: "",
-    lectureName: "",
-    capacity: "",
-    maxCapacity: "",
-  });
-  const getRowValue = (rowV) => {
-    var CourseV = JSON.parse(JSON.stringify(rowV));
-
-    setClassInfo({
-      classID: CourseV.classID,
-      courseID: CourseV.courseID,
-      week: CourseV.week,
-      start_time: CourseV.start_time,
-      end_time: CourseV.end_time,
-      location: CourseV.location,
-      lectureName: CourseV.lectureName,
-      capacity: CourseV.capacity,
-      maxCapacity: CourseV.maxCapacity,
-    });
-    console.log(classInfo);
-  };
-  const [toggleFilter, setToggleFilter] = useState(false);
-  const showFilter = () => {
-    setToggleFilter(!toggleFilter);
-  };
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -122,6 +90,38 @@ function AdminSelectClass() {
     useFilters,
     usePagination
   );
+
+  const [classInfo, setClassInfo] = useState({
+    classID: "",
+    courseID: "",
+    week: "",
+    start_time: "",
+    end_time: "",
+    location: "",
+    lectureName: "",
+    capacity: "",
+    maxCapacity: "",
+  });
+
+  const getRowValue = (rowV) => {
+    var CourseV = JSON.parse(JSON.stringify(rowV));
+    setClassInfo({
+      classID: CourseV.classID,
+      courseID: CourseV.courseID,
+      week: CourseV.week,
+      start_time: CourseV.start_time,
+      end_time: CourseV.end_time,
+      location: CourseV.location,
+      lectureName: CourseV.lectureName,
+      capacity: CourseV.capacity,
+      maxCapacity: CourseV.maxCapacity,
+    });
+  };
+  const [toggleFilter, setToggleFilter] = useState(false);
+  const showFilter = () => {
+    setToggleFilter(!toggleFilter);
+  };
+  
   const handleNext = () => {
     nextPage();
     window.scrollTo({
@@ -140,18 +140,25 @@ function AdminSelectClass() {
   const [showWarn, setWarn] = useState(false);
 
   const [isBlurred, setIsBlurred] = useState(false);
+  
   const toggleWarn = () => {
     setWarn(!showWarn);
     setIsBlurred(!isBlurred);
   };
-  
+
+  const deleteConfirm = (id) => {
+    dispatch(deleteClass(id));
+    setWarn(!showWarn);
+    setIsBlurred(!isBlurred);
+  };
+
+
   return (
     <div id="test">
       {showWarn && (
         <div className="warning">
-          <p className="warning-text">Are you sure you want to delete</p>
-          <p className="warning-text">classid?</p>
-          <button onClick={toggleWarn} id="rmB" className="yes">
+          <p className="warning-text">Are you sure you want to delete this class?</p>
+          <button onClick={() => deleteConfirm(classInfo.classID)} id="rmB" className="yes">
             <p className="warning-text">Yes</p>
           </button>
           <button onClick={toggleWarn} id="rmB" className="no">

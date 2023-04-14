@@ -23,8 +23,6 @@ function AdminViewUser() {
     dispatch(getAllStudents());
   }, [dispatch]);
 
-  console.log(user[0]);
-
   const data = React.useMemo(() => user, [user]);
   const columns = React.useMemo(
     () => [
@@ -37,7 +35,6 @@ function AdminViewUser() {
         Header: "Username",
         accessor: "username",
         Filter: ColumnFilter,
-        disableFilters: true,
       },
       {
         Header: "Name",

@@ -8,7 +8,7 @@ const reducers = (classForAdmin = [], action) => {
       // maybe use map to find the classForAdmin and add the classForAdmin to it
       return classForAdmin.map((classForAdmin) => classForAdmin.classID === action.payload.classID ? action.payload : classForAdmin);
     case 'DELETE_CLASS':
-      return classForAdmin.filter((classForAdmin) => classForAdmin.classID !== action.payload.classID);
+      return classForAdmin.filter((classForAdmin) => classForAdmin.classID !== action.payload);
     case 'UPDATE_CLASS':
       return classForAdmin.map((classForAdmin) => classForAdmin.classID === action.payload.classID ? action.payload : classForAdmin);
     default:
