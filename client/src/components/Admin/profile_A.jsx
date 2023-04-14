@@ -40,9 +40,9 @@ function AdminProfile() {
                   <td>{profileInfo.username}</td>
                 </tr>
               </table>
-              <Link to="/changePW">
+              {/*<Link to="/changePW">
                 <button className="custom-btn b-profile">Change Password</button>
-              </Link>
+              </Link>*/}
             </div>
           </div>
 
