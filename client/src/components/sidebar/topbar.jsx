@@ -2,8 +2,8 @@ import React from "react";
 import "./topbar.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import { DropdownButton } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { userLogoutWithAuth } from "../../redux/actions/authAndUserAction";
 
 function Topbar({ handleLogin }) {
@@ -12,8 +12,14 @@ function Topbar({ handleLogin }) {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
 
-  function handleLinkClick(link) {
-    navigate(link);
+  const auth = useSelector((state) => state.auth.name);
+
+  function handleLinkClick() {
+    if(auth == "admin"){
+      navigate("/profile");
+    }else{
+      navigate("/studProfile");
+    }
   }
 
   function handleLogout() {
@@ -28,7 +34,7 @@ function Topbar({ handleLogin }) {
         <Dropdown style={{ height: "10%" }}>
           <DropdownButton id="dropdown-basic-button" title={user.name}>
             <Dropdown.Item
-              onClick={(event) => handleLinkClick("/studProfile")}
+              onClick={(event) => handleLinkClick()}
               id="dropdown_item"
             >
               profile

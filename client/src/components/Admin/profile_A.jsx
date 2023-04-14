@@ -10,17 +10,15 @@ function AdminProfile() {
   useEffect(() => {
     dispatch(getAdminByUsername(auth));
   }, []);
-
-  console.log(auth);
-  console.log(admin);
   const [profileInfo, setProfileInfo] = useState({});
   useEffect(() => {
     if(admin.length == 1){
       setProfileInfo(JSON.parse(JSON.stringify(admin[0])));
     }
-  });
+  }, [admin]);
 
   if (profileInfo != undefined) {
+
     return (
       <div>
         <h1>Personal Profile</h1>
