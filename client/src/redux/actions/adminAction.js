@@ -1,5 +1,7 @@
 import * as api from '../api/api'
 
+
+// this function is used to get admin by id
 export const getAdminByID = (id) => async (dispatch) => {
   try {
     const { data } = await api.getAdminByID(id);
@@ -9,6 +11,7 @@ export const getAdminByID = (id) => async (dispatch) => {
   }
 }
 
+// this function is used to get admin by username
 export const getAdminByUsername = (id) => async (dispatch) => {
   try {
     const { data } = await api.getAdminByUsername(id);

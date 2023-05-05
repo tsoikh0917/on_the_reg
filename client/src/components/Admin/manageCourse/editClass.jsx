@@ -4,16 +4,21 @@ import "../form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getClass, updateClass } from "../../../redux/actions/classForAdminAction";
 
+// this function is used to edit a class
 function AdminEditClass(props) {
+
+  // get the class id from the url
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // get the class info from the redux store
   const classes = useSelector((state) => state.classForAdmin);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getClass(id));
   }, []);
 
+  // set the class info to the form
   const [classInfo, setClassInfo] = useState({});
   useEffect(() => {
     if (classes.length == 1) {
@@ -21,6 +26,7 @@ function AdminEditClass(props) {
     }
   }, [classes]);
   
+  // this function is used to format the date and time
   const formatDateTime = (value) => {
     const date = new Date(value);
     console.log(date.getTime);
@@ -32,6 +38,7 @@ function AdminEditClass(props) {
     return timeStr;
   };
 
+  // set the default value of the form
   formatDateTime("2023-04-27T08:07:00.000Z");
   const [formData, setFormData] = useState({
     classID: "",
@@ -45,6 +52,7 @@ function AdminEditClass(props) {
     maxCapacity: ""
   });
 
+  // set the default value of the form
   useEffect(() => {
     setFormData({
       classID: classInfo['classID'],
@@ -60,11 +68,13 @@ function AdminEditClass(props) {
     console.log(formData);
   }, [classInfo]);
 
+  // this function is used to handle the input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // this function is used to handle the submit event
   const handleSubmit = async (event) => {
     formData.start_time = new Date(formData.start_time);
     formData.end_time = new Date(formData.end_time);
@@ -73,11 +83,13 @@ function AdminEditClass(props) {
     event.preventDefault();
   };
 
+  // this function is used to handle the back button
   const handleClick = (event) => {
     event.preventDefault();
     navigate(-1);
   }
   
+  // this function is used to render the form
   console.log(classInfo != undefined);
   if (classInfo != undefined && classInfo.start_time != undefined) {
     return (

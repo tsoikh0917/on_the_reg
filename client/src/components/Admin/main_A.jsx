@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import icon from "../image/icon.png";
 import { FaCalendarAlt, FaUserAlt } from "react-icons/fa";
 
+// this function is let admin to choose to manage course or user
 function MainA() {
   const [checkHover, setCheckHover] = useState(false);
   const [checkHover2, setCheckHover2] = useState(false);
@@ -13,6 +14,8 @@ function MainA() {
       setCheckHover2(true);
     }
   }
+
+  // close the hover
   function close(num) {
     if (num === 1) {
       setCheckHover(false);
@@ -20,6 +23,8 @@ function MainA() {
       setCheckHover2(false);
     }
   }
+
+  // html part
   return (
     <div>
       <div>

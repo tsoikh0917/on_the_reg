@@ -9,6 +9,7 @@ const userLogin = async (req, res) => {
     let hash = undefined
     let role = undefined
 
+    //start login function
     console.log("login start")
 
     // check if username and password are provided
@@ -105,6 +106,7 @@ const userLogin = async (req, res) => {
   
 }
 
+// for register student
 const userRegister = async (req, res) => {
   const { username, major, name, email, gender, yearOfStudy, emergencyContact, password } = req.body
   
@@ -148,6 +150,7 @@ const userRegister = async (req, res) => {
   }
 }
 
+//use for user logout
 const userLogout = async (req, res) => {
   // on client side, delete cookie
   const refreshToken = req.cookies?.auth
@@ -197,6 +200,7 @@ const userLogout = async (req, res) => {
 const userRefresh = async (req, res) => {
 }
 
+// export functions
 module.exports = {
     userLogin,
     userRegister,

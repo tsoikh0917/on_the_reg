@@ -1,7 +1,6 @@
 // this is for admin only
 // for admin to edit student's info
 // for student update their own info, still use user.js!
-
 const reducers = (student = [], action) => {
   switch (action.type) {
     case 'FETCH_STUDENT':

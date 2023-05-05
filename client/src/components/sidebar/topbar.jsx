@@ -6,14 +6,17 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { userLogoutWithAuth } from "../../redux/actions/authAndUserAction";
 
+// student topbar
 function Topbar({ handleLogin }) {
   const userName = "Chan Tai Ming";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
 
+  // get the auth from redux store
   const auth = useSelector((state) => state.auth.name);
 
+  // handle the link click
   function handleLinkClick() {
     if(auth == "admin"){
       navigate("/profile");
@@ -22,12 +25,14 @@ function Topbar({ handleLogin }) {
     }
   }
 
+  // handle the logout
   function handleLogout() {
     console.log("logout");
     dispatch(userLogoutWithAuth());
     navigate("/");
   }
 
+  // html part
   return (
     <div id="my_topbar">
       <span id="block">

@@ -1,3 +1,4 @@
+// this is the reducer for registerCourseForAdmin
 const reducers = (registerCourseForAdmin = [], action) => {
   switch (action.type) {
     case 'FETCH_ALL_REGISTERED_COURSES_FOR_ADMIN':

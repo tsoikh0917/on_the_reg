@@ -1,5 +1,6 @@
 USE onTheRegDB;
 
+// create class table
 create table class (
 	classID int NOT null AUTO_INCREMENT, 
     location varchar(255), 

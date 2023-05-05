@@ -17,6 +17,7 @@ console.log(saltRounds, myPassowrd)
 //   }
 // });
 
+// generate salt
 bcrypt.genSalt(saltRounds, function(err, salt) {
   bcrypt.hash(myPassowrd, salt, function(err, hash) {
       // Store hash in your password DB.

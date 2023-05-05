@@ -16,6 +16,7 @@ import {
 } from "../../../redux/actions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
 
+// this function is let admin to view all users
 function AdminViewUser() {
   const user = useSelector((state) => state.student);
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function AdminViewUser() {
     dispatch(getAllStudents());
   }, [dispatch]);
 
+  // set the user info to the form
   const data = React.useMemo(() => user, [user]);
   const columns = React.useMemo(
     () => [
@@ -59,6 +61,8 @@ function AdminViewUser() {
     ],
     []
   );
+
+  // use react-table to display the table
   const {
     getTableProps,
     getTableBodyProps,
@@ -76,6 +80,8 @@ function AdminViewUser() {
     useFilters,
     usePagination
   );
+
+  // set the user info to the form
   const [userInfo, setUserInfo] = useState({
     Name: "",
     ID: "",
@@ -85,6 +91,7 @@ function AdminViewUser() {
     Year: 0,
   });
 
+  // get the user info from the row
   const getRowValue = (rowV) => {
     var UserV = JSON.parse(JSON.stringify(rowV));
     setUserInfo({
@@ -96,13 +103,17 @@ function AdminViewUser() {
       Year: UserV.yearOfStudy,
     });
   };
+
+  // delete the user
   const [toggleFilter, setToggleFilter] = useState(false);
   const showFilter = () => {
     setToggleFilter(!toggleFilter);
   };
 
+  // set the search bar
   const [showWarn, setWarn] = useState(false);
 
+  // set the search bar
   const [isBlurred, setIsBlurred] = useState(false);
 
   const toggleWarn = () => {
@@ -117,11 +128,14 @@ function AdminViewUser() {
     setIsBlurred(!isBlurred);
   };
 
+  // set the search bar
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
     setSearch(event.target.value);
     //console.log(search);
   };
+
+  // set the search bar
   const searchSubmit = async (event) => {
     event.preventDefault();
     /*try {
@@ -132,6 +146,7 @@ function AdminViewUser() {
     }*/
   };
 
+  // html
   return (
     <div id="test">
       {showWarn && (

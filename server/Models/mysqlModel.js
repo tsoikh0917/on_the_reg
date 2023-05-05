@@ -16,6 +16,7 @@ con.connect(function(err) {
  console.log('connection successful');
 });
 
+// async query
 const asyncQuery = async (sql, params) => {
   return new Promise((resolve, reject) => {
     con.query(sql, params, (err, result) => {

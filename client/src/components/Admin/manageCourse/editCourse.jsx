@@ -4,16 +4,20 @@ import "../form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourse, updateCourse } from "../../../redux/actions/courseAction";
 
+// this function is used to edit a course
 function AdminEditCourse(props) {
+  // get the course id from the url
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // get the course info from the redux store
   const course = useSelector((state) => state.course);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCourse(id))
   }, []);
 
+  // set the course info to the form
   const [courseInfo, setCourseInfo] = useState({});
   useEffect(() => {
     if (course.length == 1) {
@@ -21,6 +25,7 @@ function AdminEditCourse(props) {
     }
   }, [course]);
 
+  // set the default value of the form
   const [formData, setFormData] = useState({
     courseID: "",
     courseName: "",
@@ -28,6 +33,7 @@ function AdminEditCourse(props) {
     faculty: ""
   });
 
+  // set the default value of the form
   useEffect(() => {
     setFormData({
       courseID: courseInfo.courseID,
@@ -37,22 +43,26 @@ function AdminEditCourse(props) {
     });
   }, [courseInfo]);
 
+  // this function is used to handle the input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  // this function is used to handle the submit button
   const handleSubmit = async (event) => {
     dispatch(updateCourse(courseInfo.courseID, formData));
     window.history.back();
     event.preventDefault();
   };
 
+  // this function is used to handle the back button
   const handleClick = (event) => {
     event.preventDefault();
     navigate(-1);
   }
 
+  // this function is used to render the page
   if (courseInfo != undefined) {
     return (
       <div id="resize">

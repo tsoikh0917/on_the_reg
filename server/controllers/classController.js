@@ -1,6 +1,7 @@
 // con: connection to the database
 const { con } = require('../Models/mysqlModel');
 
+// Get all classes
 const getAllClass = async (req, res) => {
     // Get the classID from the request
     const classID = req.param('classID');
@@ -16,6 +17,7 @@ const getAllClass = async (req, res) => {
     });
 }
 
+// Get all classes by courseID
 const getClassByCourseID = async (req, res) => {
     const { courseID } = req.params;
     let sql = `SELECT *
@@ -28,6 +30,7 @@ const getClassByCourseID = async (req, res) => {
     })
 }
 
+// Get all classes by courseID and week
 const getClass = async (req, res) => {
     //Get the classID from the request params
     const classID = req.param('classID');
@@ -72,7 +75,7 @@ const getClass = async (req, res) => {
 }*/
 
 
-
+// Add a new class
 const addClass = async (req, res) => {
     const data = req.body;
 
@@ -86,6 +89,7 @@ const addClass = async (req, res) => {
     });
 }
 
+// Update a class
 const updateClass = async (req, res) => {
     const classID = req.param('classID');
     const data = req.body;
@@ -107,6 +111,7 @@ const updateClass = async (req, res) => {
     });
 }
 
+// Delete a class
 const deleteClass = async (req, res) => {
     const classID = req.param('classID');
 
@@ -119,6 +124,7 @@ const deleteClass = async (req, res) => {
     });
 }
 
+// Export functions above for use in other files
 module.exports = {
     getAllClass,
     getClass,

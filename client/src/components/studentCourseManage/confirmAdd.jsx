@@ -17,6 +17,8 @@ function Confirm() {
   useEffect(() => {
     console.log("user: " + user.userID);
   }, [user]);
+
+  // this function is for the student to add the course
   const handleAddCourse = () => {
     try {
       console.log(classInfo.classId);
@@ -34,6 +36,7 @@ function Confirm() {
     navigate("/search");
   };
 
+  // time format
   const formatTime = (value) => {
     const date = new Date(value);
     const timeStr = date.toLocaleTimeString([], {
@@ -42,6 +45,7 @@ function Confirm() {
     });
     return timeStr;
   };
+
   const startTime = formatTime(classInfo.start_time);
   const endTime = formatTime(classInfo.end_time);
 
@@ -59,6 +63,8 @@ function Confirm() {
   function handleCheckboxChange() {
     setIsChecked(!isChecked);
   }
+
+  // html part
   return (
     <div>
       {showWarn && (

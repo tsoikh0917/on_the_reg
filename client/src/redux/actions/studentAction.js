@@ -1,5 +1,6 @@
 import * as api from "../api/api";
 
+// this function is used to get all students
 export const getAllStudents = () => async (dispatch) => {
   try {
     const { data } = await api.getAllStudents();
@@ -10,6 +11,7 @@ export const getAllStudents = () => async (dispatch) => {
   }
 };
 
+// this function is used to get student by id
 export const getStudent = (id) => async (dispatch) => {
   try {
     const { data } = await api.getStudent(id);
@@ -20,6 +22,7 @@ export const getStudent = (id) => async (dispatch) => {
   }
 };
 
+// this function is to create student account
 export const createStudent = (student) => async (dispatch) => {
   try {
     const { data } = await api.createStudent(student);
@@ -29,6 +32,7 @@ export const createStudent = (student) => async (dispatch) => {
   }
 };
 
+// this function is to update student account
 export const updateStudent = (id, updatedStudent) => async (dispatch) => {
   try {
     const { data } = await api.updateStudent(id, updatedStudent);
@@ -38,6 +42,7 @@ export const updateStudent = (id, updatedStudent) => async (dispatch) => {
   }
 };
 
+// this function is to delete student account
 export const deleteStudent = (id) => async (dispatch) => {
   try {
     const { data } = await api.deleteStudent(id);

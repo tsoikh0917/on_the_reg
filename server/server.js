@@ -41,6 +41,7 @@ app.use('/admin', adminRoutes)
 app.use('/student', studentRoutes)
 app.use('/registeredcourse', registeredCourseRoutes)
 
+// for https
 var httpServer = http.createServer(app);
 
 // for local port 8080

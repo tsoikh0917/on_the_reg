@@ -1,5 +1,6 @@
 const { con } = require('../Models/mysqlModel');
 
+//get the admin by ID
 const getAdminByID = async (req, res) => {
     const userID = req.param('userID');
 
@@ -16,6 +17,8 @@ const getAdminByID = async (req, res) => {
         res.status(200).send(result);
     });
 }
+
+//get the admin by username
 const getAdminByUsername = async (req, res) => {
     const username = req.param('username');
 
@@ -29,6 +32,7 @@ const getAdminByUsername = async (req, res) => {
     });
 }
 
+//export functions above for use in other files
 module.exports = {
     getAdminByID,
     getAdminByUsername

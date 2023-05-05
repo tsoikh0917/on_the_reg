@@ -1,3 +1,4 @@
+// this reducer is used to modify add and get course
 const reducers = (course = [], action) => {
   switch (action.type) {
     case 'FETCH_COURSE':

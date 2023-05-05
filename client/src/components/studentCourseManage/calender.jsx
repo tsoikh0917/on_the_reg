@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { DayPilot, DayPilotCalendar } from "daypilot-pro-react";
 
 class Calendar extends Component {
+
+  // constructor
   constructor(props) {
     super(props);
     this.calendarRef = React.createRef();
+    // set state
     this.state = {
       locale: "zh-cn",
       viewType: "Week",
@@ -27,6 +30,7 @@ class Calendar extends Component {
           text: modal.result,
         });
       },
+      // event handling
       eventDeleteHandling: "Update",
       onEventDeleted: (args) => {
         args.control.message("Event deleted: " + args.e.text());
@@ -67,6 +71,7 @@ class Calendar extends Component {
     return this.calendarRef.current.control;
   }
 
+  // render the calendar
   render() {
     return (
       <div>

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourse } from "../../redux/actions/courseAction";
 
+// this function is used to show the class schedule
 function ClassSchedule() {
   const courseInfo = useSelector((state) => state.course);
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ function ClassSchedule() {
     dispatch(getCourse("CSCI3100"));
   }, []);
 
+  //html part
   return (
     <div>
       <h1>Class Planner</h1>

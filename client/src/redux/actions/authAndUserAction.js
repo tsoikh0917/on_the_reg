@@ -1,5 +1,6 @@
 import * as api from '../api/api'
 
+//get user login status with authenication
 export const getUserLoginStatusWithAuth = () => async (dispatch) => {
   try {
     // get the user login status...
@@ -14,6 +15,7 @@ export const getUserLoginStatusWithAuth = () => async (dispatch) => {
   }
 }
 
+// user login with authenication
 export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
   try {
     // By local storage
@@ -105,7 +107,7 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
     // dispatch({ type: 'ERROR', payload: returnData })
     // localStorage.setItem('auth', JSON.stringify(returnData))
 
-  } catch (error) {
+  } catch (error) { // if error
     if (error.status === 401) {
       dispatch({ type: "ERROR", payload: {} });
       localStorage.setItem("auth", JSON.stringify({}));
@@ -113,6 +115,7 @@ export const userLoginWithAuth = (loginInfo) => async (dispatch) => {
   }
 };
 
+// user logout with authenication
 export const userLogoutWithAuth = () => async (dispatch) => {
   try {
     // log out the user...
@@ -135,12 +138,14 @@ export const userLogoutWithAuth = () => async (dispatch) => {
   }
 };
 
+// user refresh with authenication
 export const userRefreshWithAuth = () => async (dispatch) => {
   try {
   } catch (error) {
   }
 };
 
+// user register with authenication
 export const userRegisterWithAuth = (registerInfo) => async (dispatch) => {
   try {
   } catch (error) {

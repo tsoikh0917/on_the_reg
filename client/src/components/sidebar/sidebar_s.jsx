@@ -10,7 +10,10 @@ import {
   FaRegistered,
 } from "react-icons/fa";
 
+// student sidebar
 function SSideBar() {
+
+  // html part
   return (
     <div id="side">
       <Sidebar style={{ height: "100%", position: "absolute" }} className="si">

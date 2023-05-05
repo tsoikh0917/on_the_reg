@@ -1,6 +1,7 @@
 // con: connection to the database
 const {con} = require('../Models/mysqlModel');
 
+//get the waitlist by userID
 const getWaitlist = async (req, res) => {
     const userID = req.param('userID');
 
@@ -20,6 +21,7 @@ const getWaitlist = async (req, res) => {
     });
 }
 
+//add to waitlist
 const addWaitlist = async (req, res) => { 
     const data = req.body;
 
@@ -36,6 +38,7 @@ const addWaitlist = async (req, res) => {
     });
 }
 
+//delete from waitlist
 const deleteWaitlist = async (req, res) => {
     const waitlist_number = req.param('waitlist_number');
     const userID = req.param('userID');
@@ -49,6 +52,7 @@ const deleteWaitlist = async (req, res) => {
     });
 }
 
+//export functions above for use in other files
 module.exports = {
     getWaitlist,
     addWaitlist,

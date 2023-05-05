@@ -1,5 +1,6 @@
 import * as api from "../api/api";
 
+// this function is used to get all courses
 export const getAllCourses = () => async (dispatch) => {
   try {
     // fetch all courses...
@@ -11,6 +12,7 @@ export const getAllCourses = () => async (dispatch) => {
   }
 };
 
+// this function is used to get course by id
 export const getCourse = (id) => async (dispatch) => {
   try {
     const { data } = await api.getCourse(id);
@@ -20,6 +22,7 @@ export const getCourse = (id) => async (dispatch) => {
   }
 };
 
+// this function is used to create course
 export const createCourse = (course) => async (dispatch) => {
   try {
     // create a course...
@@ -30,6 +33,7 @@ export const createCourse = (course) => async (dispatch) => {
   }
 };
 
+// this function is used to update course
 export const updateCourse = (id, updatedCourse) => async (dispatch) => {
   try {
     // update a course...
@@ -40,6 +44,7 @@ export const updateCourse = (id, updatedCourse) => async (dispatch) => {
   }
 };
 
+// this function is used to delete course
 export const deleteCourse = (courseID) => async (dispatch) => {
   try {
     // delete a course...

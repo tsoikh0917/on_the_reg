@@ -4,21 +4,25 @@ import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+// this function is to search the course
 function Search() {
   const [classInfo, setClassInfo] = useState([]);
   const navigate = useNavigate();
 
+  // this function is to get the course information
   const [search, setSearch] = useState("");
   const handleSearch = (event) => {
     setSearch(event.target.value);
     console.log(search);
   };
+  // this function is to search the course
   const searchSubmit = () => {
     if (search != "") {
       navigate(`/selectCourse/${search}`);
     }
   };
 
+  // html part
   return (
     <div id="test">
       <h1>Search Classes</h1>

@@ -7,18 +7,21 @@ import { ColumnFilter } from "../../columnFilter";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteClass, getClassByCourseID } from "../../../redux/actions/classForAdminAction";
 
-
+// this function is let admin to select a class
 function AdminSelectClass() {
+  // get the course id from the url
   const navigate = useNavigate();
   const location = useLocation().state;
   const { id } = useParams();
   const classes = useSelector((state) => state.classForAdmin);
   const dispatch = useDispatch();
 
+  // get the class info from the redux store
   useEffect(() => {
     dispatch(getClassByCourseID(id));
   }, []);
 
+  // set the class info to the form
   const data = React.useMemo(() => classes, [classes]);
   const columns = React.useMemo(
     () => [
@@ -64,6 +67,7 @@ function AdminSelectClass() {
     []
   );
 
+  // this function is used to format the time
   const formatTime = (value) => {
     const date = new Date(value);
     const timeStr = date.toLocaleTimeString([], {
@@ -91,6 +95,7 @@ function AdminSelectClass() {
     usePagination
   );
 
+  // set the class info to the form
   const [classInfo, setClassInfo] = useState({
     classID: "",
     courseID: "",
@@ -103,6 +108,7 @@ function AdminSelectClass() {
     maxCapacity: "",
   });
 
+  // get the row value
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
     setClassInfo({
@@ -117,11 +123,14 @@ function AdminSelectClass() {
       maxCapacity: CourseV.maxCapacity,
     });
   };
+
+  // set the class info to the form
   const [toggleFilter, setToggleFilter] = useState(false);
   const showFilter = () => {
     setToggleFilter(!toggleFilter);
   };
   
+  // set the class info to the form
   const handleNext = () => {
     nextPage();
     window.scrollTo({
@@ -129,6 +138,8 @@ function AdminSelectClass() {
       behavior: "smooth",
     });
   };
+
+  // set the class info to the form
   const handlePrevious = () => {
     previousPage();
     window.scrollTo({
@@ -153,6 +164,7 @@ function AdminSelectClass() {
   };
 
 
+  //the html part of the page
   return (
     <div id="test">
       {showWarn && (

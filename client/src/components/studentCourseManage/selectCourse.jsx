@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getCourse } from "../../redux/actions/courseAction";
 
+// this function is to select the course
 function SelectCourse() {
   const location = useLocation().state;
   const courseID = location.search;
@@ -25,15 +26,20 @@ function SelectCourse() {
   const handleSearch = (event) => {
     setSearch(event.target.value);
   };
+
+  //search submit
   const searchSubmit = () => {
     if (search != "") {
       navigate(`/selectCourse/${search}`);
     }
   };
+
+
   const handleBack = () => {
     navigate("/search");
   };
 
+  // these are the columns of the table
   const columns = React.useMemo(
     () => [
       {
@@ -79,12 +85,16 @@ function SelectCourse() {
     useFilters,
     usePagination
   );
+
+  // this function is used set the course info
   const [courseInfo, setCourseInfo] = useState({
     courseID: "",
     courseName: "",
     facutly: "",
     description: "",
   });
+
+  // this function is used to get the row value
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
     console.log(rowV);
@@ -95,6 +105,8 @@ function SelectCourse() {
       description: CourseV.description,
     });
   };
+
+
   const handleNext = () => {
     nextPage();
     window.scrollTo({
@@ -110,6 +122,7 @@ function SelectCourse() {
     });
   };
 
+  //html
   return (
     <div id="test">
       <h1>Select/Search Course</h1>

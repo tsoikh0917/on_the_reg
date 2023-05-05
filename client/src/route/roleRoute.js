@@ -6,7 +6,7 @@ import SSideBar from "../components/sidebar/sidebar_s";
 import Topbar from "../components/sidebar/topbar";
 import ASideBar from "../components/sidebar/sidebar_a";
 
-
+// required: "student" or "admin"
 const RoleRoutes = ({required, handleLogin,  isAdmin, isLoggedIn}) => {
   // fetch the role from redux store
   // if no role, redirect to login page

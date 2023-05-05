@@ -4,16 +4,19 @@ import "../form.css";
 import { getStudent, updateStudent } from "../../../redux/actions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
 
+// this function is used to edit a user
 function AdminEditUser() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // get the user info from the redux store
   const user = useSelector((state) => state.student);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getStudent(id));
   }, []);
 
+  // set the user info to the form
   const [userInfo, setUserInfo] = useState({});
   useEffect(() => {
     if (user.length == 1) {
@@ -21,6 +24,7 @@ function AdminEditUser() {
     }
   }, [user]);
 
+  // set the default value of the form
   const [formData, setFormData] = useState({
     name: "",
     userID: "",
@@ -32,6 +36,7 @@ function AdminEditUser() {
     emergencyContact: "",
   });
 
+  // set the default value of the form
   useEffect(() => {
     console.log(userInfo);
     setFormData({
@@ -47,11 +52,13 @@ function AdminEditUser() {
     console.log(formData);
   }, [userInfo]);
   
+  // this function is used to handle the input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     console.log(formData);
   };
+  // this function is used to handle the submit button
   const handleSubmit = async (event) => {
     console.log(formData)
     dispatch(updateStudent(userInfo["userID"], formData));
@@ -60,12 +67,15 @@ function AdminEditUser() {
 
   };
 
+  // this function is used to handle the back button
   const handleClick = (event) => {
     event.preventDefault();
     navigate(-1);
   }
   console.log(userInfo);
   console.log(userInfo != undefined);
+
+  // this function is used to render the page
   if (userInfo != undefined) {
     return (
       <div id="resize">

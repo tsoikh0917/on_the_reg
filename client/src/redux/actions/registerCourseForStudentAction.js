@@ -1,5 +1,6 @@
 import * as api from "../api/api";
 
+// this function is used to get all registered courses by student id
 export const getRegisteredCourseById = (studentId) => async (dispatch) => {
   try {
     const { data } = await api.getRegisteredCourseById(studentId);
@@ -25,6 +26,7 @@ export const createRegisteredCourse =
     }
   };
 
+// delete class and course from registered course
 export const deleteRegisteredCourse =
   (courseID, studentID) => async (dispatch) => {
     try {
@@ -38,6 +40,7 @@ export const deleteRegisteredCourse =
     }
   };
 
+// update class and course from registered course
 export const updateRegisteredCourse =
   (id, updatedRegisteredCourse) => async (dispatch) => {
     try {

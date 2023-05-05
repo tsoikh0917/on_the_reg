@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { createCourse } from "../../../redux/actions/courseAction";
 import { useDispatch } from "react-redux";
 
+// this function is used to add a new course
 function AdminAddCourse() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -12,10 +13,14 @@ function AdminAddCourse() {
     description: "", 
     faculty: ""
   });
+
+  // this function is used to handle the input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  // this function is used to handle the submit event
   const handleSubmit = async (event) => {
     console.log(formData)
     dispatch(createCourse(formData));
@@ -23,10 +28,12 @@ function AdminAddCourse() {
     event.preventDefault();
   };
 
+  // this function is used to handle the back button
   const handleClick = (event) => {
     event.preventDefault();
     navigate(-1);
   }
+  
   return (
     <div id="resize">
       <form id="form_info" onSubmit={handleSubmit}>

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getAdminByUsername } from "../../redux/actions/adminAction";
 
+// this function is let admin to view his/her profile
 function AdminProfile() {
   const auth = useSelector((state) => state.auth.name);
   const admin = useSelector((state) => state.admin);
@@ -17,6 +18,7 @@ function AdminProfile() {
     }
   }, [admin]);
 
+  // this function is used to handle the input change
   if (profileInfo != undefined) {
 
     return (

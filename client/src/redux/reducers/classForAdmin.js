@@ -1,3 +1,4 @@
+// this reducer is for the admin to create, update, delete, and fetch classes
 const reducers = (classForAdmin = [], action) => {
   switch (action.type) {
     case 'FETCH_CLASS':

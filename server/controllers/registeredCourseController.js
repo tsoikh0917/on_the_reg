@@ -3,6 +3,7 @@ const { con } = require("../Models/mysqlModel");
 
 const getAllRegisteredCourses = async (req, res) => {};
 
+// get registered courses by student
 const getRegisteredCoursesByStudent = async (req, res) => {
   const { studentID } = req.params;
 
@@ -23,6 +24,7 @@ const getRegisteredCoursesByStudent = async (req, res) => {
   });
 };
 
+// get registered courses by course
 const deleteRegisteredCourse = async (req, res) => {
   const { courseID, studentID } = req.params;
 
@@ -48,6 +50,7 @@ const deleteRegisteredCourse = async (req, res) => {
   });
 };
 
+// add registered course
 const addRegisteredCourse = async (req, res) => {
   const newCourse = req.body;
 
@@ -81,6 +84,7 @@ const addRegisteredCourse = async (req, res) => {
   );
 };
 
+// update registered course
 const updateRegisteredCourse = async (req, res) => {
   const { oldCourseID, oldStudentID, newCourseID, newStudentID } = req.body;
 
@@ -110,6 +114,7 @@ const updateRegisteredCourse = async (req, res) => {
   });
 };
 
+//export functions above for use in other files
 module.exports = {
   getAllRegisteredCourses,
   getRegisteredCoursesByStudent,

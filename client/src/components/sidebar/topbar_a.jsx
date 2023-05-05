@@ -6,20 +6,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { userLogoutWithAuth } from "../../redux/actions/authAndUserAction";
 
+// admin topbar
 function AdminTopbar({ handleLogin }) {
   const userName = "Chan Tai Ming";
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("user"));
 
+  // handle the link click
   function handleLinkClick(link) {
     navigate(link);
   }
+
+  // handle the logout
   function handleLogout() {
     console.log("logout");
     dispatch(userLogoutWithAuth());
   }
 
+  // html part
   return (
     <div id="my_topbar">
       <span id="block">

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createClass } from "../../../redux/actions/classForAdminAction";
 
+// this function is used to add a new class to a course
 function AdminAddClass() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,11 +19,15 @@ function AdminAddClass() {
     capacity: "",
     maxCapacity: "",
   });
+
+  // this function is used to handle the input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     console.log(formData);
   };
+
+  // this function is used to handle the submit event
   const handleSubmit = async (event) => {
     console.log(formData);
     dispatch(createClass(formData));
@@ -30,6 +35,7 @@ function AdminAddClass() {
     event.preventDefault();
   };
 
+  // this function is used to handle the back button
   const handleClick = (event) => {
     event.preventDefault();
     navigate(-1);

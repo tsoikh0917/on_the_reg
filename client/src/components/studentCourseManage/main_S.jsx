@@ -9,11 +9,14 @@ import {
   FaRegistered,
 } from "react-icons/fa";
 
+// student main page
 function MainS() {
   const [checkHover, setCheckHover] = useState(false);
   const [checkHover2, setCheckHover2] = useState(false);
   const [checkHover3, setCheckHover3] = useState(false);
   const [checkHover4, setCheckHover4] = useState(false);
+
+  // the hover part
   function open(num) {
     if (num === 1) {
       setCheckHover(true);
@@ -25,6 +28,8 @@ function MainS() {
       setCheckHover4(true);
     }
   }
+
+  // the hover part
   function close(num) {
     if (num === 1) {
       setCheckHover(false);
@@ -36,6 +41,8 @@ function MainS() {
       setCheckHover4(false);
     }
   }
+
+  // html part
   return (
     <div>
       <div id="main_icon">

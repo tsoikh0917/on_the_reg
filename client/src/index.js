@@ -11,6 +11,8 @@ import thunk from 'redux-thunk';
 import combineReducers from './redux/reducers';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+//this is the redux store
 const store = configureStore({
   reducer: combineReducers, 
   middleware: [thunk]

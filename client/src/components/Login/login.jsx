@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import { userLoginWithAuth } from "../../redux/actions/authAndUserAction";
 // import axios from "axios";
 
+// this function is used to login
 function Login({ handleLogin }) {
+
   const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     username: "",
@@ -13,13 +15,14 @@ function Login({ handleLogin }) {
   });
   const [valid, setValid] = useState(false);
 
-  // 
+  // this function is used to handle the input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     console.log(formData);
   };
 
+  // this function is used to handle the submit
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -35,6 +38,7 @@ function Login({ handleLogin }) {
     }
   };
 
+  //html part
   return (
     <div className="login-box">
       <h2 id="dark">Login</h2>

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getClassByCourseID } from "../../redux/actions/classForStudentAction";
 import axios from "axios";
 
+// this function is to select the class
 function SelectClass() {
   const navigate = useNavigate();
   const location = useLocation().state;
@@ -22,6 +23,7 @@ function SelectClass() {
   const data = React.useMemo(() => classInfo, [classInfo]);
   const [search, setSearch] = useState("");
 
+  // these are the columns of the table
   const columns = React.useMemo(
     () => [
       {
@@ -66,6 +68,7 @@ function SelectClass() {
     setToggleFilter(!toggleFilter);
   };
 
+  // time format
   const formatTime = (value) => {
     const date = new Date(value);
     const timeStr = date.toLocaleTimeString([], {
@@ -75,6 +78,7 @@ function SelectClass() {
     return timeStr;
   };
 
+  
   const {
     getTableProps,
     getTableBodyProps,
@@ -107,6 +111,7 @@ function SelectClass() {
     });
   };
 
+  // this function is to set the row value
   const [classOut, setClassOut] = useState({
     classID: "",
     week: "",
@@ -116,6 +121,8 @@ function SelectClass() {
     lectureName: "",
     capacity: "",
   });
+
+  // this function is to get the row value
   const getRowValue = (rowV) => {
     var ClassV = JSON.parse(JSON.stringify(rowV));
 
@@ -131,6 +138,7 @@ function SelectClass() {
     console.log(classOut);
   };
 
+  // html part
   return (
     <div id="test">
       <h1>{courseInfo.courseID}</h1>

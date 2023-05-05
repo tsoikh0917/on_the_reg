@@ -5,6 +5,7 @@ import fakeData from "../MOCK_ENROLLMENT.json";
 import { useDispatch, useSelector } from "react-redux";
 import { getRegisteredCourseById } from "../../redux/actions/registerCourseForStudentAction";
 
+// this function is used to show the enrollment status
 function EnrollmentStatus() {
   const [enroll, setEnroll] = useState([]);
   //TODO: Add student ID
@@ -34,6 +35,8 @@ function EnrollmentStatus() {
     ],
     []
   );
+
+  // this function is used to format the status
   const formatStatus = (value) => {
     if (value === 1) {
       return "success";
@@ -43,6 +46,7 @@ function EnrollmentStatus() {
       return "Error";
     }
   };
+  //html part
   const {
     getTableProps,
     getTableBodyProps,

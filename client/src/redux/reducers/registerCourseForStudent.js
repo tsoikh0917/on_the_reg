@@ -1,3 +1,4 @@
+// this reducer is to get the registered courses by studentID
 const reducers = (registerCourseForStudent = [], action) => {
   switch (action.type) {
     case 'FETCH_REGISTERED_COURSES_BY_STUDENTID':

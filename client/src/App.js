@@ -35,6 +35,7 @@ import SelectCourse from "./components/studentCourseManage/selectCourse";
 import RoleRoutes from "./route/roleRoute";
 import { getUserLoginStatusWithAuth } from "./redux/actions/authAndUserAction.js";
 
+// this function is used to check if the user is logged in or not
 function App() {
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -82,6 +83,7 @@ function App() {
     return <Login handleLogin={handleLogin} />;
   }
 
+  // this function is used to change the state of isloggedIn
   function handleLogin(state) {
     console.log("argument from state: ", state);
     console.log("argument from isloggedIn1: ", isLoggedIn);

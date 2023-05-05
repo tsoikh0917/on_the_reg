@@ -1,6 +1,7 @@
 // con: connection to the database
 const { con } = require('../Models/mysqlModel');
 
+//view all courses
 const ViewAllCourse = async (req, res) => {
 
     // ? is a placeholder for a value to be inserted into the query
@@ -16,6 +17,7 @@ const ViewAllCourse = async (req, res) => {
     });
 }
 
+//view specific course
 const ViewSpecificCourse = async (req, res) => {
     const courseID = req.param('courseID');
 
@@ -32,6 +34,8 @@ const ViewSpecificCourse = async (req, res) => {
         res.status(200).send(result);
     });
 }
+
+//add course
 const AddCourse = async (req, res) => { 
     const data = req.body;
 
@@ -45,6 +49,7 @@ const AddCourse = async (req, res) => {
     });
 }
 
+//delete course
 const DeleteCourse = (req, res) => {
     const courseID = req.param('courseID');
     let message;
@@ -68,6 +73,7 @@ const DeleteCourse = (req, res) => {
     res.status(200).send(message);
 }
 
+//edit course
 const EditCourse = (req, res) => {
     const courseID = req.param('courseID');
     const data = req.body;
@@ -82,6 +88,8 @@ const EditCourse = (req, res) => {
     });
 
 }
+
+//view course from search bar
 const ViewCourseFromSearchBar = (req, res) => {
     const data = req.param('SearchBarInput');
     let sql = `SELECT * 
@@ -94,9 +102,9 @@ const ViewCourseFromSearchBar = (req, res) => {
     if (err) throw err;
     res.status(201).send(result);
     });
-    
-
 }
+
+//export functions above for use in other files
 module.exports = {
     ViewAllCourse,
     ViewSpecificCourse,

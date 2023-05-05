@@ -19,6 +19,7 @@ import {
   getAllCourses,
 } from "../../../redux/actions/courseAction";
 
+// this function is let admin to view all courses
 function AdminViewCourse() {
   const course = useSelector((state) => state.course);
   const dispatch = useDispatch();
@@ -26,16 +27,21 @@ function AdminViewCourse() {
     dispatch(getAllCourses());
   }, []);
 
+  // set the course info to the form
   const data = React.useMemo(() => course, [course]);
   const [search, setSearch] = useState("");
   const [courseInfo, setCourseInfo] = useState({
     courseID: "",
     courseName: "",
   });
+
+  // search function
   const handleSearch = (event) => {
     setSearch(event.target.value);
     console.log(search);
   };
+
+  // search function
   const searchSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -45,6 +51,7 @@ function AdminViewCourse() {
       console.log(error);
     }
   };
+
 
   const columns = React.useMemo(
     () => [
@@ -104,6 +111,7 @@ function AdminViewCourse() {
     []
   );
 
+  // set the table data
   const {
     getTableProps,
     getTableBodyProps,
@@ -122,6 +130,7 @@ function AdminViewCourse() {
     usePagination
   );
 
+  // set the table body
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
     console.log(CourseV);
@@ -151,6 +160,7 @@ function AdminViewCourse() {
     setIsBlurred(!isBlurred);
   };
 
+  //html
   return (
     <div id="test">
       {showWarn && (

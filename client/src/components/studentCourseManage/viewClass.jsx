@@ -8,6 +8,7 @@ import { deleteRegisteredCourse } from "../../redux/actions/registerCourseForStu
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// this function is to view the class
 function ViewClass() {
   const course = useSelector((state) => state.registerCourseForStudent);
   const user = useSelector((state) => state.user);
@@ -59,6 +60,8 @@ function ViewClass() {
     ],
     []
   );
+
+  // this function is to format the time
   const formatTime = (value) => {
     const date = new Date(value);
     const timeStr = date.toLocaleTimeString([], {
@@ -82,11 +85,13 @@ function ViewClass() {
     state: { pageIndex, pageSize },
   } = useTable({ columns, data, initialState: { pageSize: 5 } }, usePagination);
 
+  // set the course info
   const [courseInfo, setCourseInfo] = useState({
     courseID: "",
     courseName: "",
   });
 
+  // get the row value
   const getRowValue = (rowV) => {
     var CourseV = JSON.parse(JSON.stringify(rowV));
     console.log(CourseV);
@@ -136,6 +141,7 @@ function ViewClass() {
     window.location.reload();
   };
 
+  // html part
   return (
     <div>
       {showWarn && (

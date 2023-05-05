@@ -1,3 +1,4 @@
+// this reducer is used to store the class for student
 const reducers = (classForStudent = [], action) => {
   switch (action.type) {
     case 'FETCH_CLASS':

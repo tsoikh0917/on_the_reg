@@ -4,9 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/actions/authAndUserAction";
 
+// this function is used to sign up
 function SignUp() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  // this function is to set the form data
   const [formData, setFormData] = useState({
     username: "",
     gender: "",
@@ -16,11 +19,15 @@ function SignUp() {
     emergencyContact: "",
     password: ""
   });
+
+  // this function is used to handle the input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     console.log(formData);
   };
+
+  // this function is used to handle the submit
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -31,10 +38,14 @@ function SignUp() {
       console.log(error);
     }
   };
+
+  // this function is used to handle the back button
   const handleClick = (event) => {
     event.preventDefault();
     navigate(-1);
   };
+
+  //html part
   return (
     <div className="signUp">
       <div id="resize">

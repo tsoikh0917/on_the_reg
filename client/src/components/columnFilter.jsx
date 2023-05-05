@@ -1,6 +1,7 @@
 import React from "react";
 import "./columnFilter.css";
 
+// this function is to filter the table
 export const ColumnFilter = ({ column }) => {
   const { filterValue, setFilter } = column;
   return (

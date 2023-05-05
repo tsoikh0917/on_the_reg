@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { createStudent } from "../../../redux/actions/studentAction";
 
+// this function is used to add a user
 function AdminAddUser() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,20 +18,28 @@ function AdminAddUser() {
     email: "",
     emergencyContact: "",
   });
+
+  // this function is used to handle the input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  // this function is used to handle the submit button
   const handleSubmit = async (event) => {
     console.log(formData)
     dispatch(createStudent(formData));
     window.history.back();
     event.preventDefault();
   };
+
+  // this function is used to handle the back button
   const handleClick = (event) => {
     event.preventDefault();
     navigate(-1);
   }
+
+  // this function is used to render the page
   return (
     <div id="resize">
       <form id="form_info" onSubmit={handleSubmit}>

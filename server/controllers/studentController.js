@@ -1,6 +1,7 @@
 // con: connection to the database
 const {con} = require('../Models/mysqlModel');
 
+//view all students
 const getAllStudent = async (req, res) => {
     const userID = req.param('userID');
 
@@ -18,6 +19,7 @@ const getAllStudent = async (req, res) => {
     });
 }
 
+//view specific student
 const getStudent = async (req, res) => {
     const userID = req.param('userID');
 
@@ -31,6 +33,7 @@ const getStudent = async (req, res) => {
     });
 }
 
+//add student
 const addStudent = async (req, res) => { 
     const data = req.body;
 
@@ -44,6 +47,7 @@ const addStudent = async (req, res) => {
     });
 }
 
+//update student   
 const updateStudent = async (req, res) => {
     const userID = req.param('userID');
     const data = req.body;
@@ -63,6 +67,7 @@ const updateStudent = async (req, res) => {
     });
 }
 
+//delete student
 const deleteStudent = async (req, res) => {
     const userID = req.param('userID');
 
@@ -76,6 +81,7 @@ const deleteStudent = async (req, res) => {
     });
 }
 
+// export the functions
 module.exports = {
     getAllStudent,
     getStudent,

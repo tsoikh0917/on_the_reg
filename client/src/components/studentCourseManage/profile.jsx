@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getStudent } from "../../redux/actions/studentAction";
 
+// this function is used to show the student's profile
 function Profile() {
   const [name, setName] = useState("Chan Tai Ming");
   const [id, setID] = useState("1155123456");
@@ -14,6 +15,7 @@ function Profile() {
   const user = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {}, []);
 
+  // html part
   return (
     <div>
       <h1>Personal Profile</h1>

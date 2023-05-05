@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./changePW.css";
 import axios from "axios";
+
+// this function is to let user to change password
 function ChangePW() {
   const [formData, setFormData] = useState({
     current_password: "",
@@ -9,11 +11,15 @@ function ChangePW() {
   });
   const [dWrong, setDWrong] = useState(false);
   const [dWrong2, setDWrong2] = useState(false);
+
+  // this function is used to handle the input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
     console.log(formData);
   };
+
+  // this function is used to handle the submit
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (formData.new_pw === formData.confirm_pw) {
@@ -28,6 +34,8 @@ function ChangePW() {
       setDWrong2(true);
     }
   };
+
+  // html part
   return (
     <div>
       <div id="spacing">
