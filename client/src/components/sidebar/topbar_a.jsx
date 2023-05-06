@@ -37,7 +37,6 @@ function AdminTopbar({ handleLogin }) {
               profile
             </Dropdown.Item>
 
-            {/* todo: use redux auth to handle */}
             <Dropdown.Item onClick={() => handleLogout()} id="dropdown_item">
               logout
             </Dropdown.Item>

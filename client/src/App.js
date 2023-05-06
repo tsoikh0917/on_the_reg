@@ -96,7 +96,6 @@ function App() {
   return (
     <ProSidebarProvider>
       <Routes>
-        {/* todo: distinct the user and admin and login */}
         <Route path="/" element={checkLogin()} />
         <Route path="/signUp" element={<SignUp />} />
 
