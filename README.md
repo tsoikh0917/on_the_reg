@@ -14,3 +14,15 @@ For the “components” directory it contain all the subpages for the website e
 Besides the front end related repository, we also have implemented “redux” and “route” in under “client” repository to have a better way managing and synchronize the front end and back end communications and handling.
 
 For directory under “server” we using express.js for the back end handling:
+server.js: contain all the api routes path and middleware that website are needed in backend
+salt.js: for testing, not use in production environment, generate salted password and SQL statement for salted password
+
+For the "controllers" directory it contains all module to process the HTTP request from frontend and to do some operation to the Database. 
+For different Controller, it will matching different route, eg. adminController will match request from "/admin" route.
+
+For the "controllers" directory it contains all module to process the HTTP request from frontend and to do some operation to the Database. 
+For different Controller, it will matching different route, eg. adminController will match request from "/admin" route.
+
+For the "Models" directory it contains mysqlModel. mysqlModel contains information for connecting the database and provides async query function. 
+
+For the "routes" directory it contains all modules to request to specific route, HTTP method and the corresponding controllers module that are needed. 
