@@ -197,8 +197,6 @@ const userLogout = async (req, res) => {
   }
 }
 
-const userRefresh = async (req, res) => {
-}
 
 // export functions
 module.exports = {
